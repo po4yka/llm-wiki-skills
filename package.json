@@ -1,0 +1,9 @@
+{
+  "name": "llm-wiki-skills",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate:skills": "node scripts/validate-skills.mjs"
+  },
+  "devDependencies": {}
+}
