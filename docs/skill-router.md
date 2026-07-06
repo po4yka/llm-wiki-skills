@@ -17,6 +17,9 @@ Non-developer, browser-first or Confluence-style adoption concern?
 Worried about PR/MR friction, branch sync, token growth, human-readable docs, LLM slop or sensitive data?
   -> llm-wiki-faq
 
+Asking where to start, when not to use it, who owns/reviews it, cost, ROI, migration risk, replacing Confluence/RAG, vendor lock-in or multi-agent use?
+  -> llm-wiki-faq
+
 Need current tools/news/releases?
   -> llm-wiki-news-radar
 
@@ -87,6 +90,9 @@ Worried about slop?
 Need to prove value?
   -> llm-wiki-eval
 
+Need a with-wiki vs without-wiki adoption benchmark?
+  -> llm-wiki-benchmark-suite
+
 Worried the wiki will not fit in context?
   -> llm-wiki-retrieval-architect
 ```
@@ -103,10 +109,10 @@ Sensitive data, PII, customer data or secrets in sources?
 Model/provider policy?
   -> llm-wiki-model-policy
 
-Agent memory boundary?
+Permissions, multi-agent access or AGENTS.md/wiki boundary?
   -> llm-wiki-agent-memory-bridge
 
-Team rollout?
+Team rollout, ownership or review gates?
   -> llm-wiki-team-rollout
 ```
 
@@ -116,10 +122,10 @@ Team rollout?
 Publish safe subset?
   -> llm-wiki-export-publish
 
-Archive for long-term durability?
+Archive for long-term durability or avoid vendor lock-in?
   -> llm-wiki-archive
 
-Refresh stale sources?
+Refresh stale sources or source-link rot?
   -> llm-wiki-source-refresh
 
 Redact private content?
