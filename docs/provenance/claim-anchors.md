@@ -28,9 +28,10 @@ extracted | inferred | ambiguous | unsupported | conflicting
 1. Claim anchors start with `^claim-YYYYMMDD-NNN`.
 2. Source anchors start with `^src-YYYYMMDD-NNN`.
 3. Each claim anchor must be followed within three lines by a `Support:` line.
-4. Anchors must be unique across the repository.
-5. Do not fabricate anchors for sources the agent did not inspect.
-6. Use `unsupported` instead of forcing weak evidence to fit a claim.
+4. Anchors must be unique across real Markdown content.
+5. Anchors inside fenced code examples are ignored by the validator.
+6. Do not fabricate anchors for sources the agent did not inspect.
+7. Use `unsupported` instead of forcing weak evidence to fit a claim.
 
 ## Example
 
@@ -39,6 +40,35 @@ extracted | inferred | ambiguous | unsupported | conflicting
   - Support: extracted
   - Source: `raw/sources/llm-wiki-idea.md` ^src-20260706-002
 ```
+
+## Validator
+
+Run the default repository-wide check:
+
+```bash
+npm run validate:claim-anchors
+```
+
+Run a scoped check:
+
+```bash
+node scripts/validate-claim-anchors.mjs wiki examples/minimal-vault/wiki
+```
+
+Show usage:
+
+```bash
+node scripts/validate-claim-anchors.mjs --help
+```
+
+The validator:
+
+- preserves line numbers while ignoring fenced code blocks;
+- rejects duplicate claim anchors and source anchors;
+- requires each claim anchor to have a nearby `Support:` line;
+- accepts optional path arguments for scoped validation;
+- ignores files with `<!-- claim-anchor-validator: ignore-file -->`;
+- ignores the line after `<!-- claim-anchor-validator: ignore-next -->`.
 
 ## Review workflow
 
@@ -52,3 +82,4 @@ extracted | inferred | ambiguous | unsupported | conflicting
 - Anchors without source inspection create false trust.
 - Generated summaries citing other generated summaries are not enough for verified claims.
 - Claim IDs that are rewritten during refactors break audit history.
+- Fenced examples should not consume real claim IDs or create false duplicate failures.
