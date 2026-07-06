@@ -5,13 +5,13 @@
 
 ## Thesis
 
-This repository should become a distribution-ready skill system for coding agents that support LLM-Wiki users across the full lifecycle:
+This repository is a distribution-ready skill system for coding agents that support LLM-Wiki users across the full lifecycle:
 
 ```text
 learn -> choose -> set up -> migrate -> operate -> audit -> evolve
 ```
 
-The target user is not only someone who already has a vault. The target user may be deciding whether LLM-Wiki is useful, choosing a tool, migrating a messy document set, or building a product.
+The target user is not only someone who already has a vault. The target user may be deciding whether LLM-Wiki is useful, choosing a tool, migrating a messy document set, building a product, operating a team wiki, or turning accumulated wiki procedures into reusable Agent Skills.
 
 ## Distribution target
 
@@ -26,195 +26,86 @@ npx skills use po4yka/llm-wiki-skills --skill llm-wiki-orient --agent claude-cod
 
 Each skill lives in `skills/<skill-name>/SKILL.md` and has valid Agent Skills frontmatter.
 
-## Skill families
+## Current skill families
 
 ### 1. Orientation and education
 
-Goal: explain LLM-Wiki without hype.
-
-Current skill:
-
 - `llm-wiki-orient`
-
-Covers:
-
-- raw/wiki/schema model;
-- difference from RAG, GraphRAG and agent memory;
-- solution families;
-- safety boundary: automate bookkeeping, not belief.
-
-### 2. Solution selection
-
-Goal: help the user choose ready-made vs custom.
-
-Current skill:
-
+- `llm-wiki-news-radar`
 - `llm-wiki-choose`
 
-Covers:
+These skills explain the pattern, refresh the current landscape and help the user decide between ready-made and custom paths.
 
-- needs interview;
-- solution routing;
-- build-vs-buy;
-- local-first/privacy constraints;
-- agent compatibility;
-- re-verification of current tool status.
+### 2. Diagnosis, planning and evaluation
 
-### 3. Setup and connection
+- `llm-wiki-doctor`
+- `llm-wiki-migration-planner`
+- `llm-wiki-eval`
+- `llm-wiki-provenance`
+- `llm-wiki-conflict-resolver`
 
-Goal: turn a decision into a working environment.
+These skills turn messy existing material into a safe adoption plan and provide evidence that the wiki is trustworthy and useful.
 
-Current skill:
+### 3. Implementation and migration
 
 - `llm-wiki-setup`
-
-Covers:
-
-- `npx skills` installation;
-- Claude Code/Codex/Cursor/OpenCode skill install targets;
-- raw/wiki/schema folder setup;
-- templates;
-- git/dry-run/write-safety defaults.
-
-### 4. Migration and refactoring
-
-Goal: organize existing material into an LLM-Wiki.
-
-Current skill:
-
-- `llm-wiki-refactor`
-
-Covers:
-
-- inventory;
-- dry-run migration plan;
-- raw/wiki separation;
-- page type mapping;
-- frontmatter normalization;
-- link and attachment preservation.
-
-### 5. Current ecosystem radar
-
-Goal: keep recommendations fresh.
-
-Current skill:
-
-- `llm-wiki-news-radar`
-
-Covers:
-
-- fresh web search;
-- papers;
-- releases;
-- standards;
-- tool status;
-- major ecosystem shifts;
-- explicit citations and dates.
-
-### 6. Custom implementation
-
-Goal: design a custom CLI, plugin, repo agent or product.
-
-Current skill:
-
 - `llm-wiki-design`
+- `llm-wiki-refactor`
+- `llm-wiki-local-first-stack`
+- `llm-wiki-obsidian-hardening`
+- `llm-wiki-repo-docs`
+- `llm-wiki-github-action`
 
-Covers:
+These skills help users set up local-first vaults, harden Obsidian, build repo documentation and add safe maintenance automation.
 
-- build-vs-buy justification;
-- data model;
-- ingest/query/lint flows;
-- retrieval tiers;
-- provenance;
-- write safety;
-- MVP planning.
-
-### 7. Capture pipelines
-
-Goal: get knowledge into the system with low friction.
-
-Current skill:
+### 4. Capture and domain workflows
 
 - `llm-wiki-capture-pipeline`
+- `llm-wiki-channel-capture`
+- `llm-wiki-interview`
+- `llm-wiki-adr-memory`
+- `llm-wiki-domain-pack`
 
-Covers:
+These skills cover the capture and knowledge-shaping scenarios that make the wiki compound over time.
 
-- web clips;
-- PDFs;
-- voice;
-- chat exports;
-- Telegram/email/GitHub streams;
-- durable event logs;
-- inbox-first automation.
-
-### 8. Team rollout
-
-Goal: use LLM-Wiki as team/company knowledge infrastructure.
-
-Current skill:
-
-- `llm-wiki-team-rollout`
-
-Covers:
-
-- onboarding;
-- bus factor;
-- agent context;
-- ADR/decision history;
-- PR-based writes;
-- CODEOWNERS;
-- permissions;
-- review queues.
-
-### 9. Operation
-
-Goal: run the wiki day to day.
-
-Current skills:
+### 5. Operation and trust
 
 - `wiki-triage`
 - `wiki-ingest`
 - `wiki-query`
 - `wiki-lint`
-
-Covers:
-
-- inbox sorting;
-- trusted source ingestion;
-- grounded querying;
-- lint and health reports.
-
-### 10. Trust and anti-slop
-
-Goal: prevent organized misinformation.
-
-Current skill:
-
 - `llm-wiki-trust-audit`
+- `llm-wiki-security-review`
+- `llm-wiki-model-policy`
+- `llm-wiki-export-publish`
+- `llm-wiki-archive`
 
-Covers:
+These skills maintain day-to-day wiki health, data boundaries, model policy, publication boundaries and long-term durability.
 
-- provenance;
-- review states;
-- human synthesis boundaries;
-- low-confidence staging;
-- prompt-injection defense;
-- write safety.
+### 6. Skill and memory governance
 
-## Future skill ideas
+- `llm-wiki-skill-doctor`
+- `llm-wiki-skill-compiler`
+- `llm-wiki-agent-memory-bridge`
+- `llm-wiki-team-rollout`
 
-These are candidates, not commitments:
+These skills help teams and builders govern Agent Skills, instruction files, memory surfaces and organizational rollout.
+
+## Advanced use-case catalog
+
+The 20 advanced use-case skills are cataloged in [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md). That document is the main routing reference for diagnosis, provenance, evaluation, Obsidian hardening, repo docs, scheduled maintenance, security review, local-first design, channel capture, interviews, ADR memory, domain packs, publishing, archival, conflict resolution, model policy and agent-memory boundaries.
+
+## Future candidates
+
+Potential next additions:
 
 | Skill | Purpose |
 |---|---|
-| `llm-wiki-benchmark` | Measure retrieval hit rate, answer reuse and review backlog. |
-| `llm-wiki-claim-provenance` | Add claim-level source anchors and audit unsupported claims. |
-| `llm-wiki-repo-docs` | Specialize LLM-Wiki for codebase documentation and AGENTS.md/CLAUDE.md pointer patterns. |
-| `llm-wiki-obsidian-hardening` | Harden an Obsidian vault for agent writes, wikilinks, attachments and frontmatter. |
-| `llm-wiki-qmd-upgrade` | Add qmd or hybrid retrieval when `index.md` is no longer enough. |
-| `llm-wiki-github-action` | Configure scheduled lint/ingest/update PRs. |
-| `llm-wiki-domain-pack` | Generate domain-specific page types and taxonomies. |
-| `llm-wiki-interview` | Interview the user to extract tacit knowledge into draft pages. |
+| `llm-wiki-claim-anchors` | Implement deterministic Markdown anchor conventions for claim-level provenance. |
+| `llm-wiki-benchmark-suite` | Run repeatable with-wiki/without-wiki benchmark tasks. |
+| `llm-wiki-release-notes` | Generate release notes from wiki changes and repo history. |
+| `llm-wiki-privacy-redactor` | Redact public exports and model-boundary payloads. |
+| `llm-wiki-source-refresh` | Re-check stale external sources and open refresh PRs. |
 
 ## Product principles
 
@@ -225,3 +116,4 @@ These are candidates, not commitments:
 5. Protect human synthesis.
 6. Make trust controls visible before retrieval upgrades.
 7. Support multiple coding agents through the Agent Skills format.
+8. Validate skill metadata and groupings before release.
