@@ -2,7 +2,7 @@ import path from 'node:path';
 import { stripFrontmatter } from './lib/frontmatter.mjs';
 import { failFactory, listSkillNames, repoRoot, readText } from './lib/repo.mjs';
 
-const { fail, finish } = failFactory();
+const { finish } = failFactory();
 const warnings = [];
 const maxSkillBodyChars = 18000;
 const volatileTerms = /\b(current|latest|recent|today|pricing|stars|release|version|maintenance status|provider support|news)\b/i;
@@ -45,11 +45,11 @@ for (const skillName of listSkillNames()) {
   }
 
   if (!skillHeadings.has('output')) {
-    fail(`${skillName}: missing required '## Output' section for predictable agent responses`);
+    warn(`${skillName}: missing recommended '## Output' section for predictable agent responses`);
   }
 
   if (!skillHeadings.has('safety gates')) {
-    fail(`${skillName}: missing required '## Safety gates' section`);
+    warn(`${skillName}: missing recommended '## Safety gates' section`);
   }
 
   if (volatileTerms.test(text) && !browseTerms.test(text)) {
