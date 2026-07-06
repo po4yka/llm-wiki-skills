@@ -155,12 +155,18 @@ It includes skills for:
 | [`domain-packs/`](domain-packs/) | Domain-specific starter taxonomies and workflows. |
 | [`benchmarks/`](benchmarks/) | Pilot questions and scoring rubric for local evaluation. |
 
-## Validation and operational reports
+## Validation, distribution, and operational reports
 
 Run deterministic repository checks:
 
 ```bash
 npm run validate
+```
+
+Verify the pack works with the upstream `skills` CLI as a local source:
+
+```bash
+npm run smoke:skills
 ```
 
 Generate offline refresh reports:
@@ -169,7 +175,9 @@ Generate offline refresh reports:
 npm run refresh:reports
 ```
 
-This writes `dist/source-refresh-report.md` and `dist/ecosystem-refresh-report.md`. The reports create review queues for stale source-backed claims and ecosystem registry verification; they do not browse the web and do not update truth claims.
+The smoke test lists available skills, renders `llm-wiki-faq` with `skills use` without launching an agent, and installs that skill into a temporary Claude Code project with `skills add --copy -y`.
+
+The refresh reports write `dist/source-refresh-report.md` and `dist/ecosystem-refresh-report.md`. They create review queues for stale source-backed claims and ecosystem registry verification; they do not browse the web and do not update truth claims.
 
 ## Safety principle
 
