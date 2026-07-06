@@ -16,6 +16,7 @@ _agent/tmp/
 
 # Generated artifacts
 dist/
+.tmp/
 
 # Node/Python caches for future tooling
 node_modules/

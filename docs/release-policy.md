@@ -11,7 +11,7 @@ Package releases use git tags:
 vMAJOR.MINOR.PATCH
 ```
 
-The release workflow validates the pack, generates catalogs and builds an archive.
+The release workflow validates the pack, smoke-tests the package with the upstream `skills` CLI, generates catalogs and builds an archive.
 
 ## Skill versions
 
@@ -35,14 +35,37 @@ Breaking changes include:
 - removing safety gates;
 - changing output format that downstream agents rely on.
 
+## Distribution smoke test
+
+The distribution smoke test checks that this repository works as a local source for the `skills` CLI.
+
+Run locally:
+
+```bash
+npm run smoke:skills
+```
+
+It verifies:
+
+1. `npx skills add <repo> --list` can discover representative skills.
+2. `npx skills use <repo> --skill llm-wiki-faq` can render a prompt without launching an agent.
+3. `npx skills add <repo> --skill llm-wiki-faq -a claude-code --copy -y` installs a real `SKILL.md` into a temporary project.
+
+Set `SKILLS_CLI_PACKAGE` to pin a different CLI version during debugging:
+
+```bash
+SKILLS_CLI_PACKAGE=skills@1.2.3 npm run smoke:skills
+```
+
 ## Release checklist
 
 1. Run `npm run validate`.
-2. Run `npm run catalog:generate`.
-3. Run `npm run release:notes -- vX.Y.Z`.
-4. Update `CHANGELOG.md`.
-5. Create tag `vX.Y.Z`.
-6. Confirm release archive includes `skills/`, `docs/`, `templates/`, `domain-packs/`, `benchmarks/`, `scripts/`, `skills.sh.json`, `README.md` and `LICENSE`.
+2. Run `npm run smoke:skills`.
+3. Run `npm run catalog:generate`.
+4. Run `npm run release:notes -- vX.Y.Z`.
+5. Update `CHANGELOG.md`.
+6. Create tag `vX.Y.Z`.
+7. Confirm release archive includes `skills/`, `docs/`, `templates/`, `domain-packs/`, `benchmarks/`, `scripts/`, `skills.sh.json`, `README.md` and `LICENSE`.
 
 ## Deprecation policy
 
