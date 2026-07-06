@@ -11,6 +11,7 @@ const requiredPaths = [
   'examples/minimal-vault/wiki/index.md',
   'examples/minimal-vault/wiki/log.md',
   'examples/provenance-gaps/wiki/concepts/unsupported-claims.md',
+  'examples/claim-anchors/wiki/concepts/supported-claims.md',
   'examples/contradiction-case/wiki/concepts/retrieval-defaults.md',
   'examples/repo-docs-project/AGENTS.md',
   'docs/quickstart.md',
