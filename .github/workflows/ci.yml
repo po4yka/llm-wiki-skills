@@ -27,20 +27,14 @@ jobs:
         with:
           node-version: 22
 
-      - name: Validate skill files
-        run: npm run validate:skills
+      - name: Run full validation suite
+        run: npm run validate
 
-      - name: Validate manifest and README catalog
-        run: npm run validate:manifest
-
-      - name: Validate local Markdown links
-        run: npm run validate:links
-
-      - name: Validate agent safety boundaries
-        run: npm run validate:agent-safety
-
-      - name: Generate release catalog
+      - name: Generate catalogs
         run: npm run catalog:generate
+
+      - name: Verify generated Markdown catalog is committed
+        run: git diff --exit-code -- docs/skills-catalog.md
 
   markdown:
     name: Markdown lint
