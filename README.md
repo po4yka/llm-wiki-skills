@@ -53,6 +53,7 @@ It includes skills for:
 
 - explaining the pattern and evidence behind it;
 - choosing ready-made versus custom solutions;
+- mapping concrete open-source implementations, retrieval stacks, ingestion stacks, MCP integrations and eval tooling;
 - setting up local-first, repo-docs, Obsidian or team workflows;
 - migrating existing document sets into `raw/` and `wiki/` structure;
 - running triage, ingest, query and lint operations;
@@ -70,6 +71,16 @@ It includes skills for:
 | [`llm-wiki-faq`](skills/llm-wiki-faq/SKILL.md) | The user asks why LLM-Wiki is needed, what benefits it gives, what evidence exists, how to keep it alive, or whether Obsidian is required. |
 | [`llm-wiki-news-radar`](skills/llm-wiki-news-radar/SKILL.md) | The user asks for fresh news, projects, papers, releases or ecosystem changes. |
 | [`llm-wiki-choose`](skills/llm-wiki-choose/SKILL.md) | The user needs help deciding whether to adopt a ready-made solution or build their own. |
+
+### Technology landscape
+
+| Skill | Use when |
+|---|---|
+| [`llm-wiki-ecosystem-registry`](skills/llm-wiki-ecosystem-registry/SKILL.md) | The user asks what LLM-Wiki implementations or adjacent open-source projects exist, or how OpenWiki, nashsu/llm_wiki, Vouch, RepoAgent and smaller projects compare. |
+| [`llm-wiki-retrieval-architect`](skills/llm-wiki-retrieval-architect/SKILL.md) | The user needs to choose between grep, SQLite/FTS, vector DBs, hybrid search, rerankers, GraphRAG, LlamaIndex, Haystack or custom indexes. |
+| [`llm-wiki-ingestion-stack`](skills/llm-wiki-ingestion-stack/SKILL.md) | The user has PDFs, Office docs, HTML, web clips, audio/video, code, chats, email or scanned sources and needs source-preserving ingestion. |
+| [`llm-wiki-mcp-integration`](skills/llm-wiki-mcp-integration/SKILL.md) | The user wants to expose a wiki to Claude Code, Codex, Cursor, ChatGPT, VS Code or other agents through MCP or a local API. |
+| [`llm-wiki-eval-tooling`](skills/llm-wiki-eval-tooling/SKILL.md) | The user wants concrete Ragas, promptfoo, DeepEval, TruLens, LangSmith, retrieval-metric or red-team evaluation gates. |
 
 ### Diagnose, plan and evaluate
 
@@ -132,7 +143,7 @@ It includes skills for:
 |---|---|
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
-| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md). |
+| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), and [`docs/14-technology-stack.md`](docs/14-technology-stack.md). |
 | [`templates/`](templates/) | Starter vault files, schemas and page templates. |
 
 ## Safety principle
