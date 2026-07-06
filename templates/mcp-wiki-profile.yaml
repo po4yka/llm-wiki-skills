@@ -1,0 +1,189 @@
+# LLM-Wiki MCP profile template
+# Use with llm-wiki-mcp-integration.
+
+server:
+  id: "llm-wiki"
+  name: "LLM-Wiki MCP Server"
+  version: "0.1.0"
+  protocol_targets:
+    - "2025-06-18"
+  transport:
+    mode: stdio # stdio|local-http|streamable-http
+    bind: "127.0.0.1"
+    path: "/mcp"
+  implementation:
+    sdk: python # python|typescript|go|rust|other
+    framework: ""
+    repository: ""
+
+wiki:
+  schema_version: "0.1.0"
+  storage:
+    mode: markdown-git # markdown-git|sqlite|postgres|object-store|hybrid
+    root: "./wiki"
+    raw_root: "./raw"
+    state_root: "./.llm-wiki"
+  spaces:
+    - id: default
+      path: "wiki/"
+      default_visibility: internal
+  source_of_truth: markdown
+
+resources:
+  - uri: "wiki://manifest"
+    description: "Server and wiki capability manifest"
+    access: read
+  - uri: "wiki://index"
+    description: "Top-level catalog"
+    access: read
+  - uri_template: "wiki://page/{space}/{slug}"
+    description: "Canonical wiki page"
+    access: read
+  - uri_template: "wiki://page/{space}/{slug}/history"
+    description: "Revision and provenance history"
+    access: read
+  - uri_template: "wiki://page/{space}/{slug}/lint"
+    description: "Page lint results"
+    access: read
+  - uri_template: "wiki://manifest/{source_id}"
+    description: "Raw source manifest"
+    access: read
+  - uri_template: "wiki://graph/neighbors/{space}/{slug}"
+    description: "Graph neighborhood"
+    access: read
+  - uri: "wiki://review/unresolved"
+    description: "Open review queue"
+    access: read
+
+read_tools:
+  - name: search_wiki
+    enabled: true
+    required_scope: wiki:read
+  - name: read_page
+    enabled: true
+    required_scope: wiki:read
+  - name: read_source_manifest
+    enabled: true
+    required_scope: wiki:read
+  - name: graph_neighborhood
+    enabled: true
+    required_scope: wiki:read
+  - name: list_unresolved_reviews
+    enabled: true
+    required_scope: wiki:read
+  - name: run_lint
+    enabled: true
+    required_scope: wiki:lint
+  - name: explain_retrieval
+    enabled: true
+    required_scope: wiki:read
+
+proposal_write_tools:
+  - name: draft_page_patch
+    enabled: false
+    required_scope: wiki:propose
+    creates_direct_write: false
+  - name: propose_new_page
+    enabled: false
+    required_scope: wiki:propose
+    creates_direct_write: false
+  - name: propose_link_fix
+    enabled: false
+    required_scope: wiki:propose
+    creates_direct_write: false
+  - name: create_pr_from_proposal
+    enabled: false
+    required_scope: wiki:propose
+    creates_direct_write: false
+
+admin_tools:
+  - name: rebuild_index
+    enabled: false
+    required_scope: wiki:admin
+  - name: rescan_sources
+    enabled: false
+    required_scope: wiki:admin
+  - name: export_subset
+    enabled: false
+    required_scope: wiki:admin
+  - name: approve_proposal
+    enabled: false
+    required_scope: wiki:admin
+  - name: publish_export
+    enabled: false
+    required_scope: wiki:admin
+
+prompts:
+  - name: answer_from_wiki
+    enabled: true
+  - name: ingest_source
+    enabled: false
+  - name: audit_claims
+    enabled: true
+  - name: review_proposal
+    enabled: false
+
+auth:
+  mode: local # none|local|api-key|oauth2|enterprise-managed|github-app
+  scopes:
+    - wiki:read
+    - wiki:lint
+    - wiki:propose
+    - wiki:review
+    - wiki:admin
+  token_audience: ""
+  require_origin_validation: true
+  allow_remote_without_auth: false
+
+policy:
+  default_client_mode: read-only
+  allow_cloud_clients:
+    read_tools_only: true
+    allowlist:
+      - search_wiki
+      - read_page
+      - read_source_manifest
+      - run_lint
+  filters_required:
+    - tenant_id
+    - sensitivity
+    - review_state
+    - publication_state
+  production_review_states:
+    - approved
+    - published
+    - verified
+  forbidden_review_states:
+    - draft
+    - rejected
+    - stale
+
+governance:
+  write_mode: proposal-pr # disabled|proposal-only|proposal-pr|direct-local
+  require_codeowners: true
+  require_branch_protection: true
+  require_signed_commits: false
+  pending_content_in_retrieval: false
+
+audit:
+  enabled: true
+  destination: "./.llm-wiki/audit.jsonl"
+  include_sensitive_arguments: false
+  include_argument_hash: true
+  opentelemetry: false
+
+security:
+  bind_localhost: true
+  validate_origin: true
+  sandbox_stdio: true
+  disable_raw_source_mutation: true
+  secret_scan_before_merge: true
+  pii_redaction_before_export: true
+  prompt_injection_fixtures: true
+
+rate_limits:
+  search_wiki_per_minute: 60
+  read_page_per_minute: 300
+  run_lint_per_minute: 10
+  propose_per_minute: 10
+  admin_active_tasks_per_user: 1
