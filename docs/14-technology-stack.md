@@ -18,6 +18,8 @@ For retrieval-specific architecture, use [`docs/16-retrieval-architecture.md`](1
 
 For MCP/API integration, use [`docs/17-mcp-api-integration.md`](17-mcp-api-integration.md). It defines a semantic `wiki://` resource model, read/proposal/admin tool boundaries, REST/OpenAPI facade, auth/governance model, client compatibility guidance, audit logging and security test checklist.
 
+For evaluation methodology, use [`docs/18-evaluation-methodology.md`](18-evaluation-methodology.md). It defines layered retrieval, grounding, usefulness, operational-health and security metrics, with-wiki experiments, human calibration, scorecards and CI gates.
+
 ## Reference architecture
 
 ```text
@@ -38,6 +40,8 @@ schema/
   page schemas, lint rules, model policy, prompts, skills
 api/
   MCP resources/tools/prompts, REST/OpenAPI facade, auth and audit contracts
+evals/
+  versioned datasets, qrels, promptfoo configs, scorecards and CI reports
 ```
 
 Indexes are rebuildable artifacts. Markdown and raw sources remain the durable source of truth unless the product has a clear reason to choose a database-first model.
@@ -97,15 +101,28 @@ Security defaults:
 
 ## Evaluation stack
 
-| Evaluation question | Metric/tooling |
+Evaluation is a layered system, not a single score:
+
+| Evaluation layer | Question | Metric/tooling |
+|---|---|---|
+| Retrieval | Did retrieval find the right pages/passages? | recall@k, MRR, nDCG, qrels, manual hit/miss labels, pytrec_eval, Ragas context precision/recall. |
+| Grounding | Is the answer supported by sources? | citation coverage, unsupported-claim rate, source-support labels, Ragas/DeepEval faithfulness, TruLens groundedness, custom claim audit. |
+| Answer quality | Does the answer solve the task? | human rubric, pairwise preference, model-graded rubric, correctness/completeness/actionability. |
+| Wiki usefulness | Does the wiki reduce work? | retrieval hit rate, answer reuse, read/write ratio, output beyond vault, context reconstruction avoided. |
+| Prompt/model regression | Did behavior change after prompt/model edits? | promptfoo matrix tests, LangSmith evals, DeepEval tests, snapshot tests. |
+| Security | Can malicious sources or prompts bypass policy? | promptfoo red-team, garak, malicious-source fixtures, indirect prompt-injection checks, PII/secret canaries. |
+| Operational health | Is the wiki alive and trusted? | `wiki-lint`, stale-page counts, orphan pages, broken links, review backlog, provenance coverage. |
+| MCP/API safety | Is agent access safely bounded? | read-only allowlist test, proposal-only write test, denied direct-write test, audit event check, cross-tenant filter test. |
+
+Recommended eval artifacts:
+
+| Artifact | Purpose |
 |---|---|
-| Did retrieval find the right pages? | recall@k, MRR, nDCG, manual hit/miss labels, Ragas context precision/recall. |
-| Is the answer grounded? | citation coverage, source-support labels, Ragas faithfulness/response groundedness, custom claim audit. |
-| Does the wiki help real work? | retrieval hit rate, answer reuse, read/write ratio, output beyond vault, context reconstruction avoided. |
-| Did prompts regress? | promptfoo matrix tests, LangSmith evals, DeepEval, CI snapshots. |
-| Is the workflow safe? | promptfoo red-team, garak, malicious-source fixtures, prompt-injection checks. |
-| Is the wiki healthy? | `wiki-lint`, stale-page counts, orphan pages, broken links, review backlog, unsupported claims. |
-| Is MCP/API safe? | read-only allowlist test, proposal-only write test, denied direct-write test, audit event check, cross-tenant filter test. |
+| `evals/retrieval-eval-set.yaml` | Versioned questions, qrels, required pages/sources and risk tiers. |
+| `evals/promptfooconfig.yaml` | Prompt/RAG regression and rubric checks. |
+| `evals/redteam.yaml` | Indirect prompt injection, PII and canary security tests. |
+| `eval-results/eval-scorecard.yaml` | Multi-layer scorecard for CI, nightly jobs and release review. |
+| Human calibration queue | Monthly reviewer sample for judge/rubric calibration. |
 
 ## Security and data boundary stack
 
@@ -150,6 +167,8 @@ Add complexity only after a concrete trigger:
 | Answers lack traceability. | Add claim-level provenance and stricter lint. |
 | Ingest fails on layout-heavy documents. | Add Docling/Unstructured/OCR path. |
 | Prompt or model changes break behavior. | Add promptfoo/Ragas/DeepEval CI gates. |
+| Evaluation depends only on synthetic questions. | Add reviewed real queries, qrels and human calibration. |
+| LLM judges disagree with humans. | Update rubrics, thresholds, calibration set and judge choice. |
 | Team adoption begins. | Add CODEOWNERS, branch protection, PR templates and permissions. |
 
 ## Anti-patterns
@@ -163,3 +182,4 @@ Add complexity only after a concrete trigger:
 - Syncing mutable index databases across devices without conflict strategy.
 - Allowing direct-write agents to edit team knowledge without review.
 - Publishing a wiki subset without a manifest and redaction pass.
+- Treating note count, graph density or LLM-judge score as sufficient proof of wiki quality.
