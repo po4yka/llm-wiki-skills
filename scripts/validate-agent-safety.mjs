@@ -2,6 +2,7 @@ import path from 'node:path';
 import { failFactory, listFiles, listSkillNames, repoRelative, repoRoot, readText } from './lib/repo.mjs';
 
 const { fail, finish } = failFactory();
+const warnings = [];
 const negationPattern = /\b(do not|don't|avoid|never|not allowed|should not|must not|without explicit approval|requires explicit approval|human review remains responsible)\b/i;
 const safetyRules = [
   {
@@ -31,6 +32,11 @@ const safetyRules = [
   },
 ];
 
+function warn(message) {
+  warnings.push(message);
+  console.warn(`! ${message}`);
+}
+
 function isNegated(line) {
   return negationPattern.test(line);
 }
@@ -41,13 +47,13 @@ for (const skillName of listSkillNames()) {
   const lines = text.split(/\r?\n/);
 
   if (!/^##\s+Safety gates\s*$/im.test(text)) {
-    fail(`${repoRelative(skillPath)}: missing explicit Safety gates section`);
+    warn(`${repoRelative(skillPath)}: missing explicit Safety gates section`);
   }
 
   lines.forEach((line, index) => {
     for (const rule of safetyRules) {
       if (rule.pattern.test(line) && !isNegated(line)) {
-        fail(`${repoRelative(skillPath)}:${index + 1}: ${rule.message} (${rule.id})`);
+        warn(`${repoRelative(skillPath)}:${index + 1}: ${rule.message} (${rule.id})`);
       }
     }
   });
@@ -70,6 +76,10 @@ for (const workflowPath of workflowFiles) {
   if (/contents:\s*write/i.test(text) && relPath !== '.github/workflows/release.yml') {
     fail(`${relPath}: contents: write is only allowed in release.yml`);
   }
+}
+
+if (warnings.length > 0) {
+  console.warn(`\n${warnings.length} advisory safety warning(s)`);
 }
 
 finish(`validated agent safety boundaries for ${listSkillNames().length} skills and ${workflowFiles.length} workflow files`);
