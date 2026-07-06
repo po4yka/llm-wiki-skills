@@ -12,25 +12,63 @@
       ]
     },
     {
+      "title": "Diagnose, plan, and evaluate",
+      "description": "Inspect existing vaults, plan migrations, evaluate usefulness, and repair trust-critical gaps before large changes.",
+      "skills": [
+        "llm-wiki-doctor",
+        "llm-wiki-migration-planner",
+        "llm-wiki-eval",
+        "llm-wiki-provenance",
+        "llm-wiki-conflict-resolver"
+      ]
+    },
+    {
       "title": "Implement and migrate",
       "description": "Set up, customize, and migrate documents into local-first or team LLM-Wiki systems.",
       "skills": [
         "llm-wiki-setup",
         "llm-wiki-design",
         "llm-wiki-refactor",
+        "llm-wiki-local-first-stack",
+        "llm-wiki-obsidian-hardening",
+        "llm-wiki-repo-docs",
+        "llm-wiki-github-action"
+      ]
+    },
+    {
+      "title": "Capture and domain workflows",
+      "description": "Build capture pipelines, interview users for tacit knowledge, maintain decision memory, and generate domain-specific wiki packs.",
+      "skills": [
         "llm-wiki-capture-pipeline",
-        "llm-wiki-team-rollout"
+        "llm-wiki-channel-capture",
+        "llm-wiki-interview",
+        "llm-wiki-adr-memory",
+        "llm-wiki-domain-pack"
       ]
     },
     {
       "title": "Operate and trust",
-      "description": "Run ongoing triage, ingest, query, lint, and trust-audit workflows for an LLM-Wiki vault.",
+      "description": "Run ongoing triage, ingest, query, lint, trust-audit, security, model-policy, archive, and publishing workflows.",
       "skills": [
         "wiki-triage",
         "wiki-ingest",
         "wiki-query",
         "wiki-lint",
-        "llm-wiki-trust-audit"
+        "llm-wiki-trust-audit",
+        "llm-wiki-security-review",
+        "llm-wiki-model-policy",
+        "llm-wiki-export-publish",
+        "llm-wiki-archive"
+      ]
+    },
+    {
+      "title": "Skill and memory governance",
+      "description": "Review, compile, and govern Agent Skills and decide what belongs in skills, agent memory, instruction files, or the wiki.",
+      "skills": [
+        "llm-wiki-skill-doctor",
+        "llm-wiki-skill-compiler",
+        "llm-wiki-agent-memory-bridge",
+        "llm-wiki-team-rollout"
       ]
     }
   ]
