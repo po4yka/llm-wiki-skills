@@ -44,6 +44,14 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 5. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
 6. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
 
+### Operations path
+
+1. [`operations/daily.md`](operations/daily.md)
+2. [`operations/weekly.md`](operations/weekly.md)
+3. [`operations/refresh.md`](operations/refresh.md)
+4. [`operations/monthly.md`](operations/monthly.md)
+5. [`operations/quarterly.md`](operations/quarterly.md)
+
 ## Document map
 
 | Document | Role |
@@ -69,6 +77,7 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`security/skill-supply-chain.md`](security/skill-supply-chain.md) | Security review guide for installing and authoring skills. |
 | [`agents/README.md`](agents/README.md) | Adapter docs for Claude Code, Codex, Cursor and OpenCode. |
 | [`operations/daily.md`](operations/daily.md) | Daily living-wiki checklist. |
+| [`operations/refresh.md`](operations/refresh.md) | Offline operational refresh reports for stale sources and ecosystem registry verification. |
 
 ## Core vocabulary
 
