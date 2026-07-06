@@ -11,6 +11,12 @@ New to LLM-Wiki?
 Asking why this matters or whether there is evidence?
   -> llm-wiki-faq
 
+Non-developer, browser-first or Confluence-style adoption concern?
+  -> llm-wiki-faq
+
+Worried about PR/MR friction, branch sync, token growth, human-readable docs, LLM slop or sensitive data?
+  -> llm-wiki-faq
+
 Need current tools/news/releases?
   -> llm-wiki-news-radar
 
@@ -45,6 +51,9 @@ Working on a codebase?
 
 Need GitHub maintenance automation?
   -> llm-wiki-github-action
+
+Need browser-first capture or team contribution without git friction?
+  -> llm-wiki-team-rollout
 ```
 
 ## Daily operation
@@ -77,6 +86,9 @@ Worried about slop?
 
 Need to prove value?
   -> llm-wiki-eval
+
+Worried the wiki will not fit in context?
+  -> llm-wiki-retrieval-architect
 ```
 
 ## Governance
@@ -84,6 +96,9 @@ Need to prove value?
 ```text
 Security and data boundaries?
   -> llm-wiki-security-review
+
+Sensitive data, PII, customer data or secrets in sources?
+  -> llm-wiki-privacy-redactor
 
 Model/provider policy?
   -> llm-wiki-model-policy
