@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires browsing official upstream sources before making current maturity, release, license, pricing or compatibility claims.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # LLM-Wiki Ecosystem Registry
@@ -48,6 +48,9 @@ Use these families:
 | Repo documentation agent | `langchain-ai/openwiki`, `OpenBMB/RepoAgent` | The corpus is a codebase and coding agents need architecture/module maps. |
 | Review-gated agent memory | `vouchdev/vouch` | Agents should propose knowledge updates and humans approve durable writes. |
 | Obsidian/local-first workflow | Obsidian plugins, Markdown/git setups | Human reading/editing of Markdown is central. |
+| Compiler-first knowledge system | `atomicstrata/llm-wiki-compiler`, smaller compiler projects | The user wants typed, cited, linted and exportable compiled wiki artifacts. |
+| Session-transcript wiki | `Pratiyush/llm-wiki` | Agent session logs are the main raw sources. |
+| Graph-heavy local vault | `swarmclawai/swarmvault` | Broad ingestion, graph exports, context packs and agent handoff dominate. |
 | Retrieval/GraphRAG framework | Microsoft GraphRAG, LightRAG, HippoRAG, LlamaIndex/Haystack/Qdrant stacks | Retrieval quality, scale or multi-hop reasoning is the bottleneck. |
 | Custom implementation | CLI, plugin, product build | Trust, UX, provenance, integration or data constraints are specific. |
 
@@ -68,7 +71,13 @@ Score 1-5 across:
 
 ### 4. Compare against the repository docs
 
-Use `docs/13-ecosystem-matrix.md` as the seed registry and `docs/14-technology-stack.md` as the stack reference.
+Use:
+
+- `docs/13-ecosystem-matrix.md` as the seed registry;
+- `docs/14-technology-stack.md` as the stack reference;
+- `docs/15-implementation-deep-dive.md` for architecture-level implementation lessons and project deep dives.
+
+If the user needs implementation-level analysis, invoke or route to `llm-wiki-implementation-deep-dive` rather than answering only from this registry.
 
 If a current answer finds a new project or changed project status, recommend updating those docs rather than hiding the information in a chat response.
 
@@ -84,7 +93,7 @@ Use this routing:
 | Personal local-first wiki | Minimal Markdown/git/Obsidian stack first; consider full desktop LLM-Wiki app if the user wants UI. |
 | Team knowledge with trust requirements | Git/PR workflow or Vouch-style review-gated memory. |
 | Large retrieval-heavy corpus | Hybrid retrieval or GraphRAG layer with wiki pages as the reviewed surface. |
-| Product build | Custom architecture using `llm-wiki-design`, `llm-wiki-retrieval-architect`, `llm-wiki-mcp-integration` and `llm-wiki-eval-tooling`. |
+| Product build | Custom architecture using `llm-wiki-design`, `llm-wiki-implementation-deep-dive`, `llm-wiki-retrieval-architect`, `llm-wiki-mcp-integration` and `llm-wiki-eval-tooling`. |
 
 ## Output
 

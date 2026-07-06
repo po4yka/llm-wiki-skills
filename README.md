@@ -53,7 +53,7 @@ It includes skills for:
 
 - explaining the pattern and evidence behind it;
 - choosing ready-made versus custom solutions;
-- mapping concrete open-source implementations, retrieval stacks, ingestion stacks, MCP integrations and eval tooling;
+- mapping concrete open-source implementations, implementation archetypes, retrieval stacks, ingestion stacks, MCP integrations and eval tooling;
 - setting up local-first, repo-docs, Obsidian or team workflows;
 - migrating existing document sets into `raw/` and `wiki/` structure;
 - running triage, ingest, query and lint operations;
@@ -77,6 +77,7 @@ It includes skills for:
 | Skill | Use when |
 |---|---|
 | [`llm-wiki-ecosystem-registry`](skills/llm-wiki-ecosystem-registry/SKILL.md) | The user asks what LLM-Wiki implementations or adjacent open-source projects exist, or how OpenWiki, nashsu/llm_wiki, Vouch, RepoAgent and smaller projects compare. |
+| [`llm-wiki-implementation-deep-dive`](skills/llm-wiki-implementation-deep-dive/SKILL.md) | The user wants implementation-level comparison, architecture patterns, production-readiness analysis, or what to copy from concrete LLM-Wiki projects. |
 | [`llm-wiki-retrieval-architect`](skills/llm-wiki-retrieval-architect/SKILL.md) | The user needs to choose between grep, SQLite/FTS, vector DBs, hybrid search, rerankers, GraphRAG, LlamaIndex, Haystack or custom indexes. |
 | [`llm-wiki-ingestion-stack`](skills/llm-wiki-ingestion-stack/SKILL.md) | The user has PDFs, Office docs, HTML, web clips, audio/video, code, chats, email or scanned sources and needs source-preserving ingestion. |
 | [`llm-wiki-mcp-integration`](skills/llm-wiki-mcp-integration/SKILL.md) | The user wants to expose a wiki to Claude Code, Codex, Cursor, ChatGPT, VS Code or other agents through MCP or a local API. |
@@ -143,7 +144,7 @@ It includes skills for:
 |---|---|
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
-| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), and [`docs/14-technology-stack.md`](docs/14-technology-stack.md). |
+| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), and [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md). |
 | [`templates/`](templates/) | Starter vault files, schemas and page templates. |
 
 ## Safety principle

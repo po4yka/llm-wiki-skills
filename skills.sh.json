@@ -14,9 +14,10 @@
     },
     {
       "title": "Technology landscape",
-      "description": "Map concrete implementations, retrieval stacks, ingestion tools, MCP/API integration, and evaluation/security tooling for LLM-Wiki systems.",
+      "description": "Map concrete implementations, implementation archetypes, retrieval stacks, ingestion tools, MCP/API integration, and evaluation/security tooling for LLM-Wiki systems.",
       "skills": [
         "llm-wiki-ecosystem-registry",
+        "llm-wiki-implementation-deep-dive",
         "llm-wiki-retrieval-architect",
         "llm-wiki-ingestion-stack",
         "llm-wiki-mcp-integration",
