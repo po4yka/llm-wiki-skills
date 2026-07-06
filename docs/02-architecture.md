@@ -48,7 +48,9 @@ vault/
 
 ## Page types
 
-| Type | Folder | Purpose |
+Core `type` values are intentionally stable. Domain packs must not extend this enum directly; they specialize pages with `domain_type` and map each `domain_type` back to one core type.
+
+| Core type | Folder | Purpose |
 |---|---|---|
 | `source` | `wiki/sources/` | Summary of one raw source with provenance. |
 | `entity` | `wiki/entities/` | Accumulated facts about a person, org, product or project. |
@@ -58,6 +60,16 @@ vault/
 | `query` | `wiki/queries/` | Saved answer from a research session. |
 | `report` | `_agent/reports/` | Lint, triage or audit output. |
 
+Examples:
+
+| domain_type | Core type | Domain pack |
+|---|---|---|
+| `decision` | `synthesis` | `codebase-docs`, `team-onboarding` |
+| `module` | `entity` | `codebase-docs` |
+| `paper` | `source` | `research-papers` |
+| `competitor` | `entity` | `startup-market-research`, `competitive-intelligence` |
+| `runbook` | `synthesis` | `team-onboarding` |
+
 ## Frontmatter contract
 
 Use explicit lifecycle and provenance fields. Keep it boring and machine-checkable.
@@ -65,8 +77,10 @@ Use explicit lifecycle and provenance fields. Keep it boring and machine-checkab
 ```yaml
 id: "20260706-example-page"
 title: "Example page"
-type: concept
-status: draft                  # draft|reviewed|verified|stale|archived
+type: concept                    # stable core type
+domain_type: evergreen-note      # optional domain-pack specialization
+domain_pack: personal-second-brain
+status: draft                    # draft|reviewed|verified|stale|archived
 created: 2026-07-06
 updated: 2026-07-06
 source_paths:
@@ -75,7 +89,7 @@ source_urls: []
 source_hashes: []
 ai_generated: true
 ai_model: ""
-ai_confidence: 0.0             # 0.0-1.0; do not default to 0.5
+ai_confidence: 0.0               # 0.0-1.0; do not default to 0.5
 claim_mix:
   extracted: 0.0
   inferred: 0.0
