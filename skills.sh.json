@@ -13,6 +13,17 @@
       ]
     },
     {
+      "title": "Technology landscape",
+      "description": "Map concrete implementations, retrieval stacks, ingestion tools, MCP/API integration, and evaluation/security tooling for LLM-Wiki systems.",
+      "skills": [
+        "llm-wiki-ecosystem-registry",
+        "llm-wiki-retrieval-architect",
+        "llm-wiki-ingestion-stack",
+        "llm-wiki-mcp-integration",
+        "llm-wiki-eval-tooling"
+      ]
+    },
+    {
       "title": "Diagnose, plan, and evaluate",
       "description": "Inspect existing vaults, plan migrations, evaluate usefulness, and repair trust-critical gaps before large changes.",
       "skills": [
