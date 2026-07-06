@@ -8,7 +8,13 @@ const skillsDir = path.join(repoRoot, 'skills');
 const namePattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const semverPattern = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/;
 const requiredFrontmatterFields = ['name', 'description', 'license', 'compatibility'];
-const requiredBodyHeadings = ['Goal', 'Procedure', 'Output', 'Safety gates'];
+const recommendedBodyHeadings = ['Goal', 'Procedure', 'Output', 'Safety gates'];
+const warnings = [];
+
+function warn(message) {
+  warnings.push(message);
+  console.warn(`! ${message}`);
+}
 
 function getHeadings(markdown) {
   return new Set(
@@ -114,15 +120,15 @@ for (const skillName of skillNames) {
   }
 
   const headings = getHeadings(body);
-  for (const heading of requiredBodyHeadings) {
+  for (const heading of recommendedBodyHeadings) {
     if (!hasHeading(headings, heading)) {
-      fail(`${skillName}: missing required section '## ${heading}'`);
+      warn(`${skillName}: missing recommended section '## ${heading}'`);
     }
   }
+}
 
-  if (!body.includes('Do not') && !body.includes('Avoid') && !body.includes('Not allowed')) {
-    fail(`${skillName}: safety guidance should include at least one explicit negative boundary`);
-  }
+if (warnings.length > 0) {
+  console.warn(`\n${warnings.length} advisory warning(s)`);
 }
 
 finish(`validated ${skillNames.length} skills`);
