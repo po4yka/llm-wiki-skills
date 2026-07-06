@@ -15,9 +15,21 @@
     "id": { "type": "string" },
     "title": { "type": "string", "minLength": 1 },
     "type": {
+      "description": "Stable core page type used by agents and validators. Domain packs must not extend this enum; use domain_type for specialization.",
       "type": "string",
       "enum": ["source", "entity", "concept", "comparison", "synthesis", "query", "report"]
     },
+    "domain_type": {
+      "description": "Optional domain-specific page type supplied by a domain pack, for example decision, module, paper, competitor, runbook, signal.",
+      "type": ["string", "null"],
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "domain_pack": {
+      "description": "Optional domain pack identifier that defines allowed domain_type values.",
+      "type": ["string", "null"],
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "schema_version": { "type": ["string", "null"] },
     "status": {
       "type": "string",
       "enum": ["draft", "reviewed", "verified", "stale", "archived"]

@@ -1,0 +1,24 @@
+{
+  "$schema": "../../templates/schemas/domain-pack.schema.json",
+  "name": "codebase-docs",
+  "version": "0.1.0",
+  "description": "Agent-readable repository documentation profile.",
+  "core_types": ["source", "entity", "concept", "synthesis", "query", "report"],
+  "domain_type_mappings": {
+    "decision": "synthesis",
+    "module": "entity",
+    "how-to": "synthesis"
+  },
+  "recommended_tags": ["architecture", "module", "tests", "build", "adr", "convention"],
+  "stale_policy": {
+    "module-map": "30 days or after major refactor",
+    "adr": "stale only when assumptions change",
+    "build-test-commands": "30 days"
+  },
+  "recommended_skills": [
+    "llm-wiki-repo-docs",
+    "llm-wiki-adr-memory",
+    "llm-wiki-github-action",
+    "wiki-lint"
+  ]
+}

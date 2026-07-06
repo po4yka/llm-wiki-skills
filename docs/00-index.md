@@ -32,15 +32,17 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 4. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
 5. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
 6. [`09-references.md`](09-references.md)
-7. [`release-policy.md`](release-policy.md)
+7. [`domain-pack-schema.md`](domain-pack-schema.md)
+8. [`release-policy.md`](release-policy.md)
 
 ### Reviewer path: risk and trust
 
 1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
 2. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
 3. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
-4. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
-5. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
+4. [`domain-pack-schema.md`](domain-pack-schema.md)
+5. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
+6. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
 
 ## Document map
 
@@ -58,6 +60,7 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`10-skill-system-roadmap.md`](10-skill-system-roadmap.md) | Product roadmap for the Agent Skills distribution pack. |
 | [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md) | Catalog of advanced use-case skills. |
 | [`12-evidence-and-faq.md`](12-evidence-and-faq.md) | Evidence-backed arguments and FAQ answers for adoption questions. |
+| [`domain-pack-schema.md`](domain-pack-schema.md) | Core `type` and domain `domain_type` schema contract. |
 | [`quickstart.md`](quickstart.md) | Ten-minute first-run guide. |
 | [`skill-router.md`](skill-router.md) | Decision tree for choosing the right skill. |
 | [`skills-catalog.md`](skills-catalog.md) | Human-readable skill catalog generated from package metadata. |

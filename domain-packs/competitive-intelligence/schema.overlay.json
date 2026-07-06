@@ -1,0 +1,25 @@
+{
+  "$schema": "../../templates/schemas/domain-pack.schema.json",
+  "name": "competitive-intelligence",
+  "version": "0.1.0",
+  "description": "Competitive intelligence and external signal tracking profile.",
+  "core_types": ["source", "entity", "comparison", "synthesis", "query"],
+  "domain_type_mappings": {
+    "competitor": "entity",
+    "product": "entity",
+    "claim": "source",
+    "signal": "source"
+  },
+  "recommended_tags": ["competitive-intelligence", "competitor", "signal", "pricing", "launch", "source-refresh", "confidence-low"],
+  "stale_policy": {
+    "launch-pricing-headcount-current-status": "7-30 days",
+    "strategy-synthesis": "30 days",
+    "historical-source-pages": "stable unless source disappears"
+  },
+  "recommended_skills": [
+    "llm-wiki-news-radar",
+    "llm-wiki-source-refresh",
+    "llm-wiki-provenance",
+    "llm-wiki-conflict-resolver"
+  ]
+}

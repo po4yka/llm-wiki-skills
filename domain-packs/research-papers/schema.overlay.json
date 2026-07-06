@@ -1,0 +1,24 @@
+{
+  "$schema": "../../templates/schemas/domain-pack.schema.json",
+  "name": "research-papers",
+  "version": "0.1.0",
+  "description": "Literature review and paper synthesis profile.",
+  "core_types": ["source", "entity", "concept", "comparison", "synthesis", "query"],
+  "domain_type_mappings": {
+    "paper": "source",
+    "method": "concept",
+    "dataset": "entity"
+  },
+  "recommended_tags": ["paper", "method", "benchmark", "dataset", "limitation", "open-question"],
+  "stale_policy": {
+    "paper-summary": "stable",
+    "literature-review-synthesis": "90 days",
+    "benchmark-landscape": "30-60 days"
+  },
+  "recommended_skills": [
+    "wiki-ingest",
+    "llm-wiki-provenance",
+    "wiki-query",
+    "llm-wiki-eval"
+  ]
+}

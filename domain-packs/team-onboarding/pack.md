@@ -7,15 +7,27 @@
 - Make bus-factor knowledge inspectable.
 - Route agents to the right repo docs and owners.
 
-## Page types
+## Core page types
+
+Use stable `type` values from `templates/schemas/page.schema.json`:
 
 - `source`
 - `entity`
 - `concept`
-- `decision`
-- `onboarding`
-- `runbook`
-- `faq`
+- `synthesis`
+- `query`
+- `report`
+
+## Domain types
+
+Use `domain_type` for specialization. The source of truth is `schema.overlay.json`.
+
+| domain_type | core `type` | Use when |
+|---|---|---|
+| `decision` | `synthesis` | Team rationale or ADR-like history must be preserved. |
+| `onboarding` | `synthesis` | A curated learning path or onboarding map is needed. |
+| `runbook` | `synthesis` | A repeated operational workflow should be reusable. |
+| `faq` | `query` | A recurring question should become durable team memory. |
 
 ## Tags
 
