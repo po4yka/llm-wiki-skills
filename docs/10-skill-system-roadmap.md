@@ -8,10 +8,10 @@
 This repository is a distribution-ready skill system for coding agents that support LLM-Wiki users across the full lifecycle:
 
 ```text
-learn -> choose -> set up -> migrate -> operate -> audit -> evolve
+learn -> answer objections -> choose -> set up -> migrate -> operate -> audit -> evolve
 ```
 
-The target user is not only someone who already has a vault. The target user may be deciding whether LLM-Wiki is useful, choosing a tool, migrating a messy document set, building a product, operating a team wiki, or turning accumulated wiki procedures into reusable Agent Skills.
+The target user is not only someone who already has a vault. The target user may be deciding whether LLM-Wiki is useful, asking for evidence, choosing a tool, migrating a messy document set, building a product, operating a team wiki, or turning accumulated wiki procedures into reusable Agent Skills.
 
 ## Distribution target
 
@@ -20,21 +20,22 @@ Use `vercel-labs/skills` / `skills.sh` style distribution:
 ```bash
 npx skills add po4yka/llm-wiki-skills --list
 npx skills add po4yka/llm-wiki-skills --skill '*' -a claude-code
-npx skills add po4yka/llm-wiki-skills --skill llm-wiki-choose -a codex
-npx skills use po4yka/llm-wiki-skills --skill llm-wiki-orient --agent claude-code
+npx skills add po4yka/llm-wiki-skills --skill llm-wiki-faq -a codex
+npx skills use po4yka/llm-wiki-skills --skill llm-wiki-faq --agent claude-code
 ```
 
 Each skill lives in `skills/<skill-name>/SKILL.md` and has valid Agent Skills frontmatter.
 
 ## Current skill families
 
-### 1. Orientation and education
+### 1. Orientation, evidence and education
 
 - `llm-wiki-orient`
+- `llm-wiki-faq`
 - `llm-wiki-news-radar`
 - `llm-wiki-choose`
 
-These skills explain the pattern, refresh the current landscape and help the user decide between ready-made and custom paths.
+These skills explain the pattern, answer adoption objections with direct/adjacent/local evidence, refresh the current landscape and help the user decide between ready-made and custom paths.
 
 ### 2. Diagnosis, planning and evaluation
 
@@ -91,6 +92,24 @@ These skills maintain day-to-day wiki health, data boundaries, model policy, pub
 
 These skills help teams and builders govern Agent Skills, instruction files, memory surfaces and organizational rollout.
 
+## Evidence and FAQ layer
+
+The evidence and objection-handling layer lives in:
+
+- [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
+- [`../skills/llm-wiki-faq/SKILL.md`](../skills/llm-wiki-faq/SKILL.md)
+- [`../skills/llm-wiki-faq/references/evidence-pack.md`](../skills/llm-wiki-faq/references/evidence-pack.md)
+
+It covers:
+
+- why LLM-Wiki is needed;
+- expected benefits;
+- direct vs adjacent evidence;
+- comparison with RAG/GraphRAG/memory;
+- living-wiki maintenance loop;
+- Obsidian decision criteria;
+- pilot metrics.
+
 ## Advanced use-case catalog
 
 The 20 advanced use-case skills are cataloged in [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md). That document is the main routing reference for diagnosis, provenance, evaluation, Obsidian hardening, repo docs, scheduled maintenance, security review, local-first design, channel capture, interviews, ADR memory, domain packs, publishing, archival, conflict resolution, model policy and agent-memory boundaries.
@@ -117,3 +136,4 @@ Potential next additions:
 6. Make trust controls visible before retrieval upgrades.
 7. Support multiple coding agents through the Agent Skills format.
 8. Validate skill metadata and groupings before release.
+9. Separate direct evidence from adjacent evidence when making adoption claims.
