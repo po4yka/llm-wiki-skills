@@ -272,8 +272,9 @@ components:
           items:
             $ref: "#/components/schemas/SearchResult"
         next_cursor:
-          type: string
-          nullable: true
+          type:
+            - string
+            - "null"
 
     SearchResult:
       type: object
