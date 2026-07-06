@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -29,6 +31,15 @@ jobs:
 
       - name: Run full validation suite
         run: npm run validate
+
+      - name: Check skill version bumps
+        if: github.event_name == 'pull_request'
+        env:
+          SKILL_VERSION_STRICT: '1'
+          SKILL_VERSION_BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch origin "${SKILL_VERSION_BASE_REF}:${SKILL_VERSION_BASE_REF}" || true
+          npm run check:skill-versions -- --strict
 
       - name: Generate catalogs
         run: npm run catalog:generate
