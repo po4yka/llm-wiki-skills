@@ -37,7 +37,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install detect-secrets
           if [ -f .secrets.baseline ]; then
-            detect-secrets scan --baseline .secrets.baseline
+            git ls-files -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline
           else
             detect-secrets scan --all-files
           fi
@@ -82,10 +82,14 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
+          if [ -f evals/redteam.yaml ]; then
+            redteam_config=evals/redteam.yaml
+          else
+            redteam_config=templates/promptfoo-llm-wiki-redteam.yaml
+          fi
+
           npx promptfoo@latest redteam run \
-            --config evals/redteam.yaml || \
-          npx promptfoo@latest redteam run \
-            --config templates/promptfoo-llm-wiki-redteam.yaml
+            --config "$redteam_config"
 
   pii-and-export-policy:
     runs-on: ubuntu-latest
