@@ -7,15 +7,26 @@
 - Refresh volatile facts.
 - Produce concise landscape updates.
 
-## Page types
+## Core page types
+
+Use stable `type` values from `templates/schemas/page.schema.json`:
 
 - `source`
-- `competitor`
-- `product`
-- `claim`
+- `entity`
 - `comparison`
-- `signal`
 - `synthesis`
+- `query`
+
+## Domain types
+
+Use `domain_type` for specialization. The source of truth is `schema.overlay.json`.
+
+| domain_type | core `type` | Use when |
+|---|---|---|
+| `competitor` | `entity` | A company, product or project needs accumulated competitive facts. |
+| `product` | `entity` | A product surface needs its own source-backed page. |
+| `claim` | `source` | A single external claim or signal should be preserved with provenance. |
+| `signal` | `source` | A launch, pricing, hiring or market signal should be refreshed later. |
 
 ## Tags
 
