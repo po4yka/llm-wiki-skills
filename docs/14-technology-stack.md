@@ -14,6 +14,8 @@ Markdown + git + index.md + log.md + rg + Agent Skills
 
 Add infrastructure only when a measured failure mode appears.
 
+For retrieval-specific architecture, use [`docs/16-retrieval-architecture.md`](16-retrieval-architecture.md). It expands the retrieval decision tree into a detailed hybrid/GraphRAG/local-first/hosted reference architecture with metadata schema, evaluation gates and security controls.
+
 ## Reference architecture
 
 ```text
@@ -41,9 +43,12 @@ Indexes are rebuildable artifacts. Markdown and raw sources remain the durable s
 | Symptom | Add | Example technologies | Notes |
 |---|---|---|---|
 | The corpus is small and filenames/page titles are strong. | No new infrastructure. | `rg`, `fd`, `find`, `index.md`, wikilinks. | Prefer this for the first 50-100 sources. |
-| Exact search misses obvious conceptual matches. | Local lexical/semantic hybrid. | SQLite FTS5, Tantivy, BM25, LanceDB, Chroma, Qdrant local/Edge. | Keep vector indexes rebuildable from Markdown/raw sources. |
-| Metadata filters matter. | Vector DB or search engine with payload filters. | Qdrant, pgvector, Weaviate, Milvus, Elasticsearch/OpenSearch. | Filter by source type, status, sensitivity, owner, stale date and review state. |
-| Multi-hop and relationship questions dominate. | Graph-aware retrieval. | Microsoft GraphRAG, LightRAG, HippoRAG, RAPTOR-style hierarchy, LlamaIndex property graph, Neo4j/Kuzu. | Keep graph edges explainable and source-backed. |
+| Exact search must be ranked, scoped or faster. | Local lexical index. | SQLite FTS5, Tantivy, Pagefind for static exports, OpenSearch/Elasticsearch for hosted search. | Keep lexical search even after adding embeddings. |
+| Exact search misses obvious conceptual matches. | Hybrid lexical/semantic retrieval. | BM25/FTS + embeddings; LanceDB, Chroma, Qdrant, Weaviate, Milvus, pgvector. | Default serious retrieval tier for most LLM-Wiki systems. |
+| Top-k has signal but poor ordering. | Reranking. | Cross-encoders, Jina/Cohere rerankers, ColBERT/late-interaction rerankers. | Rerank 20-100 candidates before context packing. |
+| Chunks retrieve well but lack surrounding context. | Parent-child or contextual retrieval. | LangChain parent docs, LlamaIndex recursive retrieval, contextual chunk augmentation. | Useful for long pages and ambiguous chunks. |
+| Metadata filters matter. | Vector DB or search engine with query-time filters. | Qdrant, pgvector, Weaviate, Milvus, OpenSearch/Elasticsearch, Meilisearch. | Filter by source type, review state, sensitivity, tenant, owner, stale date and publication state. |
+| Multi-hop and relationship questions dominate. | Graph-aware retrieval lane. | Wikilink/entity graph first; Microsoft GraphRAG, LightRAG, HippoRAG, RAPTOR, LlamaIndex property graph later. | Keep graph edges explainable and source-backed. |
 | The workflow needs multiple agent steps and review gates. | Agent orchestration. | LangGraph, Haystack pipelines, LlamaIndex Workflows, Semantic Kernel, AutoGen, CrewAI. | Use explicit state, retries, human review and audit logs. |
 | The wiki must be available to many clients. | MCP/API layer. | MCP SDKs, local MCP server, HTTP API, CLI. | Start read-only; add reviewed writes later. |
 
@@ -121,6 +126,9 @@ Add complexity only after a concrete trigger:
 | Trigger | Upgrade |
 |---|---|
 | `rg` misses conceptual matches in real query tests. | Add local embeddings or hybrid search. |
+| Exact search needs ranking, scoping or speed. | Add SQLite FTS5/Tantivy/Pagefind/OpenSearch. |
+| Top-k contains relevant chunks but the order is poor. | Add reranker. |
+| Chunks are relevant but too thin for answers. | Add parent-child/contextual retrieval. |
 | Cross-page relationship questions fail repeatedly. | Add graph extraction and graph-aware retrieval. |
 | Agents need wiki access from multiple clients. | Add MCP/API layer. |
 | Generated pages accumulate without review. | Add review-gated workflow or Vouch-style proposal loop. |
@@ -132,6 +140,7 @@ Add complexity only after a concrete trigger:
 ## Anti-patterns
 
 - Starting with a vector DB before measuring search failure.
+- Starting with GraphRAG before hybrid retrieval has failed on multi-hop/global query tests.
 - Treating generated summaries as raw evidence.
 - Hiding durable domain facts inside agent memory or skills.
 - Syncing mutable index databases across devices without conflict strategy.
