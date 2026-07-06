@@ -7,13 +7,25 @@
 - Turn recurring questions into reusable pages.
 - Protect human synthesis.
 
-## Page types
+## Core page types
+
+Use stable `type` values from `templates/schemas/page.schema.json`:
 
 - `source`
 - `concept`
 - `entity`
 - `query`
 - `synthesis`
+
+## Domain types
+
+Use `domain_type` for specialization. The source of truth is `schema.overlay.json`.
+
+| domain_type | core `type` | Use when |
+|---|---|---|
+| `evergreen-note` | `concept` | A durable idea or mechanism should accumulate over time. |
+| `moc` | `synthesis` | A map-of-content page or domain overview is being curated. |
+| `daily-note` | `query` | A dated capture/query page should preserve lightweight daily context. |
 
 ## Tags
 
