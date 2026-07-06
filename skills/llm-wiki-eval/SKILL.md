@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-eval
-description: Evaluate whether an LLM-Wiki is actually useful. Use to measure retrieval hit rate, answer reuse, read/write ratio, review backlog, stale verified pages, unsupported claims, and with-wiki versus without-wiki answer quality.
+description: Evaluate whether an LLM-Wiki is actually useful, grounded and maintainable. Use to measure retrieval hit rate, answer reuse, read/write ratio, review backlog, stale verified pages, unsupported claims, citation coverage, with-wiki versus without-wiki answer quality, and continue/pause/redesign decisions.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki; optional write access for evaluation reports.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # LLM-Wiki Eval
@@ -14,13 +14,16 @@ metadata:
 
 Measure whether the wiki improves real work instead of merely accumulating attractive notes.
 
+Use `docs/18-evaluation-methodology.md` for the detailed methodology: retrieval metrics, grounding metrics, with-wiki experiments, human calibration, operational health, security gates and rollout roadmap.
+
 ## Inputs
 
 - LLM-Wiki vault path.
 - Recent questions, queries or tasks if available.
-- `wiki/index.md`, `wiki/log.md`, `wiki/queries/`, lint reports.
-- Optional evaluation question set.
+- `wiki/index.md`, `wiki/log.md`, `wiki/queries/`, lint reports and eval reports.
+- Optional evaluation question set or qrels.
 - Optional adoption claim to test, such as "this wiki saves time" or "this beats RAG for our questions".
+- Optional risk tier: low, medium, high, critical.
 
 ## Procedure
 
@@ -33,7 +36,8 @@ Choose one scope:
 - one project;
 - recent 30/60/90-day activity;
 - before/after migration;
-- pilot with 20-50 sources and 10-20 realistic questions.
+- pilot with 20-50 sources and 10-20 realistic questions;
+- high-stakes slice such as policies, runbooks or customer data procedures.
 
 ### 2. State the evidence level
 
@@ -43,11 +47,24 @@ Classify the evaluation as:
 |---|---|
 | external direct | Published LLM-Wiki benchmark or implementation evidence. |
 | external adjacent | GraphRAG, memory, context-engineering or RAG benchmark evidence. |
-| local operational | This user's own metrics and query tests. |
+| local operational | This user's own metrics, query tests, traces and human review. |
 
 Local operational evidence should decide whether the workflow is worth continuing for this user.
 
-### 3. Measure operational metrics
+### 3. Evaluate in layers
+
+Do not produce one opaque score. Score these layers separately:
+
+| Layer | Core question | Metrics |
+|---|---|---|
+| Retrieval | Did we find the right pages/passages? | recall@k, MRR, nDCG, hit/miss labels. |
+| Grounding | Are answer claims supported? | citation coverage, unsupported-claim rate, faithfulness, support labels. |
+| Answer quality | Does it solve the task? | human rubric, pairwise preference, correctness, completeness. |
+| Wiki usefulness | Does it reduce work? | answer reuse, retrieval hit rate, read/write ratio, context reconstruction avoided. |
+| Operational health | Is it alive and governed? | stale-page rate, review backlog, provenance coverage, broken links. |
+| Security | Can untrusted content bypass policy? | prompt-injection success, PII/secret leakage, cross-tenant leakage. |
+
+### 4. Measure operational metrics
 
 Collect:
 
@@ -61,24 +78,55 @@ Collect:
 | stale verified pages | Trusted pages past refresh date. |
 | output beyond vault | Reports, PRs, essays, decisions, docs shipped from wiki. |
 | context reconstruction avoided | How often the wiki prevents re-explaining/re-reading old context. |
+| freshness lag | Time between source change and wiki/index update. |
 
-### 4. Run query tests
+### 5. Run query tests
 
-Use 10-20 realistic questions. For each, record:
+Use 10-20 realistic questions for a small pilot; 200-300 examples for a serious local benchmark.
+
+For each, record:
 
 ```yaml
+id: ""
 question: ""
+query_type: exact|conceptual|synthesis|multi-hop|recent|sensitive
 used_wiki_pages: []
 used_raw_sources: []
+required_pages: []
+required_sources: []
+forbidden_sources: []
 answer_saved: false
 support_level: source-backed|wiki-backed|inferred|missing|conflicting
+citation_coverage: 0.0
+unsupported_claims: 0
 rating: useful|partial|miss
+risk_tier: low|medium|high|critical
 time_saved_estimate: none|small|medium|large
 ```
 
-When possible, compare a with-wiki answer to a without-wiki answer.
+When possible, compare a with-wiki answer to a without-wiki answer under the same model and prompt family.
 
-### 5. Sample random pages
+### 6. Run grounding checks
+
+For answer samples:
+
+- split answer into sentences or atomic claims;
+- verify each claim has a citation or support source;
+- classify support as source-backed, wiki-backed, inferred, missing or conflicting;
+- count unsupported material claims;
+- check that citations point to valid pages/sources/anchors;
+- oversample high-risk answers for human review.
+
+Recommended starting gates:
+
+| Risk tier | Citation coverage | Unsupported claims |
+|---|---:|---:|
+| Low | >= 0.80 | <= 0.10 |
+| Medium | >= 0.90 | <= 0.05 |
+| High | >= 0.95 | <= 0.02 |
+| Critical | >= 0.98 | 0 material unsupported claims |
+
+### 7. Sample random pages
 
 Open 10-20 random pages and score:
 
@@ -87,46 +135,80 @@ Open 10-20 random pages and score:
 - useful links;
 - status accuracy;
 - human synthesis boundary;
+- freshness metadata;
+- review state;
 - reusability.
 
-### 6. Test the living-wiki loop
+### 8. Test the living-wiki loop
 
 Check whether the wiki has evidence of:
 
 ```text
-capture -> triage -> ingest -> query -> file-back -> lint -> review -> refresh
+capture -> triage -> ingest -> query -> file-back -> lint -> review -> refresh -> eval
 ```
 
-A wiki that only captures and never files back/lints is likely becoming an archive, not a living knowledge base.
+A wiki that only captures and never files back/lints/evaluates is likely becoming an archive, not a living knowledge base.
 
-### 7. Recommend improvements
+### 9. Classify failure modes
+
+| Failure | Likely fix |
+|---|---|
+| Relevant page missing from top-k | Retrieval/index/chunking fix. |
+| Relevant page found but answer unsupported | Prompt/context-packing/grounding fix. |
+| Correct answer but no citations | Answer formatting/citation enforcement fix. |
+| Citation exists but does not support claim | Claim verifier/citation span fix. |
+| Draft/rejected page used | Review-state filter fix. |
+| Sensitive page surfaced | Permission/sensitivity filter fix. |
+| Stale page trusted | Freshness/review policy fix. |
+| Human says answer is bad but metrics pass | Judge/rubric calibration fix. |
+| Metrics regress but humans prefer output | Label/qrel/rubric review. |
+| Security red-team succeeds | Instruction hierarchy/tool boundary/redaction fix. |
+
+### 10. Recommend improvements
 
 Prioritize fixes:
 
-1. retrieval/index problems;
-2. provenance gaps;
-3. review backlog;
-4. stale pages;
-5. capture pipeline gaps;
-6. missing answer file-back;
-7. unnecessary infrastructure.
+1. security and data-boundary failures;
+2. retrieval/index problems;
+3. grounding and unsupported claims;
+4. provenance gaps;
+5. review backlog;
+6. stale pages;
+7. capture pipeline gaps;
+8. missing answer file-back;
+9. unnecessary infrastructure.
+
+### 11. Decide continue / pause / redesign
+
+Use:
+
+| Decision | Use when |
+|---|---|
+| continue | Retrieval and grounding are improving; no critical safety failures. |
+| continue with gates | Utility is visible but eval/security debt remains. |
+| pause | Data is insufficient or review/security debt blocks trust. |
+| redesign | Core workflow does not improve real tasks or repeatedly violates trust boundaries. |
 
 ## Output
 
 ```markdown
 ## Evaluation summary
 
-## Evidence level
+## Scope and evidence level
 
-## Metrics
+## Layered metrics
 
 ## Query test results
+
+## Grounding and citation audit
 
 ## Living-wiki loop check
 
 ## Random page sample
 
 ## Failure modes
+
+## Security findings
 
 ## Recommended improvements
 
@@ -142,3 +224,5 @@ Prioritize fixes:
 - Do not reveal sensitive content in aggregated reports.
 - Be explicit when evidence is too sparse for a strong conclusion.
 - Do not claim external benchmarks prove local success; use local metrics to decide.
+- Do not rely only on LLM judges; keep human calibration samples.
+- Do not compare runs across changed datasets without recording dataset revision.
