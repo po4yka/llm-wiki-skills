@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. For current ecosystem claims, browse and cite fresh sources.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # LLM-Wiki Orient
@@ -23,6 +23,8 @@ Use when the user asks:
 - "What tools exist?"
 - "Is this useful for my notes/team/repo?"
 - "Explain OpenWiki/wiki memory/compiled knowledge."
+
+For objections such as "why do I need this?", "what proof exists?", "what benefits will I get?", "how do I keep it alive?", or "do I need Obsidian?", route to or invoke `llm-wiki-faq`.
 
 ## Procedure
 
@@ -55,6 +57,7 @@ Emphasize:
 - The wiki is reviewable Markdown.
 - Skills define procedures over the wiki.
 - `index.md` and `log.md` make the wiki navigable and auditable.
+- Evidence and adoption questions should be answered with direct/adjacent/local evidence levels, not hype.
 
 ### 3. Compare to neighboring patterns
 
@@ -91,6 +94,7 @@ The agent can maintain links, indexes, summaries, metadata, triage reports and l
 
 Recommend one next skill:
 
+- answer adoption objections or evidence questions: `llm-wiki-faq`;
 - choose a solution: `llm-wiki-choose`;
 - install/configure: `llm-wiki-setup`;
 - migrate existing docs: `llm-wiki-refactor`;
@@ -109,6 +113,8 @@ Use this shape:
 
 ## Main solution families
 
+## Evidence level
+
 ## Fit for your case
 
 ## Recommended next step
@@ -119,3 +125,4 @@ Use this shape:
 - Do not present generated summaries as verified truth.
 - Do not recommend a specific external tool using stale maturity facts.
 - Browse for current project status, releases, pricing, compatibility or maintenance claims.
+- Do not claim LLM-Wiki is proven universally better than RAG; route evidence questions through `llm-wiki-faq`.
