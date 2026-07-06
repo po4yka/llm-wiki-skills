@@ -1,0 +1,33 @@
+name: Source refresh report
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - run: npm run validate
+      - name: Create placeholder refresh report
+        run: |
+          mkdir -p dist
+          cat > dist/source-refresh-report.md <<'EOF'
+          # Source refresh report
+
+          This workflow validates the skills pack and reserves the report artifact path.
+          Run `llm-wiki-source-refresh` in an agent environment with web access to produce a sourced refresh report.
+          EOF
+      - uses: actions/upload-artifact@v7
+        with:
+          name: source-refresh-report
+          path: dist/source-refresh-report.md
+          if-no-files-found: error
