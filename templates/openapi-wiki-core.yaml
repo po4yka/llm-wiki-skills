@@ -1,0 +1,433 @@
+openapi: 3.1.0
+info:
+  title: LLM-Wiki Core API
+  version: 0.1.0
+  description: >
+    REST/OpenAPI facade for an LLM-Wiki MCP server. Mirrors the MCP wiki domain model
+    for CI, tests, non-MCP clients and governance services.
+servers:
+  - url: https://wiki.example.com
+security:
+  - bearerAuth: []
+paths:
+  /manifest:
+    get:
+      summary: Get wiki/server manifest
+      operationId: getManifest
+      responses:
+        "200":
+          description: Current wiki/server manifest
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Manifest"
+
+  /search:
+    get:
+      summary: Search wiki content
+      operationId: searchWiki
+      parameters:
+        - in: query
+          name: q
+          required: true
+          schema: { type: string }
+        - in: query
+          name: cursor
+          schema: { type: string }
+        - in: query
+          name: top_k
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+        - in: query
+          name: review_state
+          schema:
+            type: array
+            items: { type: string }
+        - in: query
+          name: sensitivity
+          schema:
+            type: array
+            items: { type: string }
+      responses:
+        "200":
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchResponse"
+        "400": { description: Invalid query }
+        "401": { description: Authentication required }
+        "403": { description: Forbidden }
+        "429": { description: Rate limit exceeded }
+
+  /pages/{space}/{slug}:
+    get:
+      summary: Read a wiki page
+      operationId: getPage
+      parameters:
+        - in: path
+          name: space
+          required: true
+          schema: { type: string }
+        - in: path
+          name: slug
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Page content
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WikiPage"
+        "404": { description: Page not found }
+
+    patch:
+      summary: Apply a structured patch as a proposal
+      operationId: patchPage
+      parameters:
+        - in: path
+          name: space
+          required: true
+          schema: { type: string }
+        - in: path
+          name: slug
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchRequest"
+      responses:
+        "202":
+          description: Patch accepted as proposal
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Proposal"
+        "403": { description: Approval required or insufficient scope }
+        "409": { description: Revision conflict }
+        "422": { description: Validation failed }
+
+  /pages/{space}/{slug}/history:
+    get:
+      summary: Read page revision and provenance history
+      operationId: getPageHistory
+      parameters:
+        - in: path
+          name: space
+          required: true
+          schema: { type: string }
+        - in: path
+          name: slug
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Page history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  revisions:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Revision"
+
+  /pages/{space}/{slug}/lint:
+    get:
+      summary: Read page lint results
+      operationId: getPageLint
+      parameters:
+        - in: path
+          name: space
+          required: true
+          schema: { type: string }
+        - in: path
+          name: slug
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Lint findings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LintReport"
+
+  /proposals:
+    post:
+      summary: Create a wiki proposal
+      operationId: createProposal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProposalRequest"
+      responses:
+        "202":
+          description: Proposal created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Proposal"
+
+  /approvals/{proposal_id}:
+    post:
+      summary: Approve a proposal
+      operationId: approveProposal
+      parameters:
+        - in: path
+          name: proposal_id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment: { type: string }
+      responses:
+        "200":
+          description: Proposal approved or merged
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Proposal"
+        "403": { description: Insufficient scope or missing owner review }
+        "409": { description: Required checks or branch protection not satisfied }
+
+  /indexes/{name}/rebuild:
+    post:
+      summary: Rebuild an index
+      operationId: rebuildIndex
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema: { type: string }
+      responses:
+        "202":
+          description: Rebuild task accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        "403": { description: Admin scope required }
+
+  /exports/{id}:
+    get:
+      summary: Read export status or artifact metadata
+      operationId: getExport
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Export status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Export"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Manifest:
+      type: object
+      required: [server_id, protocol, spaces, capabilities]
+      properties:
+        server_id: { type: string }
+        protocol: { type: string, example: "mcp+rest-bridge" }
+        schema_version: { type: string }
+        spaces:
+          type: array
+          items: { type: string }
+        capabilities:
+          type: object
+          additionalProperties: true
+
+    SearchResponse:
+      type: object
+      required: [results]
+      properties:
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/SearchResult"
+        next_cursor:
+          type:
+            - string
+            - "null"
+
+    SearchResult:
+      type: object
+      required: [id, title, url]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        url: { type: string }
+        page_path: { type: string }
+        heading_path:
+          type: array
+          items: { type: string }
+        excerpt: { type: string }
+        score: { type: number }
+        retrieval_lane:
+          type: string
+          enum: [lexical, dense, hybrid, rerank, graph]
+        source_uris:
+          type: array
+          items: { type: string }
+        review_state: { type: string }
+        sensitivity: { type: string }
+        support_level:
+          type: string
+          enum: [source-backed, wiki-backed, inferred, missing, conflicting]
+
+    WikiPage:
+      type: object
+      required: [id, title, body_markdown]
+      properties:
+        id: { type: string }
+        space: { type: string }
+        slug: { type: string }
+        title: { type: string }
+        body_markdown: { type: string }
+        summary: { type: string }
+        tags:
+          type: array
+          items: { type: string }
+        links_to:
+          type: array
+          items: { type: string }
+        source_citations:
+          type: array
+          items:
+            type: object
+            properties:
+              url: { type: string }
+              title: { type: string }
+              retrieved_at: { type: string, format: date-time }
+        provenance:
+          type: object
+          additionalProperties: true
+        revision:
+          $ref: "#/components/schemas/Revision"
+        review:
+          type: object
+          additionalProperties: true
+        policy:
+          type: object
+          additionalProperties: true
+
+    Revision:
+      type: object
+      properties:
+        commit: { type: string }
+        parent_commit: { type: string }
+        signed: { type: boolean }
+        author: { type: string }
+        created_at: { type: string, format: date-time }
+
+    PatchRequest:
+      type: object
+      required: [base_revision, operations, reason]
+      properties:
+        base_revision: { type: string }
+        reason: { type: string }
+        source_support:
+          type: array
+          items: { type: string }
+        operations:
+          type: array
+          items:
+            type: object
+            required: [op, path]
+            properties:
+              op: { type: string, enum: [add, replace, remove] }
+              path: { type: string }
+              value: {}
+
+    ProposalRequest:
+      type: object
+      required: [target, reason]
+      properties:
+        target: { type: string }
+        reason: { type: string }
+        proposed_body_markdown: { type: string }
+        patch:
+          $ref: "#/components/schemas/PatchRequest"
+        source_support:
+          type: array
+          items: { type: string }
+
+    Proposal:
+      type: object
+      required: [proposal_id, status, requires_human_review]
+      properties:
+        proposal_id: { type: string }
+        changed_paths:
+          type: array
+          items: { type: string }
+        base_revision: { type: string }
+        reason: { type: string }
+        source_support:
+          type: array
+          items: { type: string }
+        risk:
+          type: string
+          enum: [low, medium, high]
+        requires_human_review: { type: boolean }
+        required_owners:
+          type: array
+          items: { type: string }
+        status:
+          type: string
+          enum: [draft, opened-pr, approved, rejected, merged]
+
+    LintReport:
+      type: object
+      properties:
+        page: { type: string }
+        findings:
+          type: array
+          items:
+            type: object
+            properties:
+              severity: { type: string }
+              rule: { type: string }
+              message: { type: string }
+              location: { type: string }
+
+    Task:
+      type: object
+      properties:
+        task_id: { type: string }
+        status: { type: string }
+        url: { type: string }
+
+    Export:
+      type: object
+      properties:
+        export_id: { type: string }
+        status: { type: string }
+        profile: { type: string }
+        artifact_url: { type: string }
+        redaction_report_url: { type: string }

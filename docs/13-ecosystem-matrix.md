@@ -20,6 +20,8 @@ Before recommending a tool to a user, re-check:
 
 For architecture-level details, use [`docs/15-implementation-deep-dive.md`](15-implementation-deep-dive.md). This registry is intentionally compact; the deep-dive note compares storage, retrieval, ingestion, MCP/API, governance, evaluation, security and reusable implementation patterns.
 
+For MCP/API-specific details, use [`docs/17-mcp-api-integration.md`](17-mcp-api-integration.md). It covers wiki-specific MCP resources/tools/prompts, auth, governance, client compatibility and API facade design.
+
 ## Implementation families
 
 | Family | Use when | Primary risks |
@@ -28,6 +30,7 @@ For architecture-level details, use [`docs/15-implementation-deep-dive.md`](15-i
 | Repo documentation agent | The corpus is a codebase and agents need architecture/module/change maps. | Docs drift, over-writing hand-written ADRs, stale code claims. |
 | Review-gated agent memory | Agents should propose knowledge updates but humans approve final writes. | Review backlog, friction, schema mismatch with existing notes. |
 | Compiler-first knowledge system | The user wants typed, cited, linted, queryable and exportable compiled wiki artifacts. | More operator complexity; quality depends on schema, review and eval discipline. |
+| MCP-native wiki server | Agents need a semantic MCP/API contract over wiki resources and tools. | Tool overreach, weak auth, client compatibility drift, unsafe direct writes. |
 | Obsidian/local-first workflow | The user already lives in Markdown and wants human-editable wiki pages. | Weak automation unless skills/hooks are added; sync conflicts. |
 | Session-transcript wiki | Agent sessions are the raw source material. | Secrets, tokens and private paths in transcripts; source scope is narrow. |
 | Graph-heavy local vault | The user wants broad ingestion, local graph exports and context packs. | Graph complexity can outpace review/provenance quality. |
@@ -43,6 +46,12 @@ For architecture-level details, use [`docs/15-implementation-deep-dive.md`](15-i
 | `vouchdev/vouch` | Review-gated agent memory / knowledge base | Claim model, MCP/CLI surface, review workflow, storage layout, integration adapters. | Agents should capture/propose knowledge while humans approve durable writes. | The user wants fully automatic wiki generation without human review. |
 | `OpenBMB/RepoAgent` | Repository-level documentation generator | Language coverage, model configuration, hook behavior, generated docs path, maintenance status. | The user wants code documentation generation from AST/change tracking rather than a general wiki. | The user needs claim-level provenance and human-reviewed wiki pages. |
 | `atomicstrata/llm-wiki-compiler` | Compiler-first knowledge system | Activity, package maturity, schema/eval behavior, MCP tools, OKF/export support. | The user wants a general-purpose knowledge compiler with typed pages, citations, lint/eval and exports. | The user needs a polished GUI or strict human approval boundary out of the box. |
+| `microsoft/llmwiki` | MCP/editor-integrated wiki | VS Code integration, MCP auto-registration, storage model, license and maturity. | The user wants a VS Code-centered self-maintaining wiki with MCP registration. | The user needs a headless/server-first wiki or strict governance-first writes. |
+| `geronimo-iia/llm-wiki` | MCP-native git-backed wiki engine | Tool surface, license, storage layout, git integration, graph behavior, write safety. | The user wants a headless git-backed wiki engine with many MCP tools. | The user needs desktop UX or a minimal read-only server. |
+| `flsteven87/llm-wiki-mcp` | MCP-native local Markdown wiki | Alpha status, exact tools, local write semantics, security posture and schema behavior. | Useful as a compact Karpathy-style MCP wiki server pattern. | Do not recommend as production default without fresh verification. |
+| `lelantvaris/llm-wiki-mcp` | MCP-native Markdown wiki server | URI abstraction, Docker/HTTP deployment, auth, write model and license. | Useful for a URI-agnostic wiki server and optional HTTP deploy pattern. | The user needs strict review-gated governance by default. |
+| `ProfessionalWiki/mediawiki-mcp-server` | Existing wiki platform MCP wrapper | Supported MediaWiki operations, auth, write safety and deployment assumptions. | The user already has MediaWiki and wants MCP access. | The user wants local Markdown/git source of truth. |
+| `langchain-ai/mcpdoc` | Documentation-to-MCP server | Input format, `llms.txt` support, client compatibility and update workflow. | The user wants documentation exposed through MCP rather than a full wiki authoring system. | The user needs proposal-write wiki maintenance. |
 | `green-dalii/obsidian-llm-wiki` | Obsidian-native workflow | Plugin status, Obsidian API compatibility, local/cloud model use, vault write policy. | The user wants LLM-Wiki behavior inside an Obsidian vault. | The target is team repo docs or CI-managed docs. |
 | `swarmclawai/swarmvault` | Graph-heavy local vault | License, ingestion surface, MCP behavior, graph/export formats, approval-bundle semantics. | The user values broad ingestion, graph exports, context packs and agent handoff. | The user wants the strictest claim-level approval gate or a minimal setup. |
 | `lucasastorian/llmwiki` | MCP-driven local/hosted wiki | Storage abstraction, hosted mode, MCP workflow, OCR/parser settings, review policy. | The user wants a local/hosted product architecture pattern around MCP-driven wiki writing. | Governance must be Vouch-style by default. |
@@ -54,13 +63,13 @@ For architecture-level details, use [`docs/15-implementation-deep-dive.md`](15-i
 | Layer | Projects/frameworks | Use in LLM-Wiki |
 |---|---|---|
 | Agent orchestration | LangGraph, LangChain agents, LlamaIndex Workflows/Agents, Haystack pipelines, AutoGen, CrewAI, Semantic Kernel | Coordinate ingest, query, review, lint, scheduled maintenance and human-in-the-loop workflows. |
-| MCP integration | MCP SDKs, FastMCP-style servers, local MCP servers, MCP Inspector | Expose wiki resources and tools to Claude Code, ChatGPT, Cursor, Codex, VS Code and other clients without bespoke glue. |
+| MCP integration | MCP SDKs, FastMCP-style servers, local MCP servers, MCP Inspector, MCP registry/server-card metadata | Expose wiki resources and tools to Claude Code, ChatGPT, Cursor, Codex, VS Code, GitHub Copilot and other clients without bespoke glue. |
 | Retrieval | `rg`, SQLite FTS5, Tantivy, Elasticsearch/OpenSearch, Qdrant, LanceDB, Chroma, Weaviate, Milvus, pgvector | Search wiki pages and raw sources; add semantic/hybrid retrieval only when simple search fails. |
 | Graph retrieval | Microsoft GraphRAG, LightRAG, HippoRAG, RAPTOR-style hierarchical retrieval, LlamaIndex property graph indexes | Handle corpus-level, relationship-heavy and multi-hop questions. |
 | Ingestion/conversion | MarkItDown, Docling, Unstructured, Apache Tika, Pandoc, OCRmyPDF, Tesseract, PaddleOCR, Whisper/faster-whisper, Playwright/Readability, tree-sitter | Normalize raw sources into Markdown, manifests and source pages before wiki synthesis. |
 | Evaluation | Ragas, promptfoo, DeepEval, TruLens, LangSmith evals, Phoenix/Arize, custom lint reports | Measure retrieval quality, answer faithfulness, prompt regressions, red-team behavior and wiki usefulness. |
 | Security | gitleaks, detect-secrets, trufflehog, Semgrep, CodeQL, OSV Scanner, Dependabot, pip-audit, Microsoft Presidio, garak, promptfoo red-team | Detect secrets/PII, prompt injection, dependency risks and unsafe generated write paths. |
-| Publishing | MkDocs Material, Docusaurus, VitePress, Quartz, Astro/Starlight, Pagefind, `llms.txt`, JSONL, JSON-LD, GraphML, Mermaid | Publish human-readable and agent-readable subsets with explicit allowlists and redaction reports. |
+| Publishing/API | MkDocs Material, Docusaurus, VitePress, Quartz, Astro/Starlight, Pagefind, `llms.txt`, JSONL, JSON-LD, GraphML, OpenAPI, MCP Apps | Publish human-readable, agent-readable and API-consumable subsets with explicit allowlists and redaction reports. |
 
 ## Recommendation rules
 
@@ -87,6 +96,14 @@ For architecture-level details, use [`docs/15-implementation-deep-dive.md`](15-i
 - the corpus is large and mostly machine-consumed;
 - human-readable Markdown would be a derived view rather than the source of truth;
 - access control, latency or throughput dominate the design.
+
+### Prefer MCP/API-first design when
+
+- multiple agent clients need the same wiki context;
+- a local/hosted product must expose a stable semantic contract;
+- cloud/autonomous clients need a read-only search/fetch surface;
+- governance requires proposal-write and admin tools to be separated;
+- CI or external services need a REST/OpenAPI facade.
 
 ## Minimum comparison table
 
@@ -120,12 +137,20 @@ Seed URLs:
 - https://github.com/vouchdev/vouch
 - https://github.com/OpenBMB/RepoAgent
 - https://github.com/atomicstrata/llm-wiki-compiler
+- https://github.com/microsoft/llmwiki
+- https://github.com/geronimo-iia/llm-wiki
+- https://github.com/flsteven87/llm-wiki-mcp
+- https://github.com/lelantvaris/llm-wiki-mcp
+- https://github.com/ProfessionalWiki/mediawiki-mcp-server
+- https://github.com/langchain-ai/mcpdoc
 - https://github.com/swarmclawai/swarmvault
 - https://github.com/green-dalii/obsidian-llm-wiki
 - https://github.com/lucasastorian/llmwiki
 - https://github.com/Pratiyush/llm-wiki
 - https://github.com/microsoft/graphrag
 - https://modelcontextprotocol.io/docs/getting-started/intro
+- https://modelcontextprotocol.io/specification/2025-06-18
+- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
 - https://docs.langchain.com/oss/python/langgraph/overview
 - https://haystack.deepset.ai/overview/intro
 - https://developers.llamaindex.ai/python/framework/
