@@ -7,15 +7,26 @@
 - Compare papers across a research question.
 - Maintain literature review synthesis.
 
-## Page types
+## Core page types
+
+Use stable `type` values from `templates/schemas/page.schema.json`:
 
 - `source`
-- `paper`
+- `entity`
 - `concept`
-- `method`
-- `dataset`
 - `comparison`
 - `synthesis`
+- `query`
+
+## Domain types
+
+Use `domain_type` for specialization. The source of truth is `schema.overlay.json`.
+
+| domain_type | core `type` | Use when |
+|---|---|---|
+| `paper` | `source` | One paper or preprint is preserved and summarized. |
+| `method` | `concept` | A reusable method, architecture or algorithm recurs across papers. |
+| `dataset` | `entity` | A dataset, benchmark or corpus needs accumulated facts. |
 
 ## Tags
 
