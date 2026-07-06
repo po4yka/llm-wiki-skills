@@ -78,7 +78,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           npx promptfoo@latest redteam run \
-            --config evals/redteam.yaml
+            --config evals/promptfooconfig.yaml \
+            --output eval-results/redteam.yaml
 
       - name: Upload promptfoo artifacts
         if: always()
