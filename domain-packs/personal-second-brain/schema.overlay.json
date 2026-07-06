@@ -1,0 +1,26 @@
+{
+  "$schema": "../../templates/schemas/domain-pack.schema.json",
+  "name": "personal-second-brain",
+  "version": "0.1.0",
+  "description": "Personal research, notes and durable synthesis profile.",
+  "core_types": ["source", "entity", "concept", "synthesis", "query"],
+  "domain_type_mappings": {
+    "evergreen-note": "concept",
+    "moc": "synthesis",
+    "daily-note": "query"
+  },
+  "recommended_tags": ["personal", "research", "synthesis", "question", "evergreen"],
+  "stale_policy": {
+    "personal-synthesis": "no automatic stale date",
+    "tool-current-claims": "30-90 days",
+    "research-sources": "review during quarterly random-page audit"
+  },
+  "recommended_skills": [
+    "llm-wiki-capture-pipeline",
+    "wiki-triage",
+    "wiki-ingest",
+    "wiki-query",
+    "wiki-lint",
+    "llm-wiki-eval"
+  ]
+}
