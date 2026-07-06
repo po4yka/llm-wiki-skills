@@ -1,6 +1,14 @@
-# wiki-ingest
+---
+name: wiki-ingest
+description: Convert trusted raw sources into reviewable LLM-Wiki pages. Use when adding PDFs, articles, transcripts, notes, repository docs, web captures, or other source material into a raw/wiki/schema vault while preserving provenance, ambiguity, links, index updates, and log entries.
+license: MIT
+compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access to a Markdown LLM-Wiki vault; git is recommended for reviewable edits.
+metadata:
+  author: po4yka
+  version: "0.2.0"
+---
 
-Use this skill when the user wants to add a trusted source into an LLM-Wiki vault.
+# Wiki Ingest
 
 ## Goal
 
@@ -37,13 +45,7 @@ Not allowed unless explicitly requested:
 
 ### 1. Read the schema layer
 
-Inspect:
-
-- `AGENTS.md`
-- `CLAUDE.md`
-- `_meta/taxonomy.md`
-- `_meta/schemas/*`
-- `wiki/index.md`
+Inspect `AGENTS.md`, `CLAUDE.md`, `_meta/taxonomy.md`, `_meta/schemas/*` and `wiki/index.md` when present.
 
 ### 2. Analyze before writing
 
@@ -64,7 +66,7 @@ Produce a short analysis plan before editing:
 
 ### 3. Extract claims
 
-Classify claims:
+Classify claims as:
 
 - `extracted`: directly present in the source;
 - `inferred`: reasoned from the source;
@@ -130,7 +132,7 @@ Append to `wiki/log.md`:
 - Open questions:
 ```
 
-### 7. Final report
+## Final report
 
 End with:
 
@@ -153,14 +155,3 @@ Stop and ask for review if:
 - source provenance is missing;
 - confidence is low for high-impact claims;
 - edits would touch protected human sections.
-
-## Quality checklist
-
-- [ ] Raw source preserved.
-- [ ] Source page created or updated.
-- [ ] Important entities linked.
-- [ ] Important concepts linked.
-- [ ] Ambiguities visible.
-- [ ] `index.md` updated if needed.
-- [ ] `log.md` appended.
-- [ ] No generated page marked `verified`.
