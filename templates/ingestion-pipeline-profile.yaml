@@ -1,0 +1,129 @@
+# LLM-Wiki ingestion pipeline profile template
+# Use with llm-wiki-ingestion-stack.
+
+profile:
+  id: "default-ingestion"
+  version: "0.1.0"
+  owner: ""
+  mode: manual-batch # manual-batch|watched-inbox|pr-based|queue-worker|connector-platform
+  deployment: local-first # local-first|team-repo|hosted|hybrid
+  default_model_policy: local-only
+  default_sensitivity: unknown
+
+paths:
+  inbox: "inbox/"
+  raw_sources: "raw/sources/"
+  raw_manifests: "raw/manifests/"
+  raw_extracted: "raw/extracted/"
+  wiki_sources: "wiki/sources/"
+  evals: "evals/"
+  reports: "dist/ingestion/"
+
+source_routes:
+  documents:
+    match:
+      mime_types:
+        - application/pdf
+        - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        - application/vnd.openxmlformats-officedocument.presentationml.presentation
+        - text/html
+    parser: docling
+    fallback_parser: markitdown
+    chunking: heading-page-aware
+    review_required: true
+  scans:
+    match:
+      labels: [scanned, image-only]
+    preprocess:
+      - ocrmypdf
+    parser: docling
+    fallback_parser: paddleocr
+    chunking: page-region-aware
+    review_required: true
+  web:
+    match:
+      schemes: [http, https]
+    capture:
+      - playwright
+      - archivebox
+    extractor: readability
+    chunking: dom-heading-aware
+    review_required: true
+  media:
+    match:
+      mime_prefixes: [audio/, video/]
+    acquisition: yt-dlp-when-lawful
+    transcription: faster-whisper
+    chunking: timestamp-segments
+    review_required: true
+  code:
+    match:
+      source_type: repo
+    parser: tree-sitter
+    structural_search: ast-grep
+    doc_generator: openwiki-optional
+    chunking: symbol-aware
+    review_required: true
+  communication:
+    match:
+      source_type: email-chat
+    parser: mail-parser-or-platform-export
+    chunking: thread-message-aware
+    review_required: true
+  tabular:
+    match:
+      mime_types:
+        - text/csv
+        - application/json
+        - application/parquet
+    parser: duckdb-or-pandas
+    pipeline: dlt-or-airbyte-optional
+    chunking: table-row-group
+    review_required: true
+
+quality_gates:
+  min_provenance_coverage: 0.99
+  min_heading_preservation: 0.95
+  min_table_preservation: 0.90
+  max_duplicate_chunk_rate: 0.02
+  min_timestamp_coverage: 0.99
+  require_source_hash: true
+  require_manifest_before_synthesis: true
+  require_anchors_for_citations: true
+
+security:
+  quarantine_before_parse: true
+  sandbox_parsers: true
+  scan_extracted_text_before_external_processing: true
+  block_cloud_for_unknown_or_sensitive: true
+  default_production_review_states:
+    - reviewed
+    - verified
+  excluded_from_production_retrieval:
+    - draft
+    - rejected
+    - quarantined
+  export_requires_redaction_report: true
+
+sync:
+  use_content_hashes: true
+  stable_chunk_hashes: true
+  keep_tombstones: true
+  dedupe_within_same_tenant_only: true
+  reparse_on_content_hash_change: true
+  reembed_changed_chunks_only: true
+
+observability:
+  metrics:
+    - ingest_queue_depth
+    - parser_success_rate
+    - parser_latency_ms
+    - chunks_per_source
+    - duplicate_chunk_rate
+    - provenance_coverage
+    - index_refresh_lag
+    - retrieval_smoke_recall_at_10
+  reports:
+    - dist/ingestion/fidelity-report.md
+    - dist/ingestion/security-report.md
+    - dist/ingestion/sync-report.md
