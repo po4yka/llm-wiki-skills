@@ -1,0 +1,53 @@
+name: Bug report
+description: Report a problem with a skill, template, validator or documentation page.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Use synthetic examples only; do not paste secrets, private vault contents or sensitive source material.
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      description: Which part is affected?
+      placeholder: "skill, docs, template, schema, validator, CI, release"
+    validations:
+      required: true
+  - type: input
+    id: path
+    attributes:
+      label: Path or skill
+      description: Relevant file, skill or command.
+      placeholder: "skills/wiki-ingest/SKILL.md or npm run validate"
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Use a minimal synthetic example.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation output
+      description: Paste relevant non-sensitive output from npm run validate or another command.
+      render: text

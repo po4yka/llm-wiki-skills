@@ -1,0 +1,33 @@
+name: Documentation change
+description: Suggest a change to docs, templates, examples, domain packs or evidence notes.
+title: "docs: "
+labels:
+  - documentation
+body:
+  - type: input
+    id: path
+    attributes:
+      label: Document or path
+      placeholder: "docs/12-evidence-and-faq.md"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is unclear, stale, missing or misleading?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What should be added, removed or rewritten?
+  - type: checkboxes
+    id: evidence
+    attributes:
+      label: Evidence and freshness
+      options:
+        - label: This change includes current ecosystem claims that should be re-verified.
+        - label: This change affects user safety, trust, privacy or write permissions.
+        - label: This change affects a template, schema or domain pack.

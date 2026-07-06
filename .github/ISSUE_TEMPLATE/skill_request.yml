@@ -1,0 +1,54 @@
+name: Skill request
+description: Propose a new Agent Skill or a significant change to an existing skill.
+title: "skill: "
+labels:
+  - enhancement
+  - skill
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for new skill ideas or major skill changes. Keep the request focused on user intent and workflow, not just a tool name.
+  - type: input
+    id: user-intent
+    attributes:
+      label: User intent
+      description: What should the user be able to ask or do?
+      placeholder: "I want an agent to..."
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Describe the workflow and expected output.
+    validations:
+      required: true
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Trigger phrases
+      description: What user requests should activate this skill?
+      placeholder: |
+        - "Help me..."
+        - "Audit..."
+        - "Set up..."
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety and data boundaries
+      description: What should the skill not do? What data should stay local or review-gated?
+  - type: textarea
+    id: existing
+    attributes:
+      label: Existing related skills
+      description: Which existing skills overlap or should compose with this one?
+      placeholder: "llm-wiki-choose, wiki-lint, llm-wiki-security-review..."
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: This cannot be handled by a small update to an existing skill.
+        - label: The skill should be procedural, not a hidden knowledge dump.
+        - label: Risky writes should default to report-only, dry-run, proposal or PR-based mode.
