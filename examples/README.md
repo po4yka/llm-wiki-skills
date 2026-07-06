@@ -4,17 +4,21 @@ These examples are small fixtures for validating the LLM-Wiki Skills pack and fo
 
 | Fixture | Purpose |
 |---|---|
-| `minimal-vault/` | End-to-end raw/wiki/schema starter. |
-| `provenance-gaps/` | Unsupported claims for provenance repair. |
+| `minimal-vault/` | End-to-end raw/wiki/schema starter with expected ingest/query/lint contracts. |
+| `provenance-gaps/` | Unsupported claims for provenance repair and expected provenance report contract. |
 | `claim-anchors/` | Valid claim/source anchors plus fenced-code duplicate examples that should be ignored. |
-| `contradiction-case/` | Conflicting claims for conflict resolution. |
-| `repo-docs-project/` | Codebase documentation scenario. |
+| `contradiction-case/` | Conflicting claims and expected conflict-resolution contract. |
+| `repo-docs-project/` | Codebase documentation scenario and expected repo-docs plan contract. |
+| `redaction-case/` | Synthetic sensitive-looking content for redaction preview behavior. |
 
 Use these fixtures with:
 
 ```bash
 npm run check:examples
 npm run validate:claim-anchors
+npm run redact:preview -- examples/redaction-case
 ```
+
+The `expected/` files are not generated outputs. They are semantic contracts for what a successful agent run should include.
 
 They are intentionally small and should not be treated as benchmark results.
