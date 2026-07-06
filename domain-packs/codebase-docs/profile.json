@@ -1,0 +1,21 @@
+{
+  "name": "codebase-docs",
+  "version": "0.1.0",
+  "copy_to": "_meta/domain-packs/codebase-docs/",
+  "recommended_workflow": [
+    "llm-wiki-repo-docs",
+    "llm-wiki-adr-memory",
+    "llm-wiki-github-action",
+    "wiki-lint"
+  ],
+  "templates": [
+    {
+      "source": "templates/technology-decision.md",
+      "target": "wiki/synthesis/technology-decision-template.md"
+    }
+  ],
+  "initial_prompts": [
+    "Use llm-wiki-repo-docs to inspect this repository and propose an agent-readable wiki structure. Do not modify files yet.",
+    "Use llm-wiki-adr-memory to identify existing decision records and gaps."
+  ]
+}
