@@ -32,13 +32,58 @@ function scalar(frontmatter, key) {
   return match[1].replace(/^['"]|['"]$/g, '').trim();
 }
 
+function unquote(value) {
+  return value.trim().replace(/^['"]|['"]$/g, '').trim();
+}
+
+function inlineListValues(value) {
+  const trimmed = value.trim();
+  if (!trimmed.startsWith('[')) return null;
+
+  const items = [];
+  let current = '';
+  let quote = null;
+  let closed = false;
+
+  for (const char of trimmed.slice(1)) {
+    if ((char === '"' || char === "'") && quote === null) {
+      quote = char;
+      current += char;
+      continue;
+    }
+    if (char === quote) {
+      quote = null;
+      current += char;
+      continue;
+    }
+    if (char === ']' && quote === null) {
+      closed = true;
+      break;
+    }
+    if (char === ',' && quote === null) {
+      items.push(current);
+      current = '';
+      continue;
+    }
+    current += char;
+  }
+
+  if (!closed) return null;
+  items.push(current);
+  return items.map(unquote).filter(Boolean);
+}
+
 function listValues(frontmatter, key) {
   const lines = frontmatter.split(/\r?\n/);
   const values = [];
   let inList = false;
 
   for (const line of lines) {
-    if (line.match(new RegExp(`^${key}:\\s*\\[\\]\\s*$`))) return [];
+    const valueMatch = line.match(new RegExp(`^${key}:\\s*(.*)$`));
+    if (valueMatch) {
+      const inlineValues = inlineListValues(valueMatch[1]);
+      if (inlineValues !== null) return inlineValues;
+    }
     if (line.match(new RegExp(`^${key}:\\s*$`))) {
       inList = true;
       continue;
@@ -47,7 +92,7 @@ function listValues(frontmatter, key) {
     if (inList) {
       const item = line.match(/^\s*-\s*(.*)$/);
       if (item) {
-        values.push(item[1].replace(/^['"]|['"]$/g, '').trim());
+        values.push(unquote(item[1]));
         continue;
       }
 
