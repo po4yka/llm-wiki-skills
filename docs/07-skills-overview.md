@@ -8,7 +8,7 @@
 This repository is a **skill system for coding agents** that guides a user through the full LLM-Wiki lifecycle:
 
 ```text
-learn -> choose -> diagnose -> plan -> set up -> migrate -> operate -> audit -> publish/archive -> evolve
+learn -> answer objections -> choose -> diagnose -> plan -> set up -> migrate -> operate -> audit -> publish/archive -> evolve
 ```
 
 Skills are operators over the user's context. They should describe **how to work**, not hide domain knowledge inside prompts.
@@ -20,6 +20,7 @@ Skills are operators over the user's context. They should describe **how to work
 | Skill | Purpose |
 |---|---|
 | [`llm-wiki-orient`](../skills/llm-wiki-orient/SKILL.md) | Explain the LLM-Wiki pattern and solution landscape. |
+| [`llm-wiki-faq`](../skills/llm-wiki-faq/SKILL.md) | Answer evidence-backed adoption questions: why, benefits, proof, maintenance and Obsidian. |
 | [`llm-wiki-news-radar`](../skills/llm-wiki-news-radar/SKILL.md) | Browse for fresh ecosystem news, releases, papers and technologies. |
 | [`llm-wiki-choose`](../skills/llm-wiki-choose/SKILL.md) | Recommend ready-made vs custom paths. |
 
@@ -97,7 +98,7 @@ skills/<skill-name>/
 A typical advisory session:
 
 ```text
-llm-wiki-orient -> llm-wiki-news-radar -> llm-wiki-choose
+llm-wiki-orient -> llm-wiki-faq -> llm-wiki-news-radar -> llm-wiki-choose
 ```
 
 A typical existing-vault adoption loop:
@@ -135,6 +136,7 @@ llm-wiki-skill-compiler -> llm-wiki-skill-doctor -> npm run validate:skills
 7. Update `wiki/log.md` for durable changes in a user's vault.
 8. Update `wiki/index.md` when a page becomes important to navigation.
 9. Keep skills procedural and triggerable.
+10. Distinguish direct evidence from adjacent evidence when arguing for adoption.
 
 ## Anti-patterns
 
@@ -143,4 +145,5 @@ llm-wiki-skill-compiler -> llm-wiki-skill-doctor -> npm run validate:skills
 - Skills that write verified pages without review.
 - Query answers that are not saved when reusable.
 - Lint jobs that rewrite truth instead of surfacing review tasks.
+- Evidence claims that overstate what adjacent RAG/memory benchmarks prove.
 - Installation instructions tied to only one agent when the package is meant for multiple Agent Skills-compatible agents.
