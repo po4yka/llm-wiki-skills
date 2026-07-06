@@ -1,7 +1,7 @@
 # Advanced LLM-Wiki use-case skill catalog
 
 > Status: draft
-> Scope: the 20 advanced use-case skills that extend the core LLM-Wiki lifecycle pack.
+> Scope: advanced use-case and hardening skills that extend the core LLM-Wiki lifecycle pack.
 
 ## Thesis
 
@@ -13,7 +13,7 @@ The organizing lifecycle is:
 diagnose -> plan -> migrate -> operate -> prove trust -> publish/archive -> evolve skills
 ```
 
-## The 20 advanced skills
+## The original 20 advanced skills
 
 | # | Skill | Primary use-case |
 |---:|---|---|
@@ -38,6 +38,15 @@ diagnose -> plan -> migrate -> operate -> prove trust -> publish/archive -> evol
 | 19 | [`llm-wiki-model-policy`](../skills/llm-wiki-model-policy/SKILL.md) | Define local/cloud model and data-use policy. |
 | 20 | [`llm-wiki-agent-memory-bridge`](../skills/llm-wiki-agent-memory-bridge/SKILL.md) | Separate wiki knowledge from skills, instruction files and agent memory. |
 
+## Product-hardening skills added after review
+
+| Skill | Primary use-case |
+|---|---|
+| [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Run practical local pilot benchmarks. |
+| [`llm-wiki-claim-anchors`](../skills/llm-wiki-claim-anchors/SKILL.md) | Add deterministic claim-level provenance anchors. |
+| [`llm-wiki-source-refresh`](../skills/llm-wiki-source-refresh/SKILL.md) | Refresh stale source-backed claims. |
+| [`llm-wiki-privacy-redactor`](../skills/llm-wiki-privacy-redactor/SKILL.md) | Preview redactions before publishing or model-boundary use. |
+
 ## Entry-point routing
 
 ### User has existing material but no structure
@@ -53,7 +62,7 @@ llm-wiki-doctor -> llm-wiki-migration-planner -> llm-wiki-refactor -> wiki-lint
 Run:
 
 ```text
-llm-wiki-trust-audit -> llm-wiki-provenance -> llm-wiki-conflict-resolver -> llm-wiki-eval
+llm-wiki-trust-audit -> llm-wiki-provenance -> llm-wiki-claim-anchors -> llm-wiki-conflict-resolver -> llm-wiki-eval
 ```
 
 ### User uses Obsidian
@@ -85,7 +94,15 @@ llm-wiki-design -> llm-wiki-local-first-stack -> llm-wiki-model-policy -> llm-wi
 Run:
 
 ```text
-llm-wiki-skill-compiler -> llm-wiki-skill-doctor -> npm run validate:skills
+llm-wiki-skill-compiler -> llm-wiki-skill-doctor -> npm run validate
+```
+
+### User wants to publish or archive
+
+Run:
+
+```text
+llm-wiki-source-refresh -> llm-wiki-privacy-redactor -> llm-wiki-export-publish -> llm-wiki-archive
 ```
 
 ## Design boundary
