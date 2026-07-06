@@ -14,12 +14,14 @@
     },
     {
       "title": "Diagnose, plan, and evaluate",
-      "description": "Inspect existing vaults, plan migrations, evaluate usefulness, and repair trust-critical gaps before large changes.",
+      "description": "Inspect existing vaults, plan migrations, evaluate usefulness, benchmark pilots, and repair trust-critical gaps before large changes.",
       "skills": [
         "llm-wiki-doctor",
         "llm-wiki-migration-planner",
         "llm-wiki-eval",
+        "llm-wiki-benchmark-suite",
         "llm-wiki-provenance",
+        "llm-wiki-claim-anchors",
         "llm-wiki-conflict-resolver"
       ]
     },
@@ -49,13 +51,15 @@
     },
     {
       "title": "Operate and trust",
-      "description": "Run ongoing triage, ingest, query, lint, trust-audit, security, model-policy, archive, and publishing workflows.",
+      "description": "Run triage, ingest, query, lint, trust-audit, source-refresh, privacy, security, model-policy, archive, and publishing workflows.",
       "skills": [
         "wiki-triage",
         "wiki-ingest",
         "wiki-query",
         "wiki-lint",
         "llm-wiki-trust-audit",
+        "llm-wiki-source-refresh",
+        "llm-wiki-privacy-redactor",
         "llm-wiki-security-review",
         "llm-wiki-model-policy",
         "llm-wiki-export-publish",
