@@ -41,6 +41,25 @@ Use one skill without installing it:
 npx skills use po4yka/llm-wiki-skills --skill llm-wiki-faq --agent claude-code
 ```
 
+## What this pack covers
+
+The repository now contains a full lifecycle skill system for LLM-Wiki adoption:
+
+```text
+learn -> answer objections -> choose -> diagnose -> plan -> set up -> migrate -> operate -> audit -> publish/archive -> evolve
+```
+
+It includes skills for:
+
+- explaining the pattern and evidence behind it;
+- choosing ready-made versus custom solutions;
+- setting up local-first, repo-docs, Obsidian or team workflows;
+- migrating existing document sets into `raw/` and `wiki/` structure;
+- running triage, ingest, query and lint operations;
+- auditing provenance, trust, security and model/data policy;
+- publishing, archiving and evaluating whether the wiki is useful;
+- compiling reusable wiki procedures into installable Agent Skills.
+
 ## Skill groups
 
 ### Learn and choose
@@ -122,6 +141,6 @@ Automate **bookkeeping**, not belief.
 
 The agent may maintain links, frontmatter, indexes, logs, drafts, MOCs, deduplication candidates and lint reports. Human review remains responsible for synthesis, acceptance of ambiguous claims and promotion from draft to reviewed/verified knowledge.
 
-## Current status
+## Freshness and evidence policy
 
-Draft skills pack. The landscape around LLM-Wiki, wiki memory, OpenWiki and agent memory is moving quickly, so skills that answer current-state questions must browse and cite fresh sources rather than rely on bundled static claims.
+Skills that answer current ecosystem questions should use fresh sources. Skills that argue for adoption should distinguish direct LLM-Wiki evidence, adjacent evidence from RAG/memory/context-engineering work, and the user's own pilot metrics.
