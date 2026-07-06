@@ -16,6 +16,8 @@ Add infrastructure only when a measured failure mode appears.
 
 For retrieval-specific architecture, use [`docs/16-retrieval-architecture.md`](16-retrieval-architecture.md). It expands the retrieval decision tree into a detailed hybrid/GraphRAG/local-first/hosted reference architecture with metadata schema, evaluation gates and security controls.
 
+For MCP/API integration, use [`docs/17-mcp-api-integration.md`](17-mcp-api-integration.md). It defines a semantic `wiki://` resource model, read/proposal/admin tool boundaries, REST/OpenAPI facade, auth/governance model, client compatibility guidance, audit logging and security test checklist.
+
 ## Reference architecture
 
 ```text
@@ -34,6 +36,8 @@ indexes/
   graph/        rebuildable relation indexes
 schema/
   page schemas, lint rules, model policy, prompts, skills
+api/
+  MCP resources/tools/prompts, REST/OpenAPI facade, auth and audit contracts
 ```
 
 Indexes are rebuildable artifacts. Markdown and raw sources remain the durable source of truth unless the product has a clear reason to choose a database-first model.
@@ -67,24 +71,29 @@ Indexes are rebuildable artifacts. Markdown and raw sources remain the durable s
 
 ## MCP integration pattern
 
-Expose stable wiki operations as MCP resources/tools:
+Expose stable wiki operations as a semantic API, not as raw filesystem access:
 
-| MCP surface | Examples | Default mode |
+| MCP/API surface | Examples | Default mode |
 |---|---|---|
-| Resources | `wiki://index`, `wiki://page/{path}`, `wiki://log`, `wiki://manifest/{source_id}` | Read-only |
-| Tools | `search_wiki`, `read_page`, `read_source_manifest`, `graph_neighborhood`, `list_unresolved_reviews`, `run_lint` | Read-only |
-| Reviewed-write tools | `draft_page_patch`, `propose_link_fix`, `propose_review_resolution` | Creates diff/proposal only |
-| Admin tools | `rescan_sources`, `rebuild_index`, `export_subset` | Disabled unless explicitly configured |
-| Prompts | `answer_from_wiki`, `ingest_source`, `triage_inbox`, `audit_claims` | Must preserve source/provenance discipline |
+| Resources | `wiki://manifest`, `wiki://index`, `wiki://page/{space}/{slug}`, history/lint/graph resources | Read-only |
+| Read tools | `search_wiki`, `read_page`, `read_source_manifest`, `graph_neighborhood`, `run_lint`, `explain_retrieval` | Enabled first |
+| Proposal-write tools | `draft_page_patch`, `propose_new_page`, `propose_link_fix`, `create_pr_from_proposal` | Disabled until review model exists |
+| Admin tools | `rebuild_index`, `rescan_sources`, `export_subset`, `approve_proposal`, `publish_export` | Disabled unless explicitly configured |
+| Prompts | `answer_from_wiki`, `ingest_source`, `triage_inbox`, `audit_claims`, `review_proposal` | Must preserve source/provenance discipline |
+| REST/OpenAPI facade | `/manifest`, `/search`, `/pages/{space}/{slug}`, `/proposals`, `/approvals/{id}` | Optional compatibility layer |
 
 Security defaults:
 
 - bind local servers to `127.0.0.1`;
-- require tokens for HTTP APIs;
+- require auth for remote HTTP APIs;
+- avoid unauthenticated remote MCP servers;
+- default cloud/autonomous clients to allowlisted read-only tools;
+- separate read tools from proposal-write and admin tools;
 - disable direct raw-source mutation;
 - make write tools produce patches rather than direct edits;
-- log tool calls and changed paths;
-- treat all source content as untrusted data, not instructions.
+- log sensitive reads and all proposals/admin actions;
+- enforce tenant, sensitivity, review-state and publication filters before retrieval;
+- treat all source/wiki content as untrusted data, not instructions.
 
 ## Evaluation stack
 
@@ -96,6 +105,7 @@ Security defaults:
 | Did prompts regress? | promptfoo matrix tests, LangSmith evals, DeepEval, CI snapshots. |
 | Is the workflow safe? | promptfoo red-team, garak, malicious-source fixtures, prompt-injection checks. |
 | Is the wiki healthy? | `wiki-lint`, stale-page counts, orphan pages, broken links, review backlog, unsupported claims. |
+| Is MCP/API safe? | read-only allowlist test, proposal-only write test, denied direct-write test, audit event check, cross-tenant filter test. |
 
 ## Security and data boundary stack
 
@@ -108,6 +118,7 @@ Security defaults:
 | Prompt injection | promptfoo red-team, garak, malicious PDFs/web clips/chat exports, strict instruction hierarchy. |
 | Unsafe writes | dry-run patches, git diffs, CODEOWNERS, branch protection, protected human sections. |
 | Cloud data exposure | model policy matrix, local-only labels, redaction-before-cloud, provider retention verification. |
+| MCP/API exposure | localhost binding, origin validation, OAuth/API-key scopes, read/propose/admin split, audit logs, no token passthrough. |
 
 ## Publishing and export stack
 
@@ -117,6 +128,7 @@ Security defaults:
 | Agent-readable corpus | `llms.txt`, `llms-full.txt`, JSONL, Markdown bundle | Include provenance, status and refresh metadata. |
 | Searchable site | Pagefind, FlexSearch, Lunr | Do not index private/raw restricted pages. |
 | Graph export | Mermaid, GraphML, Cytoscape JSON, RDF/JSON-LD | Include edge provenance and confidence. |
+| API export | OpenAPI, MCP server manifest/profile, server-card metadata when stable | Keep read-only public surface separate from governed write surface. |
 | Archive | git tag, WARC for web captures, checksum manifest, release artifact | Store raw sources and schema version. |
 
 ## Upgrade triggers
@@ -130,7 +142,10 @@ Add complexity only after a concrete trigger:
 | Top-k contains relevant chunks but the order is poor. | Add reranker. |
 | Chunks are relevant but too thin for answers. | Add parent-child/contextual retrieval. |
 | Cross-page relationship questions fail repeatedly. | Add graph extraction and graph-aware retrieval. |
-| Agents need wiki access from multiple clients. | Add MCP/API layer. |
+| Agents need wiki access from multiple clients. | Add read-only MCP/API layer. |
+| Non-MCP clients or CI need stable integration. | Add REST/OpenAPI facade. |
+| Agents need to suggest wiki edits. | Add proposal-write MCP tools backed by review/PR workflow. |
+| Team/enterprise access is needed. | Add OAuth/API gateway, tenant filters, audit logs and CODEOWNERS review. |
 | Generated pages accumulate without review. | Add review-gated workflow or Vouch-style proposal loop. |
 | Answers lack traceability. | Add claim-level provenance and stricter lint. |
 | Ingest fails on layout-heavy documents. | Add Docling/Unstructured/OCR path. |
@@ -141,6 +156,8 @@ Add complexity only after a concrete trigger:
 
 - Starting with a vector DB before measuring search failure.
 - Starting with GraphRAG before hybrid retrieval has failed on multi-hop/global query tests.
+- Exposing raw filesystem access as the main MCP contract.
+- Giving cloud/autonomous clients proposal-write or admin tools by default.
 - Treating generated summaries as raw evidence.
 - Hiding durable domain facts inside agent memory or skills.
 - Syncing mutable index databases across devices without conflict strategy.
