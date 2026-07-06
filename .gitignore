@@ -1,0 +1,21 @@
+# Local agent/runtime artifacts
+.DS_Store
+.env
+.env.*
+*.log
+
+# Local indexes and caches
+*.sqlite
+*.sqlite3
+*.db
+*-wal
+*-shm
+.cache/
+.vector-cache/
+_agent/tmp/
+
+# Node/Python caches for future tooling
+node_modules/
+__pycache__/
+.pytest_cache/
+.venv/

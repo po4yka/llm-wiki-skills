@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/llm-wiki/page.schema.json",
+  "title": "LLM-Wiki page frontmatter",
+  "type": "object",
+  "required": [
+    "title",
+    "type",
+    "status",
+    "created",
+    "updated",
+    "review_required"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string", "minLength": 1 },
+    "type": {
+      "type": "string",
+      "enum": ["source", "entity", "concept", "comparison", "synthesis", "query", "report"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "verified", "stale", "archived"]
+    },
+    "created": { "type": "string" },
+    "updated": { "type": "string" },
+    "source_paths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_urls": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_hashes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "ai_generated": { "type": "boolean" },
+    "ai_model": { "type": "string" },
+    "ai_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "claim_mix": {
+      "type": "object",
+      "properties": {
+        "extracted": { "type": "number", "minimum": 0, "maximum": 1 },
+        "inferred": { "type": "number", "minimum": 0, "maximum": 1 },
+        "ambiguous": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "review_required": { "type": "boolean" },
+    "last_linted": { "type": ["string", "null"] },
+    "stale_after": { "type": ["string", "null"] },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}
