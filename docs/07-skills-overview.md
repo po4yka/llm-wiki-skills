@@ -31,7 +31,9 @@ Skills are operators over the user's context. They should describe **how to work
 | [`llm-wiki-doctor`](../skills/llm-wiki-doctor/SKILL.md) | Read-only diagnosis of existing docs or vaults. |
 | [`llm-wiki-migration-planner`](../skills/llm-wiki-migration-planner/SKILL.md) | Dry-run migration planning. |
 | [`llm-wiki-eval`](../skills/llm-wiki-eval/SKILL.md) | Measure usefulness and retrieval/reuse outcomes. |
+| [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Run a local with-wiki/without-wiki pilot benchmark. |
 | [`llm-wiki-provenance`](../skills/llm-wiki-provenance/SKILL.md) | Add or repair source and claim-level provenance. |
+| [`llm-wiki-claim-anchors`](../skills/llm-wiki-claim-anchors/SKILL.md) | Add deterministic claim anchors and source support labels. |
 | [`llm-wiki-conflict-resolver`](../skills/llm-wiki-conflict-resolver/SKILL.md) | Mediate contradictions without auto-fixing truth. |
 
 ### Implement and migrate
@@ -65,6 +67,8 @@ Skills are operators over the user's context. They should describe **how to work
 | [`wiki-query`](../skills/wiki-query/SKILL.md) | Answer from the compiled wiki and save reusable answers. |
 | [`wiki-lint`](../skills/wiki-lint/SKILL.md) | Run structural and trust health checks. |
 | [`llm-wiki-trust-audit`](../skills/llm-wiki-trust-audit/SKILL.md) | Audit anti-slop and human-synthesis boundaries. |
+| [`llm-wiki-source-refresh`](../skills/llm-wiki-source-refresh/SKILL.md) | Refresh stale source-backed claims with reports. |
+| [`llm-wiki-privacy-redactor`](../skills/llm-wiki-privacy-redactor/SKILL.md) | Preview redactions before publishing or external model use. |
 | [`llm-wiki-security-review`](../skills/llm-wiki-security-review/SKILL.md) | Review data boundaries and skill safety. |
 | [`llm-wiki-model-policy`](../skills/llm-wiki-model-policy/SKILL.md) | Define model/provider policy by data class and task. |
 | [`llm-wiki-export-publish`](../skills/llm-wiki-export-publish/SKILL.md) | Export or publish safe subsets. |
@@ -104,7 +108,7 @@ llm-wiki-orient -> llm-wiki-faq -> llm-wiki-news-radar -> llm-wiki-choose
 A typical existing-vault adoption loop:
 
 ```text
-llm-wiki-doctor -> llm-wiki-migration-planner -> llm-wiki-refactor -> wiki-lint -> llm-wiki-provenance
+llm-wiki-doctor -> llm-wiki-migration-planner -> llm-wiki-refactor -> wiki-lint -> llm-wiki-provenance -> llm-wiki-claim-anchors
 ```
 
 A typical personal operation loop:
@@ -119,10 +123,16 @@ A typical repo/team loop:
 llm-wiki-repo-docs -> llm-wiki-adr-memory -> llm-wiki-github-action -> llm-wiki-team-rollout -> llm-wiki-security-review
 ```
 
+A typical publication loop:
+
+```text
+llm-wiki-source-refresh -> llm-wiki-privacy-redactor -> llm-wiki-export-publish -> llm-wiki-archive
+```
+
 A typical skill-builder loop:
 
 ```text
-llm-wiki-skill-compiler -> llm-wiki-skill-doctor -> npm run validate:skills
+llm-wiki-skill-compiler -> llm-wiki-skill-doctor -> npm run validate
 ```
 
 ## Shared rules for all skills
