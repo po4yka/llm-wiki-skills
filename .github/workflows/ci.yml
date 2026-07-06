@@ -27,8 +27,17 @@ jobs:
         with:
           node-version: 22
 
-      - name: Run local validators
-        run: npm run validate
+      - name: Validate skill files
+        run: npm run validate:skills
+
+      - name: Validate manifest and README catalog
+        run: npm run validate:manifest
+
+      - name: Validate local Markdown links
+        run: npm run validate:links
+
+      - name: Validate agent safety boundaries
+        run: npm run validate:agent-safety
 
       - name: Generate release catalog
         run: npm run catalog:generate
@@ -65,7 +74,7 @@ jobs:
 
       - name: Run Gitleaks CLI
         run: |
-          go install github.com/gitleaks/gitleaks/v8@latest
+          go install github.com/gitleaks/gitleaks/v8/cmd/gitleaks@latest
           "$(go env GOPATH)/bin/gitleaks" detect --source . --no-git --redact --verbose
 
   workflow-lint:
