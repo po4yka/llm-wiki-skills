@@ -6,6 +6,7 @@ These examples are small fixtures for validating the LLM-Wiki Skills pack and fo
 |---|---|
 | `minimal-vault/` | End-to-end raw/wiki/schema starter. |
 | `provenance-gaps/` | Unsupported claims for provenance repair. |
+| `claim-anchors/` | Valid claim/source anchors plus fenced-code duplicate examples that should be ignored. |
 | `contradiction-case/` | Conflicting claims for conflict resolution. |
 | `repo-docs-project/` | Codebase documentation scenario. |
 
@@ -13,6 +14,7 @@ Use these fixtures with:
 
 ```bash
 npm run check:examples
+npm run validate:claim-anchors
 ```
 
 They are intentionally small and should not be treated as benchmark results.
