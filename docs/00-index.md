@@ -12,24 +12,27 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 ### Fast path: personal workflow
 
 1. [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md)
-2. [`02-architecture.md`](02-architecture.md)
-3. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-4. [`06-implementation-playbook.md`](06-implementation-playbook.md)
-5. [`07-skills-overview.md`](07-skills-overview.md)
+2. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
+3. [`02-architecture.md`](02-architecture.md)
+4. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+5. [`06-implementation-playbook.md`](06-implementation-playbook.md)
+6. [`07-skills-overview.md`](07-skills-overview.md)
 
 ### Builder path: tool or plugin
 
 1. [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md)
-2. [`05-tooling-landscape.md`](05-tooling-landscape.md)
-3. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-4. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
-5. [`09-references.md`](09-references.md)
+2. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
+3. [`05-tooling-landscape.md`](05-tooling-landscape.md)
+4. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+5. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
+6. [`09-references.md`](09-references.md)
 
 ### Reviewer path: risk and trust
 
-1. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-2. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
-3. [`03-second-brain-methodology.md`](03-second-brain-methodology.md)
+1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
+2. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+3. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
+4. [`03-second-brain-methodology.md`](03-second-brain-methodology.md)
 
 ## Document map
 
@@ -44,6 +47,9 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`07-skills-overview.md`](07-skills-overview.md) | Explains the provided `skills/*/SKILL.md` procedures. |
 | [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md) | Defines success metrics, lint checks and review gates. |
 | [`09-references.md`](09-references.md) | Lists source families and claims that must be re-verified before decisions. |
+| [`10-skill-system-roadmap.md`](10-skill-system-roadmap.md) | Product roadmap for the Agent Skills distribution pack. |
+| [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md) | Catalog of advanced use-case skills. |
+| [`12-evidence-and-faq.md`](12-evidence-and-faq.md) | Evidence-backed arguments and FAQ answers for adoption questions. |
 
 ## Core vocabulary
 

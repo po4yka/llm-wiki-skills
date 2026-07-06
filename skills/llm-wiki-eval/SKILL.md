@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki; optional write access for evaluation reports.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # LLM-Wiki Eval
@@ -20,6 +20,7 @@ Measure whether the wiki improves real work instead of merely accumulating attra
 - Recent questions, queries or tasks if available.
 - `wiki/index.md`, `wiki/log.md`, `wiki/queries/`, lint reports.
 - Optional evaluation question set.
+- Optional adoption claim to test, such as "this wiki saves time" or "this beats RAG for our questions".
 
 ## Procedure
 
@@ -31,9 +32,22 @@ Choose one scope:
 - one domain;
 - one project;
 - recent 30/60/90-day activity;
-- before/after migration.
+- before/after migration;
+- pilot with 20-50 sources and 10-20 realistic questions.
 
-### 2. Measure operational metrics
+### 2. State the evidence level
+
+Classify the evaluation as:
+
+| Evidence level | Meaning |
+|---|---|
+| external direct | Published LLM-Wiki benchmark or implementation evidence. |
+| external adjacent | GraphRAG, memory, context-engineering or RAG benchmark evidence. |
+| local operational | This user's own metrics and query tests. |
+
+Local operational evidence should decide whether the workflow is worth continuing for this user.
+
+### 3. Measure operational metrics
 
 Collect:
 
@@ -46,8 +60,9 @@ Collect:
 | provenance coverage | Important claims with sources. |
 | stale verified pages | Trusted pages past refresh date. |
 | output beyond vault | Reports, PRs, essays, decisions, docs shipped from wiki. |
+| context reconstruction avoided | How often the wiki prevents re-explaining/re-reading old context. |
 
-### 3. Run query tests
+### 4. Run query tests
 
 Use 10-20 realistic questions. For each, record:
 
@@ -58,11 +73,12 @@ used_raw_sources: []
 answer_saved: false
 support_level: source-backed|wiki-backed|inferred|missing|conflicting
 rating: useful|partial|miss
+time_saved_estimate: none|small|medium|large
 ```
 
 When possible, compare a with-wiki answer to a without-wiki answer.
 
-### 4. Sample random pages
+### 5. Sample random pages
 
 Open 10-20 random pages and score:
 
@@ -73,7 +89,17 @@ Open 10-20 random pages and score:
 - human synthesis boundary;
 - reusability.
 
-### 5. Recommend improvements
+### 6. Test the living-wiki loop
+
+Check whether the wiki has evidence of:
+
+```text
+capture -> triage -> ingest -> query -> file-back -> lint -> review -> refresh
+```
+
+A wiki that only captures and never files back/lints is likely becoming an archive, not a living knowledge base.
+
+### 7. Recommend improvements
 
 Prioritize fixes:
 
@@ -82,22 +108,29 @@ Prioritize fixes:
 3. review backlog;
 4. stale pages;
 5. capture pipeline gaps;
-6. unnecessary infrastructure.
+6. missing answer file-back;
+7. unnecessary infrastructure.
 
 ## Output
 
 ```markdown
 ## Evaluation summary
 
+## Evidence level
+
 ## Metrics
 
 ## Query test results
+
+## Living-wiki loop check
 
 ## Random page sample
 
 ## Failure modes
 
 ## Recommended improvements
+
+## Continue / pause / redesign decision
 
 ## Next measurement date
 ```
@@ -108,3 +141,4 @@ Prioritize fixes:
 - Do not mark pages trusted as part of evaluation.
 - Do not reveal sensitive content in aggregated reports.
 - Be explicit when evidence is too sparse for a strong conclusion.
+- Do not claim external benchmarks prove local success; use local metrics to decide.
