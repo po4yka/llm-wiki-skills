@@ -30,6 +30,9 @@ jobs:
       - name: Validate skills pack
         run: npm run validate
 
+      - name: Run distribution smoke test
+        run: npm run smoke:skills
+
       - name: Generate catalogs
         run: npm run catalog:generate
 
