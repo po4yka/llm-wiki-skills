@@ -20,6 +20,8 @@ For MCP/API integration, use [`docs/17-mcp-api-integration.md`](17-mcp-api-integ
 
 For evaluation methodology, use [`docs/18-evaluation-methodology.md`](18-evaluation-methodology.md). It defines layered retrieval, grounding, usefulness, operational-health and security metrics, with-wiki experiments, human calibration, scorecards and CI gates.
 
+For security threat modeling, use [`docs/19-security-threat-model.md`](19-security-threat-model.md). It defines trust boundaries, STRIDE/LINDDUN mappings, LLM-specific threat classes, security scorecards, red-team scenarios, CI gates and incident response.
+
 ## Reference architecture
 
 ```text
@@ -42,6 +44,8 @@ api/
   MCP resources/tools/prompts, REST/OpenAPI facade, auth and audit contracts
 evals/
   versioned datasets, qrels, promptfoo configs, scorecards and CI reports
+security/
+  threat model, scorecards, red-team fixtures, redaction reports and incident playbooks
 ```
 
 Indexes are rebuildable artifacts. Markdown and raw sources remain the durable source of truth unless the product has a clear reason to choose a database-first model.
@@ -72,6 +76,15 @@ Indexes are rebuildable artifacts. Markdown and raw sources remain the durable s
 | Audio/video | Whisper or faster-whisper; yt-dlp where lawful | Add diarization and speaker metadata only when useful. |
 | Code repositories | tree-sitter, ast-grep, language servers, RepoAgent/OpenWiki-style scanners | Use semantic code indexing only after module maps and docs are insufficient. |
 | Tabular/structured data | Pandas, DuckDB, CSV/Parquet readers | Preserve raw files and extraction schema. |
+
+Security defaults for ingestion:
+
+- quarantine untrusted sources before parsing;
+- sandbox parser/OCR workers;
+- prevent parser workers from accessing repository write credentials;
+- record source hashes and extraction metadata;
+- scan extracted text before indexing or export;
+- classify source sensitivity before production retrieval.
 
 ## MCP integration pattern
 
@@ -128,25 +141,40 @@ Recommended eval artifacts:
 
 | Risk | Tools/controls |
 |---|---|
-| Secret leakage | gitleaks, detect-secrets, trufflehog, pre-commit hooks, CI gates. |
-| PII exposure | Microsoft Presidio, scrubadub, custom regex/classifiers, redaction manifests. |
-| Dependency risk | OSV Scanner, Dependabot, npm audit, pip-audit, lockfile review. |
-| Unsafe code/config | Semgrep, CodeQL, shellcheck, actionlint. |
-| Prompt injection | promptfoo red-team, garak, malicious PDFs/web clips/chat exports, strict instruction hierarchy. |
-| Unsafe writes | dry-run patches, git diffs, CODEOWNERS, branch protection, protected human sections. |
+| Secret leakage | GitHub secret scanning/push protection, gitleaks, detect-secrets, trufflehog, pre-commit hooks, CI gates. |
+| PII/private-data exposure | Microsoft Presidio, scrubadub, custom regex/classifiers, redaction manifests, retention policy. |
+| Dependency/supply-chain risk | OSV Scanner, Dependabot, GitHub dependency review, npm audit, pip-audit, lockfile review. |
+| Unsafe code/config | Semgrep, CodeQL, shellcheck, actionlint, pinned GitHub Actions, minimal workflow permissions. |
+| Parser exploitation | Parser sandboxing, file-type allowlists, size limits, no parser secrets, CVE review, temporary output isolation. |
+| Prompt injection | promptfoo red-team, garak, malicious PDFs/web clips/chat exports, strict instruction hierarchy, staged public/private workflows. |
+| RAG poisoning | reviewed-only retrieval, source hashes, provenance, contradiction checks, quarantined states, metadata filters. |
+| Unsafe writes | dry-run patches, git diffs, CODEOWNERS, branch protection, protected human sections, proposal-only agents. |
 | Cloud data exposure | model policy matrix, local-only labels, redaction-before-cloud, provider retention verification. |
 | MCP/API exposure | localhost binding, origin validation, OAuth/API-key scopes, read/propose/admin split, audit logs, no token passthrough. |
+| Export/log/trace leakage | export allowlists, redaction reports, private-by-default traces, bounded prompt/source logging, retention policy. |
+
+Recommended security artifacts:
+
+| Artifact | Purpose |
+|---|---|
+| `docs/19-security-threat-model.md` | Canonical architecture threat model and control baseline. |
+| `templates/security-scorecard.yaml` | Review checklist and status report. |
+| `templates/mcp-security-profile.yaml` | MCP/API security contract for tool classes, auth, retrieval filters and audit. |
+| `templates/promptfoo-llm-wiki-redteam.yaml` | RAG/MCP/agent red-team starter. |
+| `templates/llm-wiki-security.github-actions.yml` | CI security workflow starter. |
+| `policies/redaction-retention-policy.md` | Data handling, redaction, export and trace-retention template. |
+| `policies/review-incident-response.md` | Review gates and incident response template. |
 
 ## Publishing and export stack
 
 | Target | Tools/formats | Controls |
 |---|---|---|
 | Human static site | MkDocs Material, Docusaurus, VitePress, Quartz, Astro/Starlight | Publish allowlist, redaction report, broken-link check. |
-| Agent-readable corpus | `llms.txt`, `llms-full.txt`, JSONL, Markdown bundle | Include provenance, status and refresh metadata. |
+| Agent-readable corpus | `llms.txt`, `llms-full.txt`, JSONL, Markdown bundle | Include provenance, status and refresh metadata; exclude private/raw restricted pages. |
 | Searchable site | Pagefind, FlexSearch, Lunr | Do not index private/raw restricted pages. |
-| Graph export | Mermaid, GraphML, Cytoscape JSON, RDF/JSON-LD | Include edge provenance and confidence. |
+| Graph export | Mermaid, GraphML, Cytoscape JSON, RDF/JSON-LD | Include edge provenance and confidence; redact sensitive nodes. |
 | API export | OpenAPI, MCP server manifest/profile, server-card metadata when stable | Keep read-only public surface separate from governed write surface. |
-| Archive | git tag, WARC for web captures, checksum manifest, release artifact | Store raw sources and schema version. |
+| Archive | git tag, WARC for web captures, checksum manifest, release artifact | Store raw sources and schema version with sensitivity-aware access. |
 
 ## Upgrade triggers
 
@@ -166,10 +194,12 @@ Add complexity only after a concrete trigger:
 | Generated pages accumulate without review. | Add review-gated workflow or Vouch-style proposal loop. |
 | Answers lack traceability. | Add claim-level provenance and stricter lint. |
 | Ingest fails on layout-heavy documents. | Add Docling/Unstructured/OCR path. |
+| Untrusted documents enter ingestion. | Add parser sandboxing, file allowlists, secret/PII scans and quarantine states. |
+| Remote/local MCP surfaces are enabled. | Add MCP security profile, auth, origin checks, audit logs and red-team tests. |
 | Prompt or model changes break behavior. | Add promptfoo/Ragas/DeepEval CI gates. |
 | Evaluation depends only on synthetic questions. | Add reviewed real queries, qrels and human calibration. |
 | LLM judges disagree with humans. | Update rubrics, thresholds, calibration set and judge choice. |
-| Team adoption begins. | Add CODEOWNERS, branch protection, PR templates and permissions. |
+| Team adoption begins. | Add CODEOWNERS, branch protection, PR templates, permissions and threat model. |
 
 ## Anti-patterns
 
@@ -183,3 +213,7 @@ Add complexity only after a concrete trigger:
 - Allowing direct-write agents to edit team knowledge without review.
 - Publishing a wiki subset without a manifest and redaction pass.
 - Treating note count, graph density or LLM-judge score as sufficient proof of wiki quality.
+- Treating `127.0.0.1` as enough without auth/origin/rebinding controls.
+- Running parsers with repo write access or model/provider secrets.
+- Logging full prompts/sources in shared tracing systems by default.
+- Relying on prompt wording as the only defense against prompt injection.

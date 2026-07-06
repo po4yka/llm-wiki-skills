@@ -58,7 +58,7 @@ It includes skills for:
 - migrating existing document sets into `raw/` and `wiki/` structure;
 - running triage, ingest, query and lint operations;
 - benchmarking pilot value and evaluating whether the wiki is useful;
-- auditing provenance, claim anchors, trust, security and model/data policy;
+- auditing provenance, claim anchors, trust, security threat model and model/data policy;
 - refreshing stale sources, redacting private content, publishing and archiving;
 - compiling reusable wiki procedures into installable Agent Skills.
 
@@ -129,7 +129,8 @@ It includes skills for:
 | [`llm-wiki-trust-audit`](skills/llm-wiki-trust-audit/SKILL.md) | The user wants an anti-slop, provenance, confidence and human-synthesis audit. |
 | [`llm-wiki-source-refresh`](skills/llm-wiki-source-refresh/SKILL.md) | Stale or current-state source-backed claims need refresh reports. |
 | [`llm-wiki-privacy-redactor`](skills/llm-wiki-privacy-redactor/SKILL.md) | Private content needs preview redaction before export or model-boundary use. |
-| [`llm-wiki-security-review`](skills/llm-wiki-security-review/SKILL.md) | Skills, capture pipelines, vault access or write permissions need security review. |
+| [`llm-wiki-threat-model`](skills/llm-wiki-threat-model/SKILL.md) | The user needs a STRIDE/LINDDUN-style threat model, attack-surface map, risk matrix, security architecture or red-team rollout plan. |
+| [`llm-wiki-security-review`](skills/llm-wiki-security-review/SKILL.md) | Existing skills, ingestion, retrieval, MCP/API, CI, vault access, exports or write permissions need security review. |
 | [`llm-wiki-model-policy`](skills/llm-wiki-model-policy/SKILL.md) | The user needs local/cloud model and data-use policy. |
 | [`llm-wiki-export-publish`](skills/llm-wiki-export-publish/SKILL.md) | A public or internal subset of the wiki should be exported or published. |
 | [`llm-wiki-archive`](skills/llm-wiki-archive/SKILL.md) | The wiki needs long-term durability and archive manifests. |
@@ -149,8 +150,9 @@ It includes skills for:
 |---|---|
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
-| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), and [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md). |
-| [`templates/`](templates/) | Starter vault files, schemas and page/report/evaluation/API templates. |
+| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), and [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md). |
+| [`templates/`](templates/) | Starter vault files, schemas and page/report/evaluation/API/security templates. |
+| [`policies/`](policies/) | Policy templates for redaction, retention, review and incident response. |
 | [`examples/`](examples/) | Small fixtures for first-run and validation scenarios. |
 | [`domain-packs/`](domain-packs/) | Domain-specific starter taxonomies and workflows. |
 | [`benchmarks/`](benchmarks/) | Pilot questions and scoring rubric for local evaluation. |
