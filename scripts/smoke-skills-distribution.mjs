@@ -85,8 +85,8 @@ for (const skill of requiredListItems) {
 
 console.log('\n## Smoke 2: render one skill prompt without starting an agent');
 const promptOutput = run(['use', source, '--skill', requiredSkill]);
-assertIncludes(promptOutput, requiredSkill, 'skills use output');
-assertIncludes(promptOutput, 'LLM-Wiki', 'skills use output');
+assertIncludes(promptOutput, 'LLM-Wiki FAQ', 'skills use output');
+assertIncludes(promptOutput, 'Evidence policy', 'skills use output');
 fs.writeFileSync(promptOutPath, promptOutput);
 console.log(`wrote ${path.relative(repoRoot, promptOutPath)}`);
 
