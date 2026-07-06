@@ -28,15 +28,26 @@ Validate all packs with:
 npm run validate:domain-packs
 ```
 
+## Apply profiles
+
+Some packs also include `profile.json`. Profiles are machine-readable application hints for agents and scripts. They describe:
+
+- where to copy pack metadata in a downstream vault;
+- recommended skill sequence;
+- starter templates to copy;
+- initial prompts for safe report-only setup.
+
+Profiles are not automatic migrations. They are reviewable instructions for `llm-wiki-domain-pack` and downstream setup agents.
+
 ## Packs
 
-| Pack | Use case | Overlay |
-|---|---|---|
-| `personal-second-brain` | Personal research, notes and durable synthesis. | `personal-second-brain/schema.overlay.json` |
-| `codebase-docs` | Agent-readable repository documentation. | `codebase-docs/schema.overlay.json` |
-| `research-papers` | Literature review and paper synthesis. | `research-papers/schema.overlay.json` |
-| `team-onboarding` | Team knowledge, onboarding and bus factor reduction. | `team-onboarding/schema.overlay.json` |
-| `startup-market-research` | Market maps, competitors, insights and strategy. | `startup-market-research/schema.overlay.json` |
-| `competitive-intelligence` | External landscape tracking and source refresh. | `competitive-intelligence/schema.overlay.json` |
+| Pack | Use case | Overlay | Profile |
+|---|---|---|---|
+| `personal-second-brain` | Personal research, notes and durable synthesis. | `personal-second-brain/schema.overlay.json` | `personal-second-brain/profile.json` |
+| `codebase-docs` | Agent-readable repository documentation. | `codebase-docs/schema.overlay.json` | `codebase-docs/profile.json` |
+| `research-papers` | Literature review and paper synthesis. | `research-papers/schema.overlay.json` | `research-papers/profile.json` |
+| `team-onboarding` | Team knowledge, onboarding and bus factor reduction. | `team-onboarding/schema.overlay.json` | planned |
+| `startup-market-research` | Market maps, competitors, insights and strategy. | `startup-market-research/schema.overlay.json` | planned |
+| `competitive-intelligence` | External landscape tracking and source refresh. | `competitive-intelligence/schema.overlay.json` | planned |
 
 Use `llm-wiki-domain-pack` to customize these packs for a user's domain.
