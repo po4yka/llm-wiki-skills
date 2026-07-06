@@ -15,7 +15,7 @@ The canonical validation entrypoint is:
 npm run validate
 ```
 
-It checks skill metadata, manifest/README consistency, local Markdown links, agent-safety boundaries, skill-smell warnings, claim anchors and examples.
+It checks skill metadata, manifest/README consistency, local Markdown links, agent-safety boundaries, skill-smell warnings, claim anchors, domain packs, machine-readable routing metadata and semantic examples.
 
 ## Repository layout
 
@@ -23,9 +23,10 @@ It checks skill metadata, manifest/README consistency, local Markdown links, age
 |---|---|
 | `skills/` | Installable Agent Skills. |
 | `skills.sh.json` | Skills grouping metadata for discovery. |
+| `skill-router.json` | Machine-readable skill routing metadata. |
 | `docs/` | Conceptual and operational documentation. |
 | `templates/` | Starter vault files, schemas and report/page templates. |
-| `domain-packs/` | Domain-specific pack descriptions and overlays. |
+| `domain-packs/` | Domain-specific pack descriptions, overlays and optional apply profiles. |
 | `examples/` | Small fixtures for validation and onboarding. |
 | `benchmarks/` | Pilot benchmark questions and scoring rubric. |
 | `scripts/` | Deterministic validation and generation helpers. |
@@ -61,8 +62,9 @@ Rules:
 5. Include explicit safety gates.
 6. Use report-only, dry-run, proposal or PR-based defaults for risky writes.
 7. Current ecosystem claims must instruct the agent to browse and cite fresh sources.
-8. Add the skill to `skills.sh.json` and the README catalog.
+8. Add the skill to `skills.sh.json`, update README and consider whether `skill-router.json` needs a route.
 9. Run `npm run catalog:generate` if skill metadata changes.
+10. Bump `metadata.version` whenever installed skill behavior changes.
 
 ## Adding or changing domain packs
 
@@ -76,10 +78,26 @@ domain-packs/<pack>/
   schema.overlay.json
 ```
 
+Optional apply profiles live at:
+
+```text
+domain-packs/<pack>/profile.json
+```
+
 Run:
 
 ```bash
 npm run validate:domain-packs
+```
+
+## Examples and fixtures
+
+When workflow behavior changes, update semantic fixtures under `examples/**/expected/`. These files describe expected sections, safety properties and output contracts; they are not generated benchmark results.
+
+Run:
+
+```bash
+npm run check:examples
 ```
 
 ## Documentation changes
@@ -91,7 +109,11 @@ npm run validate:domain-packs
 
 ## Security and safety changes
 
-Before merging changes that affect agent behavior, write access, publishing, model/provider boundaries, MCP/API exposure, or release packaging, check `SECURITY.md` and `docs/security/skill-supply-chain.md`.
+Before merging changes that affect agent behavior, write access, publishing, model/provider boundaries, MCP/API exposure, or release packaging, check:
+
+- `SECURITY.md`
+- `docs/security/skill-supply-chain.md`
+- `docs/security/ci-severity-policy.md`
 
 ## Pull request expectations
 
@@ -100,7 +122,7 @@ A good PR should include:
 - clear problem statement;
 - focused scope;
 - updated docs or templates if behavior changes;
-- updated `skills.sh.json` and README when skills change;
+- updated `skills.sh.json`, `skill-router.json` and README when skills/routing change;
 - examples or fixtures when possible;
 - `npm run validate` result or explanation if not run.
 
