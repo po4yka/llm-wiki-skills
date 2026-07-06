@@ -1,0 +1,25 @@
+{
+  "$schema": "../../templates/schemas/domain-pack.schema.json",
+  "name": "team-onboarding",
+  "version": "0.1.0",
+  "description": "Team knowledge, onboarding and bus-factor profile.",
+  "core_types": ["source", "entity", "concept", "synthesis", "query", "report"],
+  "domain_type_mappings": {
+    "decision": "synthesis",
+    "onboarding": "synthesis",
+    "runbook": "synthesis",
+    "faq": "query"
+  },
+  "recommended_tags": ["onboarding", "owner", "runbook", "decision", "team-convention", "review-required"],
+  "stale_policy": {
+    "onboarding-guide": "60 days",
+    "runbook": "30 days",
+    "owner-map": "30 days"
+  },
+  "recommended_skills": [
+    "llm-wiki-team-rollout",
+    "llm-wiki-interview",
+    "llm-wiki-adr-memory",
+    "wiki-lint"
+  ]
+}
