@@ -1,6 +1,6 @@
 # LLM-Wiki Skills
 
-Portable Agent Skills for coding agents that help users understand, choose, build, migrate and operate **LLM-Wiki** systems.
+Portable Agent Skills for coding agents that help users understand, choose, build, migrate, operate, evaluate and govern **LLM-Wiki** systems.
 
 LLM-Wiki is a pattern where an agent compiles raw sources into a persistent, human-readable, git-versioned Markdown wiki:
 
@@ -47,20 +47,42 @@ npx skills use po4yka/llm-wiki-skills --skill llm-wiki-choose --agent claude-cod
 | Skill | Use when |
 |---|---|
 | [`llm-wiki-orient`](skills/llm-wiki-orient/SKILL.md) | The user is new to LLM-Wiki and wants the pattern, trade-offs and solution landscape explained. |
-| [`llm-wiki-news-radar`](skills/llm-wiki-news-radar/SKILL.md) | The user asks for fresh news, new projects, papers, releases or ecosystem changes. |
-| [`llm-wiki-choose`](skills/llm-wiki-choose/SKILL.md) | The user needs help deciding whether to adopt OpenWiki, Obsidian/local-first tools, GraphRAG-like systems, qmd-style retrieval or a custom implementation. |
+| [`llm-wiki-news-radar`](skills/llm-wiki-news-radar/SKILL.md) | The user asks for fresh news, projects, papers, releases or ecosystem changes. |
+| [`llm-wiki-choose`](skills/llm-wiki-choose/SKILL.md) | The user needs help deciding whether to adopt a ready-made solution or build their own. |
+
+### Diagnose, plan and evaluate
+
+| Skill | Use when |
+|---|---|
+| [`llm-wiki-doctor`](skills/llm-wiki-doctor/SKILL.md) | An existing vault/docs folder needs read-only diagnosis before changes. |
+| [`llm-wiki-migration-planner`](skills/llm-wiki-migration-planner/SKILL.md) | The user wants a dry-run migration plan before moving files. |
+| [`llm-wiki-eval`](skills/llm-wiki-eval/SKILL.md) | The user wants to measure whether the wiki actually helps. |
+| [`llm-wiki-provenance`](skills/llm-wiki-provenance/SKILL.md) | Claims need source-level or claim-level provenance. |
+| [`llm-wiki-conflict-resolver`](skills/llm-wiki-conflict-resolver/SKILL.md) | Lint or review found contradictory wiki claims. |
 
 ### Implement and migrate
 
 | Skill | Use when |
 |---|---|
-| [`llm-wiki-setup`](skills/llm-wiki-setup/SKILL.md) | The user chose a target setup and wants installation, connection, config, hooks, templates or git workflow help. |
+| [`llm-wiki-setup`](skills/llm-wiki-setup/SKILL.md) | The user chose a target setup and wants installation, config, hooks, templates or git workflow help. |
 | [`llm-wiki-design`](skills/llm-wiki-design/SKILL.md) | The user wants to design or build a custom LLM-Wiki product, plugin, CLI or agent workflow. |
-| [`llm-wiki-refactor`](skills/llm-wiki-refactor/SKILL.md) | The user already has documents, notes, docs folders or a vault and wants them reorganized into an LLM-Wiki. |
-| [`llm-wiki-capture-pipeline`](skills/llm-wiki-capture-pipeline/SKILL.md) | The user wants capture/inbox pipelines from web clips, chat, PDFs, voice, Telegram, email or code sessions. |
-| [`llm-wiki-team-rollout`](skills/llm-wiki-team-rollout/SKILL.md) | A team wants onboarding, ownership, PR review, permissions and knowledge-maintenance workflows. |
+| [`llm-wiki-refactor`](skills/llm-wiki-refactor/SKILL.md) | Existing documents, notes, docs folders or vaults should be reorganized into LLM-Wiki structure. |
+| [`llm-wiki-local-first-stack`](skills/llm-wiki-local-first-stack/SKILL.md) | The user wants Markdown/git/Obsidian/local search/local model architecture. |
+| [`llm-wiki-obsidian-hardening`](skills/llm-wiki-obsidian-hardening/SKILL.md) | An Obsidian vault needs agent-safe wikilink, attachment, frontmatter and sync rules. |
+| [`llm-wiki-repo-docs`](skills/llm-wiki-repo-docs/SKILL.md) | A codebase needs OpenWiki-style agent-readable repository documentation. |
+| [`llm-wiki-github-action`](skills/llm-wiki-github-action/SKILL.md) | The user wants scheduled lint, validation, or PR-based maintenance. |
 
-### Operate a wiki
+### Capture and domain workflows
+
+| Skill | Use when |
+|---|---|
+| [`llm-wiki-capture-pipeline`](skills/llm-wiki-capture-pipeline/SKILL.md) | The user wants a general inbox/capture pipeline. |
+| [`llm-wiki-channel-capture`](skills/llm-wiki-channel-capture/SKILL.md) | A specific channel such as Telegram, email, browser clips, voice, PDFs, GitHub or Slack needs capture rules. |
+| [`llm-wiki-interview`](skills/llm-wiki-interview/SKILL.md) | Tacit knowledge should be extracted through an agent-led interview. |
+| [`llm-wiki-adr-memory`](skills/llm-wiki-adr-memory/SKILL.md) | The user wants to recover or maintain decision provenance and ADR memory. |
+| [`llm-wiki-domain-pack`](skills/llm-wiki-domain-pack/SKILL.md) | A domain-specific taxonomy, templates and review policy are needed. |
+
+### Operate and trust
 
 | Skill | Use when |
 |---|---|
@@ -69,6 +91,19 @@ npx skills use po4yka/llm-wiki-skills --skill llm-wiki-choose --agent claude-cod
 | [`wiki-query`](skills/wiki-query/SKILL.md) | A question should be answered from the compiled wiki and useful answers saved back. |
 | [`wiki-lint`](skills/wiki-lint/SKILL.md) | The wiki needs structural health checks, stale-claim detection and review queues. |
 | [`llm-wiki-trust-audit`](skills/llm-wiki-trust-audit/SKILL.md) | The user wants an anti-slop, provenance, confidence and human-synthesis audit. |
+| [`llm-wiki-security-review`](skills/llm-wiki-security-review/SKILL.md) | Skills, capture pipelines, vault access or write permissions need security review. |
+| [`llm-wiki-model-policy`](skills/llm-wiki-model-policy/SKILL.md) | The user needs local/cloud model and data-use policy. |
+| [`llm-wiki-export-publish`](skills/llm-wiki-export-publish/SKILL.md) | A public or internal subset of the wiki should be exported or published. |
+| [`llm-wiki-archive`](skills/llm-wiki-archive/SKILL.md) | The wiki needs long-term durability and archive manifests. |
+
+### Skill and memory governance
+
+| Skill | Use when |
+|---|---|
+| [`llm-wiki-skill-doctor`](skills/llm-wiki-skill-doctor/SKILL.md) | Agent Skills need quality, trigger, overlap or safety review. |
+| [`llm-wiki-skill-compiler`](skills/llm-wiki-skill-compiler/SKILL.md) | Procedural wiki knowledge should become installable Agent Skills. |
+| [`llm-wiki-agent-memory-bridge`](skills/llm-wiki-agent-memory-bridge/SKILL.md) | The user needs boundaries between wiki, skills, instruction files and agent memory. |
+| [`llm-wiki-team-rollout`](skills/llm-wiki-team-rollout/SKILL.md) | A team wants onboarding, ownership, PR review, permissions and knowledge-maintenance workflows. |
 
 ## Repository contents
 
