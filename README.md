@@ -155,6 +155,22 @@ It includes skills for:
 | [`domain-packs/`](domain-packs/) | Domain-specific starter taxonomies and workflows. |
 | [`benchmarks/`](benchmarks/) | Pilot questions and scoring rubric for local evaluation. |
 
+## Validation and distribution smoke test
+
+Run deterministic repository checks:
+
+```bash
+npm run validate
+```
+
+Verify the pack works with the upstream `skills` CLI as a local source:
+
+```bash
+npm run smoke:skills
+```
+
+The smoke test lists available skills, renders `llm-wiki-faq` with `skills use` without launching an agent, and installs that skill into a temporary Claude Code project with `skills add --copy -y`.
+
 ## Safety principle
 
 Automate **bookkeeping**, not belief.
