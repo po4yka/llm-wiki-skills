@@ -1,40 +1,47 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { parseFrontmatter, stripFrontmatter } from './lib/frontmatter.mjs';
+import { failFactory, listSkillNames, repoRoot, readText } from './lib/repo.mjs';
 
-const repoRoot = process.cwd();
+const { fail, finish } = failFactory();
 const skillsDir = path.join(repoRoot, 'skills');
 const namePattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const semverPattern = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/;
+const requiredFrontmatterFields = ['name', 'description', 'license', 'compatibility'];
+const recommendedBodyHeadings = ['Goal', 'Procedure', 'Output', 'Safety gates'];
+const warnings = [];
 
-function fail(message) {
-  console.error(`✗ ${message}`);
-  process.exitCode = 1;
+function warn(message) {
+  warnings.push(message);
+  console.warn(`! ${message}`);
 }
 
-function parseFrontmatter(filePath) {
-  const text = fs.readFileSync(filePath, 'utf8');
-  const match = text.match(/^---\n([\s\S]*?)\n---\n/);
-  if (!match) return null;
+function getHeadings(markdown) {
+  return new Set(
+    markdown
+      .split(/\r?\n/)
+      .map((line) => line.match(/^#{1,6}\s+(.+?)\s*#*\s*$/)?.[1]?.trim())
+      .filter(Boolean),
+  );
+}
 
-  const fields = {};
-  for (const line of match[1].split('\n')) {
-    const field = line.match(/^([a-zA-Z0-9_-]+):\s*(.*)$/);
-    if (field) {
-      fields[field[1]] = field[2].replace(/^['"]|['"]$/g, '').trim();
-    }
-  }
-  return fields;
+function hasHeading(headings, expected) {
+  const normalizedExpected = expected.toLowerCase();
+  return [...headings].some((heading) => heading.toLowerCase() === normalizedExpected);
 }
 
 if (!fs.existsSync(skillsDir)) {
   fail('skills/ directory is missing');
-  process.exit();
+  finish('validated 0 skills');
 }
 
-const skillNames = fs
-  .readdirSync(skillsDir, { withFileTypes: true })
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => entry.name)
-  .sort();
+const skillNames = listSkillNames();
+
+if (skillNames.length === 0) {
+  fail('skills/ directory is empty');
+}
+
+const seenFrontmatterNames = new Set();
 
 for (const skillName of skillNames) {
   const skillPath = path.join(skillsDir, skillName, 'SKILL.md');
@@ -44,10 +51,24 @@ for (const skillName of skillNames) {
     continue;
   }
 
-  const frontmatter = parseFrontmatter(skillPath);
-  if (!frontmatter) {
+  const text = readText(skillPath);
+  const parsed = parseFrontmatter(text);
+  if (!parsed) {
     fail(`${skillName}: missing YAML frontmatter`);
     continue;
+  }
+
+  if (parsed.malformedLine) {
+    fail(`${skillName}: malformed frontmatter line '${parsed.malformedLine}'`);
+    continue;
+  }
+
+  const frontmatter = parsed.fields;
+
+  for (const field of requiredFrontmatterFields) {
+    if (!frontmatter[field] || typeof frontmatter[field] !== 'string') {
+      fail(`${skillName}: missing frontmatter field '${field}'`);
+    }
   }
 
   if (frontmatter.name !== skillName) {
@@ -58,37 +79,56 @@ for (const skillName of skillNames) {
     fail(`${skillName}: invalid name '${frontmatter.name}'`);
   }
 
-  if (!frontmatter.description || frontmatter.description.length === 0) {
-    fail(`${skillName}: missing description`);
+  if (seenFrontmatterNames.has(frontmatter.name)) {
+    fail(`${skillName}: duplicate frontmatter name '${frontmatter.name}'`);
   }
+  seenFrontmatterNames.add(frontmatter.name);
 
   if ((frontmatter.description ?? '').length > 1024) {
     fail(`${skillName}: description exceeds 1024 characters`);
   }
-}
 
-const groupingPath = path.join(repoRoot, 'skills.sh.json');
-if (fs.existsSync(groupingPath)) {
-  const grouping = JSON.parse(fs.readFileSync(groupingPath, 'utf8'));
-  const groupedSkills = new Set(
-    (grouping.groupings ?? []).flatMap((group) => group.skills ?? []),
-  );
+  if ((frontmatter.description ?? '').length < 40) {
+    fail(`${skillName}: description is too short to be useful for agent routing`);
+  }
 
-  for (const skillName of skillNames) {
-    if (!groupedSkills.has(skillName)) {
-      fail(`${skillName}: not listed in skills.sh.json groupings`);
+  if (frontmatter.license !== 'MIT') {
+    fail(`${skillName}: license must be MIT`);
+  }
+
+  if (!frontmatter.compatibility || frontmatter.compatibility.length < 20) {
+    fail(`${skillName}: compatibility must describe the target agent/runtime constraints`);
+  }
+
+  if (!frontmatter.metadata || typeof frontmatter.metadata !== 'object') {
+    fail(`${skillName}: missing metadata object`);
+  } else {
+    if (!frontmatter.metadata.author) {
+      fail(`${skillName}: missing metadata.author`);
+    }
+
+    if (!frontmatter.metadata.version) {
+      fail(`${skillName}: missing metadata.version`);
+    } else if (!semverPattern.test(frontmatter.metadata.version)) {
+      fail(`${skillName}: metadata.version must be semver-like, got '${frontmatter.metadata.version}'`);
     }
   }
 
-  for (const grouped of groupedSkills) {
-    if (!skillNames.includes(grouped)) {
-      fail(`skills.sh.json references missing skill '${grouped}'`);
+  const body = stripFrontmatter(text);
+  if (!body.match(/^#\s+.+/m)) {
+    fail(`${skillName}: missing H1 title after frontmatter`);
+  }
+
+  const headings = getHeadings(body);
+  for (const heading of recommendedBodyHeadings) {
+    if (!hasHeading(headings, heading)) {
+      warn(`${skillName}: missing recommended section '## ${heading}'`);
     }
   }
 }
 
-if (process.exitCode) {
-  process.exit(process.exitCode);
+if (warnings.length > 0) {
+  console.warn(`\n${warnings.length} advisory warning(s)`);
 }
 
-console.log(`✓ validated ${skillNames.length} skills`);
+finish(`validated ${skillNames.length} skills`);

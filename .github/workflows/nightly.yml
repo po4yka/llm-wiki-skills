@@ -1,0 +1,70 @@
+name: Nightly checks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nightly-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  external-links:
+    name: External link check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Lychee external link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress README.md 'skills/**/*.md' 'docs/**/*.md' 'templates/**/*.md'
+          fail: true
+
+  skills-smoke:
+    name: skills CLI smoke test
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: List skills through skills CLI
+        run: npx --yes skills add po4yka/llm-wiki-skills --list
+
+  reports:
+    name: Generate reports
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run validators and generate catalog
+        run: |
+          npm run validate
+          npm run catalog:generate
+
+      - name: Upload catalog artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: skills-catalog
+          path: dist/skills-catalog.json
+          if-no-files-found: error

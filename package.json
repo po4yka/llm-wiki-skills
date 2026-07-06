@@ -3,7 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "validate:skills": "node scripts/validate-skills.mjs"
+    "validate": "npm run validate:skills && npm run validate:manifest && npm run validate:links && npm run validate:agent-safety",
+    "validate:skills": "node scripts/validate-skills.mjs",
+    "validate:manifest": "node scripts/validate-skills-manifest.mjs",
+    "validate:links": "node scripts/validate-markdown-links.mjs",
+    "validate:agent-safety": "node scripts/validate-agent-safety.mjs",
+    "lint:markdown": "npx --yes markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
+    "catalog:generate": "node scripts/generate-skills-catalog.mjs"
   },
   "devDependencies": {}
 }

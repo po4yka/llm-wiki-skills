@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    name: Validate and package skills
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate skills pack
+        run: npm run validate
+
+      - name: Generate catalog
+        run: npm run catalog:generate
+
+      - name: Build release archive
+        run: |
+          mkdir -p dist
+          zip -r "dist/llm-wiki-skills-${GITHUB_REF_NAME}.zip" \
+            README.md \
+            LICENSE \
+            skills.sh.json \
+            package.json \
+            scripts \
+            skills \
+            docs \
+            templates
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: |
+            dist/llm-wiki-skills-${{ github.ref_name }}.zip
+            dist/skills-catalog.json
+          if-no-files-found: error
+
+      - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            "dist/llm-wiki-skills-${GITHUB_REF_NAME}.zip" \
+            dist/skills-catalog.json \
+            --title "${GITHUB_REF_NAME}" \
+            --notes "Validated LLM-Wiki Skills release."
