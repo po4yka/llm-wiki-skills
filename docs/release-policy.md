@@ -25,6 +25,24 @@ Use:
 | new procedure step, output section or optional capability | minor |
 | changed trigger, changed write permissions, renamed skill, incompatible output contract | major |
 
+## Version bump enforcement
+
+Pull requests that change `skills/<name>/SKILL.md` must bump that skill's `metadata.version`.
+
+Run locally:
+
+```bash
+npm run check:skill-versions
+```
+
+CI runs the same check in strict mode for pull requests:
+
+```bash
+npm run check:skill-versions -- --strict
+```
+
+The check compares the PR branch against the base branch and only applies to changed `SKILL.md` files.
+
 ## Breaking changes
 
 Breaking changes include:
@@ -61,11 +79,12 @@ SKILLS_CLI_PACKAGE=skills@1.2.3 npm run smoke:skills
 
 1. Run `npm run validate`.
 2. Run `npm run smoke:skills`.
-3. Run `npm run catalog:generate`.
-4. Run `npm run release:notes -- vX.Y.Z`.
-5. Update `CHANGELOG.md`.
-6. Create tag `vX.Y.Z`.
-7. Confirm release archive includes `skills/`, `docs/`, `templates/`, `domain-packs/`, `benchmarks/`, `scripts/`, `skills.sh.json`, `README.md` and `LICENSE`.
+3. Run `npm run check:skill-versions` if any skills changed.
+4. Run `npm run catalog:generate`.
+5. Run `npm run release:notes -- vX.Y.Z`.
+6. Update `CHANGELOG.md`.
+7. Create tag `vX.Y.Z`.
+8. Confirm release archive includes `skills/`, `docs/`, `templates/`, `domain-packs/`, `benchmarks/`, `scripts/`, `skills.sh.json`, `README.md` and `LICENSE`.
 
 ## Deprecation policy
 
