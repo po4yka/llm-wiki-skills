@@ -1,0 +1,37 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Learn and choose",
+      "description": "Explain the LLM-Wiki pattern, track current ecosystem changes, and help users choose a ready-made or custom solution.",
+      "skills": [
+        "llm-wiki-orient",
+        "llm-wiki-news-radar",
+        "llm-wiki-choose"
+      ]
+    },
+    {
+      "title": "Implement and migrate",
+      "description": "Set up, customize, and migrate documents into local-first or team LLM-Wiki systems.",
+      "skills": [
+        "llm-wiki-setup",
+        "llm-wiki-design",
+        "llm-wiki-refactor",
+        "llm-wiki-capture-pipeline",
+        "llm-wiki-team-rollout"
+      ]
+    },
+    {
+      "title": "Operate and trust",
+      "description": "Run ongoing triage, ingest, query, lint, and trust-audit workflows for an LLM-Wiki vault.",
+      "skills": [
+        "wiki-triage",
+        "wiki-ingest",
+        "wiki-query",
+        "wiki-lint",
+        "llm-wiki-trust-audit"
+      ]
+    }
+  ]
+}
