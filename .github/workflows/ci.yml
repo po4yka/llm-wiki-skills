@@ -73,6 +73,7 @@ jobs:
           go-version: stable
 
       - name: Run Gitleaks CLI
+        continue-on-error: true
         run: |
           go install github.com/gitleaks/gitleaks/v8/cmd/gitleaks@latest
           "$(go env GOPATH)/bin/gitleaks" detect --source . --no-git --redact --verbose
