@@ -1,24 +1,26 @@
 # CLAUDE.md
 
-This repository is a documentation-and-skills pack for LLM-Wiki workflows.
+This repository is an installable Agent Skills pack for LLM-Wiki workflows.
 
 ## Before editing
 
 - Read `AGENTS.md`.
-- Read `docs/00-index.md` when modifying conceptual docs.
 - Read `docs/07-skills-overview.md` before modifying anything in `skills/`.
+- Read the Agent Skills compatibility rules in `AGENTS.md` before adding a new skill.
 
 ## Hard rules
 
-- Do not overwrite human-authored synthesis with generated claims.
+- Every `skills/*/SKILL.md` file must have valid YAML frontmatter with `name` and `description`.
+- The `name` field must match the skill directory.
 - Do not add unverified current-status claims about external projects.
-- Do not turn skill files into long encyclopedic documents; skills should remain operational.
-- Keep `README.md` short enough to orient a new reader.
+- Do not turn skill files into long encyclopedic documents; use `references/` for supporting material.
+- Do not overwrite human-authored synthesis with generated claims.
+- Keep `README.md` focused on installation, skill selection and package orientation.
 
 ## Documentation conventions
 
-- Russian is acceptable for explanatory docs.
 - English is preferred for reusable skill instructions and templates.
+- Russian is acceptable for explanatory docs targeted at the repository owner or Russian-speaking users.
 - Use Markdown tables only when they clarify decisions.
 - Prefer explicit trade-offs over one-size-fits-all recommendations.
 
@@ -26,13 +28,15 @@ This repository is a documentation-and-skills pack for LLM-Wiki workflows.
 
 1. Inspect the target document.
 2. Make the smallest coherent edit.
-3. Update cross-links.
+3. Update cross-links and `skills.sh.json` when skills change.
 4. Summarize what changed and what still needs review.
 
 ## Repository map
 
 ```text
-docs/       conceptual and operational documentation
-skills/     Claude Code style procedures
-templates/  starter vault files and schemas
+skills/          installable Agent Skills
+skills.sh.json   grouping metadata for skill discovery
+docs/            conceptual and operational documentation
+templates/       starter vault files and schemas
+scripts/         optional repository validation helpers
 ```
