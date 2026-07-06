@@ -2,21 +2,36 @@
 
 ## Summary
 
+> Offline deterministic scan. This report does not browse the web and does not update truth claims.
+
 ## Pages checked
 
-| Page | Previous status | Refresh status | Action |
+| Page | Type | Status | Updated | stale_after | Action |
+|---|---|---|---|---|---|
+
+## Provenance gaps
+
+| Page | Type | Status | Action |
 |---|---|---|---|
 
-## Fresh sources used
+## Missing local sources
 
-## Unchanged claims
+| Page | Missing source path | Action |
+|---|---|---|
 
-## Updated claims
+## Current-as-of refresh queue
 
-## Contradicted claims
+| Document | Current as of | Age days | Action |
+|---|---:|---:|---|
 
-## Missing sources
+## External source URLs
 
-## Proposed patches
+| Page | URL | Action |
+|---|---|---|
 
-## Review required
+## Recommended next actions
+
+1. Run `llm-wiki-source-refresh` for stale/current-as-of rows.
+2. Use `llm-wiki-provenance` for provenance gaps.
+3. Use `llm-wiki-conflict-resolver` for contradicted claims after web verification.
+4. Do not auto-update verified pages without human review.
