@@ -20,40 +20,52 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 1. [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md)
 2. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
 3. [`20-adoption-objections.md`](20-adoption-objections.md)
-4. [`02-architecture.md`](02-architecture.md)
-5. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-6. [`06-implementation-playbook.md`](06-implementation-playbook.md)
-7. [`07-skills-overview.md`](07-skills-overview.md)
+4. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+5. [`02-architecture.md`](02-architecture.md)
+6. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+7. [`06-implementation-playbook.md`](06-implementation-playbook.md)
+8. [`07-skills-overview.md`](07-skills-overview.md)
 
 ### Fast path: non-developer or browser-first rollout
 
 1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
 2. [`20-adoption-objections.md`](20-adoption-objections.md)
-3. [`skill-router.md`](skill-router.md)
-4. [`operations/daily.md`](operations/daily.md)
-5. [`19-security-threat-model.md`](19-security-threat-model.md)
+3. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+4. [`skill-router.md`](skill-router.md)
+5. [`operations/daily.md`](operations/daily.md)
+6. [`19-security-threat-model.md`](19-security-threat-model.md)
+
+### Fast path: adoption owner / team pilot
+
+1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
+2. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+3. [`18-evaluation-methodology.md`](18-evaluation-methodology.md)
+4. [`19-security-threat-model.md`](19-security-threat-model.md)
+5. [`operations/weekly.md`](operations/weekly.md)
 
 ### Builder path: tool or plugin
 
 1. [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md)
 2. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
 3. [`20-adoption-objections.md`](20-adoption-objections.md)
-4. [`05-tooling-landscape.md`](05-tooling-landscape.md)
-5. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-6. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
-7. [`09-references.md`](09-references.md)
-8. [`domain-pack-schema.md`](domain-pack-schema.md)
-9. [`release-policy.md`](release-policy.md)
+4. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+5. [`05-tooling-landscape.md`](05-tooling-landscape.md)
+6. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+7. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
+8. [`09-references.md`](09-references.md)
+9. [`domain-pack-schema.md`](domain-pack-schema.md)
+10. [`release-policy.md`](release-policy.md)
 
 ### Reviewer path: risk and trust
 
 1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
 2. [`20-adoption-objections.md`](20-adoption-objections.md)
-3. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-4. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
-5. [`domain-pack-schema.md`](domain-pack-schema.md)
-6. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
-7. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
+3. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+4. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+5. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
+6. [`domain-pack-schema.md`](domain-pack-schema.md)
+7. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
+8. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
 
 ### Operations path
 
@@ -80,6 +92,7 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md) | Catalog of advanced use-case skills. |
 | [`12-evidence-and-faq.md`](12-evidence-and-faq.md) | Evidence-backed arguments and FAQ answers for adoption questions. |
 | [`20-adoption-objections.md`](20-adoption-objections.md) | Concrete answers for non-developers, browser-first workflows, PR/MR friction, token growth, human-readable documentation, LLM slop and sensitive content. |
+| [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md) | Additional adoption Q&A for start-small pilots, ownership, review, cost, ROI, migration, tool replacement, RAG/search boundaries, lock-in, permissions and multi-agent use. |
 | [`domain-pack-schema.md`](domain-pack-schema.md) | Core `type` and domain `domain_type` schema contract. |
 | [`quickstart.md`](quickstart.md) | Ten-minute first-run guide. |
 | [`skill-router.md`](skill-router.md) | Decision tree for choosing the right skill. |
