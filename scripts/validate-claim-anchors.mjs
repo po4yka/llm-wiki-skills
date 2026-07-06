@@ -8,8 +8,8 @@ const sourceIds = new Map();
 const claimPattern = /\^(claim-[0-9]{8}-[0-9]{3,})\b/g;
 const sourcePattern = /\^(src-[0-9]{8}-[0-9]{3,})\b/g;
 const supportPattern = /Support:\s*(extracted|inferred|ambiguous|unsupported|conflicting)/i;
-const ignoreNextPattern = /<!--\s*claim-anchor-validator:\s*ignore-next\s*-->/i;
-const ignoreFilePattern = /<!--\s*claim-anchor-validator:\s*ignore-file\s*-->/i;
+const ignoreNextPattern = /^\s*<!--\s*claim-anchor-validator:\s*ignore-next\s*-->\s*$/i;
+const ignoreFilePattern = /^\s*<!--\s*claim-anchor-validator:\s*ignore-file\s*-->\s*$/i;
 
 const args = process.argv.slice(2);
 const help = args.includes('--help') || args.includes('-h');
@@ -111,13 +111,13 @@ let ignoredNextLines = 0;
 for (const filePath of files) {
   const rel = repoRelative(filePath);
   const text = readText(filePath);
+  const lines = stripFencedCodeBlocksPreservingLines(text);
 
-  if (ignoreFilePattern.test(text)) {
+  if (lines.some((line) => ignoreFilePattern.test(line))) {
     ignoredFiles += 1;
     continue;
   }
 
-  const lines = stripFencedCodeBlocksPreservingLines(text);
   let ignoreNext = false;
 
   lines.forEach((line, index) => {
