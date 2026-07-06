@@ -1,19 +1,42 @@
 # AGENTS.md
 
-This repository contains structured documentation and reusable skill specs for LLM-Wiki workflows.
+This repository is an **Agent Skills distribution pack** for LLM-Wiki users.
 
 ## Repository role
 
-Treat this repo as a **knowledge and procedure repository**, not as an application codebase.
+Treat this repo as a package of portable skills for coding agents, plus supporting documentation and templates.
 
-- `docs/` contains conceptual and operational documentation.
-- `skills/` contains reusable agent procedures.
-- `templates/` contains starter files for downstream vaults.
+- `skills/` contains installable Agent Skills.
+- `skills.sh.json` groups skills for skills.sh-style discovery.
+- `docs/` contains conceptual and operational reference material.
+- `templates/` contains starter files for downstream LLM-Wiki vaults.
+
+## Agent Skills compatibility
+
+Every skill directory must contain a `SKILL.md` file with YAML frontmatter.
+
+Required fields:
+
+```yaml
+---
+name: directory-name
+description: What the skill does and when to use it.
+---
+```
+
+Rules:
+
+1. `name` must match the parent directory.
+2. Use lowercase letters, numbers and hyphens only.
+3. Put long background material in `references/`, not in the main `SKILL.md`.
+4. Keep `description` trigger-oriented: mention the user intents that should activate the skill.
+5. Keep skills procedural. Do not turn them into hidden domain encyclopedias.
+6. Skills that require current information must instruct the agent to browse and cite fresh sources.
 
 ## Language policy
 
-- Conceptual documentation may be written in Russian.
 - Agent-facing procedures, skill instructions, schemas and prompts should be written in clear English.
+- Conceptual docs may include Russian when they are meant for the repository owner or Russian-speaking users.
 - Keep filenames stable, lowercase and hyphenated.
 
 ## Editing policy
@@ -37,30 +60,48 @@ This repo distinguishes between four claim types:
 
 When a document makes a recommendation, name the trade-off and the failure mode. Do not present a workflow as production-grade merely because it is elegant.
 
-## Preferred structure for new docs
+## Preferred structure for new skills
 
-Use this skeleton:
+```text
+skills/<skill-name>/
+  SKILL.md
+  references/        # optional focused reference docs
+  scripts/           # optional deterministic helpers
+  assets/            # optional templates or examples
+```
+
+Use this `SKILL.md` skeleton:
 
 ```markdown
-# Title
+---
+name: <skill-name>
+description: <specific trigger-rich description>
+license: MIT
+compatibility: Designed for Agent Skills-compatible coding agents. Add concrete requirements only when necessary.
+metadata:
+  author: po4yka
+  version: "0.1.0"
+---
 
-> Status: draft|reviewed|verified
-> Scope: one sentence
+# <Title>
 
-## Thesis
+## Goal
 
-## Details
+## When to use
 
-## Operational rules
+## Inputs
 
-## Failure modes
+## Procedure
 
-## Links
+## Output
+
+## Safety gates
 ```
 
 ## PR checklist
 
-- [ ] The change preserves the raw/wiki/schema mental model.
+- [ ] Each new skill has valid frontmatter and the `name` matches the directory.
+- [ ] `skills.sh.json` includes any new top-level skill.
 - [ ] New volatile facts are sourced or explicitly marked for re-verification.
 - [ ] Skills remain procedural and do not become hidden domain knowledge dumps.
 - [ ] Templates are safe for local-first, git-based use.
