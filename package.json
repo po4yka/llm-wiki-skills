@@ -15,6 +15,9 @@
     "catalog:generate": "node scripts/generate-skills-catalog.mjs && node scripts/generate-skills-catalog-md.mjs",
     "check:examples": "node scripts/check-examples.mjs",
     "smoke:skills": "node scripts/smoke-skills-distribution.mjs",
+    "refresh:source-report": "node scripts/source-refresh-scan.mjs",
+    "refresh:ecosystem-report": "node scripts/ecosystem-refresh-scaffold.mjs",
+    "refresh:reports": "npm run refresh:source-report && npm run refresh:ecosystem-report",
     "redact:preview": "node scripts/redact-preview.mjs",
     "release:notes": "node scripts/generate-release-notes.mjs"
   },
