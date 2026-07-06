@@ -2,6 +2,8 @@
 id: ""
 title: ""
 type: concept
+domain_type: null
+domain_pack: null
 status: draft
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
