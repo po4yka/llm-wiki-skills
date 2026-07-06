@@ -53,7 +53,7 @@ It includes skills for:
 
 - explaining the pattern and evidence behind it;
 - choosing ready-made versus custom solutions;
-- setting up local-first, repo-docs, Obsidian or team workflows;
+- setting up local-first, repo-docs, Obsidian, MCP/API, retrieval, ingestion or team workflows;
 - migrating existing document sets into `raw/` and `wiki/` structure;
 - running triage, ingest, query and lint operations;
 - benchmarking pilot value and evaluating whether the wiki is useful;
@@ -70,6 +70,7 @@ It includes skills for:
 | [`llm-wiki-orient`](skills/llm-wiki-orient/SKILL.md) | The user is new to LLM-Wiki and wants the pattern, trade-offs and solution landscape explained. |
 | [`llm-wiki-faq`](skills/llm-wiki-faq/SKILL.md) | The user asks why LLM-Wiki is needed, what benefits it gives, what evidence exists, how to keep it alive, or whether Obsidian is required. |
 | [`llm-wiki-news-radar`](skills/llm-wiki-news-radar/SKILL.md) | The user asks for fresh news, projects, papers, releases or ecosystem changes. |
+| [`llm-wiki-ecosystem-registry`](skills/llm-wiki-ecosystem-registry/SKILL.md) | The user wants a current registry or comparison of LLM-Wiki implementations and adjacent frameworks. |
 | [`llm-wiki-choose`](skills/llm-wiki-choose/SKILL.md) | The user needs help deciding whether to adopt a ready-made solution or build their own. |
 
 ### Diagnose, plan and evaluate
@@ -79,6 +80,7 @@ It includes skills for:
 | [`llm-wiki-doctor`](skills/llm-wiki-doctor/SKILL.md) | An existing vault/docs folder needs read-only diagnosis before changes. |
 | [`llm-wiki-migration-planner`](skills/llm-wiki-migration-planner/SKILL.md) | The user wants a dry-run migration plan before moving files. |
 | [`llm-wiki-eval`](skills/llm-wiki-eval/SKILL.md) | The user wants to measure whether the wiki actually helps. |
+| [`llm-wiki-eval-tooling`](skills/llm-wiki-eval-tooling/SKILL.md) | Evaluation goals need concrete tools, metrics, baselines or CI gates. |
 | [`llm-wiki-benchmark-suite`](skills/llm-wiki-benchmark-suite/SKILL.md) | The user wants a practical with-wiki versus without-wiki pilot benchmark. |
 | [`llm-wiki-provenance`](skills/llm-wiki-provenance/SKILL.md) | Claims need source-level or claim-level provenance. |
 | [`llm-wiki-claim-anchors`](skills/llm-wiki-claim-anchors/SKILL.md) | Important claims need deterministic anchors and support labels. |
@@ -91,6 +93,9 @@ It includes skills for:
 | [`llm-wiki-setup`](skills/llm-wiki-setup/SKILL.md) | The user chose a target setup and wants installation, config, hooks, templates or git workflow help. |
 | [`llm-wiki-design`](skills/llm-wiki-design/SKILL.md) | The user wants to design or build a custom LLM-Wiki product, plugin, CLI or agent workflow. |
 | [`llm-wiki-refactor`](skills/llm-wiki-refactor/SKILL.md) | Existing documents, notes, docs folders or vaults should be reorganized into LLM-Wiki structure. |
+| [`llm-wiki-ingestion-stack`](skills/llm-wiki-ingestion-stack/SKILL.md) | The user needs a source-preserving conversion/OCR/ETL ingestion stack. |
+| [`llm-wiki-retrieval-architect`](skills/llm-wiki-retrieval-architect/SKILL.md) | Search, hybrid retrieval, vector DB or GraphRAG architecture needs design. |
+| [`llm-wiki-mcp-integration`](skills/llm-wiki-mcp-integration/SKILL.md) | The wiki should be exposed to agents through MCP or a local API. |
 | [`llm-wiki-local-first-stack`](skills/llm-wiki-local-first-stack/SKILL.md) | The user wants Markdown/git/Obsidian/local search/local model architecture. |
 | [`llm-wiki-obsidian-hardening`](skills/llm-wiki-obsidian-hardening/SKILL.md) | An Obsidian vault needs agent-safe wikilink, attachment, frontmatter and sync rules. |
 | [`llm-wiki-repo-docs`](skills/llm-wiki-repo-docs/SKILL.md) | A codebase needs OpenWiki-style agent-readable repository documentation. |
