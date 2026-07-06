@@ -1,0 +1,24 @@
+# Repository governance
+* @po4yka
+
+# Agent Skills and distribution metadata
+/skills/ @po4yka
+/skills.sh.json @po4yka
+/docs/skills-catalog.md @po4yka
+
+# Schemas, templates, examples and domain packs
+/templates/ @po4yka
+/domain-packs/ @po4yka
+/examples/ @po4yka
+/benchmarks/ @po4yka
+
+# CI, release and validation scripts
+/.github/ @po4yka
+/scripts/ @po4yka
+/package.json @po4yka
+
+# Security and governance
+/SECURITY.md @po4yka
+/CONTRIBUTING.md @po4yka
+/AGENTS.md @po4yka
+/CLAUDE.md @po4yka
