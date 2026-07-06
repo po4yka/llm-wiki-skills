@@ -14,6 +14,9 @@
 .vector-cache/
 _agent/tmp/
 
+# Generated artifacts
+dist/
+
 # Node/Python caches for future tooling
 node_modules/
 __pycache__/

@@ -43,7 +43,7 @@ npx skills use po4yka/llm-wiki-skills --skill llm-wiki-faq --agent claude-code
 
 ## What this pack covers
 
-The repository now contains a full lifecycle skill system for LLM-Wiki adoption:
+The repository contains a full lifecycle skill system for LLM-Wiki adoption:
 
 ```text
 learn -> answer objections -> choose -> diagnose -> plan -> set up -> migrate -> operate -> audit -> publish/archive -> evolve
@@ -54,11 +54,12 @@ It includes skills for:
 - explaining the pattern and evidence behind it;
 - choosing ready-made versus custom solutions;
 - mapping concrete open-source implementations, implementation archetypes, retrieval stacks, ingestion stacks, MCP integrations and eval tooling;
-- setting up local-first, repo-docs, Obsidian or team workflows;
+- setting up local-first, repo-docs, Obsidian, MCP/API, retrieval, ingestion or team workflows;
 - migrating existing document sets into `raw/` and `wiki/` structure;
 - running triage, ingest, query and lint operations;
-- auditing provenance, trust, security and model/data policy;
-- publishing, archiving and evaluating whether the wiki is useful;
+- benchmarking pilot value and evaluating whether the wiki is useful;
+- auditing provenance, claim anchors, trust, security and model/data policy;
+- refreshing stale sources, redacting private content, publishing and archiving;
 - compiling reusable wiki procedures into installable Agent Skills.
 
 ## Skill groups
@@ -90,7 +91,9 @@ It includes skills for:
 | [`llm-wiki-doctor`](skills/llm-wiki-doctor/SKILL.md) | An existing vault/docs folder needs read-only diagnosis before changes. |
 | [`llm-wiki-migration-planner`](skills/llm-wiki-migration-planner/SKILL.md) | The user wants a dry-run migration plan before moving files. |
 | [`llm-wiki-eval`](skills/llm-wiki-eval/SKILL.md) | The user wants to measure whether the wiki actually helps. |
+| [`llm-wiki-benchmark-suite`](skills/llm-wiki-benchmark-suite/SKILL.md) | The user wants a practical with-wiki versus without-wiki pilot benchmark. |
 | [`llm-wiki-provenance`](skills/llm-wiki-provenance/SKILL.md) | Claims need source-level or claim-level provenance. |
+| [`llm-wiki-claim-anchors`](skills/llm-wiki-claim-anchors/SKILL.md) | Important claims need deterministic anchors and support labels. |
 | [`llm-wiki-conflict-resolver`](skills/llm-wiki-conflict-resolver/SKILL.md) | Lint or review found contradictory wiki claims. |
 
 ### Implement and migrate
@@ -124,6 +127,8 @@ It includes skills for:
 | [`wiki-query`](skills/wiki-query/SKILL.md) | A question should be answered from the compiled wiki and useful answers saved back. |
 | [`wiki-lint`](skills/wiki-lint/SKILL.md) | The wiki needs structural health checks, stale-claim detection and review queues. |
 | [`llm-wiki-trust-audit`](skills/llm-wiki-trust-audit/SKILL.md) | The user wants an anti-slop, provenance, confidence and human-synthesis audit. |
+| [`llm-wiki-source-refresh`](skills/llm-wiki-source-refresh/SKILL.md) | Stale or current-state source-backed claims need refresh reports. |
+| [`llm-wiki-privacy-redactor`](skills/llm-wiki-privacy-redactor/SKILL.md) | Private content needs preview redaction before export or model-boundary use. |
 | [`llm-wiki-security-review`](skills/llm-wiki-security-review/SKILL.md) | Skills, capture pipelines, vault access or write permissions need security review. |
 | [`llm-wiki-model-policy`](skills/llm-wiki-model-policy/SKILL.md) | The user needs local/cloud model and data-use policy. |
 | [`llm-wiki-export-publish`](skills/llm-wiki-export-publish/SKILL.md) | A public or internal subset of the wiki should be exported or published. |
@@ -145,7 +150,10 @@ It includes skills for:
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
 | [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), and [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md). |
-| [`templates/`](templates/) | Starter vault files, schemas and page templates. |
+| [`templates/`](templates/) | Starter vault files, schemas and page/report templates. |
+| [`examples/`](examples/) | Small fixtures for first-run and validation scenarios. |
+| [`domain-packs/`](domain-packs/) | Domain-specific starter taxonomies and workflows. |
+| [`benchmarks/`](benchmarks/) | Pilot questions and scoring rubric for local evaluation. |
 
 ## Safety principle
 
