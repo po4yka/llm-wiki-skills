@@ -8,10 +8,10 @@
 This repository is a distribution-ready skill system for coding agents that support LLM-Wiki users across the full lifecycle:
 
 ```text
-learn -> answer objections -> choose -> set up -> migrate -> operate -> audit -> evolve
+learn -> answer objections -> choose -> diagnose -> plan -> set up -> migrate -> operate -> audit -> publish/archive -> evolve
 ```
 
-The target user is not only someone who already has a vault. The target user may be deciding whether LLM-Wiki is useful, asking for evidence, choosing a tool, migrating a messy document set, building a product, operating a team wiki, or turning accumulated wiki procedures into reusable Agent Skills.
+The target user may be deciding whether LLM-Wiki is useful, asking for evidence, choosing a tool, migrating a messy document set, building a product, operating a team wiki, or turning accumulated wiki procedures into reusable Agent Skills.
 
 ## Distribution target
 
@@ -37,12 +37,14 @@ Each skill lives in `skills/<skill-name>/SKILL.md` and has valid Agent Skills fr
 
 These skills explain the pattern, answer adoption objections with direct/adjacent/local evidence, refresh the current landscape and help the user decide between ready-made and custom paths.
 
-### 2. Diagnosis, planning and evaluation
+### 2. Diagnosis, planning, provenance and evaluation
 
 - `llm-wiki-doctor`
 - `llm-wiki-migration-planner`
 - `llm-wiki-eval`
+- `llm-wiki-benchmark-suite`
 - `llm-wiki-provenance`
+- `llm-wiki-claim-anchors`
 - `llm-wiki-conflict-resolver`
 
 These skills turn messy existing material into a safe adoption plan and provide evidence that the wiki is trustworthy and useful.
@@ -76,12 +78,14 @@ These skills cover the capture and knowledge-shaping scenarios that make the wik
 - `wiki-query`
 - `wiki-lint`
 - `llm-wiki-trust-audit`
+- `llm-wiki-source-refresh`
+- `llm-wiki-privacy-redactor`
 - `llm-wiki-security-review`
 - `llm-wiki-model-policy`
 - `llm-wiki-export-publish`
 - `llm-wiki-archive`
 
-These skills maintain day-to-day wiki health, data boundaries, model policy, publication boundaries and long-term durability.
+These skills maintain day-to-day wiki health, data boundaries, source freshness, model policy, publication boundaries and long-term durability.
 
 ### 6. Skill and memory governance
 
@@ -92,39 +96,35 @@ These skills maintain day-to-day wiki health, data boundaries, model policy, pub
 
 These skills help teams and builders govern Agent Skills, instruction files, memory surfaces and organizational rollout.
 
-## Evidence and FAQ layer
+## Product hardening layer
 
-The evidence and objection-handling layer lives in:
+The repository now includes the implementation-hardening items that turn the skill pack into a maintainable product:
 
-- [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
-- [`../skills/llm-wiki-faq/SKILL.md`](../skills/llm-wiki-faq/SKILL.md)
-- [`../skills/llm-wiki-faq/references/evidence-pack.md`](../skills/llm-wiki-faq/references/evidence-pack.md)
-
-It covers:
-
-- why LLM-Wiki is needed;
-- expected benefits;
-- direct vs adjacent evidence;
-- comparison with RAG/GraphRAG/memory;
-- living-wiki maintenance loop;
-- Obsidian decision criteria;
-- pilot metrics.
-
-## Advanced use-case catalog
-
-The 20 advanced use-case skills are cataloged in [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md). That document is the main routing reference for diagnosis, provenance, evaluation, Obsidian hardening, repo docs, scheduled maintenance, security review, local-first design, channel capture, interviews, ADR memory, domain packs, publishing, archival, conflict resolution, model policy and agent-memory boundaries.
+- full PR validation through `npm run validate`;
+- fixtures and examples under `examples/`;
+- quickstart and skill router docs;
+- claim-level provenance anchors and validation;
+- skill smell validation;
+- third-party skill supply-chain security docs;
+- release/versioning policy and changelog;
+- generated machine and human-readable skill catalogs;
+- domain packs;
+- per-agent adapter docs;
+- living-wiki operations checklists;
+- pilot benchmark materials;
+- source-refresh workflow;
+- privacy-redaction policy and preview script.
 
 ## Future candidates
 
 Potential next additions:
 
-| Skill | Purpose |
+| Item | Purpose |
 |---|---|
-| `llm-wiki-claim-anchors` | Implement deterministic Markdown anchor conventions for claim-level provenance. |
-| `llm-wiki-benchmark-suite` | Run repeatable with-wiki/without-wiki benchmark tasks. |
-| `llm-wiki-release-notes` | Generate release notes from wiki changes and repo history. |
-| `llm-wiki-privacy-redactor` | Redact public exports and model-boundary payloads. |
-| `llm-wiki-source-refresh` | Re-check stale external sources and open refresh PRs. |
+| `llm-wiki-claim-diff` | Track how claim support changes across source refreshes. |
+| `llm-wiki-taxonomy-migrator` | Safely migrate tags and page types across domain packs. |
+| `llm-wiki-benchmark-reporter` | Turn pilot benchmark runs into charts and release-quality reports. |
+| `llm-wiki-source-vendor` | Vendor critical external sources for long-term archival. |
 
 ## Product principles
 
@@ -137,3 +137,4 @@ Potential next additions:
 7. Support multiple coding agents through the Agent Skills format.
 8. Validate skill metadata and groupings before release.
 9. Separate direct evidence from adjacent evidence when making adoption claims.
+10. Prefer examples, validators and fixtures before adding more broad skills.
