@@ -21,14 +21,16 @@ const lines = [
   '',
 ];
 
-for (const group of manifest.groupings) {
+manifest.groupings.forEach((group, index) => {
   lines.push(`## ${group.title}`, '', group.description, '', '| Skill | Description | Version |', '|---|---|---|');
   for (const skillName of group.skills) {
     const fields = skillMap.get(skillName);
     lines.push(`| [${skillName}](../skills/${skillName}/SKILL.md) | ${fields.description.replace(/\|/g, '\\|')} | ${fields.metadata?.version ?? ''} |`);
   }
-  lines.push('');
-}
+  if (index < manifest.groupings.length - 1) {
+    lines.push('');
+  }
+});
 
 const outPath = path.join(repoRoot, 'docs', 'skills-catalog.md');
 fs.writeFileSync(outPath, `${lines.join('\n')}\n`);
