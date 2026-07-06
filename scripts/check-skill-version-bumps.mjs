@@ -6,7 +6,6 @@ import { failFactory, repoRoot, readText } from './lib/repo.mjs';
 
 const { fail, finish } = failFactory();
 const baseRef = process.env.SKILL_VERSION_BASE_REF ?? process.env.GITHUB_BASE_REF ?? 'main';
-const remoteBase = `origin/${baseRef}`;
 const strict = process.env.SKILL_VERSION_STRICT === '1' || process.argv.includes('--strict');
 
 function git(args) {
@@ -23,6 +22,14 @@ function gitText(args) {
   return result.stdout.trim();
 }
 
+function refExists(ref) {
+  return git(['rev-parse', '--verify', ref]).status === 0;
+}
+
+function chooseBaseRef() {
+  return [`origin/${baseRef}`, baseRef].find(refExists) ?? null;
+}
+
 function getFileAt(ref, filePath) {
   const result = git(['show', `${ref}:${filePath}`]);
   return result.status === 0 ? result.stdout : null;
@@ -34,16 +41,16 @@ if (!isGitRepo) {
   finish('checked skill version bumps');
 }
 
-const hasRemoteBase = git(['rev-parse', '--verify', remoteBase]).status === 0;
-if (!hasRemoteBase) {
-  console.log(`! ${remoteBase} is not available; skipping skill version bump check`);
+const chosenBaseRef = chooseBaseRef();
+if (!chosenBaseRef) {
+  console.log(`! could not find ${baseRef} or origin/${baseRef}; skipping skill version bump check`);
   console.log('  In CI, fetch the base branch before running with --strict.');
   finish('checked skill version bumps');
 }
 
-const mergeBase = gitText(['merge-base', 'HEAD', remoteBase]);
+const mergeBase = gitText(['merge-base', 'HEAD', chosenBaseRef]);
 if (!mergeBase) {
-  console.log(`! could not compute merge-base with ${remoteBase}; skipping skill version bump check`);
+  console.log(`! could not compute merge-base with ${chosenBaseRef}; skipping skill version bump check`);
   finish('checked skill version bumps');
 }
 
@@ -74,4 +81,4 @@ for (const filePath of changedSkills) {
   }
 }
 
-finish(`checked version bumps for ${changedSkills.length} changed skill files${strict ? ' (strict)' : ' (advisory)'}`);
+finish(`checked version bumps for ${changedSkills.length} changed skill files against ${chosenBaseRef}${strict ? ' (strict)' : ' (advisory)'}`);
