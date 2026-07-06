@@ -35,9 +35,9 @@ extracted | inferred | ambiguous | unsupported | conflicting
 ## Example
 
 ```markdown
-- Good answers should be filed back into the wiki. ^claim-20260706-001
+- Good answers should be filed back into the wiki. ^claim-20260706-002
   - Support: extracted
-  - Source: `raw/sources/llm-wiki-idea.md` ^src-20260706-001
+  - Source: `raw/sources/llm-wiki-idea.md` ^src-20260706-002
 ```
 
 ## Review workflow

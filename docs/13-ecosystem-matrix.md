@@ -18,6 +18,8 @@ Before recommending a tool to a user, re-check:
 6. review/provenance controls;
 7. whether it still matches the user's use case.
 
+For architecture-level details, use [`docs/15-implementation-deep-dive.md`](15-implementation-deep-dive.md). This registry is intentionally compact; the deep-dive note compares storage, retrieval, ingestion, MCP/API, governance, evaluation, security and reusable implementation patterns.
+
 ## Implementation families
 
 | Family | Use when | Primary risks |
@@ -25,7 +27,10 @@ Before recommending a tool to a user, re-check:
 | Full LLM-Wiki application | The user wants a ready-made personal or research knowledge app. | Lock-in, sync semantics, hidden generated state, cloud parser/model exposure. |
 | Repo documentation agent | The corpus is a codebase and agents need architecture/module/change maps. | Docs drift, over-writing hand-written ADRs, stale code claims. |
 | Review-gated agent memory | Agents should propose knowledge updates but humans approve final writes. | Review backlog, friction, schema mismatch with existing notes. |
+| Compiler-first knowledge system | The user wants typed, cited, linted, queryable and exportable compiled wiki artifacts. | More operator complexity; quality depends on schema, review and eval discipline. |
 | Obsidian/local-first workflow | The user already lives in Markdown and wants human-editable wiki pages. | Weak automation unless skills/hooks are added; sync conflicts. |
+| Session-transcript wiki | Agent sessions are the raw source material. | Secrets, tokens and private paths in transcripts; source scope is narrow. |
+| Graph-heavy local vault | The user wants broad ingestion, local graph exports and context packs. | Graph complexity can outpace review/provenance quality. |
 | Retrieval/GraphRAG framework | Retrieval quality, scale or multi-hop reasoning is the main bottleneck. | Index complexity, opaque retrieval, weaker human-review surface. |
 | Custom product/plugin/CLI | The workflow is specific enough that existing tools do not fit. | Building storage, review, security and eval discipline from scratch. |
 
@@ -35,10 +40,14 @@ Before recommending a tool to a user, re-check:
 |---|---|---|---|---|
 | `langchain-ai/openwiki` | Repo documentation agent | License, supported providers, generated output, PR/GitHub Action behavior, instruction-file edits. | The user wants `openwiki/` repo docs and `AGENTS.md`/`CLAUDE.md` pointers for coding agents. | Personal second-brain or non-code corpora are the primary target. |
 | `nashsu/llm_wiki` | Full desktop LLM-Wiki application | License, release activity, local/cloud model settings, API/MCP permissions, vector/search storage. | The user wants an app with desktop UI, graph, review, hybrid search, local API/MCP and Obsidian-compatible files. | The user requires a minimal CLI/git-only workflow or strict team PR review. |
-| `vouchdev/vouch` | Review-gated agent memory / knowledge base | Claim model, MCP/CLI surface, review workflow, storage layout, integration adapters. | Agents should capture/propose knowledge while humans approve every durable write. | The user wants fully automatic wiki generation without human review. |
+| `vouchdev/vouch` | Review-gated agent memory / knowledge base | Claim model, MCP/CLI surface, review workflow, storage layout, integration adapters. | Agents should capture/propose knowledge while humans approve durable writes. | The user wants fully automatic wiki generation without human review. |
 | `OpenBMB/RepoAgent` | Repository-level documentation generator | Language coverage, model configuration, hook behavior, generated docs path, maintenance status. | The user wants code documentation generation from AST/change tracking rather than a general wiki. | The user needs claim-level provenance and human-reviewed wiki pages. |
+| `atomicstrata/llm-wiki-compiler` | Compiler-first knowledge system | Activity, package maturity, schema/eval behavior, MCP tools, OKF/export support. | The user wants a general-purpose knowledge compiler with typed pages, citations, lint/eval and exports. | The user needs a polished GUI or strict human approval boundary out of the box. |
 | `green-dalii/obsidian-llm-wiki` | Obsidian-native workflow | Plugin status, Obsidian API compatibility, local/cloud model use, vault write policy. | The user wants LLM-Wiki behavior inside an Obsidian vault. | The target is team repo docs or CI-managed docs. |
-| `atomicstrata/llm-wiki-compiler`, `ussumant/llm-wiki-compiler`, `Pratiyush/llm-wiki`, `nvk/llm-wiki`, `ddsyasas/llm-wiki`, `swarmclawai/swarmvault` | Experimental or smaller implementations | Whether the repository is active, installable, documented and compatible with current agents. | Useful for design comparison and implementation ideas. | Do not recommend as a production default without fresh verification. |
+| `swarmclawai/swarmvault` | Graph-heavy local vault | License, ingestion surface, MCP behavior, graph/export formats, approval-bundle semantics. | The user values broad ingestion, graph exports, context packs and agent handoff. | The user wants the strictest claim-level approval gate or a minimal setup. |
+| `lucasastorian/llmwiki` | MCP-driven local/hosted wiki | Storage abstraction, hosted mode, MCP workflow, OCR/parser settings, review policy. | The user wants a local/hosted product architecture pattern around MCP-driven wiki writing. | Governance must be Vouch-style by default. |
+| `Pratiyush/llm-wiki` | Session-transcript wiki | Supported agent transcript formats, redaction, exports, MCP tools, graph viewer status. | The user's main raw sources are Claude Code, Codex, Cursor, Copilot or Gemini sessions. | The primary corpus is heterogeneous documents rather than session history. |
+| `ussumant/llm-wiki-compiler`, `nvk/llm-wiki`, `ddsyasas/llm-wiki`, other small projects | Experimental or smaller implementations | Whether the repository is active, installable, documented and compatible with current agents. | Useful for design comparison and implementation ideas. | Do not recommend as a production default without fresh verification. |
 
 ## Adjacent framework registry
 
@@ -86,6 +95,11 @@ When answering “which tool should I use?”, produce at least:
 | Option | Fit | Setup effort | Data ownership | Provenance/review | Retrieval maturity | Agent integration | Lock-in risk | Notes |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
 
+For implementation-level comparison, use this extended table:
+
+| Project | Archetype | License | Maturity | Storage | Retrieval | Ingestion | MCP/API | Review/provenance | Eval/security | Best idea to adopt | Risks |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+
 Do not list every project equally. Recommend one primary path and one fallback.
 
 ## Evidence discipline
@@ -105,6 +119,11 @@ Seed URLs:
 - https://github.com/nashsu/llm_wiki
 - https://github.com/vouchdev/vouch
 - https://github.com/OpenBMB/RepoAgent
+- https://github.com/atomicstrata/llm-wiki-compiler
+- https://github.com/swarmclawai/swarmvault
+- https://github.com/green-dalii/obsidian-llm-wiki
+- https://github.com/lucasastorian/llmwiki
+- https://github.com/Pratiyush/llm-wiki
 - https://github.com/microsoft/graphrag
 - https://modelcontextprotocol.io/docs/getting-started/intro
 - https://docs.langchain.com/oss/python/langgraph/overview
