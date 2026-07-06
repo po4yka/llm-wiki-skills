@@ -2,6 +2,8 @@
 
 Domain packs adapt the generic LLM-Wiki pattern to concrete use cases without changing the core page schema.
 
+For the full contract, read [`../docs/domain-pack-schema.md`](../docs/domain-pack-schema.md).
+
 ## Schema rule
 
 Core `type` values stay stable:
