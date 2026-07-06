@@ -1,9 +1,9 @@
-name: Source refresh report
+name: Ecosystem refresh report
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 8 * * 1'
+    - cron: '30 8 * * 1'
 
 permissions:
   contents: read
@@ -17,10 +17,10 @@ jobs:
         with:
           node-version: 22
       - run: npm run validate
-      - name: Generate offline source refresh report
-        run: npm run refresh:source-report
+      - name: Generate offline ecosystem refresh scaffold
+        run: npm run refresh:ecosystem-report
       - uses: actions/upload-artifact@v7
         with:
-          name: source-refresh-report
-          path: dist/source-refresh-report.md
+          name: ecosystem-refresh-report
+          path: dist/ecosystem-refresh-report.md
           if-no-files-found: error
