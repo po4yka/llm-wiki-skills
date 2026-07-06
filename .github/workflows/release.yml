@@ -30,8 +30,11 @@ jobs:
       - name: Validate skills pack
         run: npm run validate
 
-      - name: Generate catalog
+      - name: Generate catalogs
         run: npm run catalog:generate
+
+      - name: Generate release notes
+        run: npm run release:notes -- "${GITHUB_REF_NAME}"
 
       - name: Build release archive
         run: |
@@ -39,12 +42,16 @@ jobs:
           zip -r "dist/llm-wiki-skills-${GITHUB_REF_NAME}.zip" \
             README.md \
             LICENSE \
+            CHANGELOG.md \
             skills.sh.json \
             package.json \
             scripts \
             skills \
             docs \
-            templates
+            templates \
+            domain-packs \
+            benchmarks \
+            examples
 
       - name: Upload release artifacts
         uses: actions/upload-artifact@v7
@@ -53,6 +60,7 @@ jobs:
           path: |
             dist/llm-wiki-skills-${{ github.ref_name }}.zip
             dist/skills-catalog.json
+            dist/release-notes-${{ github.ref_name }}.md
           if-no-files-found: error
 
       - name: Create GitHub release
@@ -63,5 +71,6 @@ jobs:
           gh release create "${GITHUB_REF_NAME}" \
             "dist/llm-wiki-skills-${GITHUB_REF_NAME}.zip" \
             dist/skills-catalog.json \
+            "dist/release-notes-${GITHUB_REF_NAME}.md" \
             --title "${GITHUB_REF_NAME}" \
-            --notes "Validated LLM-Wiki Skills release."
+            --notes-file "dist/release-notes-${GITHUB_REF_NAME}.md"
