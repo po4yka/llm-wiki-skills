@@ -1,0 +1,25 @@
+{
+  "$schema": "../../templates/schemas/domain-pack.schema.json",
+  "name": "startup-market-research",
+  "version": "0.1.0",
+  "description": "Startup market research, competitor tracking and strategy profile.",
+  "core_types": ["source", "entity", "concept", "comparison", "synthesis", "query"],
+  "domain_type_mappings": {
+    "competitor": "entity",
+    "market-map": "comparison",
+    "customer-question": "query"
+  },
+  "recommended_tags": ["market", "competitor", "customer", "pricing", "positioning", "trend", "stale-sensitive"],
+  "stale_policy": {
+    "pricing-product-claims": "14-30 days",
+    "market-synthesis": "30-60 days",
+    "customer-interview-notes": "review before publication"
+  },
+  "recommended_skills": [
+    "llm-wiki-channel-capture",
+    "wiki-ingest",
+    "llm-wiki-source-refresh",
+    "wiki-query",
+    "llm-wiki-export-publish"
+  ]
+}
