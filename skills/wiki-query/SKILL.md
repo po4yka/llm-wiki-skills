@@ -1,10 +1,18 @@
-# wiki-query
+---
+name: wiki-query
+description: Answer questions from an existing LLM-Wiki vault and save reusable answers back into the wiki. Use when the user asks for research, synthesis, comparison, decision support, or recall from a raw/wiki/schema knowledge base.
+license: MIT
+compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to a Markdown LLM-Wiki vault; write access is optional for saving reusable query pages.
+metadata:
+  author: po4yka
+  version: "0.2.0"
+---
 
-Use this skill when the user asks a question that should be answered from an existing LLM-Wiki vault.
+# Wiki Query
 
 ## Goal
 
-Answer from the compiled wiki first, verify against sources when needed, and save reusable answers back into the wiki.
+Answer from the compiled wiki first, verify against raw sources when needed, and save reusable answers back into the wiki.
 
 ## Inputs
 
@@ -35,30 +43,15 @@ Not allowed unless explicitly requested:
 
 ### 1. Clarify the question internally
 
-Identify:
-
-- what kind of answer is needed;
-- what time sensitivity exists;
-- whether source verification is required;
-- whether the answer should be saved.
-
-Do not ask a clarifying question if the best effort is obvious.
+Identify the answer type, time sensitivity, verification needs and whether the answer should be saved. Do not ask a clarifying question when the best effort is obvious.
 
 ### 2. Start with the map
 
-Read `wiki/index.md` first. Identify candidate pages.
+Read `wiki/index.md` first and identify candidate pages.
 
 ### 3. Search the wiki
 
-Use exact search for:
-
-- user terms;
-- synonyms;
-- entity names;
-- wikilink targets;
-- frontmatter types and tags.
-
-Prefer focused reads over loading many full files.
+Use exact search for user terms, synonyms, entity names, wikilink targets, frontmatter types and tags. Prefer focused reads over loading many full files.
 
 ### 4. Build an evidence set
 
@@ -68,11 +61,11 @@ For each important claim, classify support:
 source-backed | wiki-backed | inferred | missing | conflicting
 ```
 
-Use raw sources when the claim is high-impact or the wiki page is stale.
+Use raw sources when the claim is high-impact, current, legal/financial/medical/security-relevant, or the wiki page is stale.
 
 ### 5. Answer clearly
 
-The answer should distinguish:
+Distinguish:
 
 - what the wiki says;
 - what is directly sourced;
@@ -82,7 +75,7 @@ The answer should distinguish:
 
 ### 6. File back reusable output
 
-If the answer is durable, create a page:
+If the answer is durable, create:
 
 ```text
 wiki/queries/YYYY-MM-DD-question-slug.md
@@ -116,26 +109,6 @@ Append to `wiki/log.md` if a page is saved.
 
 ## Answer style
 
-Prefer:
+Prefer a concise thesis first, evidence grouped by theme, explicit uncertainty, links to relevant wiki pages and one action-oriented next step when appropriate.
 
-- concise thesis first;
-- evidence grouped by theme;
-- explicit uncertainty;
-- links to relevant wiki pages;
-- action-oriented next step when appropriate.
-
-Avoid:
-
-- pretending the wiki knows more than it does;
-- citing generated pages as if they were raw sources;
-- burying uncertainty at the end;
-- producing a long answer that is not filed back when useful.
-
-## Quality checklist
-
-- [ ] `index.md` inspected.
-- [ ] Relevant pages searched.
-- [ ] Important claims classified by support level.
-- [ ] Stale or high-impact claims verified against raw sources when needed.
-- [ ] Uncertainty stated.
-- [ ] Reusable answer saved or explicitly not saved.
+Avoid pretending the wiki knows more than it does, citing generated pages as if they were raw sources, or leaving reusable answers in chat only.
