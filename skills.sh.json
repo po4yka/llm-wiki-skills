@@ -9,6 +9,7 @@
         "llm-wiki-orient",
         "llm-wiki-faq",
         "llm-wiki-news-radar",
+        "llm-wiki-ecosystem-registry",
         "llm-wiki-choose"
       ]
     },
@@ -19,6 +20,7 @@
         "llm-wiki-doctor",
         "llm-wiki-migration-planner",
         "llm-wiki-eval",
+        "llm-wiki-eval-tooling",
         "llm-wiki-benchmark-suite",
         "llm-wiki-provenance",
         "llm-wiki-claim-anchors",
@@ -32,6 +34,9 @@
         "llm-wiki-setup",
         "llm-wiki-design",
         "llm-wiki-refactor",
+        "llm-wiki-ingestion-stack",
+        "llm-wiki-retrieval-architect",
+        "llm-wiki-mcp-integration",
         "llm-wiki-local-first-stack",
         "llm-wiki-obsidian-hardening",
         "llm-wiki-repo-docs",
