@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh sources before making current tool recommendations.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # LLM-Wiki Choose
@@ -46,7 +46,37 @@ Use this routing:
 | Large retrieval-heavy corpus | Hybrid search or graph/RAG system, with wiki as compiled surface if human review matters. |
 | Product/plugin idea | Custom architecture with provenance, staged review and safe writes from day one. |
 
-### 3. Re-verify current external options
+### 3. Answer adoption objections before tool choice
+
+If the user is still asking whether LLM-Wiki is worth it, invoke or summarize `llm-wiki-faq` before recommending tools.
+
+Use the evidence hierarchy:
+
+```text
+direct LLM-Wiki evidence -> adjacent RAG/memory/context evidence -> local pilot metrics
+```
+
+Do not claim that adjacent GraphRAG/memory evidence proves every LLM-Wiki workflow will work.
+
+### 4. Decide whether Obsidian is needed
+
+Obsidian is optional.
+
+Recommend Obsidian when:
+
+- the user already uses it;
+- human reading/editing of Markdown is central;
+- backlinks, graph view and local note UX matter;
+- the workflow is personal or research-heavy.
+
+Do not require Obsidian when:
+
+- the target is repository documentation;
+- the team already uses docs-as-code and pull requests;
+- the user wants minimal CLI/git workflow;
+- the user only needs agent-readable context.
+
+### 5. Re-verify current external options
 
 Before recommending a current tool, browse and cite:
 
@@ -58,7 +88,7 @@ Before recommending a current tool, browse and cite:
 - provenance/review features;
 - install path and supported agents.
 
-### 4. Score options
+### 6. Score options
 
 Score 1-5 across:
 
@@ -71,7 +101,7 @@ Score 1-5 across:
 - scaling path;
 - reversibility/lock-in.
 
-### 5. Recommend one path
+### 7. Recommend one path
 
 Give a primary recommendation and one fallback. Avoid listing every possible tool as equal.
 
@@ -81,6 +111,8 @@ Use this output:
 ## Recommendation
 
 ## Why this fits
+
+## Evidence level
 
 ## Alternatives considered
 
@@ -101,9 +133,11 @@ Use this output:
 - Prefer custom implementation only when trust, provenance, scale, UX or integration needs justify it.
 - Prefer PR-based writes for teams.
 - Do not recommend current project maturity from memory; browse.
+- For skeptical users, recommend a 20-50 source pilot and `llm-wiki-eval` rather than a big migration.
 
 ## Safety gates
 
 - Stop before suggesting cloud ingestion for sensitive material unless the user explicitly accepts it.
 - Do not recommend direct-write agents for team knowledge without review gates.
 - Mark uncertain tool claims as `verify-before-use`.
+- Do not make Obsidian mandatory unless the user's workflow actually benefits from it.
