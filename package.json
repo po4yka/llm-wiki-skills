@@ -13,6 +13,7 @@
     "lint:markdown": "npx --yes markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
     "catalog:generate": "node scripts/generate-skills-catalog.mjs && node scripts/generate-skills-catalog-md.mjs",
     "check:examples": "node scripts/check-examples.mjs",
+    "redact:preview": "node scripts/redact-preview.mjs",
     "release:notes": "node scripts/generate-release-notes.mjs"
   },
   "devDependencies": {}
