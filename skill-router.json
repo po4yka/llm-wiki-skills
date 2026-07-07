@@ -4,6 +4,7 @@
   "default_entrypoints": [
     "llm-wiki-orient",
     "llm-wiki-faq",
+    "llm-wiki-human-first-design",
     "llm-wiki-choose",
     "llm-wiki-doctor"
   ],
@@ -12,7 +13,7 @@
       "skill": "llm-wiki-orient",
       "intents": ["what is llm-wiki", "explain pattern", "compare with rag", "solution landscape"],
       "depends_on": [],
-      "next": ["llm-wiki-faq", "llm-wiki-news-radar", "llm-wiki-choose"],
+      "next": ["llm-wiki-faq", "llm-wiki-human-first-design", "llm-wiki-news-radar", "llm-wiki-choose"],
       "write_risk": "none",
       "requires_web": false,
       "default_mode": "answer"
@@ -21,10 +22,19 @@
       "skill": "llm-wiki-faq",
       "intents": ["why needed", "benefits", "evidence", "proof", "obsidian required", "living wiki", "serious criticism", "will become slop"],
       "depends_on": [],
-      "next": ["llm-wiki-critique-audit", "llm-wiki-choose", "llm-wiki-eval", "llm-wiki-trust-audit"],
+      "next": ["llm-wiki-human-first-design", "llm-wiki-critique-audit", "llm-wiki-choose", "llm-wiki-eval", "llm-wiki-trust-audit"],
       "write_risk": "none",
       "requires_web": false,
       "default_mode": "answer"
+    },
+    {
+      "skill": "llm-wiki-human-first-design",
+      "intents": ["human first wiki", "agent disappears", "human can find without agent", "avoid generated document dump", "confluence mess", "human readable documentation", "page contract", "navigation maps", "agent generated markdown dump", "human findability"],
+      "depends_on": [],
+      "next": ["llm-wiki-critique-audit", "llm-wiki-trust-audit", "llm-wiki-eval", "llm-wiki-benchmark-suite", "llm-wiki-team-rollout"],
+      "write_risk": "none",
+      "requires_web": false,
+      "default_mode": "design-and-audit"
     },
     {
       "skill": "llm-wiki-news-radar",
@@ -39,7 +49,7 @@
       "skill": "llm-wiki-choose",
       "intents": ["choose tool", "ready-made vs custom", "openwiki vs obsidian", "build or buy"],
       "depends_on": ["llm-wiki-faq"],
-      "next": ["llm-wiki-setup", "llm-wiki-design", "llm-wiki-doctor", "llm-wiki-critique-audit"],
+      "next": ["llm-wiki-setup", "llm-wiki-design", "llm-wiki-doctor", "llm-wiki-human-first-design", "llm-wiki-critique-audit"],
       "write_risk": "none",
       "requires_web": true,
       "default_mode": "recommendation"
@@ -66,7 +76,7 @@
       "skill": "llm-wiki-doctor",
       "intents": ["diagnose vault", "what is wrong", "existing docs", "read-only audit"],
       "depends_on": [],
-      "next": ["llm-wiki-migration-planner", "llm-wiki-provenance", "llm-wiki-trust-audit", "llm-wiki-critique-audit"],
+      "next": ["llm-wiki-migration-planner", "llm-wiki-human-first-design", "llm-wiki-provenance", "llm-wiki-trust-audit", "llm-wiki-critique-audit"],
       "write_risk": "none",
       "requires_web": false,
       "default_mode": "report-only"
@@ -75,7 +85,7 @@
       "skill": "llm-wiki-migration-planner",
       "intents": ["migration plan", "dry-run refactor", "move docs later"],
       "depends_on": ["llm-wiki-doctor"],
-      "next": ["llm-wiki-refactor", "llm-wiki-obsidian-hardening"],
+      "next": ["llm-wiki-refactor", "llm-wiki-human-first-design", "llm-wiki-obsidian-hardening"],
       "write_risk": "none",
       "requires_web": false,
       "default_mode": "plan-only"
@@ -237,7 +247,7 @@
       "skill": "wiki-query",
       "intents": ["answer from wiki", "research answer", "save reusable answer"],
       "depends_on": [],
-      "next": ["llm-wiki-eval", "wiki-lint"],
+      "next": ["llm-wiki-human-first-design", "llm-wiki-eval", "wiki-lint"],
       "write_risk": "low",
       "requires_web": false,
       "default_mode": "answer-and-offer-file-back"
@@ -246,7 +256,7 @@
       "skill": "wiki-lint",
       "intents": ["lint wiki", "broken links", "orphan pages", "stale claims", "review queue"],
       "depends_on": [],
-      "next": ["llm-wiki-provenance", "llm-wiki-conflict-resolver", "llm-wiki-critique-audit"],
+      "next": ["llm-wiki-human-first-design", "llm-wiki-provenance", "llm-wiki-conflict-resolver", "llm-wiki-critique-audit"],
       "write_risk": "low",
       "requires_web": false,
       "default_mode": "report-only"
@@ -300,7 +310,7 @@
       "skill": "llm-wiki-eval",
       "intents": ["evaluate usefulness", "retrieval hit rate", "answer reuse", "wiki value"],
       "depends_on": [],
-      "next": ["llm-wiki-benchmark-suite", "llm-wiki-eval-tooling", "llm-wiki-critique-audit"],
+      "next": ["llm-wiki-benchmark-suite", "llm-wiki-eval-tooling", "llm-wiki-human-first-design", "llm-wiki-critique-audit"],
       "write_risk": "low",
       "requires_web": false,
       "default_mode": "report-only"
@@ -309,7 +319,7 @@
       "skill": "llm-wiki-benchmark-suite",
       "intents": ["pilot benchmark", "with wiki without wiki", "score usefulness"],
       "depends_on": ["llm-wiki-eval"],
-      "next": ["llm-wiki-eval-tooling", "llm-wiki-critique-audit"],
+      "next": ["llm-wiki-eval-tooling", "llm-wiki-human-first-design", "llm-wiki-critique-audit"],
       "write_risk": "low",
       "requires_web": false,
       "default_mode": "report-only"
@@ -327,7 +337,7 @@
       "skill": "llm-wiki-critique-audit",
       "intents": ["arguments against", "what could go wrong", "criticism", "bad fit", "cognitive debt", "consensus smoothing", "context poisoning", "write-only archive", "token burn", "benchmark vacuum"],
       "depends_on": [],
-      "next": ["llm-wiki-eval", "llm-wiki-trust-audit", "llm-wiki-provenance", "llm-wiki-security-review"],
+      "next": ["llm-wiki-human-first-design", "llm-wiki-eval", "llm-wiki-trust-audit", "llm-wiki-provenance", "llm-wiki-security-review"],
       "write_risk": "none",
       "requires_web": false,
       "default_mode": "report-only"
