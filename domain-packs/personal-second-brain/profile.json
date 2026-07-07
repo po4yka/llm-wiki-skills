@@ -1,0 +1,27 @@
+{
+  "name": "personal-second-brain",
+  "version": "0.1.0",
+  "copy_to": "_meta/domain-packs/personal-second-brain/",
+  "recommended_workflow": [
+    "llm-wiki-capture-pipeline",
+    "wiki-triage",
+    "wiki-ingest",
+    "wiki-query",
+    "wiki-lint",
+    "llm-wiki-eval"
+  ],
+  "templates": [
+    {
+      "source": "templates/wiki/concept-page.md",
+      "target": "wiki/concepts/concept-template.md"
+    },
+    {
+      "source": "templates/wiki/query-page.md",
+      "target": "wiki/queries/query-template.md"
+    }
+  ],
+  "initial_prompts": [
+    "Use llm-wiki-doctor to diagnose this vault in report-only mode.",
+    "Use wiki-triage on inbox material and create a report only."
+  ]
+}

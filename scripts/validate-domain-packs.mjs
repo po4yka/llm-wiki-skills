@@ -20,6 +20,7 @@ function readJson(filePath) {
 const coreSchema = readJson(coreSchemaPath);
 const coreTypes = new Set(coreSchema?.properties?.type?.enum ?? []);
 const skillNames = new Set(listSkillNames());
+let profileCount = 0;
 
 if (!fs.existsSync(domainPacksDir)) {
   fail('domain-packs/ directory is missing');
@@ -37,6 +38,7 @@ for (const packName of packDirs) {
   const relPackDir = path.relative(repoRoot, packDir);
   const packPath = path.join(packDir, 'pack.md');
   const overlayPath = path.join(packDir, 'schema.overlay.json');
+  const profilePath = path.join(packDir, 'profile.json');
 
   if (!namePattern.test(packName)) {
     fail(`${relPackDir}: invalid domain pack directory name`);
@@ -110,6 +112,44 @@ for (const packName of packDirs) {
       fail(`${path.relative(repoRoot, overlayPath)}: recommended skill '${skillName}' does not exist`);
     }
   }
+
+  if (fs.existsSync(profilePath)) {
+    profileCount += 1;
+    const profile = readJson(profilePath);
+    if (!profile) continue;
+
+    if (profile.name !== packName) {
+      fail(`${path.relative(repoRoot, profilePath)}: name must match directory '${packName}'`);
+    }
+
+    if (!profile.copy_to || typeof profile.copy_to !== 'string') {
+      fail(`${path.relative(repoRoot, profilePath)}: copy_to must be a non-empty string`);
+    }
+
+    for (const skillName of profile.recommended_workflow ?? []) {
+      if (!skillNames.has(skillName)) {
+        fail(`${path.relative(repoRoot, profilePath)}: recommended_workflow references missing skill '${skillName}'`);
+      }
+    }
+
+    for (const item of profile.templates ?? []) {
+      const source = item?.source;
+      const target = item?.target;
+      if (!source || !target) {
+        fail(`${path.relative(repoRoot, profilePath)}: every templates item must include source and target`);
+        continue;
+      }
+
+      if (source.includes('..') || path.isAbsolute(source)) {
+        fail(`${path.relative(repoRoot, profilePath)}: template source '${source}' must be repository-relative`);
+        continue;
+      }
+
+      if (!fs.existsSync(path.join(packDir, source)) && !fs.existsSync(path.join(repoRoot, source))) {
+        fail(`${path.relative(repoRoot, profilePath)}: template source '${source}' does not exist`);
+      }
+    }
+  }
 }
 
-finish(`validated ${packDirs.length} domain packs against ${coreTypes.size} core page types`);
+finish(`validated ${packDirs.length} domain packs, ${profileCount} apply profiles and ${coreTypes.size} core page types`);

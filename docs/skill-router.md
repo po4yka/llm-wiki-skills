@@ -2,6 +2,23 @@
 
 > Goal: choose the first useful skill without reading the whole catalog.
 
+## Machine-readable router
+
+The human guide below is mirrored by [`../skill-router.json`](../skill-router.json). Agents and tooling should prefer the JSON file when they need structured routing metadata such as:
+
+- user intents;
+- dependencies;
+- recommended next skills;
+- write risk;
+- web requirement;
+- default mode.
+
+Validate it with:
+
+```bash
+npm run validate:router
+```
+
 ## Start here
 
 ```text

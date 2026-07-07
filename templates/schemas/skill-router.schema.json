@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/llm-wiki/skill-router.schema.json",
+  "title": "LLM-Wiki skill router",
+  "type": "object",
+  "required": ["version", "default_entrypoints", "routes"],
+  "properties": {
+    "version": { "type": "string" },
+    "default_entrypoints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["skill", "intents", "depends_on", "next", "write_risk", "requires_web", "default_mode"],
+        "properties": {
+          "skill": { "type": "string" },
+          "intents": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 2 },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "depends_on": {
+            "type": "array",
+            "items": { "type": "string" },
+            "uniqueItems": true
+          },
+          "next": {
+            "type": "array",
+            "items": { "type": "string" },
+            "uniqueItems": true
+          },
+          "write_risk": {
+            "type": "string",
+            "enum": ["none", "low", "medium", "high"]
+          },
+          "requires_web": { "type": "boolean" },
+          "default_mode": { "type": "string", "minLength": 2 }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}
