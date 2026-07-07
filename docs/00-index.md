@@ -169,6 +169,7 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`23-company-information-flows.md`](23-company-information-flows.md) | Company information-flow audit: source inventory, automation boundaries, Confluence/Jira/external version refresh, fragility, UI, confidentiality, pitfalls and cost-benefit checks. |
 | [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md) | Human-first design guide: agent-disappears test, human navigation, page contracts, protected synthesis, anti-dump structure and Confluence replacement acceptance tests. |
 | [`domain-pack-schema.md`](domain-pack-schema.md) | Core `type` and domain `domain_type` schema contract. |
+| [`templates-catalog.md`](templates-catalog.md) | Discoverability map for every starter file in `templates/`. |
 | [`quickstart.md`](quickstart.md) | Ten-minute first-run guide. |
 | [`skill-router.md`](skill-router.md) | Decision tree for choosing the right skill; mirrored by `skill-router.json`. |
 | [`skills-catalog.md`](skills-catalog.md) | Human-readable skill catalog generated from package metadata. |

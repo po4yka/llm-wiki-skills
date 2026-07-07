@@ -10,8 +10,9 @@ on:
       - "templates/ingestion-fidelity-suite.yaml"
       - "evals/ingestion/**"
       - ".github/workflows/llm-wiki-ingestion.yml"
-  schedule:
-    - cron: "17 2 * * *"
+  # Enable only after the first manual run succeeds.
+  # schedule:
+  #   - cron: "17 2 * * *"
   workflow_dispatch:
 
 permissions:

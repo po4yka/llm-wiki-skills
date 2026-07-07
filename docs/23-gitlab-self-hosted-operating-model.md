@@ -185,6 +185,7 @@ Example GitLab `CODEOWNERS`:
 /.gitlab-ci.yml                 @corp/platform @corp/security
 /.gitlab/**                     @corp/platform @corp/security
 /templates/gitlab-*.yml         @corp/platform @corp/security
+/templates/gitlab-*.yaml        @corp/platform @corp/security
 
 # Skills and agent behavior
 /skills/**                      @corp/llm-wiki-maintainers @corp/security

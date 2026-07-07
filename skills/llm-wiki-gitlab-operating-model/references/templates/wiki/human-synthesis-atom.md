@@ -9,7 +9,7 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 source_paths: []
 source_urls: []
-ai_generated: true
+ai_generated: false
 ai_confidence: 0.0
 review_required: true
 tags:
@@ -21,6 +21,8 @@ tags:
 ## Source quote or extracted claim
 
 > Put source-backed material here. The agent may help extract and link it.
+
+- Claim text. Source: [[sources/source-title#section]]
 
 ## Agent notes
 

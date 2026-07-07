@@ -17,6 +17,9 @@ claim_mix:
   extracted: 0.0
   inferred: 0.0
   ambiguous: 0.0
+  synthesis: 0.0
+  unsupported: 0.0
+  conflicting: 0.0
 review_required: true
 last_linted: null
 stale_after: null

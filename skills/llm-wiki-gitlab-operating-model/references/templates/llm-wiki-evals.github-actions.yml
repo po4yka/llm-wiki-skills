@@ -8,8 +8,9 @@ on:
       - "prompts/**"
       - "evals/**"
       - ".github/workflows/llm-wiki-evals.yml"
-  schedule:
-    - cron: "0 2 * * *"
+  # Enable only after the first manual run succeeds.
+  # schedule:
+  #   - cron: "0 2 * * *"
   workflow_dispatch:
 
 jobs:

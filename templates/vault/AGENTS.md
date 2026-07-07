@@ -7,7 +7,8 @@ This vault is an LLM-Wiki: a local-first, git-versioned Markdown knowledge base.
 ```text
 raw/     immutable source material
 wiki/    generated and curated knowledge layer
-schema/  this file, CLAUDE.md, skills and schemas
+_meta/   schemas, taxonomy, policies and pack metadata
+_agent/  reports, drafts and agent-generated working files
 ```
 
 ## Rules

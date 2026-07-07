@@ -9,7 +9,7 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 source_paths: []
 source_urls: []
-ai_generated: true
+ai_generated: false
 ai_confidence: 0.0
 review_required: true
 tags:

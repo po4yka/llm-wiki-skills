@@ -14,6 +14,17 @@ metadata:
 
 Create safe GitHub Actions workflows for LLM-Wiki validation and maintenance.
 
+## Starter templates
+
+Use these local templates when available in a full repository checkout. In a single-skill install, recreate the same workflow shapes from this list:
+
+- `llm-wiki-evals.github-actions.yml` for retrieval, grounding, promptfoo and wiki-health checks.
+- `llm-wiki-ingestion.github-actions.yml` for source manifests, ingestion fidelity, parser security and retrieval smoke checks.
+- `llm-wiki-publish.github-actions.yml` for export profile validation, redaction/security checks, artifacts and optional Pages publish.
+- `llm-wiki-security.github-actions.yml` for secrets, dependency, OSV, Semgrep, red-team and export-policy checks.
+
+The starter workflow schedules are commented out by default. Enable cron only after `workflow_dispatch` has run successfully and the repository owner accepts the recurring cost and external calls.
+
 ## Inputs
 
 - Repository path.
@@ -36,7 +47,7 @@ Default to report-only or PR-based updates. Avoid direct pushes to `main`.
 
 ### 2. Define triggers
 
-Start with manual and pull request triggers. Add a schedule only after the first manual run succeeds.
+Start with manual and pull request triggers. Add a schedule only after the first manual run succeeds. Keep copied starter `schedule:` blocks commented until that happens.
 
 ```yaml
 on:
@@ -69,6 +80,19 @@ For PR-based updates:
 - open PR with clear summary;
 - request review from owners;
 - never merge automatically.
+
+### 6. Copy starter workflows deliberately
+
+When the user asks for ready-made workflow files, copy only the relevant starters:
+
+| Need | Starter |
+|---|---|
+| evals and red-team | `llm-wiki-evals.github-actions.yml` |
+| ingestion pipeline checks | `llm-wiki-ingestion.github-actions.yml` |
+| publish/export pipeline | `llm-wiki-publish.github-actions.yml` |
+| security scans | `llm-wiki-security.github-actions.yml` |
+
+Rename each copied file to `.github/workflows/<purpose>.yml`, replace placeholder commands, and keep permissions minimal.
 
 ## Output
 

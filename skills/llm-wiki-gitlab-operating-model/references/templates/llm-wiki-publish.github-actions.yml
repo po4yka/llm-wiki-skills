@@ -127,7 +127,7 @@ jobs:
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: export-artifact/exports/builds/public-site/latest/site
+          path: export-artifact/builds/public-site/latest/site
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4

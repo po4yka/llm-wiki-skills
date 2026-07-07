@@ -16,6 +16,20 @@ Plan an LLM-Wiki operating model for a self-managed GitLab instance inside an en
 
 Use `references/docs/23-gitlab-self-hosted-operating-model.md` as the reference model.
 
+## Starter templates
+
+Use these local templates when available:
+
+- `references/templates/gitlab-operating-model.yaml`
+- `references/templates/gitlab-codeowners.llm-wiki`
+- `references/templates/gitlab-llm-wiki-ci.yml`
+- `references/templates/gitlab-merge-request-template.md`
+- `references/templates/gitlab-protected-branch-environment-policy.yaml`
+- `references/templates/gitlab-raci-daci.yaml`
+- `references/templates/gitlab-slo-scorecard.yaml`
+
+Copy only the templates that match the user's GitLab operating-model scope, then replace placeholder groups, approvers, environments and runner assumptions.
+
 ## Inputs
 
 - GitLab edition/tier if known: Free, Premium, Ultimate; CE/EE install context if relevant.

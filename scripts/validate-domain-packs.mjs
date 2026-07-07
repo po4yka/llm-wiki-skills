@@ -6,6 +6,7 @@ const { fail, finish } = failFactory();
 const namePattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const domainPacksDir = path.join(repoRoot, 'domain-packs');
 const coreSchemaPath = path.join(repoRoot, 'templates', 'schemas', 'page.schema.json');
+const profileSchemaPath = path.join(repoRoot, 'templates', 'schemas', 'domain-pack-profile.schema.json');
 const requiredHeadings = ['## Core page types', '## Domain types'];
 
 function readJson(filePath) {
@@ -18,7 +19,10 @@ function readJson(filePath) {
 }
 
 const coreSchema = readJson(coreSchemaPath);
+const profileSchema = readJson(profileSchemaPath);
 const coreTypes = new Set(coreSchema?.properties?.type?.enum ?? []);
+const requiredProfileFields = new Set(profileSchema?.required ?? []);
+const allowedProfileFields = new Set(Object.keys(profileSchema?.properties ?? {}));
 const skillNames = new Set(listSkillNames());
 let profileCount = 0;
 
@@ -117,18 +121,31 @@ for (const packName of packDirs) {
     profileCount += 1;
     const profile = readJson(profilePath);
     if (!profile) continue;
+    const profileRelPath = path.relative(repoRoot, profilePath);
+
+    for (const field of requiredProfileFields) {
+      if (!Object.hasOwn(profile, field)) {
+        fail(`${profileRelPath}: missing required profile field '${field}' from templates/schemas/domain-pack-profile.schema.json`);
+      }
+    }
+
+    for (const field of Object.keys(profile)) {
+      if (!allowedProfileFields.has(field)) {
+        fail(`${profileRelPath}: unsupported profile field '${field}' according to templates/schemas/domain-pack-profile.schema.json`);
+      }
+    }
 
     if (profile.name !== packName) {
-      fail(`${path.relative(repoRoot, profilePath)}: name must match directory '${packName}'`);
+      fail(`${profileRelPath}: name must match directory '${packName}'`);
     }
 
     if (!profile.copy_to || typeof profile.copy_to !== 'string') {
-      fail(`${path.relative(repoRoot, profilePath)}: copy_to must be a non-empty string`);
+      fail(`${profileRelPath}: copy_to must be a non-empty string`);
     }
 
     for (const skillName of profile.recommended_workflow ?? []) {
       if (!skillNames.has(skillName)) {
-        fail(`${path.relative(repoRoot, profilePath)}: recommended_workflow references missing skill '${skillName}'`);
+        fail(`${profileRelPath}: recommended_workflow references missing skill '${skillName}'`);
       }
     }
 
@@ -136,17 +153,17 @@ for (const packName of packDirs) {
       const source = item?.source;
       const target = item?.target;
       if (!source || !target) {
-        fail(`${path.relative(repoRoot, profilePath)}: every templates item must include source and target`);
+        fail(`${profileRelPath}: every templates item must include source and target`);
         continue;
       }
 
       if (source.includes('..') || path.isAbsolute(source)) {
-        fail(`${path.relative(repoRoot, profilePath)}: template source '${source}' must be repository-relative`);
+        fail(`${profileRelPath}: template source '${source}' must be repository-relative`);
         continue;
       }
 
       if (!fs.existsSync(path.join(packDir, source)) && !fs.existsSync(path.join(repoRoot, source))) {
-        fail(`${path.relative(repoRoot, profilePath)}: template source '${source}' does not exist`);
+        fail(`${profileRelPath}: template source '${source}' does not exist`);
       }
     }
   }

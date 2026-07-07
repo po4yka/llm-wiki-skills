@@ -16,6 +16,19 @@ Introduce and operate LLM-Wiki in a team without creating an unreviewed official
 
 Use `references/docs/22-team-operating-model.md` as the reference operating model for roles, RACI/DACI, governance, SLOs, rituals, staffing stages, dashboards, onboarding and GitOps controls.
 
+## Starter templates
+
+Use these local templates when available:
+
+- `references/templates/team-operating-model.yaml`
+- `references/templates/team-raci-daci.yaml`
+- `references/templates/team-review-workflow.yaml`
+- `references/templates/team-slo-scorecard.yaml`
+- `references/templates/team-onboarding-checklist.md`
+- `references/templates/CODEOWNERS.llm-wiki`
+
+Copy only the templates that fit the rollout stage, then replace placeholder roles, owners, SLOs and review-state gates.
+
 ## Inputs
 
 - Team size and workflows.

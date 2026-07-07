@@ -14,8 +14,9 @@ on:
       - "pyproject.toml"
   push:
     branches: [main]
-  schedule:
-    - cron: "23 3 * * *"
+  # Enable only after the first manual run succeeds.
+  # schedule:
+  #   - cron: "23 3 * * *"
   workflow_dispatch:
 
 permissions:

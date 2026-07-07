@@ -62,7 +62,25 @@ Add domain-specific types only when necessary and map each one to a stable core 
 | `incident` | `report` | Incident review or postmortem. |
 | `customer-question` | `query` | Reusable customer/problem question. |
 
-### 4. Create `schema.overlay.json`
+### 4. Create `pack.md`
+
+Every domain pack must include `pack.md`. It is the human-readable contract that explains jobs, stable core page types, domain types, tags, recommended skills and stale policy.
+
+Required sections:
+
+```markdown
+# <Domain> domain pack
+
+## Jobs
+
+## Core page types
+
+## Domain types
+```
+
+Do not ship only machine-readable JSON; `pack.md` is what humans and agents review first.
+
+### 5. Create `schema.overlay.json`
 
 Every domain pack should include:
 
@@ -83,7 +101,31 @@ Every domain pack should include:
 
 Validate the JSON against the schema if the target repository provides one. In a single-skill install, treat this as a structural review: `name` matches the pack directory, core types stay within the stable enum, and every `domain_type` maps to one core type.
 
-### 5. Create taxonomy
+### 6. Create optional `profile.json`
+
+Use `profile.json` when the pack should provide application instructions for downstream vault setup. Validate it against `references/templates/schemas/domain-pack-profile.schema.json` when available, or mirror the same fields in a single-skill install:
+
+```json
+{
+  "name": "example-domain",
+  "version": "0.1.0",
+  "copy_to": "_meta/domain-packs/example-domain/",
+  "recommended_workflow": ["wiki-ingest", "wiki-lint"],
+  "templates": [
+    {
+      "source": "templates/wiki/concept-page.md",
+      "target": "wiki/concepts/concept-template.md"
+    }
+  ],
+  "initial_prompts": [
+    "Use llm-wiki-doctor to inspect this vault in report-only mode."
+  ]
+}
+```
+
+Profiles are reviewable instructions, not automatic migrations.
+
+### 7. Create taxonomy
 
 Define:
 
@@ -96,7 +138,7 @@ Define:
 - review gates;
 - capture channels.
 
-### 6. Create templates
+### 8. Create templates
 
 Produce templates for important domain types with frontmatter that preserves both layers:
 
@@ -108,7 +150,7 @@ status: draft
 review_required: true
 ```
 
-### 7. Add skills guidance
+### 9. Add skills guidance
 
 Recommend which skills to use first:
 
