@@ -150,6 +150,7 @@ It includes skills for:
 | [`llm-wiki-skill-compiler`](skills/llm-wiki-skill-compiler/SKILL.md) | Procedural wiki knowledge should become installable Agent Skills. |
 | [`llm-wiki-agent-memory-bridge`](skills/llm-wiki-agent-memory-bridge/SKILL.md) | The user needs boundaries between wiki, skills, instruction files and agent memory. |
 | [`llm-wiki-team-rollout`](skills/llm-wiki-team-rollout/SKILL.md) | A team wants onboarding, ownership, RACI/DACI, PR review, permissions, SLOs, dashboards, operating rituals and knowledge-maintenance workflows. |
+| [`llm-wiki-gitlab-operating-model`](skills/llm-wiki-gitlab-operating-model/SKILL.md) | A self-hosted GitLab environment needs LLM-Wiki operating-model design for groups, merge requests, CODEOWNERS, protected branches, CI/CD, runners, Pages, registries, RBAC, audit events or compliance controls. |
 
 ## Repository contents
 
