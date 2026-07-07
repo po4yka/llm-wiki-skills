@@ -1,0 +1,105 @@
+# LLM-Wiki export profile template
+# Use with llm-wiki-export-publish.
+
+profile_id: public-site
+version: "0.1.0"
+audience: public # private|internal|public|agent|api|graph|archive
+purpose: ""
+owner: ""
+reviewers: []
+
+include:
+  paths: []
+  tags: []
+  spaces: []
+  review_states:
+    - approved
+    - published
+    - verified
+  publication_states:
+    - public
+
+exclude:
+  paths:
+    - raw/**
+    - wiki/drafts/**
+    - wiki/private/**
+    - wiki/reviews/**
+  tags:
+    - private
+    - sensitive
+  review_states:
+    - draft
+    - rejected
+    - stale
+    - quarantined
+  sensitivity:
+    - sensitive
+    - regulated
+    - unknown
+  publication_states:
+    - private
+    - archived
+
+outputs:
+  static_site: true
+  markdown_bundle: true
+  llms_txt: true
+  llms_full_txt: false
+  per_page_markdown: true
+  per_page_txt: false
+  pages_jsonl: true
+  manifest_json: true
+  manifest_yaml: true
+  jsonld_graph: true
+  graphml: false
+  mermaid: false
+  graphviz_dot: false
+  cytoscape_json: false
+  openapi: false
+  mcp_manifest: false
+  archive_bundle: true
+
+site:
+  generator: mkdocs-material # mkdocs-material|docusaurus|vitepress|quartz|astro-starlight|markdown-only|other
+  output_path: exports/builds/public-site/latest/site
+  search:
+    enabled: true
+    engine: pagefind # pagefind|lunr|minisearch|algolia|none
+    include_roots: []
+    exclude_roots: []
+    inspect_index: true
+  sitemap: true
+  robots: true
+
+agent_bundle:
+  output_path: exports/builds/public-site/latest/agent
+  llms_txt_path: exports/builds/public-site/latest/llms.txt
+  llms_full_txt_path: exports/builds/public-site/latest/llms-full.txt
+  pages_jsonl_path: exports/builds/public-site/latest/pages.jsonl
+  max_llms_txt_links: 200
+  include_scope_note: true
+  include_generation_date: true
+  include_citations: true
+
+redaction:
+  required: true
+  report_path: exports/reports/public-site/latest/redaction-report.md
+  fail_on_findings: true
+  detectors: []
+
+validation:
+  require_citations: true
+  require_source_support: true
+  require_no_broken_links: true
+  require_checksums: true
+  require_export_manifest: true
+  require_search_index_allowlist: true
+  require_owner_approval: true
+
+release:
+  create_git_tag: false
+  create_github_release: false
+  artifact_name: llm-wiki-public-site
+  changelog: true
+  rollback_artifact: true
