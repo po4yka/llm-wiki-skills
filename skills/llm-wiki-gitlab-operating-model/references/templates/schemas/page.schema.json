@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/llm-wiki/page.schema.json",
+  "title": "LLM-Wiki page frontmatter",
+  "type": "object",
+  "required": [
+    "title",
+    "type",
+    "status",
+    "created",
+    "updated",
+    "review_required"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string", "minLength": 1 },
+    "type": {
+      "description": "Stable core page type used by agents and validators. Domain packs must not extend this enum; use domain_type for specialization.",
+      "type": "string",
+      "enum": ["source", "entity", "concept", "comparison", "synthesis", "query", "report"]
+    },
+    "domain_type": {
+      "description": "Optional domain-specific page type supplied by a domain pack, for example decision, module, paper, competitor, runbook, signal.",
+      "type": ["string", "null"],
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "domain_pack": {
+      "description": "Optional domain pack identifier that defines allowed domain_type values.",
+      "type": ["string", "null"],
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "schema_version": { "type": ["string", "null"] },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "verified", "stale", "archived"]
+    },
+    "created": { "type": "string" },
+    "updated": { "type": "string" },
+    "source_paths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_urls": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_hashes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "ai_generated": { "type": "boolean" },
+    "ai_model": { "type": "string" },
+    "ai_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "claim_mix": {
+      "type": "object",
+      "properties": {
+        "extracted": { "type": "number", "minimum": 0, "maximum": 1 },
+        "inferred": { "type": "number", "minimum": 0, "maximum": 1 },
+        "ambiguous": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "review_required": { "type": "boolean" },
+    "last_linted": { "type": ["string", "null"] },
+    "stale_after": { "type": ["string", "null"] },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

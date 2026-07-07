@@ -81,11 +81,7 @@ Every domain pack should include:
 }
 ```
 
-Run or recommend:
-
-```bash
-npm run validate:domain-packs
-```
+Validate the JSON against the schema if the target repository provides one. In a single-skill install, treat this as a structural review: `name` matches the pack directory, core types stay within the stable enum, and every `domain_type` maps to one core type.
 
 ### 5. Create taxonomy
 

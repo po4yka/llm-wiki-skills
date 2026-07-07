@@ -68,7 +68,7 @@ _agent/reports/
 _meta/schemas/
 ```
 
-Copy or adapt templates from `templates/` when available.
+Copy or adapt existing vault templates when the target repository already has them. If this skill is installed by itself, create the files directly from the structure above instead of assuming a packaged `templates/` directory exists.
 
 ### 4. Install skills
 

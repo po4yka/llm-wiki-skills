@@ -1,0 +1,90 @@
+# LLM-Wiki source manifest template
+# Use with llm-wiki-ingestion-stack and wiki-ingest.
+
+source_id: ""
+source_type: pdf # pdf|scan|web|audio|video|repo|chat|email|table|image|other
+original_uri: ""
+stored_path: "raw/sources/<source_id>/original"
+content_sha256: ""
+captured_at: "YYYY-MM-DDTHH:MM:SSZ"
+captured_by: human # human|agent|connector|importer
+capture_method: manual # manual|watch-folder|api|export|crawler|repo-scan
+mime_type: ""
+size_bytes: 0
+language: ""
+title: ""
+owner: ""
+sensitivity: unknown # public|internal|sensitive|regulated|unknown
+retention_class: default # default|short|long|archive|do-not-retain
+model_policy: unknown # local-only|cloud-allowed|redacted-cloud|unknown
+
+classification:
+  tenant_id: ""
+  acl_tags: []
+  publication_state: private # private|internal|public|archived
+
+parser:
+  name: ""
+  version: ""
+  command: ""
+  container_image: ""
+  options: {}
+  ocr_engine: ""
+  ocr_languages: []
+  asr_model: ""
+
+extraction:
+  status: pending # pending|success|partial|failed|quarantined
+  quality: medium # high|medium|low|failed
+  output_paths:
+    markdown: "raw/extracted/<source_id>/content.md"
+    json: "raw/extracted/<source_id>/document.json"
+    chunks: "raw/extracted/<source_id>/chunks.jsonl"
+  warnings: []
+  pages_count: null
+  chunks_count: null
+  duplicate_chunk_rate: null
+  text_coverage: null
+
+provenance:
+  anchors:
+    page: false
+    slide: false
+    timestamp: false
+    message: false
+    row: false
+    symbol: false
+    bbox: false
+  archive_ref: ""
+  upstream_revision: ""
+  upstream_cursor: ""
+
+sync:
+  source_cursor: ""
+  last_seen_at: "YYYY-MM-DDTHH:MM:SSZ"
+  previous_sha256: ""
+  current_sha256: ""
+  change_type: new # new|updated|unchanged|deleted|renamed
+  dedupe_key: ""
+  canonical_source_id: ""
+
+security:
+  scanned_for_sensitive_data: false
+  redaction_report: ""
+  prompt_injection_review: pending # pending|passed|failed|not-applicable
+  parser_sandboxed: false
+  external_processing_approved: false
+
+review:
+  required: true
+  state: draft # draft|reviewed|verified|rejected|quarantined
+  reviewer: ""
+  reviewed_at: ""
+  notes: ""
+
+derived:
+  source_page: "wiki/sources/<source_id>.md"
+  entity_pages: []
+  concept_pages: []
+  synthesis_pages: []
+  indexes: []

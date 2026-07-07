@@ -10,6 +10,11 @@ const promptOutPath = path.join(smokeRoot, 'llm-wiki-faq.prompt.md');
 const source = repoRoot;
 const requiredSkill = 'llm-wiki-faq';
 const requiredListItems = ['llm-wiki-faq', 'wiki-ingest', 'llm-wiki-domain-pack'];
+const allSkillNames = fs
+  .readdirSync(path.join(repoRoot, 'skills'), { withFileTypes: true })
+  .filter((entry) => entry.isDirectory() && fs.existsSync(path.join(repoRoot, 'skills', entry.name, 'SKILL.md')))
+  .map((entry) => entry.name)
+  .sort();
 
 function run(args, options = {}) {
   const command = ['npx', '--yes', cliPackage, ...args];
@@ -69,6 +74,54 @@ function assertIncludes(text, needle, label) {
   }
 }
 
+function parseSkillName(text) {
+  const match = text.match(/^name:\s*([a-z0-9-]+)\s*$/m);
+  return match?.[1] ?? null;
+}
+
+function findInstalledSkillRoot(skillName) {
+  const matches = findFiles(projectRoot, (filePath) => path.basename(filePath) === 'SKILL.md').filter((filePath) => {
+    return parseSkillName(readText(filePath)) === skillName;
+  });
+
+  if (matches.length !== 1) {
+    const installed = findFiles(projectRoot, (filePath) => path.basename(filePath) === 'SKILL.md')
+      .map((filePath) => path.relative(projectRoot, filePath))
+      .join('\n');
+    throw new Error(`expected exactly one installed ${skillName} SKILL.md, found ${matches.length}. Installed SKILL.md files:\n${installed || '(none)'}`);
+  }
+
+  return path.dirname(matches[0]);
+}
+
+function assertStandaloneSkill(skillRoot, skillName) {
+  const skillText = readText(path.join(skillRoot, 'SKILL.md'));
+  const rootRefPattern = /`((?:docs|templates|benchmarks|domain-packs|policies|examples)\/[^`]+)`/g;
+  const npmRunPattern = /`?npm run [^`\n]+`?/g;
+  const localRefPattern = /`((?:references|scripts|assets)\/[^`]+)`/g;
+  const missingRefs = [];
+
+  for (const match of skillText.matchAll(rootRefPattern)) {
+    throw new Error(`${skillName}: SKILL.md references repository-root file '${match[1]}' instead of a file inside the skill directory`);
+  }
+
+  for (const match of skillText.matchAll(npmRunPattern)) {
+    throw new Error(`${skillName}: SKILL.md advertises package.json command '${match[0]}' that is not shipped with a single-skill install`);
+  }
+
+  for (const match of skillText.matchAll(localRefPattern)) {
+    const rel = match[1].replace(/\/\*\*$/, '');
+    const abs = path.join(skillRoot, rel);
+    if (!fs.existsSync(abs)) {
+      missingRefs.push(match[1]);
+    }
+  }
+
+  if (missingRefs.length > 0) {
+    throw new Error(`${skillName}: missing installed local references:\n${missingRefs.map((ref) => `- ${ref}`).join('\n')}`);
+  }
+}
+
 function resetSmokeRoot() {
   fs.rmSync(smokeRoot, { recursive: true, force: true });
   fs.mkdirSync(projectRoot, { recursive: true });
@@ -90,25 +143,15 @@ assertIncludes(promptOutput, 'Evidence policy', 'skills use output');
 fs.writeFileSync(promptOutPath, promptOutput);
 console.log(`wrote ${path.relative(repoRoot, promptOutPath)}`);
 
-console.log('\n## Smoke 3: install one skill into a temporary project for Claude Code');
-run(['add', source, '--skill', requiredSkill, '-a', 'claude-code', '--copy', '-y'], {
-  cwd: projectRoot,
-});
+console.log('\n## Smoke 3: install every skill into a temporary project for Claude Code');
+for (const skillName of allSkillNames) {
+  run(['add', source, '--skill', skillName, '-a', 'claude-code', '--copy', '-y'], {
+    cwd: projectRoot,
+  });
 
-const installedSkillFiles = findFiles(projectRoot, (filePath) => path.basename(filePath) === 'SKILL.md');
-const matchingSkillFiles = installedSkillFiles.filter((filePath) => {
-  const text = readText(filePath);
-  return text.includes(`name: ${requiredSkill}`);
-});
-
-if (matchingSkillFiles.length === 0) {
-  const installed = installedSkillFiles.map((filePath) => path.relative(projectRoot, filePath)).join('\n');
-  throw new Error(`installed ${requiredSkill} SKILL.md not found. Installed SKILL.md files:\n${installed || '(none)'}`);
-}
-
-console.log('installed skill files:');
-for (const filePath of matchingSkillFiles) {
-  console.log(`- ${path.relative(projectRoot, filePath)}`);
+  const skillRoot = findInstalledSkillRoot(skillName);
+  assertStandaloneSkill(skillRoot, skillName);
+  console.log(`installed standalone skill: ${skillName} -> ${path.relative(projectRoot, skillRoot)}`);
 }
 
 console.log('\n✓ skills distribution smoke test passed');

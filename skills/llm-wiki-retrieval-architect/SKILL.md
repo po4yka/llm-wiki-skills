@@ -14,7 +14,7 @@ metadata:
 
 Choose the smallest retrieval tier that solves the user's measured retrieval failure while preserving inspectable Markdown, provenance, access filters and rebuildable indexes.
 
-Use `docs/16-retrieval-architecture.md` as the reference playbook for detailed technology comparisons, metadata schema, GraphRAG lane design, evaluation gates, security controls and source URLs to re-check.
+Use `references/docs/16-retrieval-architecture.md` as the reference playbook for detailed technology comparisons, metadata schema, GraphRAG lane design, evaluation gates, security controls and source URLs to re-check.
 
 ## Inputs
 

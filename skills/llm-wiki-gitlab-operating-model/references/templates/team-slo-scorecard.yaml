@@ -1,0 +1,105 @@
+# LLM-Wiki team SLO and operating scorecard template
+# Use with llm-wiki-team-rollout and llm-wiki-eval-tooling.
+
+metadata:
+  scorecard_id: llm-wiki-team-ops
+  version: "0.1.0"
+  generated_at: "YYYY-MM-DDTHH:MM:SSZ"
+  team: ""
+  stage: pilot # pilot|early-production|business-critical|regulated-or-24x7
+  review_period: monthly # weekly|monthly|quarterly
+
+summary:
+  status: report-only # pass|warn|fail|report-only
+  decision: continue # continue|continue-with-gates|pause|redesign
+  top_regressions: []
+  top_improvements: []
+  required_actions: []
+
+delivery:
+  metrics:
+    deployment_frequency: null
+    lead_time_for_changes_hours: null
+    change_failure_rate: null
+    mttr_hours: null
+  notes: ""
+
+reliability:
+  slos:
+    retrieval_api_availability: "99.5% monthly"
+    retrieval_p95_latency_ms: 1500
+    index_freshness_hours: 24
+    export_pipeline_success_rate: "99% monthly"
+  metrics:
+    retrieval_api_availability: null
+    retrieval_p95_latency_ms: null
+    index_freshness_hours_p95: null
+    export_pipeline_success_rate: null
+    incident_count: 0
+    mttr_hours: null
+
+quality:
+  gates:
+    retrieval_recall_at_10_min: 0.80
+    citation_coverage_min: 0.90
+    material_unsupported_claims_max: 0
+  metrics:
+    retrieval_recall_at_10: null
+    query_success_rate: null
+    citation_coverage: null
+    unsupported_claim_rate: null
+    eval_gate_pass_rate: null
+    human_correction_rate: null
+
+wiki_operations:
+  gates:
+    median_review_age_days_max: 7
+    high_risk_review_age_days_max: 3
+    stale_page_rate_max: 0.10
+    broken_verified_links_max: 0
+  metrics:
+    review_backlog_count: 0
+    median_review_age_days: null
+    high_risk_items_over_sla: 0
+    stale_page_rate: null
+    provenance_coverage: null
+    broken_verified_links: 0
+
+security:
+  gates:
+    blocking_redaction_findings_max: 0
+    cross_tenant_leaks_max: 0
+    approval_bypass_max: 0
+  metrics:
+    blocking_redaction_findings: 0
+    policy_bypasses: 0
+    cross_tenant_leaks: 0
+    open_security_exceptions: 0
+    high_findings_age_days_p95: null
+
+adoption:
+  metrics:
+    active_users: null
+    answer_reuse_rate: null
+    docs_read_write_ratio: null
+    onboarding_questions_answered: null
+    output_beyond_vault_count: null
+    team_satisfaction_score: null
+
+team_health:
+  gates:
+    toil_percentage_max: 0.35
+    pager_load_hours_per_person_week_max: 8
+  metrics:
+    toil_percentage: null
+    pager_load_hours_per_person_week: null
+    meeting_load_hours_per_week: null
+    ramp_time_days_median: null
+    health_monitor_score: null
+
+follow_up:
+  actions:
+    - owner: ""
+      action: ""
+      priority: high # high|medium|low
+      due: "YYYY-MM-DD"

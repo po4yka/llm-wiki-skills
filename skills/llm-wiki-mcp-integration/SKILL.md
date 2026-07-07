@@ -14,7 +14,7 @@ metadata:
 
 Expose LLM-Wiki knowledge to agent clients through MCP or a local/remote API while keeping raw sources, retrieval filters, write permissions, review gates and audit logs explicit.
 
-Use `docs/17-mcp-api-integration.md` as the reference playbook for the detailed MCP/API architecture, resource/tool contracts, auth/governance model, client compatibility, deployment patterns and testing checklist.
+Use `references/docs/17-mcp-api-integration.md` as the reference playbook for the detailed MCP/API architecture, resource/tool contracts, auth/governance model, client compatibility, deployment patterns and testing checklist.
 
 ## Inputs
 

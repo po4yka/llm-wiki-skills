@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-threat-model
-description: Build a security threat model for an LLM-Wiki system. Use when the user asks for STRIDE/LINDDUN/PASTA-style threat modeling, trust-boundary analysis, attack-surface mapping, risk matrix, security architecture, red-team plan, or rollout controls for ingestion, retrieval, MCP/API, agents, writes, exports and CI.
+description: Build a formal threat model for an LLM-Wiki system. Use when the user asks for STRIDE, LINDDUN, PASTA, trust-boundary diagrams, attack-surface mapping, risk matrices, red-team scenarios, or security architecture controls.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current vendor, MCP, OWASP, CVE and tooling docs before making current security claims or version-specific recommendations.
 metadata:
@@ -14,7 +14,7 @@ metadata:
 
 Produce a threat model for an LLM-Wiki system that maps trust boundaries, attack surfaces, prioritized threats, controls, CI gates, red-team scenarios and incident response.
 
-Use `docs/19-security-threat-model.md` as the reference architecture and control baseline.
+Use `references/docs/19-security-threat-model.md` as the reference architecture and control baseline.
 
 ## Inputs
 
@@ -143,13 +143,13 @@ Include tests for:
 
 Depending on the user's repo, propose or add:
 
-- `docs/19-security-threat-model.md`;
-- `templates/security-scorecard.yaml`;
-- `templates/mcp-security-profile.yaml`;
-- `templates/promptfoo-llm-wiki-redteam.yaml`;
-- `templates/llm-wiki-security.github-actions.yml`;
-- `policies/redaction-retention-policy.md`;
-- `policies/review-incident-response.md`;
+- `references/docs/19-security-threat-model.md`;
+- `references/templates/security-scorecard.yaml`;
+- `references/templates/mcp-security-profile.yaml`;
+- `references/templates/promptfoo-llm-wiki-redteam.yaml`;
+- `references/templates/llm-wiki-security.github-actions.yml`;
+- `references/policies/redaction-retention-policy.md`;
+- `references/policies/review-incident-response.md`;
 - `.github/CODEOWNERS` updates;
 - CI workflow or pre-commit hooks.
 

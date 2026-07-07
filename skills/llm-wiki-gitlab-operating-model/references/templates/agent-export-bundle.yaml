@@ -1,0 +1,87 @@
+# LLM-Wiki agent-readable export bundle template
+# Use with llm-wiki-export-publish.
+
+bundle_id: agent-bundle
+version: "0.1.0"
+profile_id: public-site
+audience: agent
+owner: ""
+
+outputs:
+  root: exports/builds/agent-bundle/latest
+  llms_txt: exports/builds/agent-bundle/latest/llms.txt
+  llms_full_txt: exports/builds/agent-bundle/latest/llms-full.txt
+  pages_jsonl: exports/builds/agent-bundle/latest/pages.jsonl
+  pages_markdown_dir: exports/builds/agent-bundle/latest/pages-md/
+  pages_txt_dir: exports/builds/agent-bundle/latest/pages-txt/
+  manifest_json: exports/builds/agent-bundle/latest/manifest.json
+  checksums: exports/builds/agent-bundle/latest/checksums.sha256
+
+llms_txt:
+  title: "LLM-Wiki Export"
+  description: "Reviewed pages exported for agent use."
+  include_scope_note: true
+  include_generation_date: true
+  include_profile_id: true
+  max_links: 200
+  sections:
+    - title: Start here
+      include_tags: [overview, index]
+    - title: Concepts
+      include_paths: [wiki/concepts/**]
+    - title: Reference
+      include_paths: [wiki/synthesis/**, wiki/sources/**]
+  disallow_inline_private_context: true
+
+llms_full_txt:
+  enabled: false
+  reason_required: true
+  max_size_mb: 10
+  require_security_review: true
+  require_owner_approval: true
+
+page_record_schema:
+  required_fields:
+    - id
+    - title
+    - source_path
+    - export_path
+    - review_state
+    - publication_state
+    - sensitivity
+    - updated_at
+    - citations
+    - checksum
+  include_body_markdown: true
+  include_summary: true
+  include_backlinks: true
+  include_claim_support_counts: true
+
+eligibility:
+  review_states:
+    - approved
+    - published
+    - verified
+  publication_states:
+    - public
+  sensitivity:
+    - public
+  exclude_paths:
+    - raw/**
+    - wiki/private/**
+    - wiki/drafts/**
+    - wiki/reviews/**
+
+validation:
+  require_valid_citations: true
+  require_no_broken_links: true
+  require_no_private_paths: true
+  require_redaction_report: true
+  require_checksums: true
+  fail_on_unknown_sensitivity: true
+
+metadata:
+  generator: ""
+  generated_at: "YYYY-MM-DDTHH:MM:SSZ"
+  wiki_revision: ""
+  export_manifest: ""

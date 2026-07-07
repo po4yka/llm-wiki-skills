@@ -14,7 +14,7 @@ metadata:
 
 Introduce and operate LLM-Wiki in a team without creating an unreviewed official-looking slop layer or a hidden reliability burden.
 
-Use `docs/22-team-operating-model.md` as the reference operating model for roles, RACI/DACI, governance, SLOs, rituals, staffing stages, dashboards, onboarding and GitOps controls.
+Use `references/docs/22-team-operating-model.md` as the reference operating model for roles, RACI/DACI, governance, SLOs, rituals, staffing stages, dashboards, onboarding and GitOps controls.
 
 ## Inputs
 

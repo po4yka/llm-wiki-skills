@@ -1,0 +1,18 @@
+version: 1
+mode: preview-first
+exclude_by_default:
+  statuses:
+    - draft
+  privacy:
+    - sensitive
+    - regulated
+patterns:
+  email: "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+  phone: "\\+?[0-9][0-9 .()\\-]{7,}[0-9]"
+  secret_like: "(?i)(api[_-]?key|token|secret|password|bearer)[:=][^\\s]+"
+  internal_url: "https?://(localhost|127\\.0\\.0\\.1|[^/]*\\.internal)(/[^\\s)]*)?"
+placeholders:
+  email: "[REDACTED_EMAIL]"
+  phone: "[REDACTED_PHONE]"
+  secret_like: "[REDACTED_SECRET]"
+  internal_url: "[REDACTED_INTERNAL_URL]"

@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-eval-tooling
-description: Map LLM-Wiki evaluation goals to concrete tools, datasets, scorecards and CI gates. Use when the user wants Ragas, promptfoo, DeepEval, TruLens, LangSmith, OpenAI Evals/API Evals, Phoenix/Arize, retrieval metrics, red-team tests, prompt regression tests, human calibration, or a with-wiki versus without-wiki benchmark.
+description: Select evaluation tooling for an LLM-Wiki. Use when the user asks which eval framework, dataset format, scorecard, CI gate, red-team config, prompt regression test, or human calibration workflow to use.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current tool docs before giving package commands, metric names, license, pricing, hosted/self-hosted, deprecation or integration details.
 metadata:
@@ -14,7 +14,7 @@ metadata:
 
 Turn LLM-Wiki usefulness, retrieval quality, grounding, security and maintenance questions into measurable tests, scorecards and repeatable CI/review gates.
 
-Use `docs/18-evaluation-methodology.md` as the reference methodology for metric definitions, experiment design, dataset construction, CI strategy and rollout.
+Use `references/docs/18-evaluation-methodology.md` as the reference methodology for metric definitions, experiment design, dataset construction, CI strategy and rollout.
 
 ## Inputs
 
@@ -203,10 +203,10 @@ Every eval report should include:
 
 Recommended templates:
 
-- `templates/retrieval-eval-set.yaml` for retrieval qrels and gates.
-- `templates/eval-scorecard.yaml` for multi-layer scorecards.
-- `templates/promptfoo-llm-wiki.yaml` for CI/rubric/security eval configuration.
-- `templates/llm-wiki-evals.github-actions.yml` for a GitHub Actions starter workflow.
+- `references/templates/retrieval-eval-set.yaml` for retrieval qrels and gates.
+- `references/templates/eval-scorecard.yaml` for multi-layer scorecards.
+- `references/templates/promptfoo-llm-wiki.yaml` for CI/rubric/security eval configuration.
+- `references/templates/llm-wiki-evals.github-actions.yml` for a GitHub Actions starter workflow.
 
 ## Output
 

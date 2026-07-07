@@ -1,0 +1,150 @@
+# LLM-Wiki MCP/API security profile template
+# Use with llm-wiki-threat-model, llm-wiki-security-review and llm-wiki-mcp-integration.
+
+name: llm-wiki-mcp
+version: "0.1.0"
+owner: ""
+reviewed_at: "YYYY-MM-DD"
+
+transport:
+  preferred: stdio # stdio|localhost-http|streamable-http|mixed
+  allow_stdio: true
+  allow_http: false
+  allow_remote_http: false
+
+http:
+  bind: 127.0.0.1
+  path: /mcp
+  auth_required: true
+  origin_validation: true
+  dns_rebinding_protection: true
+  rate_limits:
+    search_per_minute: 60
+    read_per_minute: 300
+    proposal_per_minute: 10
+    admin_active_tasks_per_user: 1
+
+auth:
+  mode: local-token # local-token|api-key|oauth2|enterprise-managed|github-app|none
+  allow_none: false
+  scopes:
+    wiki:read:
+      description: Search/read allowed wiki resources.
+    wiki:lint:
+      description: Run/read bounded lint reports.
+    wiki:propose:
+      description: Create proposals/patches only.
+    wiki:review:
+      description: Review proposals.
+    wiki:admin:
+      description: Reindex, rescan, export, publish or approve.
+  token_passthrough_allowed: false
+
+resources:
+  read_only:
+    - wiki://manifest
+    - wiki://index
+    - wiki://page/{space}/{slug}
+    - wiki://page/{space}/{slug}/history
+    - wiki://page/{space}/{slug}/lint
+    - wiki://manifest/{source_id}
+    - wiki://graph/neighbors/{space}/{slug}
+    - wiki://review/unresolved
+  forbidden_by_default:
+    - raw://source/{source_id}/content
+    - file://*
+
+tools:
+  read_only:
+    - name: search_wiki
+      required_scope: wiki:read
+      enabled_for_cloud_clients: true
+    - name: read_page
+      required_scope: wiki:read
+      enabled_for_cloud_clients: true
+    - name: read_source_manifest
+      required_scope: wiki:read
+      enabled_for_cloud_clients: false
+    - name: graph_neighborhood
+      required_scope: wiki:read
+      enabled_for_cloud_clients: true
+    - name: run_lint
+      required_scope: wiki:lint
+      enabled_for_cloud_clients: false
+  proposal_write:
+    - name: draft_page_patch
+      required_scope: wiki:propose
+      enabled: false
+      creates_direct_write: false
+    - name: propose_new_page
+      required_scope: wiki:propose
+      enabled: false
+      creates_direct_write: false
+    - name: create_pr_from_proposal
+      required_scope: wiki:propose
+      enabled: false
+      creates_direct_write: false
+  admin:
+    - name: rebuild_index
+      required_scope: wiki:admin
+      enabled: false
+    - name: rescan_sources
+      required_scope: wiki:admin
+      enabled: false
+    - name: export_subset
+      required_scope: wiki:admin
+      enabled: false
+    - name: approve_proposal
+      required_scope: wiki:admin
+      enabled: false
+
+retrieval_policy:
+  production_review_states:
+    - approved
+    - verified
+    - published
+  excluded_review_states:
+    - draft
+    - rejected
+    - stale
+    - quarantined
+  required_filters:
+    - tenant_id
+    - sensitivity
+    - review_state
+    - publication_state
+  allow_raw_source_reads_in_high_privilege_flows: false
+  allow_unreviewed_retrieval: false
+
+approvals:
+  require_user_confirmation_for:
+    - proposal_write
+    - admin
+  require_codeowners_for:
+    - wiki/policies/**
+    - wiki/security/**
+    - .github/**
+    - templates/**
+    - skills/**
+    - policies/**
+  self_approval_allowed: false
+
+audit:
+  enabled: true
+  destination: .llm-wiki/audit.jsonl
+  include_sensitive_arguments: false
+  include_argument_hash: true
+  events:
+    - sensitive_read
+    - proposal_created
+    - proposal_approved
+    - admin_tool_invoked
+    - export_created
+    - denied_tool_call
+
+security_tests:
+  prompt_injection_fixtures: true
+  mcp_tool_abuse_tests: true
+  canary_secret_tests: true
+  cross_tenant_tests: true
+  export_redaction_tests: true

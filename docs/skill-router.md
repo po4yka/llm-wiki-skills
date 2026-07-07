@@ -155,7 +155,7 @@ Need to recover why decisions were made (ADRs, decision memory)?
 Contradictions?
   -> llm-wiki-conflict-resolver
 
-Worried about slop, context poisoning, consensus smoothing, cognitive debt, drift or write-only archive risk?
+Need an adversarial risk report on slop, context poisoning, consensus smoothing, cognitive debt, drift or write-only archive behavior?
   -> llm-wiki-critique-audit
 
 Need anti-slop controls audited in an existing vault?
@@ -186,10 +186,10 @@ Worried the wiki will not fit in context?
 ## Governance
 
 ```text
-Security and data boundaries?
+Is an existing setup safe enough, or are data boundaries unclear?
   -> llm-wiki-security-review
 
-Need a structured threat model (STRIDE, trust boundaries, risk matrix)?
+Need a structured threat model (STRIDE, trust-boundary diagram, attack surface, risk matrix)?
   -> llm-wiki-threat-model
 
 Sensitive data, PII, customer data or secrets in sources?

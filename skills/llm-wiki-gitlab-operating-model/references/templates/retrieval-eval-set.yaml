@@ -1,0 +1,85 @@
+# LLM-Wiki retrieval evaluation set template
+# Use with llm-wiki-retrieval-architect and llm-wiki-eval-tooling.
+
+metadata:
+  name: "retrieval-pilot"
+  version: "0.1.0"
+  created_at: "YYYY-MM-DD"
+  corpus_scope: "wiki|repo-docs|personal-vault|team-wiki|product"
+  retrieval_stack: "rg|sqlite-fts|hybrid|qdrant|weaviate|opensearch|pgvector|graph|other"
+  notes: ""
+
+default_filters:
+  tenant_id: ""
+  review_state:
+    - approved
+    - published
+    - verified
+  publication_state_exclude:
+    - archived
+  sensitivity_allowed:
+    - public
+    - internal
+
+metrics:
+  retrieval:
+    recall_at_k:
+      k: [5, 10]
+      min: 0.8
+    mrr_min: 0.7
+    ndcg_at_10_min: 0.75
+  grounding:
+    citation_coverage_min: 0.9
+    unsupported_claims_max: 0
+  security:
+    permission_filter_failures_max: 0
+    sensitive_snippet_leaks_max: 0
+  operations:
+    p95_retrieval_latency_ms_max: 1500
+    freshness_lag_hours_max: 24
+
+questions:
+  - id: q001
+    question: ""
+    query_type: exact # exact|conceptual|synthesis|multi-hop|recent|sensitive
+    expected_answer_traits: []
+    required_pages: []
+    required_sources: []
+    forbidden_sources: []
+    required_chunks: []
+    relevant_chunks:
+      # chunk_id: graded relevance 0-3
+      # wiki/page.md#heading: 3
+    required_filters:
+      tenant_id: ""
+      review_state:
+        - approved
+        - published
+    must_cite_sources: true
+    notes: ""
+
+  - id: q002
+    question: ""
+    query_type: conceptual
+    expected_answer_traits: []
+    required_pages: []
+    required_sources: []
+    forbidden_sources: []
+    required_chunks: []
+    relevant_chunks: {}
+    required_filters: {}
+    must_cite_sources: true
+    notes: ""
+
+  - id: q003
+    question: ""
+    query_type: multi-hop
+    expected_answer_traits: []
+    required_pages: []
+    required_sources: []
+    forbidden_sources: []
+    required_chunks: []
+    relevant_chunks: {}
+    required_filters: {}
+    must_cite_sources: true
+    notes: ""

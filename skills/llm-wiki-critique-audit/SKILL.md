@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-critique-audit
-description: Audit an LLM-Wiki proposal, domain, vault, team rollout, or product plan against the strongest known criticisms of the LLM-Wiki pattern. Use when the user asks what could go wrong, whether a domain is a bad fit, how to mitigate slop/cognitive debt/drift/token cost/prompt injection, or how to answer serious objections honestly.
+description: Audit an LLM-Wiki proposal, domain, vault, rollout, or product plan for failure modes. Use when the user wants a risk report, bad-fit assessment, mitigation plan, or adversarial critique of slop, cognitive debt, drift, token cost, prompt injection, or write-only archive behavior.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh sources for current benchmark, provider, tool or security claims.
 metadata:
@@ -32,12 +32,12 @@ Use when the user asks:
 
 Read these when available:
 
-- `docs/22-criticism-and-mitigations.md`
+- `references/docs/22-criticism-and-mitigations.md`
 - `skills/llm-wiki-faq/references/criticism-pack.md`
-- `docs/04-anti-slop-and-trust.md`
-- `docs/08-evaluation-and-metrics.md`
-- `docs/security/skill-supply-chain.md`
-- `docs/20-ingestion-pipelines.md`
+- `references/docs/04-anti-slop-and-trust.md`
+- `references/docs/08-evaluation-and-metrics.md`
+- `references/docs/security/skill-supply-chain.md`
+- `references/docs/20-ingestion-pipelines.md`
 
 ## Procedure
 

@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-capture-pipeline
-description: Design capture and inbox pipelines for LLM-Wiki users. Use when the user wants web clips, PDFs, voice transcripts, chat exports, Telegram, email, GitHub discussions, code-session notes, or other streams to flow into raw/inbox folders before triage and ingestion.
+description: Design the cross-channel capture architecture for LLM-Wiki. Use when the user wants an inbox/raw pipeline, dedupe policy, metadata contract, triage handoff, or capture-to-ingestion flow before choosing channel-specific connectors.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. May require browsing official API docs for current connector setup.
 metadata:
@@ -60,7 +60,7 @@ Every captured item should include:
 
 ```yaml
 captured_at: YYYY-MM-DDTHH:mm:ssZ
-captured_by: web|voice|telegram|email|chat|manual|github|other
+capture_channel: web|voice|telegram|email|chat|manual|github|other
 source_url: ""
 source_author: ""
 source_channel: ""

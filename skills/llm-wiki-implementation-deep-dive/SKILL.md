@@ -63,7 +63,7 @@ Create a matrix with these columns:
 |---|---|---|---|---|---|---|---|---|---|---|---|
 ```
 
-Use `docs/15-implementation-deep-dive.md` as a baseline, then refresh facts with browsing.
+Use `references/docs/15-implementation-deep-dive.md` as a baseline, then refresh facts with browsing.
 
 ### 4. Extract architectural lessons
 
@@ -99,9 +99,9 @@ Route by use case:
 
 If the user is maintaining `llm-wiki-skills`, propose or implement updates to:
 
-- `docs/13-ecosystem-matrix.md` for registry changes;
-- `docs/14-technology-stack.md` for stack choices;
-- `docs/15-implementation-deep-dive.md` for architecture-level findings;
+- `references/docs/13-ecosystem-matrix.md` for registry changes;
+- `references/docs/14-technology-stack.md` for stack choices;
+- `references/docs/15-implementation-deep-dive.md` for architecture-level findings;
 - related skills such as `llm-wiki-ecosystem-registry`, `llm-wiki-retrieval-architect`, `llm-wiki-mcp-integration`, `llm-wiki-security-review`, and `llm-wiki-eval-tooling`.
 
 ## Output

@@ -14,7 +14,7 @@ metadata:
 
 Turn messy source material into preserved raw sources, normalized manifests, evaluated extraction artifacts and reviewable wiki drafts without losing provenance or trusting generated summaries as evidence.
 
-Use `docs/20-ingestion-pipelines.md` as the reference architecture for source taxonomy, pipeline archetypes, tool choices, manifests, chunk schemas, quality gates, sync/dedupe and rollout.
+Use `references/docs/20-ingestion-pipelines.md` as the reference architecture for source taxonomy, pipeline archetypes, tool choices, manifests, chunk schemas, quality gates, sync/dedupe and rollout.
 
 ## Inputs
 

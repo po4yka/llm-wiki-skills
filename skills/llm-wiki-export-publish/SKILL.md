@@ -14,7 +14,7 @@ metadata:
 
 Turn private or internal LLM-Wiki content into safe, scoped, versioned and provenance-preserving outputs for humans, agents, APIs, graphs or archives.
 
-Use `docs/21-publishing-export.md` as the reference architecture for export profiles, human/agent/API/graph/archive targets, redaction, manifests, CI gates, release workflows and rollout.
+Use `references/docs/21-publishing-export.md` as the reference architecture for export profiles, human/agent/API/graph/archive targets, redaction, manifests, CI gates, release workflows and rollout.
 
 ## Inputs
 

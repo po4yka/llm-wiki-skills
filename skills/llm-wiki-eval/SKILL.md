@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-eval
-description: Evaluate whether an LLM-Wiki is actually useful, grounded and maintainable. Use to measure retrieval hit rate, answer reuse, read/write ratio, review backlog, stale verified pages, unsupported claims, citation coverage, with-wiki versus without-wiki answer quality, and continue/pause/redesign decisions.
+description: Define and run LLM-Wiki quality measurement. Use when the user wants metrics for usefulness, grounding, maintenance health, review backlog, stale pages, unsupported claims, citation coverage, or operational decision gates.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki; optional write access for evaluation reports.
 metadata:
@@ -14,7 +14,7 @@ metadata:
 
 Measure whether the wiki improves real work instead of merely accumulating attractive notes.
 
-Use `docs/18-evaluation-methodology.md` for the detailed methodology: retrieval metrics, grounding metrics, with-wiki experiments, human calibration, operational health, security gates and rollout roadmap.
+Use `references/docs/18-evaluation-methodology.md` for the detailed methodology: retrieval metrics, grounding metrics, with-wiki experiments, human calibration, operational health, security gates and rollout roadmap.
 
 ## Inputs
 

@@ -58,7 +58,7 @@ Use exact search for user terms, synonyms, entity names, wikilink targets, front
 For each important claim, classify support:
 
 ```text
-source-backed | wiki-backed | inferred | missing | conflicting
+extracted | inferred | ambiguous | synthesis | unsupported | conflicting
 ```
 
 Use raw sources when the claim is high-impact, current, legal/financial/medical/security-relevant, or the wiki page is stale.

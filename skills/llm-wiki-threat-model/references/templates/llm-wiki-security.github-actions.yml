@@ -1,0 +1,110 @@
+name: llm-wiki-security
+
+on:
+  pull_request:
+    paths:
+      - "raw/**"
+      - "wiki/**"
+      - "skills/**"
+      - "templates/**"
+      - "policies/**"
+      - ".github/**"
+      - "package-lock.json"
+      - "requirements*.txt"
+      - "pyproject.toml"
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  security-events: write
+
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Gitleaks scan
+        uses: gitleaks/gitleaks-action@v2
+      - name: detect-secrets baseline check
+        run: |
+          python -m pip install --upgrade pip
+          pip install detect-secrets
+          if [ -f .secrets.baseline ]; then
+            git ls-files -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline
+          else
+            detect-secrets scan --all-files
+          fi
+
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dependency review
+        uses: actions/dependency-review-action@v4
+
+  osv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: OSV Scanner
+        uses: google/osv-scanner-action@v1
+        with:
+          scan-args: |-
+            --recursive
+            ./
+
+  semgrep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Semgrep scan
+        run: |
+          python -m pip install --upgrade pip
+          pip install semgrep
+          semgrep scan --config auto
+
+  llm-redteam:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run promptfoo LLM-Wiki red-team
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -f evals/redteam.yaml ]; then
+            redteam_config=evals/redteam.yaml
+          else
+            redteam_config=templates/promptfoo-llm-wiki-redteam.yaml
+          fi
+
+          npx promptfoo@latest redteam run \
+            --config "$redteam_config"
+
+  pii-and-export-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PII/export policy placeholder
+        run: |
+          echo "Replace with Presidio/scrubadub/custom export-manifest checks."
+          test ! -d exports || echo "Check exports/ against redaction manifests."
+
+  governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Governance placeholder
+        run: |
+          echo "Replace with CODEOWNERS, branch protection, review-state and MCP profile checks."
+          test -f templates/mcp-security-profile.yaml || echo "Missing MCP security profile template."

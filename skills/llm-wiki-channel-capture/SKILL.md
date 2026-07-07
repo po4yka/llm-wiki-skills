@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-channel-capture
-description: Design channel-specific capture workflows for LLM-Wiki. Use for Telegram, email, browser clips, Readwise/Omnivore exports, voice notes, PDFs, GitHub issues/PRs/discussions, Slack/Discord/Teams, or meeting notes flowing into inbox/raw before triage.
+description: Design one concrete capture connector for LLM-Wiki. Use when the user names a specific channel such as Telegram, email, browser clips, Readwise/Omnivore, voice notes, PDFs, GitHub, Slack, Discord, Teams, or meeting notes.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse official API docs before recommending connector-specific commands or auth scopes.
 metadata:
@@ -42,7 +42,7 @@ Every captured item should preserve:
 
 ```yaml
 captured_at: ""
-captured_by: ""
+capture_channel: ""
 source_url: ""
 source_author: ""
 source_channel: ""

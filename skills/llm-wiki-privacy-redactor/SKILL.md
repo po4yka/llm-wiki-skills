@@ -25,7 +25,7 @@ Prevent private content from leaking through public exports, model-boundary payl
 
 ### 1. Load policy
 
-Read `docs/security/redaction-policy.md` and `templates/redaction-policy.yml` when available.
+Read `references/docs/security/redaction-policy.md` and `references/templates/redaction-policy.yml` when available.
 
 ### 2. Classify content
 
@@ -45,7 +45,7 @@ Flag:
 Run or recommend:
 
 ```bash
-npm run redact:preview -- <path>
+node scripts/redact-preview.mjs <path>
 ```
 
 Show redaction candidates without modifying files.

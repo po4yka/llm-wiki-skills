@@ -60,7 +60,10 @@
       "properties": {
         "extracted": { "type": "number", "minimum": 0, "maximum": 1 },
         "inferred": { "type": "number", "minimum": 0, "maximum": 1 },
-        "ambiguous": { "type": "number", "minimum": 0, "maximum": 1 }
+        "ambiguous": { "type": "number", "minimum": 0, "maximum": 1 },
+        "synthesis": { "type": "number", "minimum": 0, "maximum": 1 },
+        "unsupported": { "type": "number", "minimum": 0, "maximum": 1 },
+        "conflicting": { "type": "number", "minimum": 0, "maximum": 1 }
       },
       "additionalProperties": false
     },

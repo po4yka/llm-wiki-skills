@@ -1,0 +1,143 @@
+# LLM-Wiki ingestion fidelity suite template
+# Use with llm-wiki-ingestion-stack and llm-wiki-eval-tooling.
+
+metadata:
+  suite_id: ingestion-fidelity
+  version: "0.1.0"
+  created_at: "YYYY-MM-DD"
+  corpus_scope: smoke # smoke|nightly|release
+  wiki_revision: ""
+  parser_profile: "templates/ingestion-pipeline-profile.yaml"
+
+defaults:
+  max_chunk_tokens: 700
+  min_provenance_coverage: 0.99
+  min_heading_preservation: 0.95
+  min_table_preservation: 0.90
+  max_duplicate_chunk_rate: 0.02
+  min_timestamp_coverage: 0.99
+  max_ocr_error_rate: null
+
+gates:
+  fail_on:
+    - parser_crash
+    - missing_source_hash
+    - missing_source_manifest
+    - missing_chunk_to_source_links
+    - unreviewed_sensitive_external_processing
+    - provenance_coverage_below_threshold
+    - duplicate_chunk_rate_above_threshold
+  report_on:
+    - table_loss
+    - heading_loss
+    - low_ocr_confidence
+    - missing_timestamp_anchor
+    - orphan_attachment
+    - language_mismatch
+    - suspicious_prompt_like_text
+
+golden_corpus:
+  - id: native_policy_pdf
+    source: tests/golden/native_policy.pdf
+    source_type: pdf
+    expected:
+      has_text_layer: true
+      min_pages: 5
+      anchors:
+        page: true
+      headings:
+        threshold: 0.95
+      tables:
+        threshold: 0.90
+      provenance:
+        page_anchor_required: true
+        source_hash_required: true
+
+  - id: scanned_invoice_pdf
+    source: tests/golden/scanned_invoice.pdf
+    source_type: scan
+    expected:
+      ocr_required: true
+      min_pages: 1
+      anchors:
+        page: true
+      duplicate_chunk_rate_max: 0.02
+      provenance:
+        page_anchor_required: true
+        source_hash_required: true
+
+  - id: dynamic_web_page
+    source: tests/golden/web/page.html
+    source_type: web
+    expected:
+      archive_snapshot_required: true
+      extracted_title_required: true
+      anchors:
+        section: true
+      provenance:
+        fetched_at_required: true
+        archive_ref_required: true
+
+  - id: meeting_audio
+    source: tests/golden/meeting.wav
+    source_type: audio
+    expected:
+      asr_required: true
+      anchors:
+        timestamp: true
+      timestamp_coverage_min: 0.99
+
+  - id: repo_code_sample
+    source: tests/golden/repo-sample/
+    source_type: repo
+    expected:
+      anchors:
+        symbol: true
+      required_metadata:
+        - repo
+        - path
+        - commit_sha
+        - symbol_path
+
+  - id: chat_export_sample
+    source: tests/golden/chat-export.zip
+    source_type: chat
+    expected:
+      anchors:
+        message: true
+      thread_integrity: 1.0
+      attachment_linkage_min: 0.98
+
+  - id: table_sample
+    source: tests/golden/table.parquet
+    source_type: table
+    expected:
+      anchors:
+        row: true
+      required_metadata:
+        - table_name
+        - schema_hash
+        - row_group
+
+metrics:
+  conversion:
+    parser_success_rate: null
+    text_coverage: null
+    heading_preservation: null
+    table_preservation: null
+    timestamp_coverage: null
+    thread_integrity: null
+  provenance:
+    source_hash_coverage: null
+    chunk_anchor_coverage: null
+    manifest_coverage: null
+  quality:
+    duplicate_chunk_rate: null
+    orphan_attachment_count: null
+    low_confidence_ocr_pages: null
+  security:
+    unreviewed_sensitive_external_processing: 0
+    suspicious_prompt_like_text_count: null
+  retrieval_smoke:
+    recall_at_10: null
+    mrr: null

@@ -22,7 +22,7 @@ Use deterministic anchors:
 Allowed support values:
 
 ```text
-extracted | inferred | ambiguous | unsupported | conflicting
+extracted | inferred | ambiguous | synthesis | unsupported | conflicting
 ```
 
 ## Rules
@@ -68,7 +68,7 @@ The validator:
 - preserves line numbers while ignoring fenced code blocks;
 - rejects duplicate claim anchors and source anchors;
 - requires each claim anchor to have a nearby `Support:` line;
-- accepts optional path arguments for scoped validation;
+- accepts optional path arguments, including external vault paths, for scoped validation;
 - ignores files with `<!-- claim-anchor-validator: ignore-file -->`;
 - ignores the line after `<!-- claim-anchor-validator: ignore-next -->`.
 

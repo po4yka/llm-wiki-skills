@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-benchmark-suite
-description: Run a practical pilot benchmark for an LLM-Wiki. Use when the user wants with-wiki versus without-wiki comparisons, retrieval hit rate, answer reuse, time-to-context, review backlog, and a continue/pause/redesign decision.
+description: Run a bounded pilot experiment for an LLM-Wiki. Use when the user wants to execute a with-wiki versus without-wiki trial on real tasks and produce a continue/pause/redesign decision.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to a vault and optional write access for benchmark reports.
 metadata:
@@ -25,7 +25,7 @@ Run a small, repeatable pilot that tests whether an LLM-Wiki helps the user's ac
 
 ### 1. Read benchmark materials
 
-Use `benchmarks/pilot-questions.md` and `benchmarks/scoring-rubric.md` when available.
+Use `references/benchmarks/pilot-questions.md` and `references/benchmarks/scoring-rubric.md` when available.
 
 ### 2. Build the question set
 

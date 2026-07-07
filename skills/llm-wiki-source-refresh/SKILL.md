@@ -49,7 +49,7 @@ Use:
 
 ### 4. Create refresh report
 
-Use `templates/reports/source-refresh-report.md` when available.
+Use `references/templates/reports/source-refresh-report.md` when available.
 
 ### 5. Propose patches
 

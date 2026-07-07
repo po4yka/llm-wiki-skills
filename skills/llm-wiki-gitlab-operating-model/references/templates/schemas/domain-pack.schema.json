@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/llm-wiki/domain-pack.schema.json",
+  "title": "LLM-Wiki domain pack overlay",
+  "type": "object",
+  "required": ["name", "version", "core_types", "domain_type_mappings", "recommended_tags"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "core_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["source", "entity", "concept", "comparison", "synthesis", "query", "report"]
+      },
+      "uniqueItems": true
+    },
+    "domain_type_mappings": {
+      "type": "object",
+      "description": "Maps domain_type values to one stable core type.",
+      "patternProperties": {
+        "^[a-z0-9]+(?:-[a-z0-9]+)*$": {
+          "type": "string",
+          "enum": ["source", "entity", "concept", "comparison", "synthesis", "query", "report"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "recommended_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "uniqueItems": true
+    },
+    "stale_policy": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "recommended_skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

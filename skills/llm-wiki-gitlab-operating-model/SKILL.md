@@ -14,7 +14,7 @@ metadata:
 
 Plan an LLM-Wiki operating model for a self-managed GitLab instance inside an enterprise/internal network, with GitLab-native governance, CI/CD, permissions, compliance, publishing and reliability controls.
 
-Use `docs/23-gitlab-self-hosted-operating-model.md` as the reference model.
+Use `references/docs/23-gitlab-self-hosted-operating-model.md` as the reference model.
 
 ## Inputs
 
@@ -112,8 +112,8 @@ Protect:
 - `.gitlab-ci.yml`;
 - `.gitlab/**`;
 - `skills/**`;
-- `templates/**`;
-- `policies/**`;
+- `references/templates/**`;
+- `references/policies/**`;
 - `api/**`;
 - `mcp/**`;
 - `exports/profiles/**`;

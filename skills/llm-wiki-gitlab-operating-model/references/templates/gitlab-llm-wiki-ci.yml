@@ -1,0 +1,135 @@
+# GitLab CI/CD starter for LLM-Wiki in self-managed/internal environments
+# Copy to .gitlab-ci.yml and replace placeholder commands with project scripts.
+
+stages:
+  - validate
+  - lint
+  - eval
+  - security
+  - package
+  - preview
+  - deploy
+  - release
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+variables:
+  EXPORT_PROFILE: public-site
+  ARTIFACT_NAME: llm-wiki-bundle
+  PACKAGE_VERSION: $CI_COMMIT_SHA
+
+# Prefer internal component includes in self-hosted/air-gapped environments.
+# include:
+#   - project: corp/platform/ci-components
+#     ref: v1.0.0
+#     file:
+#       - /llm-wiki/base.yml
+#       - /llm-wiki/security.yml
+#       - /llm-wiki/eval.yml
+
+validate:manifests:
+  stage: validate
+  script:
+    - echo "Validate source/export/team/GitLab profile YAML files."
+    - test -f templates/gitlab-operating-model.yaml || true
+  artifacts:
+    when: always
+    paths:
+      - reports/validate/
+    expire_in: 14 days
+
+lint:wiki:
+  stage: lint
+  script:
+    - echo "Run wiki-lint, link checks, review-state checks and citation checks."
+  artifacts:
+    when: always
+    paths:
+      - reports/lint/
+    expire_in: 14 days
+
+lint:skills:
+  stage: lint
+  script:
+    - echo "Run Agent Skill frontmatter and trigger-overlap checks."
+  artifacts:
+    when: always
+    paths:
+      - reports/skills/
+    expire_in: 14 days
+
+eval:smoke:
+  stage: eval
+  script:
+    - echo "Run retrieval, grounding and ingestion smoke evals."
+  artifacts:
+    when: always
+    paths:
+      - eval-results/
+    expire_in: 30 days
+
+security:policy:
+  stage: security
+  script:
+    - echo "Run secret/private-data scan, prompt-injection fixtures, and MCP/API permission tests."
+  artifacts:
+    when: always
+    paths:
+      - reports/security/
+    expire_in: 30 days
+
+package:export:
+  stage: package
+  script:
+    - echo "Build export profiles, llms.txt bundle, manifests and checksums."
+    - mkdir -p dist
+    - echo "$CI_COMMIT_SHA" > dist/REVISION
+  artifacts:
+    when: always
+    paths:
+      - dist/
+      - exports/builds/
+      - exports/reports/
+    expire_in: 30 days
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_TAG
+
+preview:internal_docs:
+  stage: preview
+  script:
+    - echo "Deploy review app or internal preview for docs/export changes."
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    action: prepare
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+pages:
+  stage: deploy
+  script:
+    - echo "Build GitLab Pages output into public/."
+    - mkdir -p public
+    - cp -R exports/builds/${EXPORT_PROFILE}/latest/site/* public/ 2>/dev/null || echo "No site output yet."
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+
+release:artifact:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/cli:latest
+  script:
+    - echo "Create GitLab release with export package, scorecard and manifest links."
+  release:
+    tag_name: $CI_COMMIT_TAG
+    description: "LLM-Wiki release $CI_COMMIT_TAG"
+  rules:
+    - if: $CI_COMMIT_TAG

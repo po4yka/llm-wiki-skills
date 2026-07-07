@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-faq
-description: Answer evidence-backed adoption questions and objections about LLM-Wiki. Use when the user asks why it matters, what benefits or evidence exist, how to keep it alive, whether Obsidian/RAG/Confluence are required or replaced, whether non-developers can use it, whether PR/MR workflows are too heavy, whether tokens/costs will scale, who owns or reviews it, how to prove ROI, how to migrate safely, how to handle sensitive data, or how to answer serious criticisms such as slop, cognitive debt, drift, prompt injection, benchmark vacuum or write-only archive risk.
+description: Answer adoption questions and objections about LLM-Wiki. Use when the user asks for an explanation, FAQ answer, stakeholder response, ROI framing, migration answer, or concise rebuttal to risks such as slop, cognitive debt, drift, prompt injection, benchmark vacuum or write-only archive behavior.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh sources for current ecosystem, tool maturity, pricing, release, or benchmark claims.
 metadata:
@@ -54,10 +54,10 @@ Read these when available:
 3. `references/additional-adoption-q-and-a.md` for start-small, ownership, cost, ROI, migration, RAG/search, lock-in and multi-agent questions.
 4. `references/criticism-pack.md` for serious criticism and mitigation answers.
 5. Repository-level docs:
-   - `docs/12-evidence-and-faq.md`
-   - `docs/20-adoption-objections.md`
-   - `docs/21-adoption-q-and-a.md`
-   - `docs/22-criticism-and-mitigations.md`
+   - `references/docs/12-evidence-and-faq.md`
+   - `references/docs/20-adoption-objections.md`
+   - `references/docs/21-adoption-q-and-a.md`
+   - `references/docs/22-criticism-and-mitigations.md`
 
 ## Evidence policy
 

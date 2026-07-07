@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-security-review
-description: Review LLM-Wiki and Agent Skills setups for security and data-boundary risks. Use when the user asks whether skills, vault access, ingestion, capture pipelines, cloud models, retrieval, write permissions, generated wiki maintenance, MCP/API exposure, exports, traces or evaluation automation are safe.
+description: Review an LLM-Wiki or Agent Skills setup for practical security and data-boundary risks. Use when the user asks whether an existing configuration, permission model, export, MCP/API exposure, cloud-model use, capture pipeline, or automation is safe enough.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to project instructions, skill files, and relevant configuration; write access is optional. Browse current vendor, CVE, scanner and MCP docs before giving version-specific security advice.
 metadata:
@@ -14,7 +14,7 @@ metadata:
 
 Identify security, privacy and data-boundary risks in an LLM-Wiki workflow or skill package, then recommend concrete mitigations and repo artifacts.
 
-Use `docs/19-security-threat-model.md` for the full threat model and control baseline. Use `llm-wiki-threat-model` when the user needs a full architecture-level threat model rather than a review of an existing setup.
+Use `references/docs/19-security-threat-model.md` for the full threat model and control baseline. Use `llm-wiki-threat-model` when the user needs a full architecture-level threat model rather than a review of an existing setup.
 
 ## Inputs
 

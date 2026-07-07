@@ -1,0 +1,115 @@
+# GitLab self-hosted RACI/DACI template for LLM-Wiki
+# Use with llm-wiki-gitlab-operating-model.
+
+roles:
+  CO: Content / Domain Owners
+  PLAT: Platform Engineers
+  SEC: Security
+  COMP: Compliance
+  SRE: SRE / Operations
+  PUB: Publishing / Docs Owners
+  RE: Retrieval / Eval Owners
+
+raci:
+  - activity: repo_creation_and_subgroup_placement
+    responsible: [CO]
+    accountable: CO
+    consulted: [PLAT]
+    informed: [SEC, COMP, SRE, PUB]
+
+  - activity: shared_ci_component_design
+    responsible: [PLAT]
+    accountable: PLAT
+    consulted: [SEC, SRE, RE]
+    informed: [CO, COMP, PUB]
+
+  - activity: codeowners_maintenance
+    responsible: [CO]
+    accountable: CO
+    consulted: [PLAT, SEC, PUB]
+    informed: [COMP, SRE, RE]
+
+  - activity: protected_branch_baseline
+    responsible: [PLAT]
+    accountable: SEC
+    consulted: [CO, COMP, SRE]
+    informed: [PUB, RE]
+
+  - activity: merge_request_approval_rules
+    responsible: [PLAT]
+    accountable: SEC
+    consulted: [CO, COMP]
+    informed: [SRE, PUB, RE]
+
+  - activity: production_deployment_approval_rules
+    responsible: [PLAT]
+    accountable: SEC
+    consulted: [CO, COMP, SRE, PUB]
+    informed: [RE]
+
+  - activity: runner_fleet_topology
+    responsible: [PLAT]
+    accountable: PLAT
+    consulted: [SEC, SRE]
+    informed: [CO, COMP, PUB, RE]
+
+  - activity: backup_restore_design
+    responsible: [PLAT]
+    accountable: SRE
+    consulted: [SEC, COMP]
+    informed: [CO, PUB, RE]
+
+  - activity: gitlab_upgrade_patch_program
+    responsible: [PLAT]
+    accountable: SRE
+    consulted: [SEC]
+    informed: [CO, COMP, PUB, RE]
+
+  - activity: audit_stream_siem_integration
+    responsible: [PLAT]
+    accountable: SEC
+    consulted: [COMP, SRE]
+    informed: [CO, PUB, RE]
+
+  - activity: internal_public_agent_export_release
+    responsible: [PUB]
+    accountable: PUB
+    consulted: [CO, PLAT, SEC, COMP, RE]
+    informed: [SRE]
+
+  - activity: dr_geo_failover_exercise
+    responsible: [SRE]
+    accountable: SRE
+    consulted: [PLAT, SEC, COMP]
+    informed: [CO, PUB, RE]
+
+daci_decisions:
+  - decision: free_vs_premium_vs_ultimate
+    driver: PLAT
+    approver: platform_sponsor
+    contributors: [SEC, COMP, SRE, finance]
+    informed: [CO, PUB, RE]
+
+  - decision: monorepo_vs_multirepo
+    driver: PLAT
+    approver: architecture_board
+    contributors: [CO, SRE, SEC]
+    informed: [COMP, PUB, RE]
+
+  - decision: centralized_vs_federated_ci
+    driver: PLAT
+    approver: platform_sponsor
+    contributors: [SEC, SRE, CO]
+    informed: [COMP, PUB, RE]
+
+  - decision: single_node_vs_ha_vs_geo
+    driver: SRE
+    approver: infrastructure_owner
+    contributors: [PLAT, SEC, COMP]
+    informed: [CO, PUB, RE]
+
+  - decision: production_approval_policy
+    driver: SEC
+    approver: risk_owner
+    contributors: [COMP, SRE, PLAT, CO]
+    informed: [PUB, RE]

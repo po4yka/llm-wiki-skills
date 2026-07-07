@@ -1,0 +1,108 @@
+name: llm-wiki-evals
+
+on:
+  pull_request:
+    paths:
+      - "wiki/**"
+      - "raw/**"
+      - "prompts/**"
+      - "evals/**"
+      - ".github/workflows/llm-wiki-evals.yml"
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  retrieval-and-grounding:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install eval dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ragas pytrec_eval pyyaml pandas
+
+      - name: Run retrieval and grounding eval
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python evals/run_retrieval_eval.py \
+            --dataset evals/retrieval-eval-set.yaml \
+            --scorecard eval-results/eval-scorecard.yaml \
+            --output eval-results/retrieval.json \
+            --min-recall-at-10 0.85 \
+            --min-mrr 0.70 \
+            --min-ndcg-at-10 0.80 \
+            --max-unsupported-claim-rate 0.05 \
+            --min-citation-coverage 0.90
+
+      - name: Upload retrieval artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: retrieval-eval-results
+          path: eval-results/
+
+  promptfoo-quality-and-security:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run promptfoo quality eval
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          npx promptfoo@latest eval \
+            -c evals/promptfooconfig.yaml \
+            -o eval-results/promptfoo-results.json \
+            -o eval-results/promptfoo-report.html \
+            -o eval-results/promptfoo-results.junit.xml
+
+      - name: Run promptfoo red team
+        if: github.event_name != 'pull_request' || github.actor != 'dependabot[bot]'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          npx promptfoo@latest redteam run \
+            --config evals/promptfooconfig.yaml \
+            --output eval-results/redteam.yaml
+
+      - name: Upload promptfoo artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: promptfoo-results
+          path: eval-results/
+
+  wiki-health:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run deterministic wiki health checks
+        run: |
+          echo "Replace this with wiki-lint, stale-page, broken-link and review-backlog checks."
+          test -d wiki || echo "No wiki/ directory found in this starter workflow."
+
+      - name: Upload health artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wiki-health-results
+          path: eval-results/

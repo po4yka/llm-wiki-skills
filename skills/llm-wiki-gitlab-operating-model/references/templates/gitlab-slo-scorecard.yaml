@@ -1,0 +1,110 @@
+# GitLab self-hosted LLM-Wiki SLO and operating scorecard template
+# Use with llm-wiki-gitlab-operating-model.
+
+metadata:
+  scorecard_id: gitlab-llm-wiki-ops
+  version: "0.1.0"
+  generated_at: "YYYY-MM-DDTHH:MM:SSZ"
+  gitlab_instance: ""
+  top_level_group: ""
+  review_period: monthly
+  stage: pilot # pilot|early-production|business-critical|regulated-or-24x7
+
+summary:
+  status: report-only # pass|warn|fail|report-only
+  decision: continue # continue|continue-with-gates|pause|redesign|block-release
+  top_regressions: []
+  top_improvements: []
+  required_actions: []
+
+gitlab_platform:
+  slos:
+    ui_api_availability: "99.5% monthly"
+    scheduled_backup_success_rate: "99% monthly"
+    restore_drill_cadence: quarterly
+  metrics:
+    ui_api_availability: null
+    p95_response_ms: null
+    backup_success_rate: null
+    last_restore_drill: ""
+    upgrade_patch_lag_days: null
+    critical_admin_findings: 0
+
+runners_ci:
+  slos:
+    median_queue_wait_seconds_max: 60
+    p95_queue_wait_seconds_max: 300
+    pipeline_success_rate_min: 0.90
+  metrics:
+    median_queue_wait_seconds: null
+    p95_queue_wait_seconds: null
+    runner_utilization: null
+    failed_pipeline_rate: null
+    protected_runner_coverage: null
+    sensitive_jobs_on_instance_runners: 0
+
+knowledge_quality:
+  gates:
+    review_backlog_median_age_days_max: 7
+    high_risk_review_age_days_max: 3
+    citation_coverage_min: 0.90
+    material_unsupported_claims_max: 0
+  metrics:
+    review_backlog_count: 0
+    review_backlog_median_age_days: null
+    high_risk_items_over_sla: 0
+    citation_coverage: null
+    unsupported_claim_rate: null
+    stale_page_rate: null
+    index_freshness_hours_p95: null
+
+security_compliance:
+  gates:
+    blocking_redaction_findings_max: 0
+    secret_push_bypass_max: 0
+    cross_tenant_leaks_max: 0
+    unapproved_direct_pushes_max: 0
+  metrics:
+    blocking_redaction_findings: 0
+    secret_push_bypasses: 0
+    cross_tenant_leaks: 0
+    unapproved_direct_pushes: 0
+    audit_stream_delivery_success_rate: null
+    open_security_exceptions: 0
+    owner_maintainer_sprawl_findings: 0
+
+protected_release:
+  gates:
+    public_export_broken_links_max: 0
+    agent_bundle_redaction_findings_max: 0
+    protected_environment_approval_required: true
+  metrics:
+    protected_environment_approval_latency_hours_p50: null
+    export_pipeline_success_rate: null
+    release_artifacts_with_checksums_rate: null
+    release_artifacts_with_manifest_rate: null
+    rollback_artifact_coverage: null
+
+offline_internal_contour:
+  metrics:
+    pipelines_with_external_egress: null
+    runner_images_from_internal_registry_rate: null
+    package_dependencies_from_internal_feed_rate: null
+    mirrored_security_analyzers_current: null
+    offline_scanner_data_age_days: null
+
+adoption_devex:
+  metrics:
+    active_contributors: null
+    merge_request_cycle_time_hours_p50: null
+    docs_read_write_ratio: null
+    answer_reuse_rate: null
+    onboarding_questions_answered: null
+    developer_satisfaction_score: null
+
+follow_up:
+  actions:
+    - owner: ""
+      action: ""
+      priority: high # high|medium|low
+      due: "YYYY-MM-DD"

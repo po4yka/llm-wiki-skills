@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-provenance
-description: Add, inspect, or repair source and claim-level provenance in an LLM-Wiki. Use when pages have unsupported claims, generated summaries cite other summaries, source links are missing, or the user wants claim-to-source backlinks and provenance gap reports.
+description: Inspect and repair evidence links in an LLM-Wiki. Use when pages have unsupported claims, generated summaries cite other summaries, source links are missing, or the user wants a provenance gap report before adding stable claim anchors.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to wiki and raw sources; write access is optional for patch mode.
 metadata:
@@ -40,8 +40,10 @@ For each target page, identify factual claims, recommendations, current-state st
 Classify support:
 
 ```text
-source-backed | wiki-backed | inferred | ambiguous | unsupported | conflicting
+extracted | inferred | ambiguous | synthesis | unsupported | conflicting
 ```
+
+Use `extracted` for claims directly stated in inspected sources. Use `synthesis` only for editorial conclusions drawn across sources; keep the source links visible.
 
 ### 3. Locate evidence
 

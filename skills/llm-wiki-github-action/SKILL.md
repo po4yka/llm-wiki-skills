@@ -52,7 +52,8 @@ Use the least privilege required by the chosen mode. Read-only jobs should not r
 
 Possible jobs:
 
-- `npm run validate:skills`;
+- Agent Skills frontmatter validation for every `skills/*/SKILL.md`;
+- repository-specific validation scripts when the target repo already defines them;
 - frontmatter schema validation;
 - broken link scan;
 - `wiki-lint` report generation;

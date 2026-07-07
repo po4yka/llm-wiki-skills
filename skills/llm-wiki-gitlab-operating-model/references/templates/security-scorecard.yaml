@@ -1,0 +1,149 @@
+# LLM-Wiki security scorecard template
+# Use with llm-wiki-threat-model and llm-wiki-security-review.
+
+metadata:
+  scorecard_id: "llm-wiki-security-scorecard"
+  version: "0.1.0"
+  generated_at: "YYYY-MM-DDTHH:MM:SSZ"
+  system: ""
+  deployment: local-first # local-first|localhost-http|remote-mcp|hosted-product|team-repo|hybrid
+  reviewer: ""
+  risk_profile: low # low|medium|high|critical
+  notes: ""
+
+summary:
+  decision: continue # continue|continue-with-gates|pause|redesign|block-release
+  overall_status: report-only # pass|fail|warn|report-only
+  critical_findings: []
+  high_findings: []
+  required_actions: []
+
+ingestion:
+  parser_sandbox: unknown # pass|warn|fail|unknown
+  file_type_allowlist: unknown
+  file_size_limits: unknown
+  parser_cve_review: unknown
+  no_secrets_in_parser_worker: unknown
+  quarantine_before_parse: unknown
+  extraction_hashes_recorded: unknown
+  findings: []
+
+raw_and_wiki_storage:
+  raw_sources_classified: unknown
+  source_manifests_exist: unknown
+  provenance_hashes_exist: unknown
+  review_state_schema: unknown
+  quarantine_state_supported: unknown
+  immutable_raw_sources: unknown
+  findings: []
+
+retrieval_and_indexes:
+  reviewed_only_default: unknown
+  tenant_filters: unknown
+  sensitivity_filters: unknown
+  publication_state_filters: unknown
+  stale_content_excluded: unknown
+  draft_rejected_quarantined_excluded: unknown
+  indexes_rebuildable: unknown
+  vector_index_classified: unknown
+  findings: []
+
+prompt_injection:
+  untrusted_content_policy: unknown
+  tool_policy_server_side: unknown
+  public_private_stage_separation: unknown
+  indirect_prompt_injection_tests: unknown
+  malicious_source_fixtures: unknown
+  findings: []
+
+mcp_api:
+  transport: stdio # stdio|localhost-http|remote-http|mixed|unknown
+  auth_required: unknown
+  localhost_bind: unknown
+  origin_validation: unknown
+  dns_rebinding_protection: unknown
+  read_propose_admin_split: unknown
+  admin_tools_disabled_by_default: unknown
+  tool_outputs_bounded: unknown
+  audit_sensitive_reads: unknown
+  no_token_passthrough: unknown
+  findings: []
+
+writes_and_governance:
+  proposal_only_agents: unknown
+  codeowners: unknown
+  branch_protection: unknown
+  required_checks: unknown
+  self_approval_blocked: unknown
+  protected_human_sections: unknown
+  security_review_for_workflows_tools_policies: unknown
+  findings: []
+
+data_protection:
+  secret_scan_ci: unknown
+  secret_scan_precommit: unknown
+  pii_scan_before_index_export: unknown
+  redaction_manifest: unknown
+  traces_private_by_default: unknown
+  retention_policy: unknown
+  export_allowlist: unknown
+  findings: []
+
+ci_supply_chain:
+  dependency_review: unknown
+  osv_or_equivalent: unknown
+  sast: unknown
+  actions_pinned_by_sha: unknown
+  minimal_github_token_permissions: unknown
+  restricted_self_hosted_runners: unknown
+  findings: []
+
+red_team:
+  rag_poisoning_tests: unknown
+  indirect_prompt_injection_tests: unknown
+  mcp_tool_abuse_tests: unknown
+  canary_secret_tests: unknown
+  pii_leakage_tests: unknown
+  export_oversharing_tests: unknown
+  findings: []
+
+incident_response:
+  quarantine_policy: unknown
+  disable_external_access_procedure: unknown
+  secret_rotation_procedure: unknown
+  reindex_from_known_good: unknown
+  audit_log_preservation: unknown
+  post_incident_regression_test: unknown
+  findings: []
+
+threat_matrix:
+  - threat: "Indirect prompt injection causing exfiltration or unsafe tool use"
+    likelihood: high
+    impact: critical
+    detection_difficulty: high
+    status: unknown
+    controls: []
+  - threat: "Corpus poisoning or durable wiki corruption"
+    likelihood: high
+    impact: high
+    detection_difficulty: high
+    status: unknown
+    controls: []
+  - threat: "Parser exploitation during ingestion"
+    likelihood: medium
+    impact: critical
+    detection_difficulty: medium
+    status: unknown
+    controls: []
+  - threat: "Secret or PII leakage through wiki, index, trace or export"
+    likelihood: high
+    impact: high
+    detection_difficulty: medium
+    status: unknown
+    controls: []
+
+next_actions:
+  - priority: high
+    owner: ""
+    action: ""
+    due: "YYYY-MM-DD"

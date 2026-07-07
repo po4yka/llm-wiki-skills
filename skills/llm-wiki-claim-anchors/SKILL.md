@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-claim-anchors
-description: Add deterministic claim-level provenance anchors to important LLM-Wiki pages. Use when the user wants paragraph or claim support, stable claim IDs, source anchors, provenance reports, or validation with npm run validate:claim-anchors.
+description: Add deterministic claim and source anchor IDs to already inspected LLM-Wiki evidence. Use when the user wants stable claim IDs, support labels, source anchors, or claim-anchor validation after provenance gaps are known.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to wiki/raw sources; write access is optional for patch mode.
 metadata:
@@ -25,7 +25,7 @@ Add stable, auditable claim and source anchors to important wiki pages.
 
 ### 1. Read the convention
 
-Use `docs/provenance/claim-anchors.md` when available.
+Use `references/docs/provenance/claim-anchors.md` when available.
 
 Default format:
 
@@ -50,7 +50,7 @@ Prioritize:
 Use:
 
 ```text
-extracted | inferred | ambiguous | unsupported | conflicting
+extracted | inferred | ambiguous | synthesis | unsupported | conflicting
 ```
 
 Do not upgrade unsupported claims to inferred just to make the page look complete.
@@ -69,7 +69,7 @@ In patch mode:
 Run or recommend:
 
 ```bash
-npm run validate:claim-anchors
+node scripts/validate-claim-anchors.mjs <wiki-or-file-path>
 ```
 
 ### 6. Report gaps

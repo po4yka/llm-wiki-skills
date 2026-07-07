@@ -73,9 +73,9 @@ Score 1-5 across:
 
 Use:
 
-- `docs/13-ecosystem-matrix.md` as the seed registry;
-- `docs/14-technology-stack.md` as the stack reference;
-- `docs/15-implementation-deep-dive.md` for architecture-level implementation lessons and project deep dives.
+- `references/docs/13-ecosystem-matrix.md` as the seed registry;
+- `references/docs/14-technology-stack.md` as the stack reference;
+- `references/docs/15-implementation-deep-dive.md` for architecture-level implementation lessons and project deep dives.
 
 If the user needs implementation-level analysis, invoke or route to `llm-wiki-implementation-deep-dive` rather than answering only from this registry.
 

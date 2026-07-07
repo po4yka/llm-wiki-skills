@@ -121,7 +121,7 @@ skills/<skill-name>/
 A typical advisory session:
 
 ```text
-llm-wiki-orient -> llm-wiki-faq -> llm-wiki-critique-audit -> llm-wiki-news-radar -> llm-wiki-choose
+llm-wiki-orient -> llm-wiki-faq -> llm-wiki-human-first-design -> llm-wiki-critique-audit -> llm-wiki-news-radar -> llm-wiki-choose
 ```
 
 A typical existing-vault adoption loop:

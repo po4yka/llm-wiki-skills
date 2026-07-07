@@ -1,0 +1,142 @@
+# LLM-Wiki evaluation scorecard template
+# Use with llm-wiki-eval and llm-wiki-eval-tooling.
+
+metadata:
+  scorecard_id: "llm-wiki-scorecard"
+  version: "0.1.0"
+  generated_at: "YYYY-MM-DDTHH:MM:SSZ"
+  wiki_revision: ""
+  dataset_id: ""
+  dataset_version: ""
+  evaluator_version: ""
+  risk_profile: low # low|medium|high|critical
+  notes: ""
+
+summary:
+  decision: continue # continue|continue-with-gates|pause|redesign
+  overall_status: report-only # pass|fail|warn|report-only
+  main_regressions: []
+  main_improvements: []
+  required_actions: []
+
+retrieval:
+  status: report-only
+  metrics:
+    recall_at_5: null
+    recall_at_10: null
+    recall_at_20: null
+    mrr: null
+    ndcg_at_10: null
+    hit_rate_at_10: null
+  gates:
+    recall_at_10_min: 0.85
+    mrr_min: 0.70
+    ndcg_at_10_min: 0.80
+  failing_queries: []
+  slices:
+    exact: {}
+    conceptual: {}
+    synthesis: {}
+    multi_hop: {}
+    recent: {}
+    sensitive: {}
+
+grounding:
+  status: report-only
+  metrics:
+    citation_coverage: null
+    unsupported_claim_rate: null
+    hallucination_rate: null
+    faithfulness: null
+    citation_validity_rate: null
+  gates:
+    citation_coverage_min: 0.90
+    unsupported_claim_rate_max: 0.05
+    material_unsupported_claims_max: 0
+  failing_examples: []
+  support_labels:
+    source_backed: 0
+    wiki_backed: 0
+    inferred: 0
+    missing: 0
+    conflicting: 0
+
+answer_quality:
+  status: report-only
+  metrics:
+    human_correctness_avg: null
+    human_completeness_avg: null
+    human_actionability_avg: null
+    pairwise_win_rate_vs_no_wiki: null
+    refusal_quality_avg: null
+  gates:
+    pairwise_win_rate_vs_no_wiki_min: 0.60
+  human_review_sample_size: 0
+  disagreements_to_review: []
+
+wiki_usefulness:
+  status: report-only
+  metrics:
+    retrieval_hit_rate: null
+    answer_reuse_rate: null
+    read_write_ratio: null
+    context_reconstruction_avoided_count: 0
+    output_beyond_vault_count: 0
+    time_saved_estimate_hours: null
+  trend: unknown # improving|flat|declining|unknown
+
+operational_health:
+  status: report-only
+  metrics:
+    stale_page_rate: null
+    stale_tier1_page_rate: null
+    review_backlog_count: 0
+    median_review_age_days: null
+    provenance_coverage: null
+    broken_links_count: 0
+    broken_verified_links_count: 0
+    freshness_lag_hours_p95: null
+  gates:
+    stale_tier1_page_rate_max: 0.05
+    median_review_age_days_max: 7
+    broken_verified_links_max: 0
+
+security:
+  status: report-only
+  metrics:
+    prompt_injection_success_rate: null
+    critical_prompt_injection_successes: 0
+    pii_secret_leaks: 0
+    cross_tenant_leaks: 0
+    forbidden_source_uses: 0
+    unsafe_tool_uses: 0
+    redaction_failures: 0
+  gates:
+    prompt_injection_success_rate_max: 0.05
+    critical_prompt_injection_successes_max: 0
+    pii_secret_leaks_max: 0
+    cross_tenant_leaks_max: 0
+
+human_calibration:
+  status: report-only
+  sample_size: 0
+  reviewer_rubric_version: ""
+  judge_human_agreement: null
+  known_judge_failure_modes: []
+  next_calibration_due: "YYYY-MM-DD"
+
+failure_taxonomy:
+  retrieval_index_chunking: []
+  grounding_context_packing: []
+  citation_span: []
+  review_state_filter: []
+  sensitivity_filter: []
+  freshness_policy: []
+  judge_rubric: []
+  security_boundary: []
+
+next_actions:
+  - priority: high
+    owner: ""
+    action: ""
+    due: "YYYY-MM-DD"

@@ -31,11 +31,11 @@ Use when the user says or asks:
 
 Read these when available:
 
-- `docs/24-human-first-llm-wiki.md`
-- `docs/20-adoption-objections.md`
-- `docs/21-adoption-q-and-a.md`
-- `docs/22-criticism-and-mitigations.md`
-- `docs/04-anti-slop-and-trust.md`
+- `references/docs/24-human-first-llm-wiki.md`
+- `references/docs/20-adoption-objections.md`
+- `references/docs/21-adoption-q-and-a.md`
+- `references/docs/22-criticism-and-mitigations.md`
+- `references/docs/04-anti-slop-and-trust.md`
 
 ## Core stance
 
