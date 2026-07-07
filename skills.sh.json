@@ -84,12 +84,13 @@
     },
     {
       "title": "Skill and memory governance",
-      "description": "Review, compile, and govern Agent Skills and decide what belongs in skills, agent memory, instruction files, or the wiki.",
+      "description": "Review, compile, and govern Agent Skills, team operating models, self-hosted GitLab workflows, and decide what belongs in skills, agent memory, instruction files, or the wiki.",
       "skills": [
         "llm-wiki-skill-doctor",
         "llm-wiki-skill-compiler",
         "llm-wiki-agent-memory-bridge",
-        "llm-wiki-team-rollout"
+        "llm-wiki-team-rollout",
+        "llm-wiki-gitlab-operating-model"
       ]
     }
   ]
