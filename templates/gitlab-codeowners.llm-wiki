@@ -1,0 +1,61 @@
+# GitLab CODEOWNERS starter for LLM-Wiki
+# Copy to CODEOWNERS, .gitlab/CODEOWNERS, or docs/CODEOWNERS depending on your GitLab project convention.
+# Replace @corp/... with real GitLab groups/users.
+
+# Platform and CI/CD controls
+/.gitlab-ci.yml                  @corp/platform @corp/security
+/.gitlab/**                      @corp/platform @corp/security
+/templates/gitlab-*.yml          @corp/platform @corp/security
+/templates/gitlab-*.yaml         @corp/platform @corp/security
+
+# LLM-Wiki skills and behavior
+/skills/**                       @corp/llm-wiki-maintainers @corp/security
+/templates/**                    @corp/llm-wiki-maintainers
+/policies/**                     @corp/security @corp/compliance
+
+# API/MCP and internal interface surface
+/api/**                          @corp/platform @corp/security
+/mcp/**                          @corp/platform @corp/security
+/docs/*mcp*.md                   @corp/platform @corp/security
+/docs/*api*.md                   @corp/platform @corp/security
+
+# Security and threat model
+/docs/*security*.md              @corp/security
+/docs/*threat*.md                @corp/security
+/wiki/security/**                @corp/security
+/wiki/policies/**                @corp/domain-policy @corp/security
+
+# Architecture and operations
+/wiki/architecture/**            @corp/architecture
+/wiki/runbooks/**                @corp/sre
+/docs/*operating-model*.md       @corp/platform @corp/sre @corp/security
+/docs/*gitlab*.md                @corp/platform @corp/security
+
+# Source manifests and ingestion
+/raw/manifests/**                @corp/knowledge-engineering
+/raw/extracted/**                @corp/knowledge-engineering
+/templates/source-manifest.yaml  @corp/knowledge-engineering
+/templates/ingestion-*.yaml      @corp/knowledge-engineering @corp/security
+
+# Wiki content domains
+/wiki/sources/**                 @corp/knowledge-engineering
+/wiki/concepts/**                @corp/knowledge-engineering
+/wiki/synthesis/**               @corp/knowledge-engineering @corp/domain-editors
+/wiki/queries/**                 @corp/retrieval-eval
+
+# Retrieval and evaluation
+/evals/**                        @corp/retrieval-eval
+/benchmarks/**                   @corp/retrieval-eval
+/templates/*eval*.yaml           @corp/retrieval-eval
+/templates/*scorecard*.yaml      @corp/retrieval-eval @corp/platform
+
+# Publishing/export profiles and public/internal bundles
+/exports/profiles/**             @corp/publishing @corp/security
+/templates/export-*.yaml         @corp/publishing @corp/security
+/templates/agent-export-*.yaml   @corp/publishing @corp/security
+/templates/static-site-*.yaml    @corp/publishing @corp/security
+
+# GitLab operating model artifacts
+/templates/gitlab-*.yaml         @corp/platform @corp/security
+/templates/gitlab-*.yml          @corp/platform @corp/security
+/templates/gitlab-codeowners.*   @corp/platform @corp/security
