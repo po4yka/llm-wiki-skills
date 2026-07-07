@@ -16,6 +16,15 @@ This repository packages that pattern as installable skills for Claude Code, Cod
 
 ## Install
 
+Start with the lane that matches how you will use the wiki:
+
+| Persona | Install | First useful prompt |
+| --- | --- | --- |
+| First-time demo | `llm-wiki-zero-to-working-wiki` | "Take this empty folder from zero to a working LLM-Wiki with one source, one saved answer and one lint report." |
+| Solo Obsidian / local notes | `llm-wiki-setup`, `wiki-ingest`, `wiki-query`, `wiki-lint`, `llm-wiki-obsidian-hardening` | "Create a local-first LLM-Wiki vault from this folder and keep writes reviewable." |
+| Repository docs / coding agents | `llm-wiki-repo-docs`, `llm-wiki-setup`, `wiki-query`, `wiki-lint`, `llm-wiki-github-action` | "Build an OpenWiki-style repo docs map for this codebase and propose the first pages." |
+| Team knowledge system | `llm-wiki-team-rollout`, `llm-wiki-capture-pipeline`, `llm-wiki-eval`, `llm-wiki-security-review`, `llm-wiki-export-publish` | "Design a PR-based team LLM-Wiki operating loop with owners, review queues and eval gates." |
+
 List available skills:
 
 ```bash
@@ -35,6 +44,7 @@ npx skills add po4yka/llm-wiki-skills \
   --skill llm-wiki-orient \
   --skill llm-wiki-faq \
   --skill llm-wiki-choose \
+  --skill llm-wiki-zero-to-working-wiki \
   --skill llm-wiki-setup \
   -a claude-code -a codex
 ```
@@ -44,6 +54,29 @@ Use one skill without installing it:
 ```bash
 npx skills use po4yka/llm-wiki-skills --skill llm-wiki-faq --agent claude-code
 ```
+
+## Zero to working wiki
+
+The fastest product path is:
+
+```text
+install core skills -> create raw/wiki vault -> ingest one source -> ask one reusable question -> run wiki-lint -> review git diff
+```
+
+Use [`docs/quickstart.md`](docs/quickstart.md) for the full 10-minute flow.
+
+To inspect the value before installing anything, open [`examples/demo-vault/README.md`](examples/demo-vault/README.md). It shows the first source, expected ingest result, expected query answer and expected lint contract.
+
+## Maintenance ritual
+
+After the first run, keep the wiki alive with a small operating loop:
+
+| Cadence | Command or skill | Output |
+| --- | --- | --- |
+| Every capture session | `wiki-triage` then `wiki-ingest` | Draft source/wiki pages plus updated index and log. |
+| Weekly | `wiki-lint` | Review queue for stale pages, orphans, provenance gaps and contradictions. |
+| Monthly | `llm-wiki-eval` | Baseline versus with-wiki usefulness notes and decision on whether to keep investing. |
+| Before sharing/export | `llm-wiki-privacy-redactor`, `llm-wiki-export-publish` | Redaction preview, export manifest, citations and checksums. |
 
 ## What this pack covers
 
@@ -109,6 +142,7 @@ It includes skills for:
 
 | Skill | Use when |
 |---|---|
+| [`llm-wiki-zero-to-working-wiki`](skills/llm-wiki-zero-to-working-wiki/SKILL.md) | The user wants to bootstrap a first useful LLM-Wiki from zero: one vault, one source, one saved answer and one lint report. |
 | [`llm-wiki-setup`](skills/llm-wiki-setup/SKILL.md) | The user chose a target setup and wants installation, config, hooks, templates or git workflow help. |
 | [`llm-wiki-design`](skills/llm-wiki-design/SKILL.md) | The user wants to design or build a custom LLM-Wiki product, plugin, CLI or agent workflow. |
 | [`llm-wiki-refactor`](skills/llm-wiki-refactor/SKILL.md) | Existing documents, notes, docs folders or vaults should be reorganized into LLM-Wiki structure. |

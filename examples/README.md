@@ -3,7 +3,8 @@
 These examples are small fixtures for validating the LLM-Wiki Skills pack and for showing users what a healthy workflow looks like.
 
 | Fixture | Purpose |
-|---|---|
+| --- | --- |
+| `demo-vault/` | Product walkthrough for seeing the first useful loop before installing skills. |
 | `minimal-vault/` | End-to-end raw/wiki/schema starter with expected ingest/query/lint contracts. |
 | `provenance-gaps/` | Unsupported claims for provenance repair and expected provenance report contract. |
 | `claim-anchors/` | Valid claim/source anchors plus fenced-code duplicate examples that should be ignored. |

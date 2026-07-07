@@ -6,14 +6,24 @@
     "llm-wiki-faq",
     "llm-wiki-human-first-design",
     "llm-wiki-choose",
+    "llm-wiki-zero-to-working-wiki",
     "llm-wiki-doctor"
   ],
   "routes": [
     {
+      "skill": "llm-wiki-zero-to-working-wiki",
+      "intents": ["zero to working wiki", "first useful wiki", "bootstrap first vault", "first source ingest", "first reusable answer", "first lint report", "demo wiki loop"],
+      "depends_on": [],
+      "next": ["llm-wiki-setup", "wiki-ingest", "wiki-query", "wiki-lint", "llm-wiki-eval"],
+      "write_risk": "medium",
+      "requires_web": false,
+      "default_mode": "plan-then-scaffold"
+    },
+    {
       "skill": "llm-wiki-orient",
       "intents": ["what is llm-wiki", "explain pattern", "compare with rag", "solution landscape"],
       "depends_on": [],
-      "next": ["llm-wiki-faq", "llm-wiki-human-first-design", "llm-wiki-news-radar", "llm-wiki-choose"],
+      "next": ["llm-wiki-faq", "llm-wiki-human-first-design", "llm-wiki-news-radar", "llm-wiki-choose", "llm-wiki-zero-to-working-wiki"],
       "write_risk": "none",
       "requires_web": false,
       "default_mode": "answer"

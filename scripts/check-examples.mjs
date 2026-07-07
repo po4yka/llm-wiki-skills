@@ -5,6 +5,7 @@ import { failFactory, listFiles, repoRoot, readText } from './lib/repo.mjs';
 const { fail, finish } = failFactory();
 const requiredPaths = [
   'examples/README.md',
+  'examples/demo-vault/README.md',
   'examples/minimal-vault/AGENTS.md',
   'examples/minimal-vault/CLAUDE.md',
   'examples/minimal-vault/raw/sources/example-source.md',

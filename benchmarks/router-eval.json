@@ -6,6 +6,7 @@
     { "utterance": "Audit whether humans can find information without agents and define page contracts.", "expected_skill": "llm-wiki-human-first-design", "tags": ["human-first"] },
     { "utterance": "Find the latest news and fresh releases around OpenWiki and agent memory.", "expected_skill": "llm-wiki-news-radar", "tags": ["current"] },
     { "utterance": "Help me choose tool options: ready-made vs custom, OpenWiki vs Obsidian.", "expected_skill": "llm-wiki-choose", "tags": ["choose"] },
+    { "utterance": "Take this empty folder from zero to a working wiki with one source, one saved answer and one lint report.", "expected_skill": "llm-wiki-zero-to-working-wiki", "tags": ["setup", "product-front"] },
     { "utterance": "Build an ecosystem registry of what projects exist and compare ready-made implementations.", "expected_skill": "llm-wiki-ecosystem-registry", "tags": ["landscape"] },
     { "utterance": "Do an implementation deep dive and architecture comparison of concrete LLM-Wiki systems.", "expected_skill": "llm-wiki-implementation-deep-dive", "tags": ["architecture"] },
     { "utterance": "Diagnose vault problems in an existing docs folder as a read-only audit.", "expected_skill": "llm-wiki-doctor", "tags": ["diagnose"] },

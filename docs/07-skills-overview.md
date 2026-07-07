@@ -65,6 +65,7 @@ Set up, customize, and migrate documents into local-first or team LLM-Wiki syste
 
 | Skill | Purpose |
 |---|---|
+| [`llm-wiki-zero-to-working-wiki`](../skills/llm-wiki-zero-to-working-wiki/SKILL.md) | Create a first useful LLM-Wiki from zero. |
 | [`llm-wiki-setup`](../skills/llm-wiki-setup/SKILL.md) | Install, configure, and connect a chosen LLM-Wiki workflow. |
 | [`llm-wiki-design`](../skills/llm-wiki-design/SKILL.md) | Design a custom LLM-Wiki implementation, CLI, Obsidian plugin, repo-docs agent, team workflow, or product architecture. |
 | [`llm-wiki-refactor`](../skills/llm-wiki-refactor/SKILL.md) | Refactor an existing document set, docs folder, research archive, Obsidian vault, repository documentation, or messy note collection into an LLM-Wiki structure. |

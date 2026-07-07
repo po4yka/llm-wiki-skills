@@ -43,6 +43,7 @@
       "title": "Implement and migrate",
       "description": "Set up, customize, and migrate documents into local-first or team LLM-Wiki systems.",
       "skills": [
+        "llm-wiki-zero-to-working-wiki",
         "llm-wiki-setup",
         "llm-wiki-design",
         "llm-wiki-refactor",

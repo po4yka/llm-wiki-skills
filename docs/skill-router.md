@@ -286,7 +286,7 @@ Redact private content?
 | [`llm-wiki-model-policy`](../skills/llm-wiki-model-policy/SKILL.md) | model policy; which models allowed; keep data local; provider data use; model provenance frontmatter |  | low | yes | policy-proposal | llm-wiki-privacy-redactor, llm-wiki-security-review |
 | [`llm-wiki-news-radar`](../skills/llm-wiki-news-radar/SKILL.md) | latest news; fresh releases; recent papers; ecosystem changes |  | none | yes | answer-with-citations | llm-wiki-ecosystem-registry, llm-wiki-choose |
 | [`llm-wiki-obsidian-hardening`](../skills/llm-wiki-obsidian-hardening/SKILL.md) | harden obsidian vault; agent-safe obsidian; protect wikilinks; vault sync safety |  | medium | no | plan-before-apply | wiki-lint, llm-wiki-trust-audit |
-| [`llm-wiki-orient`](../skills/llm-wiki-orient/SKILL.md) | what is llm-wiki; explain pattern; compare with rag; solution landscape |  | none | no | answer | llm-wiki-faq, llm-wiki-human-first-design, llm-wiki-news-radar, llm-wiki-choose |
+| [`llm-wiki-orient`](../skills/llm-wiki-orient/SKILL.md) | what is llm-wiki; explain pattern; compare with rag; solution landscape |  | none | no | answer | llm-wiki-faq, llm-wiki-human-first-design, llm-wiki-news-radar, llm-wiki-choose, llm-wiki-zero-to-working-wiki |
 | [`llm-wiki-paf-adoption`](../skills/llm-wiki-paf-adoption/SKILL.md) | paf nexus; cortex workflow; company-level nexus; which nexus first; measure decision impact |  | none | no | answer | llm-wiki-company-flow-audit, llm-wiki-team-rollout |
 | [`llm-wiki-privacy-redactor`](../skills/llm-wiki-privacy-redactor/SKILL.md) | redact sensitive content; pii scan; remove secrets before export; private tags |  | medium | no | preview-and-plan-first | llm-wiki-export-publish, llm-wiki-security-review |
 | [`llm-wiki-provenance`](../skills/llm-wiki-provenance/SKILL.md) | missing sources; provenance gaps; unsupported claims; repair evidence links; investigate support labels | stable claim ids; source anchor ids; validate claim anchors | medium | no | report-or-patch | llm-wiki-claim-anchors, llm-wiki-conflict-resolver |
@@ -301,12 +301,13 @@ Redact private content?
 | [`llm-wiki-team-rollout`](../skills/llm-wiki-team-rollout/SKILL.md) | team rollout; adoption plan; ownership and review gates; pr-based agent writes; bus factor |  | none | no | plan-only | llm-wiki-company-flow-audit, llm-wiki-gitlab-operating-model, llm-wiki-github-action, llm-wiki-security-review |
 | [`llm-wiki-threat-model`](../skills/llm-wiki-threat-model/SKILL.md) | threat model; stride analysis; linddun analysis; data flow diagram; attack surface mapping; trust boundaries; risk matrix; security architecture controls | is my setup safe; existing configuration safety; skill safety review | none | no | report-only | llm-wiki-security-review, llm-wiki-trust-audit |
 | [`llm-wiki-trust-audit`](../skills/llm-wiki-trust-audit/SKILL.md) | trust audit; can the wiki be trusted; anti-slop controls; unsafe agent write permissions; prompt-injection exposure |  | none | no | report-only | llm-wiki-provenance, llm-wiki-critique-audit, wiki-lint |
+| [`llm-wiki-zero-to-working-wiki`](../skills/llm-wiki-zero-to-working-wiki/SKILL.md) | zero to working wiki; first useful wiki; bootstrap first vault; first source ingest; first reusable answer; first lint report; demo wiki loop |  | medium | no | plan-then-scaffold | llm-wiki-setup, wiki-ingest, wiki-query, wiki-lint, llm-wiki-eval |
 | [`wiki-ingest`](../skills/wiki-ingest/SKILL.md) | ingest source; add pdf; add article; create source page |  | medium | no | analyze-before-write | wiki-query, wiki-lint, llm-wiki-provenance |
 | [`wiki-lint`](../skills/wiki-lint/SKILL.md) | lint wiki; broken links; orphan pages; stale claims; review queue |  | low | no | report-only | llm-wiki-human-first-design, llm-wiki-provenance, llm-wiki-conflict-resolver, llm-wiki-critique-audit |
 | [`wiki-query`](../skills/wiki-query/SKILL.md) | answer from wiki; research answer; save reusable answer |  | low | no | answer-and-offer-file-back | llm-wiki-human-first-design, llm-wiki-eval, wiki-lint |
 | [`wiki-triage`](../skills/wiki-triage/SKILL.md) | triage inbox; sort captures; keep defer drop; duplicate review |  | low | no | report-only | wiki-ingest, llm-wiki-capture-pipeline |
 
-Default entrypoints: `llm-wiki-orient`, `llm-wiki-faq`, `llm-wiki-human-first-design`, `llm-wiki-choose`, `llm-wiki-doctor`.
+Default entrypoints: `llm-wiki-orient`, `llm-wiki-faq`, `llm-wiki-human-first-design`, `llm-wiki-choose`, `llm-wiki-zero-to-working-wiki`, `llm-wiki-doctor`.
 
 <!-- generated:route-inventory:end -->
 
