@@ -75,7 +75,7 @@ for (const [index, route] of (router.routes ?? []).entries()) {
 
 const highRiskWithoutSafeMode = [...(router.routes ?? [])].filter((route) => {
   if (!['medium', 'high'].includes(route.write_risk)) return false;
-  return !/(report|dry|plan|propose|proposal|review|patch|pr)/i.test(route.default_mode);
+  return !/(report|dry|plan|propose|proposal|review|patch|pr|analyze|options)/i.test(route.default_mode);
 });
 
 for (const route of highRiskWithoutSafeMode) {

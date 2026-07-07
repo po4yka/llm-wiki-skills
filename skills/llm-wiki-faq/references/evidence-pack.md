@@ -130,6 +130,63 @@ Do not require Obsidian for repo docs, team docs-as-code, or users who want a mi
 Markdown + git + ripgrep + AGENTS.md/CLAUDE.md + skills
 ```
 
+## Adoption objection answers
+
+### I am not a developer. How do I work with this?
+
+Do not make git literacy a prerequisite. Recommend a user-facing capture surface and hide repository mechanics behind an agent or maintainer workflow.
+
+Good answer:
+
+> You can add knowledge through a browser, Obsidian, a form, Telegram/email or a Confluence-style surface. The agent/maintainer layer can turn that into `raw/`, `wiki/`, provenance and review states. Git/PRs are useful for history and trust, but they do not need to be your daily interface.
+
+### Confluence only needs a browser. Why should I create MRs and sync branches?
+
+Agree with the objection. If every small contribution requires manual branch sync and PR/MR discipline, the rollout is badly designed.
+
+Good answer:
+
+> Capture should be as easy as Confluence. PR/MR review should be reserved for promotion to trusted, public, regulated or CODEOWNERS-owned knowledge. Ordinary additions should go through an append-only inbox, browser edit, form or bot, then be batched into review by the agent.
+
+### Will tokens be enough as the wiki grows?
+
+Good answer:
+
+> Yes, if the agent does not paste the whole wiki into the prompt. It should read a small instruction pointer, then `wiki/index.md`, then search and open only relevant pages. Raw sources are loaded only when verification is required. Token explosion is a design smell, not a reason to abandon the pattern.
+
+### Is this knowledge for agents or humans?
+
+Good answer:
+
+> Both. Agents need stable paths, frontmatter, links and indexes. Humans need readable pages, source links, review status and visible uncertainty. If humans cannot read and challenge the page, it is not documentation; it is an opaque agent cache.
+
+### What about LLM slop?
+
+Generated text is not automatically knowledge. It becomes trusted only after source anchoring and review.
+
+Controls:
+
+- raw sources preserved;
+- provenance links;
+- `status: draft|reviewed|verified|stale|archived`;
+- `review_required` and confidence fields;
+- protected human synthesis sections;
+- lint for unsupported/stale/contradictory claims.
+
+### What content can I upload, and how do I handle sensitive data?
+
+Almost any knowledge-bearing material can be captured, but it must be classified first.
+
+| Data class | Default handling |
+|---|---|
+| Public | Normal wiki flow; cloud or local models if policy permits. |
+| Internal | Private storage and model policy required. |
+| Confidential | Prefer local or approved private provider; redact before cloud. |
+| Restricted / regulated | Do not ingest by default; explicit approval, minimization and retention rules. |
+| Secrets | Never ingest; rotate if captured. |
+
+Route to privacy/security/model-policy skills when the user mentions sensitive data, customer data, PII, credentials, retention, provider boundaries or publishing.
+
 ## Failure modes to disclose
 
 - Wiki grows but is not read.
@@ -140,6 +197,8 @@ Markdown + git + ripgrep + AGENTS.md/CLAUDE.md + skills
 - The user collects notes instead of producing outputs.
 - The corpus is too small to justify the workflow.
 - Sensitive material is routed to cloud models without a policy.
+- Non-developers are forced into git/PR/MR workflow for ordinary capture.
+- The entire wiki is pasted into model context instead of being navigated.
 
 ## Pilot recommendation
 

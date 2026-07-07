@@ -66,8 +66,15 @@ const exampleWikiFiles = listFiles(path.join(repoRoot, 'examples'), (_abs, rel) 
   return /\/wiki\//.test(rel) && rel.endsWith('.md');
 });
 
+const bookkeepingWikiFiles = new Set([
+  'examples/minimal-vault/wiki/index.md',
+  'examples/minimal-vault/wiki/log.md',
+]);
+
 for (const filePath of exampleWikiFiles) {
   const rel = path.relative(repoRoot, filePath);
+  if (bookkeepingWikiFiles.has(rel)) continue;
+
   const text = readText(filePath);
 
   if (!hasFrontmatter(text)) {

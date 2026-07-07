@@ -10,7 +10,7 @@
   ],
   "templates": [
     {
-      "source": "templates/technology-decision.md",
+      "source": "templates/wiki/technology-decision.md",
       "target": "wiki/synthesis/technology-decision-template.md"
     }
   ],

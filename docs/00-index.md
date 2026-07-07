@@ -19,32 +19,43 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 
 1. [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md)
 2. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
-3. [`02-architecture.md`](02-architecture.md)
-4. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-5. [`06-implementation-playbook.md`](06-implementation-playbook.md)
-6. [`07-skills-overview.md`](07-skills-overview.md)
+3. [`20-adoption-objections.md`](20-adoption-objections.md)
+4. [`02-architecture.md`](02-architecture.md)
+5. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+6. [`06-implementation-playbook.md`](06-implementation-playbook.md)
+7. [`07-skills-overview.md`](07-skills-overview.md)
+
+### Fast path: non-developer or browser-first rollout
+
+1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
+2. [`20-adoption-objections.md`](20-adoption-objections.md)
+3. [`skill-router.md`](skill-router.md)
+4. [`operations/daily.md`](operations/daily.md)
+5. [`19-security-threat-model.md`](19-security-threat-model.md)
 
 ### Builder path: tool or plugin
 
 1. [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md)
 2. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
-3. [`05-tooling-landscape.md`](05-tooling-landscape.md)
-4. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-5. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
-6. [`09-references.md`](09-references.md)
-7. [`domain-pack-schema.md`](domain-pack-schema.md)
-8. [`technology-decision-record-template.md`](technology-decision-record-template.md)
-9. [`release-policy.md`](release-policy.md)
+3. [`20-adoption-objections.md`](20-adoption-objections.md)
+4. [`05-tooling-landscape.md`](05-tooling-landscape.md)
+5. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+6. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
+7. [`09-references.md`](09-references.md)
+8. [`domain-pack-schema.md`](domain-pack-schema.md)
+9. [`technology-decision-record-template.md`](technology-decision-record-template.md)
+10. [`release-policy.md`](release-policy.md)
 
 ### Reviewer path: risk and trust
 
 1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
-2. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-3. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
-4. [`domain-pack-schema.md`](domain-pack-schema.md)
-5. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
-6. [`security/ci-severity-policy.md`](security/ci-severity-policy.md)
-7. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
+2. [`20-adoption-objections.md`](20-adoption-objections.md)
+3. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+4. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
+5. [`domain-pack-schema.md`](domain-pack-schema.md)
+6. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
+7. [`security/ci-severity-policy.md`](security/ci-severity-policy.md)
+8. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
 
 ### Operations path
 
@@ -70,6 +81,7 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`10-skill-system-roadmap.md`](10-skill-system-roadmap.md) | Product roadmap for the Agent Skills distribution pack. |
 | [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md) | Catalog of advanced use-case skills. |
 | [`12-evidence-and-faq.md`](12-evidence-and-faq.md) | Evidence-backed arguments and FAQ answers for adoption questions. |
+| [`20-adoption-objections.md`](20-adoption-objections.md) | Concrete answers for non-developers, browser-first workflows, PR/MR friction, token growth, human-readable documentation, LLM slop and sensitive content. |
 | [`domain-pack-schema.md`](domain-pack-schema.md) | Core `type` and domain `domain_type` schema contract. |
 | [`quickstart.md`](quickstart.md) | Ten-minute first-run guide. |
 | [`skill-router.md`](skill-router.md) | Decision tree for choosing the right skill; mirrored by `skill-router.json`. |
@@ -94,4 +106,4 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 
 ## Repository design stance
 
-The default target is a local-first, git-versioned vault. Heavy retrieval and graph infrastructure is treated as an upgrade path, not as day-one scaffolding.
+The default target is a local-first, git-versioned vault, but non-developer users should be offered browser-first or capture-first surfaces. Heavy retrieval and graph infrastructure is treated as an upgrade path, not as day-one scaffolding.

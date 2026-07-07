@@ -63,7 +63,7 @@
     },
     {
       "title": "Operate and trust",
-      "description": "Run triage, ingest, query, lint, trust-audit, source-refresh, privacy, security, model-policy, archive, and publishing workflows.",
+      "description": "Run triage, ingest, query, lint, trust-audit, source-refresh, privacy, threat-model, security, model-policy, archive, and publishing workflows.",
       "skills": [
         "wiki-triage",
         "wiki-ingest",
@@ -72,6 +72,7 @@
         "llm-wiki-trust-audit",
         "llm-wiki-source-refresh",
         "llm-wiki-privacy-redactor",
+        "llm-wiki-threat-model",
         "llm-wiki-security-review",
         "llm-wiki-model-policy",
         "llm-wiki-export-publish",
