@@ -267,24 +267,24 @@ Needs additional design:
 
 > You are not wrong: LLM-Wiki plus skills is very close to the technical mechanics of Nexus and Cortex. But it is a simplification if we stop there. A Nexus is not just a wiki; it is a living model of a managed object such as market, product or growth system. A Cortex is not just an agent; it is the operating system of workflows, rules, permissions and decision loops that manipulate the Nexus. The first practical company step is a small Market Opportunity Nexus for one strategic segment, with browser-first capture, weekly Cortex workflows, explicit owners, and a decision benchmark: do real feature/growth/strategy decisions cite the Nexus and change confidence/risk because of it?
 
-## Russian compact templates
+## Compact answer templates
 
-### «LLM-Wiki — это Нексус и Кортекс?»
+### “Is LLM-Wiki the Nexus and Cortex?”
 
-> По смыслу — да, но это неполное равенство. LLM-Wiki может быть техническим скелетом Нексуса: живой, source-backed слой контекста. Skills/агенты могут быть ранним Кортексом: правила и операции работы с этим контекстом. Но PAF требует большего: объект управления, node schema, confidence/ripeness, владельцев, decision loops и связь с банчем/целями/рисками.
+> In spirit, yes, but the equivalence is incomplete. LLM-Wiki can be the technical skeleton of a Nexus: a living, source-backed context layer. Skills/agents can be an early Cortex: the rules and operations for working with that context. PAF needs more than that: a managed object, node schema, confidence/ripeness, owners, decision loops and links to bunches/goals/risks.
 
-### «С какого Нексуса стартовать на уровне компании?»
+### “Which Nexus should a company start with?”
 
-> Практичнее всего начать с Market Opportunity Nexus для одного стратегического сегмента или рынка. Он естественно общий: продукт, маркетинг, продажи, саппорт и руководство приносят разные источники, а решения о продукте и росте начинают опираться на один внешний контекст. Если рынок уже ясен, а боль внутри продукта, тогда стартуйте с Product Nexus.
+> The most practical start is a Market Opportunity Nexus for one strategic segment or market. It is naturally shared: product, marketing, sales, support and leadership bring different sources, while product and growth decisions begin to rely on one external context. If the market is already clear and the pain is inside the product, start with a Product Nexus.
 
-### «Как сделать его общим, а не персональным?»
+### “How do we make it shared rather than personal?”
 
-> Выберите объект управления, который важен нескольким функциям, дайте всем простой capture через браузер/форму/бота, задайте общую схему узлов, назначьте владельцев review, и потребуйте, чтобы решения/эксперименты/feature bunch ссылались на Nexus. Общим его делает не репозиторий, а то, что разные функции вносят evidence и решения реально используют этот контекст.
+> Choose a managed object that matters to several functions, give everyone simple capture through a browser/form/bot, define a shared node schema, assign review owners and require decisions/experiments/feature bunches to cite the Nexus. The repository does not make it shared; cross-functional evidence and decisions that actually use the context do.
 
-### «Как быстро проверить влияние на решения?»
+### “How can we quickly test decision impact?”
 
-> Возьмите 10 реальных decision questions и сравните обычный режим с режимом Nexus/Cortex. Мерьте не число страниц, а time-to-answer, source coverage, confidence delta, surfaced gaps и количество решений/PRD/экспериментов, которые ссылаются на Nexus. Если за месяц ни одно решение не изменилось и не стало яснее, это пока свалка, а не Nexus.
+> Take 10 real decision questions and compare the normal mode with Nexus/Cortex mode. Measure time-to-answer, source coverage, confidence delta, surfaced gaps and the number of decisions/PRDs/experiments that cite the Nexus, not page count. If no decision changes or becomes clearer after a month, this is still a dump, not a Nexus.
 
-### «Что уже переносимо, а что достраивать?»
+### “What is portable and what still needs to be built?”
 
-> Переносимы raw/wiki/schema, capture→triage→ingest→query→lint→refresh, provenance, review states, privacy/model policy и evaluation. Достраивать придётся PAF-специфичную схему узлов, Confidence Point/Ripeness, связь с Goal Map/Feature Bunch/mNSM, роли Product Engineer/Product Ops, доступы, браузерный capture и decision templates.
+> Portable pieces include raw/wiki/schema, capture -> triage -> ingest -> query -> lint -> refresh, provenance, review states, privacy/model policy and evaluation. PAF-specific work remains: node schemas, Confidence Point/Ripeness, links to Goal Map/Feature Bunch/mNSM, Product Engineer/Product Ops roles, access control, browser capture and decision templates.

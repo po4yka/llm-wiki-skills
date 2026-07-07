@@ -393,20 +393,20 @@ Use:
 
 > I agree with the concern. LLM-Wiki should not be a vacuum where agents generate more documents. It should be a human-readable shared context layer that remains useful without agents. Agents are the librarians: they maintain links, indexes, metadata, lint reports and refresh queues. Humans own meaning, review and trust. The practical test is simple: take 10 questions that are hard to answer in Confluence today. If a human can answer them faster from the wiki without an agent, with clearer sources and uncertainty, the system is working. If only the agent can magically retrieve the answer, we built an opaque cache, not a knowledge base.
 
-## Russian compact templates
+## Compact answer templates
 
-### «LLM-Wiki не должна жить в вакууме»
+### “LLM-Wiki should not live in a vacuum”
 
-> Согласен. LLM-Wiki нельзя проектировать как папку, куда агенты складывают сгенерированные markdown. Она должна быть human-first: человек должен найти и понять ответ без агента, а агент должен помогать обслуживать структуру, ссылки, freshness и review queues.
+> Agreed. LLM-Wiki must not be designed as a folder where agents drop generated Markdown. It should be human-first: a person should be able to find and understand an answer without an agent, while the agent helps maintain structure, links, freshness and review queues.
 
-### «Что если завтра не будет агентов?»
+### “What if there are no agents tomorrow?”
 
-> Это хороший acceptance test. Если без агента человек не может открыть `index.md`, карту домена или страницу решения и за 1–2 минуты понять, что известно, откуда это известно и что устарело, значит мы построили не LLM-Wiki, а непрозрачный агентный кеш.
+> That is a good acceptance test. If a person cannot open `index.md`, a domain map or a decision page and understand in 1-2 minutes what is known, where it came from and what is stale, then we built an opaque agent cache, not an LLM-Wiki.
 
-### «Как не получить новую мусорку вместо Confluence?»
+### “How do we avoid creating another dumping ground instead of Confluence?”
 
-> Не зеркальте Confluence spaces и не складывайте summaries по источникам. Стройте страницы вокруг вопросов, решений, проблем, рисков, assumptions и возможностей. Источники держите отдельно, а synthesis/decision pages делайте читаемыми, source-backed и reviewed.
+> Do not mirror Confluence spaces or pile up summaries by source. Build pages around questions, decisions, problems, risks, assumptions and opportunities. Keep sources separate, and make synthesis/decision pages readable, source-backed and reviewed.
 
-### «Как этого добиться практически?»
+### “How do we do this in practice?”
 
-> Начните с 10 вопросов, которые сейчас трудно найти в Confluence. Под них создайте `index.md`, domain maps, decision index, open questions и page contract. Потом ingest sources только в draft, запускайте lint/provenance, защищайте `## Human synthesis`, file-back хорошие ответы и ежемесячно проверяйте, может ли человек ответить на эти вопросы без агента.
+> Start with 10 questions that are hard to answer in Confluence today. Create `index.md`, domain maps, a decision index, open questions and a page contract around them. Then ingest sources only as draft, run lint/provenance, protect `## Human synthesis`, file back good answers and check monthly whether a person can answer those questions without an agent.

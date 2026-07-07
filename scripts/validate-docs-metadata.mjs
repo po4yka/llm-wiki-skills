@@ -101,7 +101,7 @@ function checkSourceMapEntriesAreUsed() {
 
 function checkAgentFacingLanguage() {
   const skillFiles = listFiles(path.join(repoRoot, 'skills'), (_absPath, relPath) => /\.(md|ya?ml|json)$/.test(relPath));
-  const cyrillicPattern = /[А-Яа-яЁё]/u;
+  const cyrillicPattern = /[\u0400-\u04FF]/u;
 
   for (const filePath of skillFiles) {
     const relPath = repoRelative(filePath);

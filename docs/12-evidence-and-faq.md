@@ -1,7 +1,7 @@
 # Evidence-backed FAQ for LLM-Wiki
 
 > Status: draft
-> Scope: аргументы, сравнительные данные и честные оговорки для ответов пользователям, которые спрашивают «зачем LLM-Wiki», «что я получу», «есть ли доказательства», «как поддерживать живой wiki» и «нужен ли Obsidian».
+> Scope: arguments, comparative evidence and honest caveats for answering users who ask why LLM-Wiki matters, what benefits it provides, what evidence exists, how to keep a wiki alive and whether Obsidian is required.
 > Current as of: 2026-07-06
 
 ## How to use this document
@@ -33,7 +33,7 @@ LLM-Wiki is useful when the user repeatedly loses context across research, codeb
 
 ## Why is this needed?
 
-Use this answer when the user asks: **«Зачем это нужно?»**
+Use this answer when the user asks why this is needed.
 
 LLM-Wiki solves a compounding problem, not a storage problem. Users already have sources: notes, docs, chats, PRs, PDFs, bookmarks, transcripts, meeting notes and code. The problem is that raw sources do not automatically become reusable knowledge.
 
@@ -61,7 +61,7 @@ Do not say that. LLM-Wiki is a pattern with a clear fit, not a universal replace
 
 ## What benefits should a user expect?
 
-Use this answer when the user asks: **«Какие преимущества я получу?»**
+Use this answer when the user asks what benefits they should expect.
 
 ### Personal workflow benefits
 
@@ -85,7 +85,7 @@ Use this answer when the user asks: **«Какие преимущества я �
 
 ## Is there evidence that it works better than other approaches?
 
-Use this answer when the user asks: **«Есть доказательные/сравнительные данные?»**
+Use this answer when the user asks for evidence or comparative data.
 
 ### Short answer
 
@@ -153,7 +153,7 @@ Source: https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent
 
 ## Is LLM-Wiki better than RAG?
 
-Use this answer when the user asks: **«Это лучше RAG?»**
+Use this answer when the user asks whether this is better than RAG.
 
 Not always. A better framing:
 
@@ -175,7 +175,7 @@ LLM-Wiki for durable synthesis and navigation
 
 ## How do I maintain a living LLM-Wiki?
 
-Use this answer when the user asks: **«Как поддерживать живой LLM-Wiki?»**
+Use this answer when the user asks how to keep an LLM-Wiki alive.
 
 A living wiki needs a loop, not just an initial import.
 
@@ -218,7 +218,7 @@ Pause automation if:
 
 ## Do I need Obsidian?
 
-Use this answer when the user asks: **«Нужно ли мне использовать Obsidian?»**
+Use this answer when the user asks whether they need Obsidian.
 
 No. Obsidian is a good reading and editing surface, not a requirement.
 
@@ -260,25 +260,25 @@ Do not recommend LLM-Wiki when:
 
 ## Recommended answer templates
 
-### “Зачем мне это?”
+### “Why do I need this?”
 
-> Вам это нужно, если вы снова и снова платите налог на восстановление контекста: перечитываете старые документы, заново объясняете агенту проект, теряете хорошие ответы в чатах и не можете быстро ответить «почему мы так решили». LLM-Wiki превращает сырые источники в живой Markdown-слой, который агент может поддерживать, а человек — проверять.
+> You need this if you keep paying the same context-reconstruction tax: rereading old documents, re-explaining the project to an agent, losing good chat answers and being unable to answer why a decision was made. LLM-Wiki turns raw sources into a living Markdown layer that an agent can maintain and a human can inspect.
 
-### “Что я получу?”
+### “What do I get?”
 
-> Ожидаемый выигрыш: быстрее возвращаться к темам, переиспользовать прошлые исследования, не терять хорошие ответы, поддерживать decision memory, давать coding agents карту проекта и видеть, где знания устарели или не имеют источников. Это стоит измерять не числом заметок, а retrieval hit rate, reuse rate, review backlog и output beyond vault.
+> Expected gains: faster topic recovery, reuse of past research, fewer lost high-value answers, maintained decision memory, a project map for coding agents and visibility into stale or unsupported knowledge. Measure this by retrieval hit rate, reuse rate, review backlog and output beyond the vault, not by note count.
 
-### “Есть доказательства?”
+### “Is there evidence?”
 
-> Прямые benchmark’и именно LLM-Wiki пока ранние, но уже есть работа 2026 года, где LLM-Wiki обходит несколько graph/RAG baseline’ов на multi-hop и structured-query задачах. Точные F1/accuracy числа нужно перепроверять в статье перед цитированием. Сильнее доказан общий механизм: GraphRAG/global-RAG показывают, что предвычисленная структура помогает на corpus-level вопросах, memory-системы показывают пользу persistent memory, а long-context исследования показывают, что просто загрузить всё в контекст недостаточно.
+> Direct LLM-Wiki benchmarks are still early, but there is already a 2026 paper where LLM-Wiki outperforms several graph/RAG baselines on multi-hop and structured-query tasks. Re-check exact F1/accuracy numbers in the paper before quoting them. The broader mechanism is better established: GraphRAG/global-RAG show that precomputed structure helps with corpus-level questions, memory systems show the value of persistent memory, and long-context research shows that simply loading everything into context is not enough.
 
-### “Как поддерживать живым?”
+### “How do I keep it alive?”
 
-> Нужен цикл: capture → triage → ingest → query → file-back → lint → review → refresh. Самый важный шаг — сохранять хорошие ответы обратно в wiki и регулярно запускать lint, который ищет stale claims, unsupported claims, contradictions и orphan pages.
+> You need a loop: capture -> triage -> ingest -> query -> file-back -> lint -> review -> refresh. The most important step is filing good answers back into the wiki and regularly running lint that finds stale claims, unsupported claims, contradictions and orphan pages.
 
-### “Нужен Obsidian?”
+### “Do I need Obsidian?”
 
-> Нет. Obsidian — хороший интерфейс для человека, но не ядро паттерна. Ядро — Markdown, git, raw/wiki/schema, index/log и skills. Obsidian стоит брать, если вам нужен удобный local-first vault с backlinks и ручным чтением. Для repo docs или команды часто лучше начать с docs-as-code и PR-based workflow.
+> No. Obsidian is a good human interface, but not the core of the pattern. The core is Markdown, git, raw/wiki/schema, index/log and skills. Use Obsidian when you want a convenient local-first vault with backlinks and manual reading. For repo docs or team workflows, it is often better to start with docs-as-code and a PR-based workflow.
 
 ## Source map
 

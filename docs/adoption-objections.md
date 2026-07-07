@@ -258,24 +258,24 @@ source_contains_pii: true|false
 | "Is this for agents or humans?" | `llm-wiki-faq` | `llm-wiki-trust-audit`, `llm-wiki-provenance` |
 | "What about sensitive data?" | `llm-wiki-faq` | `llm-wiki-privacy-redactor`, `llm-wiki-model-policy`, `llm-wiki-threat-model` |
 
-## 7. Compact Russian answer templates
+## 7. Compact answer templates
 
-### «Я не разработчик — как мне этим пользоваться?»
+### “I am not a developer. How do I use this?”
 
-> Вам не нужно работать как разработчик. LLM-Wiki можно сделать так, что вы добавляете материалы через браузер, Obsidian, форму, Telegram/email или обычную страницу, а агент раскладывает это в `raw/` и `wiki/`, предлагает связи и создаёт очередь ревью. Git/PR — это не ежедневный интерфейс пользователя, а слой истории, отката и контроля качества.
+> You do not need to work like a developer. LLM-Wiki can be designed so you add material through a browser, Obsidian, a form, Telegram/email or a normal page, while the agent places it into `raw/` and `wiki/`, suggests links and creates a review queue. Git/PR is not the everyday user interface; it is the history, rollback and quality-control layer.
 
-### «В Confluence достаточно браузера, а тут MR и ветки»
+### “Confluence only needs a browser, but this has MRs and branches”
 
-> Это справедливое возражение. Если каждое добавление знания требует MR, система проиграет Confluence по удобству. Правильный дизайн: capture должен быть таким же лёгким, как в Confluence, а PR/MR использовать только для повышения статуса страницы до reviewed/verified, публичной публикации или командной ответственности. Для обычного захвата лучше inbox, форма, бот или browser edit плюс пакетное ревью агентом.
+> That is a fair objection. If every knowledge addition requires an MR, the system loses to Confluence on convenience. The right design makes capture as lightweight as Confluence and reserves PR/MR for promoting pages to reviewed/verified status, public publishing or team accountability. For routine capture, prefer an inbox, form, bot or browser edit plus batched agent-assisted review.
 
-### «Хватит ли токенов, когда wiki вырастет?»
+### “Will tokens be enough when the wiki grows?”
 
-> Да, если не загружать всю wiki в контекст. Агент должен читать маленький `index.md`, искать по файлам, открывать только релевантные страницы и обращаться к raw-источникам только для проверки. Рост wiki становится проблемой только при context-dump подходе; нормальная LLM-Wiki работает как навигационный слой плюс retrieval.
+> Yes, if you do not load the whole wiki into context. The agent should read a small `index.md`, search files, open only relevant pages and consult raw sources only for verification. Wiki growth becomes a problem only with a context-dump approach; a normal LLM-Wiki works as a navigation layer plus retrieval.
 
-### «Это знания для агентов или для людей?»
+### “Is this knowledge for agents or humans?”
 
-> Для обоих. Агенту нужны стабильные файлы, frontmatter, ссылки и индексы; человеку нужны понятная структура, источники, статус доверия и видимые сомнения. Если человек не может прочитать страницу и понять, откуда взялось утверждение, это не knowledge base, а потенциальный LLM slop.
+> Both. The agent needs stable files, frontmatter, links and indexes; the human needs clear structure, sources, trust status and visible uncertainty. If a human cannot read a page and understand where a claim came from, it is not a knowledge base; it is potential LLM slop.
 
-### «Что можно заливать и что делать с чувствительными данными?»
+### “What can I ingest and what should I do with sensitive data?”
 
-> Заливать можно статьи, PDFs, заметки, встречи, чаты, письма, PR/ADR/issues, web clips, аудио/видео-транскрипты и личные заметки. Но сначала нужно классифицировать данные: public/internal/confidential/restricted/secrets. Public можно обрабатывать проще; confidential лучше локально или через утверждённого провайдера; restricted — только с явной политикой; secrets нельзя загружать вообще.
+> You can ingest articles, PDFs, notes, meetings, chats, email, PRs/ADRs/issues, web clips, audio/video transcripts and personal notes. First classify the data: public/internal/confidential/restricted/secrets. Public data can be handled more simply; confidential data should stay local or go through an approved provider; restricted data needs an explicit policy; secrets must not be ingested at all.

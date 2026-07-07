@@ -485,44 +485,44 @@ Corrective actions:
 - prune low-value areas;
 - run a with-wiki vs without-wiki benchmark.
 
-## Compact Russian answer templates
+## Compact answer templates
 
-### «С чего начать?»
+### “Where should I start?”
 
-> Начните не с миграции всего архива, а с маленького пилота: один домен, 20–50 источников, 10–20 реальных вопросов, еженедельный lint и сохранение удачных ответов обратно в wiki. Если через 2–4 недели ответы не стали быстрее, полезнее или проверяемее, не масштабируйте.
+> Start with a small pilot, not a full archive migration: one domain, 20-50 sources, 10-20 real questions, weekly lint and filing successful answers back into the wiki. If answers are not faster, more useful or more verifiable after 2-4 weeks, do not scale.
 
-### «Когда это не нужно?»
+### “When is this unnecessary?”
 
-> Не нужно, если корпус маленький, поиск уже справляется, никто не будет ревьюить сгенерированные страницы, нет повторяющихся вопросов или результат не используется вне самой wiki. LLM-Wiki работает, когда знание переиспользуется и компаундится.
+> It is unnecessary when the corpus is small, search already works, nobody will review generated pages, there are no recurring questions or the result is not used beyond the wiki itself. LLM-Wiki works when knowledge is reused and compounds.
 
-### «Кто владелец wiki?»
+### “Who owns the wiki?”
 
-> Агент может быть библиотекарем, но не владельцем истины. Нужны человеческие владельцы: кто отвечает за источники, кто промоутит страницы до reviewed/verified, кто задаёт схемы, кто отвечает за sensitive data и кто смотрит lint-отчёты.
+> The agent can be the librarian, but not the owner of truth. You need human owners for sources, promotion to reviewed/verified, schemas, sensitive data and lint reports.
 
-### «Сколько это стоит?»
+### “How much does this cost?”
 
-> Самая дешёвая версия — Markdown, git, `index.md`, `log.md`, ripgrep и skills. Деньги появляются позже: облачные модели, embeddings, rerank, CI, доступы и поддержка. Сначала докажите пользу пилотом, потом платите за узкое место.
+> The cheapest version is Markdown, git, `index.md`, `log.md`, ripgrep and skills. Money appears later: cloud models, embeddings, rerank, CI, access controls and support. Prove value with a pilot first, then pay for the bottleneck.
 
-### «Как доказать пользу?»
+### “How do we prove value?”
 
-> Не числом страниц. Измеряйте, насколько быстрее отвечаются реальные повторяющиеся вопросы, как часто ответы опираются на wiki, сколько удачных ответов переиспользуется, сколько stale/unsupported claims найдено, и появились ли внешние результаты: отчёты, PR, onboarding, решения.
+> Not by page count. Measure how much faster real recurring questions are answered, how often answers cite the wiki, how many successful answers are reused, how many stale/unsupported claims are found and whether external outputs appear: reports, PRs, onboarding and decisions.
 
-### «Это заменит Confluence или Notion?»
+### “Does this replace Confluence or Notion?”
 
-> Не обязательно. Часто лучше оставить Confluence/Notion как удобную поверхность ввода, а LLM-Wiki использовать как compiled knowledge layer: агентный, проверяемый, source-aware слой для синтеза и повторного использования.
+> Not necessarily. It is often better to keep Confluence/Notion as a convenient input surface and use LLM-Wiki as a compiled knowledge layer: an agentic, verifiable, source-aware layer for synthesis and reuse.
 
-### «Это заменит RAG?»
+### “Does this replace RAG?”
 
-> Нет. Нормальная архитектура гибридная: LLM-Wiki хранит долговечный синтез, карты и decision memory, а search/RAG помогает находить релевантные страницы и raw-доказательства.
+> No. A healthy architecture is hybrid: LLM-Wiki stores durable synthesis, maps and decision memory, while search/RAG helps find relevant pages and raw evidence.
 
-### «Что если агент ошибётся?»
+### “What if the agent is wrong?”
 
-> Предполагайте, что он ошибётся. Поэтому raw-источники неизменяемы, generated pages начинаются как draft, важные claims получают provenance, verified/public страницы проходят human review, а bulk edits и удаления идут только через dry-run.
+> Assume it will be wrong. That is why raw sources are immutable, generated pages start as draft, important claims get provenance, verified/public pages pass human review and bulk edits or deletions go through dry-run first.
 
-### «Как избежать lock-in?»
+### “How do we avoid lock-in?”
 
-> Держите source of truth в скучных форматах: Markdown, YAML/JSON, git и raw files. Векторные базы, индексы и MCP/API — это rebuildable cache, а не единственная копия знания.
+> Keep the source of truth in boring formats: Markdown, YAML/JSON, git and raw files. Vector databases, indexes and MCP/API are rebuildable cache, not the only copy of knowledge.
 
-### «Можно ли нескольким агентам работать с одной wiki?»
+### “Can multiple agents work on one wiki?”
 
-> Да, если есть явные границы: короткий AGENTS.md/CLAUDE.md, page schemas, status fields, write permissions, review gates и запрет следовать инструкциям из тела источников. Без этого агенты начнут плодить разные conventions и тихие ошибки.
+> Yes, if boundaries are explicit: a short AGENTS.md/CLAUDE.md, page schemas, status fields, write permissions, review gates and a ban on following instructions from source bodies. Without that, agents will create divergent conventions and quiet errors.
