@@ -21,6 +21,7 @@ Skills are operators over the user's context. They should describe **how to work
 |---|---|
 | [`llm-wiki-orient`](../skills/llm-wiki-orient/SKILL.md) | Explain the LLM-Wiki pattern and solution landscape. |
 | [`llm-wiki-faq`](../skills/llm-wiki-faq/SKILL.md) | Answer evidence-backed adoption questions and serious criticism. |
+| [`llm-wiki-human-first-design`](../skills/llm-wiki-human-first-design/SKILL.md) | Design human-readable wiki structures, page contracts and agent-free acceptance tests. |
 | [`llm-wiki-paf-adoption`](../skills/llm-wiki-paf-adoption/SKILL.md) | Map LLM-Wiki adoption to Product Architecture Framework concepts such as Nexus and Cortex. |
 | [`llm-wiki-news-radar`](../skills/llm-wiki-news-radar/SKILL.md) | Browse for fresh ecosystem news, releases, papers and technologies. |
 | [`llm-wiki-choose`](../skills/llm-wiki-choose/SKILL.md) | Recommend ready-made vs custom paths. |

@@ -28,6 +28,9 @@ New to LLM-Wiki?
 Asking why this matters or whether there is evidence?
   -> llm-wiki-faq
 
+Arguing that LLM-Wiki must not be an agent-generated dump, or asking whether humans can find information without agents?
+  -> llm-wiki-human-first-design
+
 Asking for serious arguments against LLM-Wiki, what can fail, or whether a domain is a bad fit?
   -> llm-wiki-critique-audit
 
@@ -108,6 +111,9 @@ Need a document-conversion and ingestion stack (PDF, Office, audio, OCR)?
 Need agents to reach the wiki over MCP or an API?
   -> llm-wiki-mcp-integration
 
+Need human-first page contracts, decision maps, protected synthesis or agent-disappears acceptance tests?
+  -> llm-wiki-human-first-design
+
 Need PAF-style Market/Product/Growth Nexus schema or Cortex workflow?
   -> llm-wiki-paf-adoption
 
@@ -154,6 +160,9 @@ Worried about slop, context poisoning, consensus smoothing, cognitive debt, drif
 
 Need anti-slop controls audited in an existing vault?
   -> llm-wiki-trust-audit
+
+Need to prove humans can find answers without agents?
+  -> llm-wiki-human-first-design
 
 Need to prove value?
   -> llm-wiki-eval
