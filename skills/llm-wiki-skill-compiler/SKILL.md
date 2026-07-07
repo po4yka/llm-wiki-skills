@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki and write access to a skills repository for apply mode.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
 ---
 
@@ -79,8 +79,11 @@ compatibility: Designed for Agent Skills-compatible coding agents.
 metadata:
   author: po4yka
   version: "0.1.0"
+  install_scope: self-contained
 ---
 ```
+
+Set `install_scope: self-contained` when the skill bundles everything it references; use `pack-install-only` and explain the requirement in `compatibility` when it depends on a full repository install.
 
 Add links back to source wiki pages in a `## Source knowledge` section when useful.
 

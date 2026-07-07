@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh sources for current ecosystem, tool maturity, pricing, release, or benchmark claims.
 metadata:
   author: po4yka
-  version: "0.1.3"
+  version: "0.1.4"
   install_scope: self-contained
 ---
 
@@ -279,7 +279,7 @@ run critique audit before scaling
 - Needs solution choice: `llm-wiki-choose`.
 - Needs setup: `llm-wiki-setup`.
 - Has existing docs: `llm-wiki-doctor` then `llm-wiki-migration-planner`.
-- Needs evidence measurement: `llm-wiki-eval` and `llm-wiki-benchmark-suite`.
+- Needs evidence measurement: `llm-wiki-eval` (including bounded pilot benchmarks).
 - Worries about slop or serious objections: `llm-wiki-critique-audit`, `llm-wiki-trust-audit`, `llm-wiki-provenance`.
 - Asks about Obsidian: `llm-wiki-obsidian-hardening` if they already use it; otherwise `llm-wiki-local-first-stack`.
 - Asks about token growth or RAG/search boundaries: `llm-wiki-retrieval-architect`.

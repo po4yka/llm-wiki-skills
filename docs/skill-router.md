@@ -30,7 +30,7 @@ verb + object + intent boundary
 Examples:
 
 - `define measurement` routes to `llm-wiki-eval`;
-- `run baseline pass` routes to `llm-wiki-benchmark-suite`;
+- `run baseline pass` routes to `llm-wiki-eval`;
 - `choose scorecard` routes to `llm-wiki-eval-tooling`.
 
 Use `not_for` when two skills share nouns but differ by action. For example, provenance investigation and claim-anchor insertion both mention claim-level provenance, but one investigates missing evidence and the other adds stable IDs after evidence is known.
@@ -121,7 +121,7 @@ Need cross-channel capture architecture, an inbox/raw topology, metadata contrac
   -> llm-wiki-capture-pipeline
 
 Need a named capture connector or channel runbook (Telegram, email, Slack, voice notes)?
-  -> llm-wiki-channel-capture
+  -> llm-wiki-capture-pipeline
 
 Need a document-conversion and ingestion stack (PDF, Office, audio, OCR)?
   -> llm-wiki-ingestion-stack
@@ -186,7 +186,7 @@ Need to define or interpret LLM-Wiki quality/usefulness metrics?
   -> llm-wiki-eval
 
 Need to run a bounded pilot benchmark with baseline and with-wiki passes?
-  -> llm-wiki-benchmark-suite
+  -> llm-wiki-eval
 
 Need to choose eval frameworks, dataset formats, scorecards or CI gates?
   -> llm-wiki-eval-tooling

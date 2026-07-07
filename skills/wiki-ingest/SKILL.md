@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access to a Markdown LLM-Wiki vault; git is recommended for reviewable edits.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.2.1"
   install_scope: self-contained
 ---
 
@@ -67,11 +67,14 @@ Produce a short analysis plan before editing:
 
 ### 3. Extract claims
 
-Classify claims as:
+Classify claims using the shared support vocabulary:
 
 - `extracted`: directly present in the source;
 - `inferred`: reasoned from the source;
-- `ambiguous`: requires human review.
+- `ambiguous`: plausible but unresolved, requires human review;
+- `synthesis`: editorial conclusion — human-owned, do not generate during ingest;
+- `unsupported`: no inspected source currently supports the claim;
+- `conflicting`: inspected sources disagree about the claim.
 
 Do not collapse competing claims into a single conclusion.
 

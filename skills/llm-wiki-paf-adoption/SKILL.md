@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh PAF sources when making current or source-specific claims.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
 ---
 
@@ -110,11 +110,11 @@ The minimum Cortex is a repeatable set of agent workflows:
 
 | Workflow | Skill fit |
 |---|---|
-| Capture triage | `wiki-triage`, `llm-wiki-channel-capture` |
+| Capture triage | `wiki-triage`, `llm-wiki-capture-pipeline` |
 | Source ingest | `wiki-ingest` |
 | Decision query | `wiki-query` |
 | Gap/risk report | `wiki-lint`, `llm-wiki-provenance` |
-| Confidence update | `llm-wiki-eval`, `llm-wiki-benchmark-suite` |
+| Confidence update | `llm-wiki-eval` |
 | Decision file-back | `wiki-query`, `llm-wiki-adr-memory` |
 
 ### 5. Verify decision impact
