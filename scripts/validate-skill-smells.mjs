@@ -4,6 +4,7 @@ import { failFactory, listSkillNames, repoRoot, readText } from './lib/repo.mjs'
 
 const { fail, finish } = failFactory();
 const warnings = [];
+const enforceWarnings = process.env.SKILL_SMELLS_STRICT === '1' || process.argv.includes('--strict');
 const maxSkillBodyChars = 18000;
 const volatileTerms = /\b(current|latest|recent|today|pricing|stars|release|version|maintenance status|provider support|news)\b/i;
 const browseTerms = /\b(browse|search|fresh sources|current sources|re-verify|cite)\b/i;
@@ -241,6 +242,9 @@ try {
 
 if (warnings.length > 0) {
   console.warn(`\n${warnings.length} skill smell warning(s)`);
+  if (enforceWarnings) {
+    fail(`skill smell warnings are not allowed in strict mode (${warnings.length} warning(s))`);
+  }
 }
 
 finish(`validated skill smells for ${descriptions.length} skills`);

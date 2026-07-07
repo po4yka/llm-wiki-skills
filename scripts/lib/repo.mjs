@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-export const repoRoot = process.cwd();
+export const repoRoot = path.resolve(fileURLToPath(new URL('../..', import.meta.url)));
 
 export function toPosix(filePath) {
   return filePath.split(path.sep).join('/');
@@ -9,6 +10,11 @@ export function toPosix(filePath) {
 
 export function repoRelative(absPath) {
   return toPosix(path.relative(repoRoot, absPath));
+}
+
+export function isInsideRepo(absPath) {
+  const relative = path.relative(repoRoot, path.resolve(absPath));
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
 }
 
 export function readText(absPath) {

@@ -33,8 +33,31 @@ jobs:
       - name: Validate skills pack
         run: npm run validate
 
+      - name: Check skill version bumps
+        env:
+          SKILL_VERSION_STRICT: '1'
+          SKILL_VERSION_BASE_REF: main
+        run: |
+          git fetch origin main:main || true
+          npm run check:skill-versions -- --strict
+
       - name: Run distribution smoke test
         run: npm run smoke:skills
+
+      - name: Set up Go
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: stable
+
+      - name: Run actionlint
+        run: |
+          go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.12
+          "$(go env GOPATH)/bin/actionlint"
+
+      - name: Run Gitleaks CLI
+        run: |
+          go install github.com/gitleaks/gitleaks/v8/cmd/gitleaks@v8.30.1
+          "$(go env GOPATH)/bin/gitleaks" detect --source . --no-git --redact --verbose
 
       - name: Generate catalogs
         run: npm run catalog:generate

@@ -38,20 +38,26 @@ function getFileAt(ref, filePath) {
 const isGitRepo = git(['rev-parse', '--is-inside-work-tree']).status === 0;
 if (!isGitRepo) {
   console.log('! not a git repository; skipping skill version bump check');
+  if (strict) fail('strict skill version bump check requires a git repository');
   finish('checked skill version bumps');
+  process.exit(0);
 }
 
 const chosenBaseRef = chooseBaseRef();
 if (!chosenBaseRef) {
   console.log(`! could not find ${baseRef} or origin/${baseRef}; skipping skill version bump check`);
   console.log('  In CI, fetch the base branch before running with --strict.');
+  if (strict) fail(`strict skill version bump check requires base ref ${baseRef} or origin/${baseRef}`);
   finish('checked skill version bumps');
+  process.exit(0);
 }
 
 const mergeBase = gitText(['merge-base', 'HEAD', chosenBaseRef]);
 if (!mergeBase) {
   console.log(`! could not compute merge-base with ${chosenBaseRef}; skipping skill version bump check`);
+  if (strict) fail(`strict skill version bump check requires a merge-base with ${chosenBaseRef}`);
   finish('checked skill version bumps');
+  process.exit(0);
 }
 
 const changed = gitText(['diff', '--name-only', mergeBase, 'HEAD'])?.split('\n').filter(Boolean) ?? [];

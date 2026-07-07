@@ -5,6 +5,26 @@ export function unquote(value) {
     .trim();
 }
 
+function stripYamlComment(line) {
+  let quote = null;
+
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+    const previous = line[index - 1];
+
+    if ((char === '"' || char === "'") && previous !== '\\') {
+      quote = quote === char ? null : quote ?? char;
+      continue;
+    }
+
+    if (char === '#' && !quote && /\s/.test(previous ?? '') && (line[index + 1] === undefined || /\s/.test(line[index + 1]))) {
+      return line.slice(0, index);
+    }
+  }
+
+  return line;
+}
+
 export function parseFrontmatter(text) {
   const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
   if (!match) return null;
@@ -13,7 +33,7 @@ export function parseFrontmatter(text) {
   let currentObjectKey = null;
 
   for (const rawLine of match[1].split(/\r?\n/)) {
-    const line = rawLine.replace(/\s+#.*$/, '').replace(/\s+$/, '');
+    const line = stripYamlComment(rawLine).replace(/\s+$/, '');
     if (!line.trim()) continue;
 
     const nested = line.match(/^\s{2}([a-zA-Z0-9_-]+):\s*(.*)$/);

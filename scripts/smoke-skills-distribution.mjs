@@ -3,7 +3,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { repoRoot, readText } from './lib/repo.mjs';
 
-const cliPackage = process.env.SKILLS_CLI_PACKAGE ?? 'skills@latest';
+const cliPackage = process.env.SKILLS_CLI_PACKAGE ?? 'skills@1.5.15';
 const smokeRoot = path.join(repoRoot, '.tmp', 'skills-distribution-smoke');
 const projectRoot = path.join(smokeRoot, 'project');
 const promptOutPath = path.join(smokeRoot, 'llm-wiki-faq.prompt.md');

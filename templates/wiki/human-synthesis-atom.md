@@ -22,6 +22,8 @@ tags:
 
 > Put source-backed material here. The agent may help extract and link it.
 
+- Claim text. Source: [[sources/source-title#section]]
+
 ## Agent notes
 
 - Candidate links:

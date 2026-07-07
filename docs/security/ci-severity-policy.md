@@ -21,11 +21,19 @@ This repository contains operational instructions for agents. CI should fail on 
 | Claim anchors | `npm run validate:claim-anchors` | fail | fail | Duplicate or unsupported claim anchors create false trust. |
 | Examples / semantic fixtures | `npm run check:examples` | fail | fail | Examples are the executable user contract. |
 | Distribution smoke test | `npm run smoke:skills` | fail | fail | The pack must work with the upstream `skills` CLI. |
-| Skill version bump | `npm run check:skill-versions -- --strict` | fail on PRs that change skills | fail | Installed behavior changes must be versioned. |
+| Skill version bump | `npm run check:skill-versions -- --strict` | fail on PRs that change skills | fail | Installed behavior changes must be versioned. In strict mode, missing base refs are failures, not skips. |
 | actionlint | workflow job | fail | fail | Broken workflows should not merge. |
-| gitleaks | workflow job | advisory until baseline is clean | fail after baseline | Prevents secret leakage while allowing existing synthetic fixtures to be reviewed. |
+| gitleaks | workflow job | advisory until baseline is clean | fail | Prevents secret leakage while allowing existing synthetic fixtures to be reviewed before release. |
 | zizmor | workflow job | advisory | advisory unless configured otherwise | Workflow hardening signal; can be noisy during early governance. |
 | markdownlint | workflow job | advisory | advisory | Style issues should not block urgent safety fixes. |
+
+Pinned tool versions:
+
+- `skills@1.5.15`
+- `markdownlint-cli2@0.23.0`
+- `github.com/gitleaks/gitleaks/v8/cmd/gitleaks@v8.30.1`
+- `github.com/rhysd/actionlint/cmd/actionlint@v1.7.12`
+- `zizmor==1.26.1`
 
 ## Promotion path
 
