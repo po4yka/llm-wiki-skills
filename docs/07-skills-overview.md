@@ -84,6 +84,8 @@ Skills are operators over the user's context. They should describe **how to work
 | [`llm-wiki-agent-memory-bridge`](../skills/llm-wiki-agent-memory-bridge/SKILL.md) | Separate wiki knowledge from instruction files and agent memory. |
 | [`llm-wiki-team-rollout`](../skills/llm-wiki-team-rollout/SKILL.md) | Roll out LLM-Wiki across a team. |
 
+![Diagram of wiki procedures being compiled into reusable agent skills.](assets/skill-compiler.png)
+
 ## Installation model
 
 This repo follows the Agent Skills structure:

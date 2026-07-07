@@ -68,6 +68,8 @@ Mitigation:
 
 Use these types consistently:
 
+![Diagram of an agent auditing wiki content for evidence, confidence and review status.](assets/trust-audit.png)
+
 | Type | Meaning | Default action |
 |---|---|---|
 | `extracted` | Directly present in a source | Safe to summarize with citation. |

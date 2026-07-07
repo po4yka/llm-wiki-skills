@@ -15,6 +15,8 @@ Markdown + git + ripgrep + index.md + skills + review gates
 
 Only add vector search, graph stores or sidecars when a specific bottleneck appears.
 
+![Comparison diagram showing retrieval from cited sources versus lightweight agent memory.](assets/retrieval-vs-memory.png)
+
 ## LLM-Wiki vs RAG
 
 | Question | RAG | LLM-Wiki |

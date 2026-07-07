@@ -7,6 +7,8 @@
 
 Page-level provenance is useful but not enough for high-trust knowledge. Important claims need stable anchors that can be audited, refreshed and linked back to raw sources.
 
+![Diagram of an agent anchoring wiki claims to supporting sources with visible links.](../assets/claim-anchors.png)
+
 ## Anchor format
 
 Use deterministic anchors:

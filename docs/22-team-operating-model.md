@@ -42,6 +42,8 @@ single accountable product pod + shared platform/security support + domain-owner
 
 For most teams:
 
+![Diagram of a team using a shared wiki with reviewable changes and team answers.](assets/team-rollout.png)
+
 - use **PR/proposal-based writes** rather than direct agent writes;
 - use **CODEOWNERS/branch protection/required checks** for durable knowledge changes;
 - use **DACI** for high-stakes decisions and **RACI** for repeatable execution;
