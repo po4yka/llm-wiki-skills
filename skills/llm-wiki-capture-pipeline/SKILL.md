@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-capture-pipeline
-description: Design the cross-channel capture architecture for LLM-Wiki before connector work. Use when the user wants an inbox/raw topology, metadata contract, dedupe boundary, triage handoff, privacy defaults, or capture-to-ingestion flow across many channels; route named Telegram/email/Slack/PDF connector rules to llm-wiki-channel-capture.
+description: Design cross-channel capture architecture and named connector runbooks for LLM-Wiki. Use when the user wants an inbox/raw topology, metadata contract, dedupe boundary, triage handoff, privacy defaults, capture-to-ingestion flow, or Telegram/email/Slack/PDF/GitHub/voice connector rules.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. May require browsing official API docs for current connector setup.
 metadata:
@@ -25,7 +25,7 @@ Capture should require near-zero filing decisions. Put material into `inbox/` or
 - Existing vault/repo path.
 - Local-first/privacy requirements.
 - Target agent and automation environment.
-- Whether the output should stop at architecture or include a handoff to `llm-wiki-channel-capture`.
+- Whether the output should stop at architecture or include named-channel connector rules.
 
 ## Capture channel classes
 
@@ -92,9 +92,21 @@ High-volume loop:
 connector -> durable event log -> normalize -> dedup -> raw/inbox -> triage report
 ```
 
-### 5. Hand off connector details
+### 5. Add named-channel details when requested
 
-When the user names a channel such as Telegram, email, Slack, Discord, Teams, browser clips, voice notes, PDFs or GitHub, hand off to `llm-wiki-channel-capture` after the shared envelope and safety boundary are clear.
+When the user names a channel such as Telegram, email, Slack, Discord, Teams, browser clips, voice notes, PDFs or GitHub, keep the shared envelope and safety boundary here, then use `references/channel-capture-runbook.md` for connector-specific details.
+
+For the named channel, define:
+
+- filename convention;
+- dedup method;
+- rate/retry behavior;
+- attachment handling;
+- auth scopes and credential storage;
+- API/export limits;
+- prompt-injection treatment;
+- sensitive-data policy;
+- triage frequency.
 
 ### 6. Implement only safe shared pieces
 
@@ -123,6 +135,8 @@ When writing code or config:
 ## Privacy and prompt-injection controls
 
 ## Implementation steps
+
+## Named-channel runbook
 
 ## Next skill to run
 ```

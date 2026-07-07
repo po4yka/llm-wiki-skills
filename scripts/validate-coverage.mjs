@@ -3,9 +3,12 @@ import path from 'node:path';
 import { failFactory, listFiles, listSkillNames, repoRoot, readText } from './lib/repo.mjs';
 import { buildGeneratedMirrors } from './generate-catalog-mirrors.mjs';
 import { buildSkillsCatalogMarkdown } from './generate-skills-catalog-md.mjs';
+import { readCatalogModel } from './lib/skill-catalog.mjs';
 
 const { fail, finish } = failFactory();
 const skills = listSkillNames();
+const { skills: skillRecords } = readCatalogModel();
+const activeSkills = skillRecords.filter((skill) => !skill.deprecated).map((skill) => skill.name);
 
 const overviewPath = path.join(repoRoot, 'docs', '07-skills-overview.md');
 const routerDocPath = path.join(repoRoot, 'docs', 'skill-router.md');
@@ -32,10 +35,10 @@ if (!fs.existsSync(routerDocPath)) {
   fail('docs/skill-router.md is missing');
 } else {
   const routerDoc = readText(routerDocPath);
-  for (const skillName of skills) {
-    if (!mentionsSkill(routerDoc, skillName)) {
-      fail(`${skillName}: not mentioned in docs/skill-router.md`);
-    }
+    for (const skillName of activeSkills) {
+      if (!mentionsSkill(routerDoc, skillName)) {
+        fail(`${skillName}: not mentioned in docs/skill-router.md`);
+      }
   }
 }
 
@@ -52,7 +55,7 @@ if (!fs.existsSync(routerPath)) {
   if (router) {
     const routeSkills = new Set((router.routes ?? []).map((route) => route.skill));
 
-    for (const skillName of skills) {
+    for (const skillName of activeSkills) {
       if (!routeSkills.has(skillName)) {
         fail(`${skillName}: has no route in skill-router.json`);
       }

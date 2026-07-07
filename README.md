@@ -99,8 +99,7 @@ It includes skills for:
 |---|---|
 | [`llm-wiki-doctor`](skills/llm-wiki-doctor/SKILL.md) | An existing vault/docs folder needs read-only diagnosis before changes. |
 | [`llm-wiki-migration-planner`](skills/llm-wiki-migration-planner/SKILL.md) | The user wants a dry-run migration plan before moving files. |
-| [`llm-wiki-eval`](skills/llm-wiki-eval/SKILL.md) | The user wants to define or interpret usefulness, grounding, maintenance, review-backlog or decision-gate metrics. |
-| [`llm-wiki-benchmark-suite`](skills/llm-wiki-benchmark-suite/SKILL.md) | The user wants to run a bounded pilot with baseline and with-wiki passes, scoring and a continue/pause/redesign decision. |
+| [`llm-wiki-eval`](skills/llm-wiki-eval/SKILL.md) | The user wants to define or interpret usefulness, grounding, maintenance, review-backlog or decision-gate metrics, or run a bounded pilot with baseline and with-wiki passes. |
 | [`llm-wiki-critique-audit`](skills/llm-wiki-critique-audit/SKILL.md) | The user wants an adversarial failure-mode register, bad-fit decision, mitigation plan or residual-risk scorecard. |
 | [`llm-wiki-provenance`](skills/llm-wiki-provenance/SKILL.md) | Claims need missing-source investigation, evidence-link repair, support-label correction or a provenance gap report. |
 | [`llm-wiki-claim-anchors`](skills/llm-wiki-claim-anchors/SKILL.md) | Already inspected claims need deterministic claim IDs, source anchor IDs, support-label formatting or anchor validation. |
@@ -123,11 +122,17 @@ It includes skills for:
 | Skill | Use when |
 |---|---|
 | [`llm-wiki-company-flow-audit`](skills/llm-wiki-company-flow-audit/SKILL.md) | The user wants to map company knowledge flows, automation boundaries, sync points, permissions, review UI needs or maintenance trade-offs into an adoption plan. |
-| [`llm-wiki-capture-pipeline`](skills/llm-wiki-capture-pipeline/SKILL.md) | The user wants cross-channel capture architecture, inbox/raw topology, metadata contracts, dedupe boundaries or triage handoff. |
-| [`llm-wiki-channel-capture`](skills/llm-wiki-channel-capture/SKILL.md) | A named connector or channel such as Telegram, email, browser clips, voice, PDFs, GitHub or Slack needs capture rules. |
+| [`llm-wiki-capture-pipeline`](skills/llm-wiki-capture-pipeline/SKILL.md) | The user wants cross-channel capture architecture, inbox/raw topology, metadata contracts, dedupe boundaries, triage handoff, or named connector/channel capture rules. |
 | [`llm-wiki-interview`](skills/llm-wiki-interview/SKILL.md) | Tacit knowledge should be extracted through an agent-led interview. |
 | [`llm-wiki-adr-memory`](skills/llm-wiki-adr-memory/SKILL.md) | The user wants to recover or maintain decision provenance and ADR memory. |
 | [`llm-wiki-domain-pack`](skills/llm-wiki-domain-pack/SKILL.md) | A domain-specific taxonomy, templates and review policy are needed. |
+
+### Deprecated compatibility aliases
+
+| Skill | Use instead |
+|---|---|
+| [`llm-wiki-benchmark-suite`](skills/llm-wiki-benchmark-suite/SKILL.md) | `llm-wiki-eval` pilot benchmark mode. |
+| [`llm-wiki-channel-capture`](skills/llm-wiki-channel-capture/SKILL.md) | `llm-wiki-capture-pipeline` named-channel mode. |
 
 ### Operate and trust
 

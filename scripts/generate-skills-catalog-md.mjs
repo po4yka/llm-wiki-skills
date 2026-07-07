@@ -17,10 +17,11 @@ export function buildSkillsCatalogMarkdown() {
   ];
 
   manifest.groupings.forEach((group, index) => {
-    lines.push(`## ${group.title}`, '', group.description, '', '| Skill | Description | Version | Install |', '|---|---|---|---|');
+    lines.push(`## ${group.title}`, '', group.description, '', '| Skill | Description | Version | Install | Status |', '|---|---|---|---|---|');
     for (const skillName of group.skills) {
       const skill = skillMap.get(skillName);
-      lines.push(`| [${skillName}](../skills/${skillName}/SKILL.md) | ${escapeTableCell(skill.description)} | ${skill.version ?? ''} | ${skill.install_scope ?? ''} |`);
+      const status = skill.deprecated ? `deprecated; use ${skill.replaced_by}` : 'active';
+      lines.push(`| [${skillName}](../skills/${skillName}/SKILL.md) | ${escapeTableCell(skill.description)} | ${skill.version ?? ''} | ${skill.install_scope ?? ''} | ${status} |`);
     }
     if (index < manifest.groupings.length - 1) {
       lines.push('');

@@ -53,8 +53,7 @@ Inspect existing vaults, plan migrations, evaluate usefulness, audit criticism r
 |---|---|
 | [`llm-wiki-doctor`](../skills/llm-wiki-doctor/SKILL.md) | Diagnose an existing vault, docs folder, repository wiki, or Markdown knowledge base before changing files. |
 | [`llm-wiki-migration-planner`](../skills/llm-wiki-migration-planner/SKILL.md) | Create a no-write migration plan for turning existing notes, docs, Obsidian vaults, Notion exports, research archives, or repository documentation into an LLM-Wiki. |
-| [`llm-wiki-eval`](../skills/llm-wiki-eval/SKILL.md) | Define LLM-Wiki measurement questions and interpret quality metrics. |
-| [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Execute a bounded LLM-Wiki pilot benchmark. |
+| [`llm-wiki-eval`](../skills/llm-wiki-eval/SKILL.md) | Define and execute LLM-Wiki measurement, including bounded pilot benchmarks. |
 | [`llm-wiki-critique-audit`](../skills/llm-wiki-critique-audit/SKILL.md) | Produce an adversarial risk audit for an LLM-Wiki proposal, domain, vault, rollout, or product plan. |
 | [`llm-wiki-provenance`](../skills/llm-wiki-provenance/SKILL.md) | Inspect and repair evidence links before adding stable IDs. |
 | [`llm-wiki-claim-anchors`](../skills/llm-wiki-claim-anchors/SKILL.md) | Insert deterministic claim and source anchor IDs after evidence has been inspected. |
@@ -81,8 +80,7 @@ Map company information flows, build capture pipelines, interview users for taci
 | Skill | Purpose |
 |---|---|
 | [`llm-wiki-company-flow-audit`](../skills/llm-wiki-company-flow-audit/SKILL.md) | Map company/team information flows into an LLM-Wiki adoption plan. |
-| [`llm-wiki-capture-pipeline`](../skills/llm-wiki-capture-pipeline/SKILL.md) | Design the cross-channel capture architecture for LLM-Wiki before connector work. |
-| [`llm-wiki-channel-capture`](../skills/llm-wiki-channel-capture/SKILL.md) | Design one named capture connector or channel runbook for LLM-Wiki. |
+| [`llm-wiki-capture-pipeline`](../skills/llm-wiki-capture-pipeline/SKILL.md) | Design cross-channel capture architecture and named connector runbooks for LLM-Wiki. |
 | [`llm-wiki-interview`](../skills/llm-wiki-interview/SKILL.md) | Extract tacit knowledge into an LLM-Wiki through an agent-led interview. |
 | [`llm-wiki-adr-memory`](../skills/llm-wiki-adr-memory/SKILL.md) | Recover and maintain decision provenance in an LLM-Wiki. |
 | [`llm-wiki-domain-pack`](../skills/llm-wiki-domain-pack/SKILL.md) | Generate domain-specific LLM-Wiki templates, taxonomies, domain_type mappings, stale policies, capture rules, and review gates. |
@@ -117,6 +115,15 @@ Review, compile, and govern Agent Skills, team operating models, self-hosted Git
 | [`llm-wiki-agent-memory-bridge`](../skills/llm-wiki-agent-memory-bridge/SKILL.md) | Decide what belongs in LLM-Wiki versus agent memory, AGENTS.md, CLAUDE.md, Auto Memory, Codex project memory, or other runtime memories. |
 | [`llm-wiki-team-rollout`](../skills/llm-wiki-team-rollout/SKILL.md) | Plan and implement LLM-Wiki adoption for a team or company. |
 | [`llm-wiki-gitlab-operating-model`](../skills/llm-wiki-gitlab-operating-model/SKILL.md) | Design an LLM-Wiki team operating model for self-hosted GitLab and internal enterprise environments. |
+
+### Deprecated compatibility aliases
+
+Installable aliases kept until the next major release. New routing should use the replacement skills listed in each SKILL.md.
+
+| Skill | Purpose |
+|---|---|
+| [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Execute legacy bounded pilot benchmark requests by routing them to llm-wiki-eval. |
+| [`llm-wiki-channel-capture`](../skills/llm-wiki-channel-capture/SKILL.md) | Design legacy named channel capture requests by routing them to llm-wiki-capture-pipeline. |
 
 <!-- generated:skill-families:end -->
 

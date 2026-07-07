@@ -23,6 +23,8 @@ export function readSkillRecords() {
       author: parsed.fields.metadata?.author,
       version: parsed.fields.metadata?.version,
       install_scope: parsed.fields.metadata?.install_scope,
+      deprecated: parsed.fields.metadata?.deprecated === 'true',
+      replaced_by: parsed.fields.metadata?.replaced_by,
       path: `skills/${skillName}/SKILL.md`,
       fields: parsed.fields,
     };

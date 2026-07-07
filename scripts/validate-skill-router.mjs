@@ -2,12 +2,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { failFactory, listSkillNames, repoRoot, readText } from './lib/repo.mjs';
 import { chooseSkill, normalizeIntent } from './lib/skill-router-eval.mjs';
+import { readCatalogModel } from './lib/skill-catalog.mjs';
 
 const { fail, finish } = failFactory();
 const routerPath = path.join(repoRoot, 'skill-router.json');
 const routerEvalPath = path.join(repoRoot, 'benchmarks', 'router-eval.json');
 const allowedRisk = new Set(['none', 'low', 'medium', 'high']);
 const skillNames = new Set(listSkillNames());
+const { skills: skillRecords } = readCatalogModel();
+const deprecatedSkills = new Set(skillRecords.filter((skill) => skill.deprecated).map((skill) => skill.name));
+const activeSkills = skillRecords.filter((skill) => !skill.deprecated).map((skill) => skill.name);
 
 if (!fs.existsSync(routerPath)) {
   fail('skill-router.json is missing');
@@ -40,6 +44,10 @@ for (const [index, route] of (router.routes ?? []).entries()) {
 
   if (!skillNames.has(route.skill)) {
     fail(`${prefix}: skill '${route.skill}' does not exist`);
+  }
+
+  if (deprecatedSkills.has(route.skill)) {
+    fail(`${prefix}: deprecated skill '${route.skill}' must not be a primary router route`);
   }
 
   if (routeSkills.has(route.skill)) {
@@ -138,7 +146,7 @@ if (!fs.existsSync(routerEvalPath)) {
       }
     }
 
-    for (const skillName of skillNames) {
+    for (const skillName of activeSkills) {
       if (!coveredSkills.has(skillName)) {
         fail(`${skillName}: missing router eval case in benchmarks/router-eval.json`);
       }

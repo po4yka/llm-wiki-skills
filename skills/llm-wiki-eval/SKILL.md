@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-eval
-description: Define LLM-Wiki measurement questions and interpret quality metrics. Use when the user wants usefulness, grounding, maintenance-health, review-backlog, stale-page, unsupported-claim, citation-coverage, or decision-gate metrics; route concrete pilot execution to llm-wiki-benchmark-suite and tool selection to llm-wiki-eval-tooling.
+description: Define and execute LLM-Wiki measurement, including bounded pilot benchmarks. Use when the user wants usefulness, grounding, maintenance-health, review-backlog, stale-page, unsupported-claim, citation-coverage, baseline vs with-wiki comparison, scoring, or decision-gate metrics; route framework/CI choices to llm-wiki-eval-tooling.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki; optional write access for evaluation reports.
 metadata:
@@ -16,6 +16,8 @@ metadata:
 Measure whether the wiki improves real work instead of merely accumulating attractive notes.
 
 Use `references/docs/18-evaluation-methodology.md` for the detailed methodology: retrieval metrics, grounding metrics, with-wiki experiments, human calibration, operational health, security gates and rollout roadmap.
+
+Use `references/benchmarks/pilot-questions.md` and `references/benchmarks/scoring-rubric.md` when the user wants a bounded pilot benchmark with baseline and with-wiki passes.
 
 ## Inputs
 
@@ -106,6 +108,38 @@ time_saved_estimate: none|small|medium|large
 ```
 
 When possible, compare a with-wiki answer to a without-wiki answer under the same model and prompt family.
+
+### 5a. Run pilot benchmark mode when requested
+
+Use this mode when the user asks to run a small benchmark, baseline pass, with-wiki pass, scoring rubric or continue/pause/redesign decision.
+
+Build a 10-20 question set from real work. Include:
+
+- factual lookup;
+- synthesis across sources;
+- decision provenance;
+- stale/current fact;
+- context recovery;
+- output generation from wiki knowledge.
+
+Run the with-wiki pass using `wiki/index.md`, search, relevant wiki pages and raw sources when needed. Record pages used and support level.
+
+Run the baseline pass only when comparable baseline data is available. Use no wiki, raw search only or the previous workflow. Do not fabricate baseline data.
+
+Score each question on:
+
+- correctness and support;
+- time-to-context;
+- answer completeness;
+- provenance quality;
+- whether the answer was reusable;
+- user usefulness rating.
+
+Then recommend:
+
+```text
+continue | pause automation | redesign structure | improve provenance | improve retrieval | stop using LLM-Wiki for this domain
+```
 
 ### 6. Run grounding checks
 
@@ -216,6 +250,26 @@ Use:
 ## Continue / pause / redesign decision
 
 ## Next measurement date
+```
+
+For pilot benchmark mode, include:
+
+```markdown
+## Benchmark summary
+
+## Question set
+
+## With-wiki results
+
+## Baseline comparison
+
+## Metrics
+
+## Failure modes
+
+## Decision
+
+## Next benchmark date
 ```
 
 ## Safety gates

@@ -13,12 +13,7 @@ const writeTerms = /\b(delete|overwrite|rewrite|move files|bulk|apply mode|write
 const triggerBoundaryChecks = [
   {
     skillName: 'llm-wiki-eval',
-    required: ['define', 'interpret', 'metrics'],
-    banned: ['with-wiki versus without-wiki trial', 'eval framework'],
-  },
-  {
-    skillName: 'llm-wiki-benchmark-suite',
-    required: ['execute', 'pilot', 'baseline'],
+    required: ['define', 'pilot', 'baseline'],
     banned: ['eval framework', 'ci gate'],
   },
   {
@@ -28,13 +23,8 @@ const triggerBoundaryChecks = [
   },
   {
     skillName: 'llm-wiki-capture-pipeline',
-    required: ['cross-channel', 'architecture', 'metadata contract'],
-    banned: ['telegram, email', 'api setup'],
-  },
-  {
-    skillName: 'llm-wiki-channel-capture',
-    required: ['named', 'connector', 'api setup'],
-    banned: ['cross-channel topology', 'capture architecture'],
+    required: ['cross-channel', 'connector', 'metadata contract'],
+    banned: [],
   },
   {
     skillName: 'llm-wiki-faq',
@@ -81,13 +71,8 @@ const routeBoundaryChecks = [
   },
   {
     skillName: 'llm-wiki-eval',
-    required: ['define measurement', 'interpret eval results'],
-    banned: ['run with wiki pass', 'eval framework selection'],
-  },
-  {
-    skillName: 'llm-wiki-benchmark-suite',
-    required: ['run baseline pass', 'run with wiki pass'],
-    banned: ['define measurement', 'eval framework selection'],
+    required: ['define measurement', 'run baseline pass', 'run with wiki pass'],
+    banned: ['eval framework selection'],
   },
   {
     skillName: 'llm-wiki-eval-tooling',
@@ -96,13 +81,8 @@ const routeBoundaryChecks = [
   },
   {
     skillName: 'llm-wiki-capture-pipeline',
-    required: ['cross channel topology', 'dedupe boundary'],
-    banned: ['telegram connector', 'channel api setup'],
-  },
-  {
-    skillName: 'llm-wiki-channel-capture',
-    required: ['specific channel connector', 'channel api setup'],
-    banned: ['cross channel topology', 'dedupe boundary'],
+    required: ['cross channel topology', 'dedupe boundary', 'telegram connector', 'channel api setup'],
+    banned: [],
   },
   {
     skillName: 'llm-wiki-provenance',

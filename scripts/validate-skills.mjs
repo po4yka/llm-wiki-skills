@@ -158,11 +158,27 @@ for (const skillName of skillNames) {
     } else if (!semverPattern.test(frontmatter.metadata.version)) {
       fail(`${skillName}: metadata.version must be semver-like, got '${frontmatter.metadata.version}'`);
     }
+
+    if (frontmatter.metadata.deprecated === 'true') {
+      if (!frontmatter.metadata.replaced_by) {
+        fail(`${skillName}: deprecated skills must declare metadata.replaced_by`);
+      } else if (!skillNames.includes(frontmatter.metadata.replaced_by)) {
+        fail(`${skillName}: metadata.replaced_by references missing skill '${frontmatter.metadata.replaced_by}'`);
+      }
+    } else if (frontmatter.metadata.replaced_by) {
+      fail(`${skillName}: metadata.replaced_by is only valid when metadata.deprecated is true`);
+    }
   }
 
   const body = stripFrontmatter(text);
   if (!body.match(/^#\s+.+/m)) {
     fail(`${skillName}: missing H1 title after frontmatter`);
+  }
+
+  if (frontmatter.metadata?.deprecated === 'true') {
+    if (!body.includes(frontmatter.metadata.replaced_by)) {
+      fail(`${skillName}: deprecated skill body must name replacement '${frontmatter.metadata.replaced_by}'`);
+    }
   }
 
   const headings = getHeadings(body);

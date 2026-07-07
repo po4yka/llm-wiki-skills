@@ -1,94 +1,33 @@
 ---
 name: llm-wiki-benchmark-suite
-description: Execute a bounded LLM-Wiki pilot benchmark. Use when the user already has or wants a small task set, baseline pass, with-wiki pass, scoring rubric, and continue/pause/redesign decision; route metric design to llm-wiki-eval and framework/CI choices to llm-wiki-eval-tooling.
+description: Execute legacy bounded pilot benchmark requests by routing them to llm-wiki-eval. Use only for compatibility when the user or installed workflow explicitly names llm-wiki-benchmark-suite.
 license: MIT
-compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to a vault and optional write access for benchmark reports.
+compatibility: Designed for Agent Skills-compatible coding agents. Deprecated compatibility alias; use llm-wiki-eval for new work.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
+  deprecated: true
+  replaced_by: llm-wiki-eval
 ---
 
 # LLM-Wiki Benchmark Suite
 
 ## Goal
 
-Run a small, repeatable pilot that tests whether an LLM-Wiki helps the user's actual work.
-
-## Inputs
-
-- Target vault or domain.
-- 20-50 representative sources if available.
-- 10-20 realistic questions.
-- Desired comparison: with-wiki, without-wiki, or before/after migration.
+Preserve compatibility for users who installed or invoked `llm-wiki-benchmark-suite` before pilot benchmarking was consolidated into `llm-wiki-eval`.
 
 ## Procedure
 
-### 1. Read benchmark materials
+Use `llm-wiki-eval` for all new benchmark work. In that skill, run pilot benchmark mode when the user asks for a small task set, baseline pass, with-wiki pass, scoring rubric, or continue/pause/redesign decision.
 
-Use `references/benchmarks/pilot-questions.md` and `references/benchmarks/scoring-rubric.md` when available.
-
-### 2. Build the question set
-
-Questions should include:
-
-- factual lookup;
-- synthesis across sources;
-- decision provenance;
-- stale/current fact;
-- "where did I stop?" context recovery;
-- output generation from wiki knowledge.
-
-### 3. Run with-wiki pass
-
-Use `wiki/index.md`, search, relevant wiki pages and raw sources when needed. Record pages used and support level.
-
-### 4. Run baseline pass when possible
-
-Compare against no wiki, raw search only, or previous workflow. Do not fabricate baseline data if it is not available.
-
-### 5. Score results
-
-Use:
-
-- correctness/support;
-- time-to-context;
-- answer completeness;
-- provenance quality;
-- whether the answer was reusable;
-- user usefulness rating.
-
-### 6. Decide next action
-
-Recommend:
-
-```text
-continue | pause automation | redesign structure | improve provenance | improve retrieval | stop using LLM-Wiki for this domain
-```
+If `references/benchmarks/pilot-questions.md` or `references/benchmarks/scoring-rubric.md` are available in this compatibility install, treat them as legacy copies of the references now shipped by `llm-wiki-eval`.
 
 ## Output
 
-```markdown
-## Benchmark summary
-
-## Question set
-
-## With-wiki results
-
-## Baseline comparison
-
-## Metrics
-
-## Failure modes
-
-## Decision
-
-## Next benchmark date
-```
+State that `llm-wiki-benchmark-suite` is deprecated and continue with the `llm-wiki-eval` pilot benchmark output format.
 
 ## Safety gates
 
-- Do not overclaim from small pilots.
-- Do not optimize for note count or graph density.
-- Do not reveal sensitive source contents in benchmark summaries.
-- Do not treat adjacent academic results as local proof.
+- Do not introduce new behavior here; update `llm-wiki-eval` instead.
+- Do not remove this compatibility alias before a major release.
