@@ -53,8 +53,9 @@
     },
     {
       "title": "Capture and domain workflows",
-      "description": "Build capture pipelines, interview users for tacit knowledge, maintain decision memory, and generate domain-specific wiki packs.",
+      "description": "Map company information flows, build capture pipelines, interview users for tacit knowledge, maintain decision memory, and generate domain-specific wiki packs.",
       "skills": [
+        "llm-wiki-company-flow-audit",
         "llm-wiki-capture-pipeline",
         "llm-wiki-channel-capture",
         "llm-wiki-interview",
