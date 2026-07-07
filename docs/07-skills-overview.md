@@ -20,7 +20,7 @@ Skills are operators over the user's context. They should describe **how to work
 | Skill | Purpose |
 |---|---|
 | [`llm-wiki-orient`](../skills/llm-wiki-orient/SKILL.md) | Explain the LLM-Wiki pattern and solution landscape. |
-| [`llm-wiki-faq`](../skills/llm-wiki-faq/SKILL.md) | Answer evidence-backed adoption questions: why, benefits, proof, maintenance and Obsidian. |
+| [`llm-wiki-faq`](../skills/llm-wiki-faq/SKILL.md) | Answer evidence-backed adoption questions and serious criticism. |
 | [`llm-wiki-news-radar`](../skills/llm-wiki-news-radar/SKILL.md) | Browse for fresh ecosystem news, releases, papers and technologies. |
 | [`llm-wiki-choose`](../skills/llm-wiki-choose/SKILL.md) | Recommend ready-made vs custom paths. |
 
@@ -32,6 +32,7 @@ Skills are operators over the user's context. They should describe **how to work
 | [`llm-wiki-migration-planner`](../skills/llm-wiki-migration-planner/SKILL.md) | Dry-run migration planning. |
 | [`llm-wiki-eval`](../skills/llm-wiki-eval/SKILL.md) | Measure usefulness and retrieval/reuse outcomes. |
 | [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Run a local with-wiki/without-wiki pilot benchmark. |
+| [`llm-wiki-critique-audit`](../skills/llm-wiki-critique-audit/SKILL.md) | Stress-test a domain, vault, rollout or product plan against known LLM-Wiki criticisms and residual risks. |
 | [`llm-wiki-provenance`](../skills/llm-wiki-provenance/SKILL.md) | Add or repair source and claim-level provenance. |
 | [`llm-wiki-claim-anchors`](../skills/llm-wiki-claim-anchors/SKILL.md) | Add deterministic claim anchors and source support labels. |
 | [`llm-wiki-conflict-resolver`](../skills/llm-wiki-conflict-resolver/SKILL.md) | Mediate contradictions without auto-fixing truth. |
@@ -102,7 +103,7 @@ skills/<skill-name>/
 A typical advisory session:
 
 ```text
-llm-wiki-orient -> llm-wiki-faq -> llm-wiki-news-radar -> llm-wiki-choose
+llm-wiki-orient -> llm-wiki-faq -> llm-wiki-critique-audit -> llm-wiki-news-radar -> llm-wiki-choose
 ```
 
 A typical existing-vault adoption loop:
@@ -114,7 +115,7 @@ llm-wiki-doctor -> llm-wiki-migration-planner -> llm-wiki-refactor -> wiki-lint 
 A typical personal operation loop:
 
 ```text
-llm-wiki-setup -> llm-wiki-channel-capture -> wiki-triage -> wiki-ingest -> wiki-query -> wiki-lint -> llm-wiki-eval
+llm-wiki-setup -> llm-wiki-channel-capture -> wiki-triage -> wiki-ingest -> wiki-query -> wiki-lint -> llm-wiki-eval -> llm-wiki-critique-audit
 ```
 
 A typical repo/team loop:
@@ -147,6 +148,7 @@ llm-wiki-skill-compiler -> llm-wiki-skill-doctor -> npm run validate
 8. Update `wiki/index.md` when a page becomes important to navigation.
 9. Keep skills procedural and triggerable.
 10. Distinguish direct evidence from adjacent evidence when arguing for adoption.
+11. Distinguish mitigations from residual risks when answering serious criticism.
 
 ## Anti-patterns
 
@@ -156,4 +158,5 @@ llm-wiki-skill-compiler -> llm-wiki-skill-doctor -> npm run validate
 - Query answers that are not saved when reusable.
 - Lint jobs that rewrite truth instead of surfacing review tasks.
 - Evidence claims that overstate what adjacent RAG/memory benchmarks prove.
+- Mitigation claims that hide unresolved cognitive, permission or benchmark risks.
 - Installation instructions tied to only one agent when the package is meant for multiple Agent Skills-compatible agents.
