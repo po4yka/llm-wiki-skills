@@ -1,0 +1,169 @@
+# LLM-Wiki self-hosted GitLab operating model template
+# Use with llm-wiki-gitlab-operating-model.
+
+gitlab:
+  offering: self-managed
+  instance_url: "https://gitlab.internal.example"
+  edition_install: unknown # CE|EE|unknown
+  tier: unknown # Free|Premium|Ultimate|unknown
+  version: ""
+  deployment: single-node # single-node|ha|geo|cloud-native|hybrid|unknown
+  network: internal # internal|restricted-egress|air-gapped|internet-exposed|unknown
+  kubernetes: unknown # true|false|unknown
+  compliance_frameworks: []
+  data_residency: "internal"
+
+organization:
+  operating_model: hub-and-pod # centralized-platform|federated-teams|hub-and-pod
+  top_level_group: corp
+  subgroups:
+    platform: corp/platform
+    security: corp/security
+    knowledge: corp/knowledge
+    domains: corp/domains
+    delivery: corp/delivery
+    artifacts: corp/artifacts
+  owner_limits:
+    max_top_level_group_owners: 5
+    review_owner_sprawl_monthly: true
+
+identity_and_access:
+  auth: saml # ldap|saml|local|mixed|unknown
+  group_sync: saml # ldap|saml|scim|manual|unknown
+  mfa_required: true
+  least_privilege_roles: true
+  external_authorization: false
+  ip_restrictions: false
+  access_reviews:
+    cadence: monthly
+    scope:
+      - Owners
+      - Maintainers
+      - deployers
+      - service_accounts
+
+llm_wiki:
+  source_of_truth: repository-docs # repository-docs|gitlab-wiki|hybrid
+  production_review_states:
+    - reviewed
+    - verified
+    - published
+  excluded_review_states:
+    - draft
+    - rejected
+    - stale
+    - quarantined
+  protected_paths:
+    - .gitlab-ci.yml
+    - .gitlab/**
+    - skills/**
+    - templates/**
+    - policies/**
+    - api/**
+    - mcp/**
+    - exports/profiles/**
+    - evals/**
+    - wiki/policies/**
+    - wiki/security/**
+    - wiki/architecture/**
+    - raw/manifests/**
+
+ci_cd:
+  architecture: split # centralized|federated|split
+  central_components_project: corp/platform/ci-components
+  includes_required: true
+  runners:
+    default_scope: group # instance|group|project
+    instance_runners_allowed_for_sensitive_jobs: false
+    protected_runners_for_deployments: true
+    offline_runner_images: false
+  stages:
+    - validate
+    - lint
+    - eval
+    - security
+    - package
+    - preview
+    - deploy
+    - release
+
+protected_branches:
+  enabled: true
+  main:
+    allowed_to_merge: [Maintainers]
+    allowed_to_push_and_merge: []
+    require_code_owner_approval: true
+    required_mr_approvals: 2
+    allow_force_push: false
+  release:
+    pattern: release/*
+    allowed_to_merge: [ReleaseManagers]
+    allowed_to_push_and_merge: []
+    require_code_owner_approval: true
+    required_mr_approvals: 2
+    allow_force_push: false
+
+protected_environments:
+  production:
+    required_approvals: 2
+    approvers:
+      - SecurityApprovers
+      - DomainOwners
+  public_export:
+    required_approvals: 2
+    approvers:
+      - SecurityApprovers
+      - PublishingApprovers
+  agent_bundle:
+    required_approvals: 2
+    approvers:
+      - SecurityApprovers
+      - ProductOwners
+
+secrets_and_supply_chain:
+  external_secrets_provider: true
+  protected_variables_only: true
+  secret_push_protection: true
+  dependency_scanning_sbom: true
+  container_signing: true
+  package_protection: true
+  provenance_attestations: true
+
+offline_or_restricted_egress:
+  enabled: false
+  internal_container_mirror: ""
+  internal_package_registry: ""
+  mirrored_security_analyzers: false
+  curated_runner_images: false
+  dependency_proxy: false
+
+observability:
+  audit_events_to_siem: true
+  dashboards:
+    - gitlab_ui_api_health
+    - sidekiq_queue
+    - runner_wait_time
+    - pipeline_failure_rate
+    - registry_health
+    - backup_status
+    - audit_stream_delivery
+    - review_backlog
+    - export_pipeline_status
+
+reliability:
+  slos:
+    gitlab_availability: "99.5% monthly"
+    scheduled_backup_success_rate: "99% monthly"
+    restore_drill: quarterly
+    median_runner_queue_wait_seconds_max: 60
+    reviewed_change_indexed_within_hours: 24
+  runbooks:
+    - failed_backup
+    - restore_rehearsal
+    - runner_saturation
+    - runner_compromise
+    - registry_outage
+    - blocked_deployment_approval
+    - secret_leak
+    - gitlab_upgrade_failure
+    - geo_failover
