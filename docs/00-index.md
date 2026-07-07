@@ -19,10 +19,10 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 
 1. [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md)
 2. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
-3. [`20-adoption-objections.md`](20-adoption-objections.md)
-4. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+3. [`adoption-objections.md`](adoption-objections.md)
+4. [`adoption-q-and-a.md`](adoption-q-and-a.md)
 5. [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md)
-6. [`22-criticism-and-mitigations.md`](22-criticism-and-mitigations.md)
+6. [`criticism-and-mitigations.md`](criticism-and-mitigations.md)
 7. [`02-architecture.md`](02-architecture.md)
 8. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
 9. [`06-implementation-playbook.md`](06-implementation-playbook.md)
@@ -31,10 +31,10 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 ### Fast path: non-developer or browser-first rollout
 
 1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
-2. [`20-adoption-objections.md`](20-adoption-objections.md)
-3. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+2. [`adoption-objections.md`](adoption-objections.md)
+3. [`adoption-q-and-a.md`](adoption-q-and-a.md)
 4. [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md)
-5. [`22-criticism-and-mitigations.md`](22-criticism-and-mitigations.md)
+5. [`criticism-and-mitigations.md`](criticism-and-mitigations.md)
 6. [`skill-router.md`](skill-router.md)
 7. [`operations/daily.md`](operations/daily.md)
 8. [`19-security-threat-model.md`](19-security-threat-model.md)
@@ -43,36 +43,36 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 
 1. [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md)
 2. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-3. [`22-criticism-and-mitigations.md`](22-criticism-and-mitigations.md)
+3. [`criticism-and-mitigations.md`](criticism-and-mitigations.md)
 4. [`18-evaluation-methodology.md`](18-evaluation-methodology.md)
 5. [`operations/weekly.md`](operations/weekly.md)
 
 ### Fast path: adoption owner / team pilot
 
 1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
-2. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+2. [`adoption-q-and-a.md`](adoption-q-and-a.md)
 3. [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md)
-4. [`23-company-information-flows.md`](23-company-information-flows.md)
+4. [`company-information-flows.md`](company-information-flows.md)
 5. [`18-evaluation-methodology.md`](18-evaluation-methodology.md)
 6. [`19-security-threat-model.md`](19-security-threat-model.md)
 7. [`operations/weekly.md`](operations/weekly.md)
 
 ### Fast path: company information-flow audit
 
-1. [`23-company-information-flows.md`](23-company-information-flows.md)
-2. [`20-adoption-objections.md`](20-adoption-objections.md)
-3. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+1. [`company-information-flows.md`](company-information-flows.md)
+2. [`adoption-objections.md`](adoption-objections.md)
+3. [`adoption-q-and-a.md`](adoption-q-and-a.md)
 4. [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md)
-5. [`22-criticism-and-mitigations.md`](22-criticism-and-mitigations.md)
+5. [`criticism-and-mitigations.md`](criticism-and-mitigations.md)
 6. [`19-security-threat-model.md`](19-security-threat-model.md)
 7. [`operations/refresh.md`](operations/refresh.md)
 8. [`18-evaluation-methodology.md`](18-evaluation-methodology.md)
 
 ### Fast path: PAF Nexus/Cortex adoption
 
-1. [`22-paf-nexus-cortex.md`](22-paf-nexus-cortex.md)
+1. [`paf-nexus-cortex.md`](paf-nexus-cortex.md)
 2. [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md)
-3. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+3. [`adoption-q-and-a.md`](adoption-q-and-a.md)
 4. [`18-evaluation-methodology.md`](18-evaluation-methodology.md)
 5. [`19-security-threat-model.md`](19-security-threat-model.md)
 6. [`skill-router.md`](skill-router.md)
@@ -81,12 +81,12 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 
 1. [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md)
 2. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
-3. [`20-adoption-objections.md`](20-adoption-objections.md)
-4. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+3. [`adoption-objections.md`](adoption-objections.md)
+4. [`adoption-q-and-a.md`](adoption-q-and-a.md)
 5. [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md)
-6. [`22-criticism-and-mitigations.md`](22-criticism-and-mitigations.md)
-7. [`22-paf-nexus-cortex.md`](22-paf-nexus-cortex.md)
-8. [`23-company-information-flows.md`](23-company-information-flows.md)
+6. [`criticism-and-mitigations.md`](criticism-and-mitigations.md)
+7. [`paf-nexus-cortex.md`](paf-nexus-cortex.md)
+8. [`company-information-flows.md`](company-information-flows.md)
 9. [`05-tooling-landscape.md`](05-tooling-landscape.md)
 10. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
 11. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
@@ -111,12 +111,12 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 ### Reviewer path: risk and trust
 
 1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
-2. [`20-adoption-objections.md`](20-adoption-objections.md)
-3. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+2. [`adoption-objections.md`](adoption-objections.md)
+3. [`adoption-q-and-a.md`](adoption-q-and-a.md)
 4. [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md)
-5. [`22-criticism-and-mitigations.md`](22-criticism-and-mitigations.md)
-6. [`22-paf-nexus-cortex.md`](22-paf-nexus-cortex.md)
-7. [`23-company-information-flows.md`](23-company-information-flows.md)
+5. [`criticism-and-mitigations.md`](criticism-and-mitigations.md)
+6. [`paf-nexus-cortex.md`](paf-nexus-cortex.md)
+7. [`company-information-flows.md`](company-information-flows.md)
 8. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
 9. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
 10. [`domain-pack-schema.md`](domain-pack-schema.md)
@@ -135,7 +135,7 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 
 ## Document map
 
-> Note on numbering: prefixes 20-23 are used by two parallel series. The **adoption track** (`20-adoption-objections`, `21-adoption-q-and-a`, `22-criticism-and-mitigations`, `22-paf-nexus-cortex`, `23-company-information-flows`) answers adoption questions and objections. The **architecture track** (`20-ingestion-pipelines`, `21-publishing-export`, `22-team-operating-model`, `23-gitlab-self-hosted-operating-model`) specifies how to build and operate the system. Bare numeric references like "doc 21" are ambiguous; always use the full filename.
+> Numbering policy: numeric prefixes are reserved for the architecture series. Adoption documents use stable named slugs so a prefix identifies at most one root document.
 
 | Document | Role |
 |---|---|
@@ -162,11 +162,11 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`21-publishing-export.md`](21-publishing-export.md) | Publishing and export architecture (architecture track). |
 | [`22-team-operating-model.md`](22-team-operating-model.md) | Team operating model: roles, review gates and rituals (architecture track). |
 | [`23-gitlab-self-hosted-operating-model.md`](23-gitlab-self-hosted-operating-model.md) | Self-hosted GitLab operating model (architecture track). |
-| [`20-adoption-objections.md`](20-adoption-objections.md) | Concrete answers for non-developers, browser-first workflows, PR/MR friction, token growth, human-readable documentation, LLM slop and sensitive content. |
-| [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md) | Additional adoption Q&A for start-small pilots, ownership, review, cost, ROI, migration, tool replacement, RAG/search boundaries, lock-in, permissions and multi-agent use. |
-| [`22-criticism-and-mitigations.md`](22-criticism-and-mitigations.md) | Criticism-first risk register: consensus smoothing, poisoning, cognitive debt, drift, greppable negative value, token burn, injection, benchmark vacuum and novelty decay. |
-| [`22-paf-nexus-cortex.md`](22-paf-nexus-cortex.md) | PAF-specific mapping of LLM-Wiki to Nexus/Cortex, first company-level Nexus pilot, shared context governance, decision-impact metrics and portable-vs-build gaps. |
-| [`23-company-information-flows.md`](23-company-information-flows.md) | Company information-flow audit: source inventory, automation boundaries, Confluence/Jira/external version refresh, fragility, UI, confidentiality, pitfalls and cost-benefit checks. |
+| [`adoption-objections.md`](adoption-objections.md) | Concrete answers for non-developers, browser-first workflows, PR/MR friction, token growth, human-readable documentation, LLM slop and sensitive content. |
+| [`adoption-q-and-a.md`](adoption-q-and-a.md) | Additional adoption Q&A for start-small pilots, ownership, review, cost, ROI, migration, tool replacement, RAG/search boundaries, lock-in, permissions and multi-agent use. |
+| [`criticism-and-mitigations.md`](criticism-and-mitigations.md) | Criticism-first risk register: consensus smoothing, poisoning, cognitive debt, drift, greppable negative value, token burn, injection, benchmark vacuum and novelty decay. |
+| [`paf-nexus-cortex.md`](paf-nexus-cortex.md) | PAF-specific mapping of LLM-Wiki to Nexus/Cortex, first company-level Nexus pilot, shared context governance, decision-impact metrics and portable-vs-build gaps. |
+| [`company-information-flows.md`](company-information-flows.md) | Company information-flow audit: source inventory, automation boundaries, Confluence/Jira/external version refresh, fragility, UI, confidentiality, pitfalls and cost-benefit checks. |
 | [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md) | Human-first design guide: agent-disappears test, human navigation, page contracts, protected synthesis, anti-dump structure and Confluence replacement acceptance tests. |
 | [`domain-pack-schema.md`](domain-pack-schema.md) | Core `type` and domain `domain_type` schema contract. |
 | [`templates-catalog.md`](templates-catalog.md) | Discoverability map for every starter file in `templates/`. |

@@ -288,33 +288,3 @@ Stop or shrink when:
 ## 9. Recommended answer to the user's questions
 
 > Start from the information flows that already produce decisions: docs, tickets, PRs, meetings, chats, support/customer evidence and analytics snapshots. Automate append-only capture, source metadata, version/hash tracking, stale marking and review reports. Do not fully automate truth promotion, contradiction resolution, sensitive summaries or official documentation updates. For Confluence/Jira/Drive/etc., keep a source registry with external IDs, versions, hashes and derived pages; webhooks/delta APIs mark pages stale and create refresh reports. Expect fragility around links, duplicates, contradictions, source freshness and permissions; the cheap repairs are deterministic, the expensive repairs require domain-owner judgment. Use Markdown reports/PRs first, Obsidian or dashboards only when review queues need better UI. For confidential data, split access domains and model boundaries before ingestion. Judge benefit by decision citations, answer reuse and time-to-context, not page count.
-
-## Russian compact templates
-
-### «Откуда собирать информацию?»
-
-> Из уже существующих потоков: Confluence/Notion/Docs, Jira/Linear/GitHub Issues, PR/ADR/release notes, Slack/Teams/Telegram, встречи и транскрипты, customer/support/research, analytics/BI, incidents/postmortems. Начинать нужно не со всех каналов, а с 3–5 потоков, которые реально влияют на решения.
-
-### «Что можно автоматизировать полностью?»
-
-> Полностью автоматизируйте capture/bookkeeping: source registry, raw event log, version/hash tracking, stale marking, broken-link checks, digest и refresh reports. Не автоматизируйте без ревью promotion to verified, resolving contradictions, удаление/merge страниц, sensitive summaries и infer decisions from chat.
-
-### «Как обновлять Confluence/Jira при изменениях?»
-
-> У каждой внешней сущности должен быть `source_id`, external version/hash, last_seen и список derived pages. Webhook/delta/poll фиксирует изменение, агент подтягивает новую версию, сравнивает hash/version, помечает зависимые страницы stale/refresh_required и создаёт diff review. Он не должен молча перезаписывать human synthesis.
-
-### «Насколько это хрупко?»
-
-> Хрупко там, где знание становится официальным: противоречия, stale sources, permissions, slop и ownership. Broken links/orphans чинятся быстро; противоречия и verified claims требуют владельца домена. Поэтому нужен weekly lint/review budget и очередь, а не вера в автоматическое самоисцеление.
-
-### «Есть ли UI?»
-
-> Базовый UI — Markdown report + GitHub/GitLab PR или issue queue. Для личной/исследовательской работы помогает Obsidian graph/backlinks/Dataview. Для компании, скорее всего, понадобится dashboard поверх stale/conflict/provenance queues, но начинать с кастомного UI не стоит.
-
-### «Работает ли с confidential information?»
-
-> Да, но только если не делать один общий searchable dump. Нужны data classes, split vault/index by access domain, least-privilege agents, redaction, local/approved-private models for sensitive data, audit logs and no secrets ingestion.
-
-### «Стоит ли польза затрат?»
-
-> Проверяется пилотом. Считайте не страницы, а time-to-answer, answer reuse, decision citation rate, output beyond wiki и stale/unsupported claims found before decisions. Если за месяц решения не цитируют wiki и review queue никто не читает, систему надо сжать или остановить.

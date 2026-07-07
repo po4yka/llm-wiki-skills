@@ -32,7 +32,7 @@ Use when the user asks:
 
 Read these when available:
 
-- `references/docs/22-criticism-and-mitigations.md`
+- `references/docs/criticism-and-mitigations.md`
 - `skills/llm-wiki-faq/references/criticism-pack.md`
 - `references/docs/04-anti-slop-and-trust.md`
 - `references/docs/08-evaluation-and-metrics.md`

@@ -32,9 +32,9 @@ Use when the user says or asks:
 Read these when available:
 
 - `references/docs/24-human-first-llm-wiki.md`
-- `references/docs/20-adoption-objections.md`
-- `references/docs/21-adoption-q-and-a.md`
-- `references/docs/22-criticism-and-mitigations.md`
+- `references/docs/adoption-objections.md`
+- `references/docs/adoption-q-and-a.md`
+- `references/docs/criticism-and-mitigations.md`
 - `references/docs/04-anti-slop-and-trust.md`
 
 ## Core stance

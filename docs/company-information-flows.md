@@ -1,6 +1,7 @@
 # Company information flows for LLM-Wiki adoption
 
 > Scope: answer how a typical product/engineering/company team can collect internal knowledge into an LLM-Wiki, what can be automated, what cannot, how external document changes are tracked, how fragile the system is, how to handle confidential information, and how to weigh maintenance cost against value.
+> Current as of: 2026-07-07
 > Source note: re-check current SaaS API/webhook docs before promising exact connector behavior.
 
 ## Short answer

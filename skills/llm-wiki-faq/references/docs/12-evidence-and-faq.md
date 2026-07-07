@@ -1,309 +1,218 @@
-# Evidence-backed FAQ for LLM-Wiki
+# LLM-Wiki evidence pack
 
-> Status: draft
-> Scope: аргументы, сравнительные данные и честные оговорки для ответов пользователям, которые спрашивают «зачем LLM-Wiki», «что я получу», «есть ли доказательства», «как поддерживать живой wiki» и «нужен ли Obsidian».
+> Purpose: compact evidence and talking points for the `llm-wiki-faq` skill.
 > Current as of: 2026-07-06
 
-## How to use this document
+## Core stance
 
-This document is a **talking-points and evidence map**, not a proof that every LLM-Wiki implementation will work for every user.
+LLM-Wiki is not proven to be universally better than RAG, Obsidian, GraphRAG, agent memory, or docs-as-code. The correct claim is narrower:
 
-When answering a user:
+> LLM-Wiki is a strong pattern when users need durable, inspectable, reusable domain knowledge that agents can maintain over time, especially when recurring queries require synthesis across sources rather than one-shot chunk retrieval.
 
-1. Start with the user's actual pain.
-2. Use one concise thesis.
-3. Distinguish direct LLM-Wiki evidence from adjacent evidence.
-4. State failure modes and when not to use the pattern.
-5. Route to a concrete next skill.
+## Evidence hierarchy
 
-## One-sentence answer
+### 1. Direct LLM-Wiki evidence
 
-LLM-Wiki is useful when the user repeatedly loses context across research, codebases, documents or decisions, because it turns raw sources into a persistent, inspectable, agent-readable knowledge layer that can be searched, linted, updated and reused.
+**Retrieval as Reasoning: Self-Evolving Agent-Native Retrieval via LLM-Wiki** reports that LLM-Wiki outperforms several graph/RAG baselines on multi-hop and structured-query benchmarks.
 
-## The honest evidence hierarchy
+> verify-before-use: Re-open the paper before quoting exact F1, accuracy, dataset or baseline numbers. This skill intentionally avoids carrying repeated exact benchmark figures.
 
-| Evidence level | What it supports | Strength | Caveat |
-|---|---|---|---|
-| Direct LLM-Wiki benchmark | Wiki-structured retrieval can outperform strong RAG/GraphRAG baselines on multi-hop and structured queries. | Promising | Early research; not proof for every personal second-brain workflow. |
-| GraphRAG / global RAG research | Precomputed structure helps with corpus-level/global questions where naive chunk retrieval struggles. | Strong adjacent evidence | GraphRAG is not the same as human-readable Markdown LLM-Wiki. |
-| Long-term memory research | Persistent structured memory beats full-context or naive RAG in long multi-session settings. | Strong adjacent evidence | Often conversational memory, not domain wiki. |
-| Context engineering research | Context is finite; dumping everything into the prompt degrades reliability; just-in-time file/context navigation is valuable. | Strong mechanism evidence | Does not prescribe LLM-Wiki specifically. |
-| OpenWiki / wiki memory ecosystem | Major agent tooling ecosystems are converging on wiki memory for repo docs and durable agent context. | Market/practice signal | Product maturity changes quickly. |
-| Local experience metrics | Retrieval hit rate, answer reuse, review backlog and output beyond vault show whether it works for this user. | Most decision-relevant | Requires measurement after adoption. |
+Use carefully:
 
-## Why is this needed?
-
-Use this answer when the user asks: **«Зачем это нужно?»**
-
-LLM-Wiki solves a compounding problem, not a storage problem. Users already have sources: notes, docs, chats, PRs, PDFs, bookmarks, transcripts, meeting notes and code. The problem is that raw sources do not automatically become reusable knowledge.
-
-The bottleneck is bookkeeping:
-
-- remembering what exists;
-- linking related pages;
-- refreshing stale summaries;
-- preserving decision context;
-- turning good chat answers into durable pages;
-- finding contradictions;
-- separating raw evidence from human synthesis.
-
-Traditional human-maintained wikis decay because maintenance is tedious. LLM-Wiki makes that maintenance cheap enough to run continuously, while keeping the result as inspectable Markdown under git.
-
-### Good formulation
-
-> You do not need LLM-Wiki because Markdown is magical. You need it if your knowledge work keeps paying the same context-reconstruction tax. LLM-Wiki turns that tax into reusable infrastructure.
-
-### Bad formulation
-
-> LLM-Wiki is better than all RAG and all note-taking systems.
-
-Do not say that. LLM-Wiki is a pattern with a clear fit, not a universal replacement.
-
-## What benefits should a user expect?
-
-Use this answer when the user asks: **«Какие преимущества я получу?»**
-
-### Personal workflow benefits
-
-| Benefit | What changes | How to measure |
-|---|---|---|
-| Faster context recovery | The user can restart a topic from `wiki/index.md`, query pages and decision logs. | Time to answer «where did I stop?» |
-| Better reuse of research | Good answers are saved into `wiki/queries/` or `wiki/synthesis/`. | Answer reuse rate. |
-| Cross-domain links | Agent lint can find old related pages the user forgot. | Surprise rate in random-page review. |
-| Less chat exhaust | Useful chat outputs become durable pages. | % of useful answers filed back. |
-| Safer AI assistance | Raw sources, provenance and review states make generated knowledge auditable. | Provenance coverage and review backlog. |
-
-### Team benefits
-
-| Benefit | What changes | How to measure |
-|---|---|---|
-| Onboarding | New people and agents start from maintained maps rather than folklore. | Onboarding questions answered from wiki. |
-| Bus factor reduction | Decisions and tacit knowledge survive people leaving. | Decision pages with evidence. |
-| Better coding agents | Agents find architecture, module maps and conventions without bloating `AGENTS.md`. | Fewer context-related coding mistakes. |
-| Documentation freshness | Scheduled lint/update PRs keep docs closer to the code. | Stale page count and docs PR cadence. |
-| Decision provenance | «Why did we do this?» gets a traceable answer. | ADR/decision coverage. |
-
-## Is there evidence that it works better than other approaches?
-
-Use this answer when the user asks: **«Есть доказательные/сравнительные данные?»**
-
-### Short answer
-
-There is early direct evidence for LLM-Wiki-style retrieval, plus stronger adjacent evidence from GraphRAG, global RAG, long-term memory and context-engineering research. The honest position is: **the mechanisms are well-supported; the full personal-LLM-Wiki pattern still needs more public benchmarks.**
-
-### Direct LLM-Wiki evidence
-
-The 2026 paper **“Retrieval as Reasoning: Self-Evolving Agent-Native Retrieval via LLM-Wiki”** reports that LLM-Wiki outperforms several graph/RAG baselines on multi-hop and structured-query benchmarks.
-
-> verify-before-use: Re-open the paper before quoting exact F1, accuracy, dataset or baseline numbers. This repository intentionally keeps exact benchmark figures out of repeated docs to avoid drift.
-
-How to use this claim:
-
-- Good: “There is early benchmark evidence that wiki-structured retrieval can beat strong graph/RAG baselines on multi-hop and structured queries.”
-- Bad: “This proves my personal Obsidian LLM-Wiki will beat every RAG system.”
+- It supports wiki-structured retrieval for multi-hop and structured queries.
+- It does not prove that any personal Obsidian vault will outperform every RAG system.
 
 Source: https://arxiv.org/abs/2605.25480
 
-### GraphRAG and global-RAG evidence
+### 2. Wiki memory ecosystem evidence
 
-GraphRAG research supports the core idea that precomputing structure helps with questions over an entire corpus. The Microsoft GraphRAG paper states that naive RAG struggles with global questions such as “What are the main themes in the dataset?” and reports substantial improvements in comprehensiveness and diversity over a naive RAG baseline on global sensemaking questions over roughly million-token datasets.
-
-Source: https://arxiv.org/abs/2404.16130
-
-GlobalQA / GlobalRAG is another adjacent signal. The paper reports that existing RAG methods perform poorly on corpus-level tasks such as counting, sorting, extrema and top-k extraction, while a global-retrieval strategy improves corpus-level question answering.
-
-Source: https://arxiv.org/abs/2510.26205
-
-How to use these claims:
-
-- LLM-Wiki is not GraphRAG.
-- But both support the same mechanism: when users ask global/cross-document questions, flat chunk retrieval is often not enough.
-
-### Memory evidence
-
-Mem0 reports that persistent memory outperforms multiple baseline categories on LOCOMO, including RAG variants and full-context approaches, with better judge-rated quality and lower latency/cost than full-context processing.
-
-Source: https://arxiv.org/abs/2504.19413
-
-MemMachine is a 2026 memory system that argues for preserving ground-truth episodes and reducing lossy extraction; it reports strong results on LoCoMo, LongMemEvalS and multi-hop retrieval tasks. This supports an important LLM-Wiki safety idea: keep raw sources/episodes and build structured views on top, rather than trusting summaries alone.
-
-Source: https://arxiv.org/abs/2604.04853
-
-### Context-engineering evidence
-
-Long context is not a free replacement for a wiki. “Lost in the Middle” shows that model performance can degrade when relevant information is placed in the middle of long contexts, even for explicitly long-context models.
-
-Source: https://arxiv.org/abs/2307.03172
-
-Anthropic's context-engineering guidance argues that context is finite and should be treated as a scarce resource; it describes just-in-time context patterns where agents keep lightweight identifiers such as file paths, stored queries and web links, then load data through tools when needed. It also says Claude Code uses `CLAUDE.md` up front plus glob/grep-style navigation at runtime.
-
-Source: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
-
-LLM-Wiki fits this mechanism: it gives the agent a small map (`index.md`) and a file-based knowledge layer to explore on demand.
-
-### Ecosystem evidence
-
-LangChain's “Wiki Memory” article describes an emerging pattern: agents turn raw source data into a compact, persistent, agent-readable knowledge layer. It distinguishes this from basic RAG because RAG usually retrieves raw chunks at query time, while a wiki precomputes and maintains higher-level synthesis.
+LangChain describes wiki memory as an emerging pattern where an agent turns raw source data into a compact, persistent, agent-readable knowledge layer. It explicitly distinguishes this from basic RAG: RAG usually retrieves raw chunks at query time, while a wiki precomputes and maintains higher-level synthesis.
 
 Source: https://www.langchain.com/blog/wiki-memory
 
-OpenWiki applies this to codebases: it generates repo documentation, connects it through instruction-file pointers, and can update via GitHub Action from git diffs. This is practical evidence that the pattern is being productized for coding agents.
+OpenWiki applies the pattern to codebases. Its argument: coding agents write better code when they understand where key logic lives, how files connect and which patterns the repo expects; docs are hard to keep current, so OpenWiki creates and updates a repo wiki and connects it via instruction-file pointers.
 
 Source: https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation
 
-## Is LLM-Wiki better than RAG?
+### 3. GraphRAG and global-RAG evidence
 
-Use this answer when the user asks: **«Это лучше RAG?»**
+GraphRAG shows that naive RAG struggles with global questions over a corpus, such as identifying themes across a dataset. It reports substantial improvements over naive RAG in comprehensiveness and diversity for global sensemaking questions over roughly million-token datasets.
 
-Not always. A better framing:
+Source: https://arxiv.org/abs/2404.16130
 
-| Case | Prefer |
+GlobalQA / GlobalRAG shows that many RAG methods perform poorly on corpus-level tasks such as counting, sorting, extrema and top-k extraction, while a global-retrieval strategy improves corpus-level question answering.
+
+Source: https://arxiv.org/abs/2510.26205
+
+### 4. Long-term memory evidence
+
+Mem0 reports persistent memory improvements over multiple baseline categories, including RAG variants and full-context processing, with better judge-rated quality and lower latency/cost than full-context processing.
+
+Source: https://arxiv.org/abs/2504.19413
+
+MemMachine argues for preserving ground-truth episodes and reducing lossy extraction. It reports strong accuracy-efficiency tradeoffs on LoCoMo, LongMemEvalS and noisy multi-hop retrieval.
+
+Source: https://arxiv.org/abs/2604.04853
+
+Infini Memory treats memory as topic-structured documents and reports 64.7% overall score on MemoryAgentBench. This is adjacent evidence for topic documents as a maintainable memory substrate.
+
+Source: https://arxiv.org/abs/2606.10677
+
+### 5. Context engineering evidence
+
+Lost in the Middle shows that long-context models do not reliably use information equally across long inputs; performance often degrades when relevant information is in the middle of the context.
+
+Source: https://arxiv.org/abs/2307.03172
+
+Anthropic's context-engineering guidance says context is finite and should be curated. It describes just-in-time context where agents maintain lightweight identifiers such as file paths, stored queries and web links, then load data at runtime through tools. Claude Code is described as using `CLAUDE.md` up front plus glob/grep-style navigation.
+
+Source: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+
+## Standard answers
+
+### Why is this needed?
+
+Because the user's bottleneck is often not storage but reusable context. LLM-Wiki turns raw material into a persistent, inspectable, agent-readable layer and makes the maintenance work cheap enough to repeat.
+
+### What benefits will I get?
+
+Expected benefits:
+
+- faster context recovery;
+- reusable research and saved answers;
+- better cross-document synthesis;
+- decision memory;
+- better context for coding agents;
+- visible trust gaps through lint/provenance/review states.
+
+Measure benefits through retrieval hit rate, answer reuse, read/write ratio, stale page count, review backlog and output beyond the vault.
+
+### Is there proof?
+
+Answer with nuance:
+
+- Direct LLM-Wiki benchmark evidence exists but is early.
+- Adjacent evidence from GraphRAG/global-RAG/memory/context-engineering strongly supports the mechanisms.
+- The user's own pilot metrics should decide whether adoption is worth it.
+
+### Is it better than RAG?
+
+Not universally. Use this comparison:
+
+| Need | Better default |
 |---|---|
-| User asks precise factual questions over many raw documents | RAG or hybrid search may be enough. |
-| User asks recurring questions where answers should improve over time | LLM-Wiki adds compounding value. |
-| User asks global/cross-document questions | Wiki/GraphRAG/global-RAG style structure is often better than naive chunk retrieval. |
-| User needs human review and git history | Markdown LLM-Wiki is easier to audit. |
-| User needs high-volume machine retrieval only | RAG/GraphRAG may be better primary infrastructure. |
+| one-shot factual lookup | RAG/search |
+| durable synthesis and reuse | LLM-Wiki |
+| global/corpus-level questions | wiki/GraphRAG/global-RAG style structure |
+| human audit and git history | Markdown LLM-Wiki |
+| high-volume machine retrieval | RAG/GraphRAG as primary infra |
 
-The practical default is hybrid:
+### How do I keep it alive?
 
-```text
-LLM-Wiki for durable synthesis and navigation
-+ lexical/semantic retrieval for finding relevant pages and raw evidence
-+ provenance/lint for trust
-```
-
-## How do I maintain a living LLM-Wiki?
-
-Use this answer when the user asks: **«Как поддерживать живой LLM-Wiki?»**
-
-A living wiki needs a loop, not just an initial import.
-
-### Minimum viable loop
+Run the loop:
 
 ```text
-capture -> triage -> ingest -> query -> file back -> lint -> review -> refresh
+capture -> triage -> ingest -> query -> file-back -> lint -> review -> refresh
 ```
 
-### Operational rules
+The two most important habits:
 
-1. **Capture quickly.** Put messy material into `inbox/` or `raw/` without filing decisions.
-2. **Preserve raw sources.** Do not let generated summaries replace source evidence.
-3. **Ingest in two steps.** Analyze first; write wiki pages second.
-4. **File back good answers.** Good chat answers become `wiki/queries/` or `wiki/synthesis/` pages.
-5. **Run lint regularly.** Detect broken links, orphan pages, stale pages, unsupported claims and contradictions.
-6. **Use review states.** Default generated content to `status: draft` and `review_required: true`.
-7. **Refresh time-sensitive pages.** Use `stale_after` and scheduled review.
-8. **Measure usefulness.** Track retrieval hit rate, answer reuse, read/write ratio, review backlog and output beyond vault.
+1. Save good answers back into the wiki.
+2. Run lint and review stale/unsupported/contradictory claims.
 
-### Suggested cadence
+### Do I need Obsidian?
 
-| Cadence | Work |
+No. Obsidian is a good UI, not a requirement.
+
+Use Obsidian when the user wants a human-friendly local Markdown vault with backlinks, graph view, manual editing, mobile capture and existing note-taking habits.
+
+Do not require Obsidian for repo docs, team docs-as-code, or users who want a minimal stack:
+
+```text
+Markdown + git + ripgrep + AGENTS.md/CLAUDE.md + skills
+```
+
+## Adoption objection answers
+
+### I am not a developer. How do I work with this?
+
+Do not make git literacy a prerequisite. Recommend a user-facing capture surface and hide repository mechanics behind an agent or maintainer workflow.
+
+Good answer:
+
+> You can add knowledge through a browser, Obsidian, a form, Telegram/email or a Confluence-style surface. The agent/maintainer layer can turn that into `raw/`, `wiki/`, provenance and review states. Git/PRs are useful for history and trust, but they do not need to be your daily interface.
+
+### Confluence only needs a browser. Why should I create MRs and sync branches?
+
+Agree with the objection. If every small contribution requires manual branch sync and PR/MR discipline, the rollout is badly designed.
+
+Good answer:
+
+> Capture should be as easy as Confluence. PR/MR review should be reserved for promotion to trusted, public, regulated or CODEOWNERS-owned knowledge. Ordinary additions should go through an append-only inbox, browser edit, form or bot, then be batched into review by the agent.
+
+### Will tokens be enough as the wiki grows?
+
+Good answer:
+
+> Yes, if the agent does not paste the whole wiki into the prompt. It should read a small instruction pointer, then `wiki/index.md`, then search and open only relevant pages. Raw sources are loaded only when verification is required. Token explosion is a design smell, not a reason to abandon the pattern.
+
+### Is this knowledge for agents or humans?
+
+Good answer:
+
+> Both. Agents need stable paths, frontmatter, links and indexes. Humans need readable pages, source links, review status and visible uncertainty. If humans cannot read and challenge the page, it is not documentation; it is an opaque agent cache.
+
+### What about LLM slop?
+
+Generated text is not automatically knowledge. It becomes trusted only after source anchoring and review.
+
+Controls:
+
+- raw sources preserved;
+- provenance links;
+- `status: draft|reviewed|verified|stale|archived`;
+- `review_required` and confidence fields;
+- protected human synthesis sections;
+- lint for unsupported/stale/contradictory claims.
+
+### What content can I upload, and how do I handle sensitive data?
+
+Almost any knowledge-bearing material can be captured, but it must be classified first.
+
+| Data class | Default handling |
 |---|---|
-| Daily | Capture and quick triage. |
-| Weekly | Ingest important sources, run `wiki-lint`, review high-priority issues. |
-| Monthly | Run `llm-wiki-eval`, refresh stale pages, prune or merge low-value pages. |
-| Quarterly | Random-page review, archive dead areas, update taxonomy and workflows. |
+| Public | Normal wiki flow; cloud or local models if policy permits. |
+| Internal | Private storage and model policy required. |
+| Confidential | Prefer local or approved private provider; redact before cloud. |
+| Restricted / regulated | Do not ingest by default; explicit approval, minimization and retention rules. |
+| Secrets | Never ingest; rotate if captured. |
 
-### Stop conditions
+Route to privacy/security/model-policy skills when the user mentions sensitive data, customer data, PII, credentials, retention, provider boundaries or publishing.
 
-Pause automation if:
+## Failure modes to disclose
 
-- the wiki grows but is not read;
-- lint reports are ignored;
-- generated pages cannot be traced to sources;
-- human synthesis gets overwritten;
-- review backlog becomes invisible;
-- users stop trusting the wiki.
+- Wiki grows but is not read.
+- Generated pages look official but lack provenance.
+- Human synthesis is overwritten.
+- Lint reports are ignored.
+- Review backlog becomes invisible.
+- The user collects notes instead of producing outputs.
+- The corpus is too small to justify the workflow.
+- Sensitive material is routed to cloud models without a policy.
+- Non-developers are forced into git/PR/MR workflow for ordinary capture.
+- The entire wiki is pasted into model context instead of being navigated.
 
-## Do I need Obsidian?
+## Pilot recommendation
 
-Use this answer when the user asks: **«Нужно ли мне использовать Obsidian?»**
-
-No. Obsidian is a good reading and editing surface, not a requirement.
-
-### Use Obsidian when
-
-- you already use Obsidian;
-- you want a human-friendly local Markdown vault;
-- wikilinks/backlinks/graph view help you review the wiki;
-- you want mobile capture and manual editing;
-- your primary workflow is personal or research-heavy.
-
-### Do not start with Obsidian when
-
-- the main use case is codebase documentation in a GitHub repo;
-- the team already lives in docs-as-code, MkDocs, Docusaurus or GitHub;
-- you need strict PR-based review and permissions first;
-- you only need a small repo wiki for coding agents;
-- you do not want another UI.
-
-### Minimal non-Obsidian stack
+For skeptical users, propose a pilot:
 
 ```text
-Markdown files + git + ripgrep + AGENTS.md/CLAUDE.md + skills
+20-50 sources
+10-20 real questions
+1-2 weeks of capture + ingest
+weekly lint
+answer file-back
+measure retrieval hit rate and reuse
 ```
 
-This is enough to start. Add Obsidian if the user wants a better human reading/editing surface. Add qmd or hybrid retrieval only when `index.md` and `rg` stop being enough.
-
-## When not to use LLM-Wiki
-
-Do not recommend LLM-Wiki when:
-
-- the corpus is tiny and `rg`/search already works;
-- the user will not review generated knowledge;
-- the user wants a fully automatic truth engine;
-- sensitive material would be sent to cloud models without a policy;
-- the knowledge changes too fast for wiki maintenance;
-- the user needs only short-term task state;
-- there is no output beyond collecting notes.
-
-## Recommended answer templates
-
-### “Зачем мне это?”
-
-> Вам это нужно, если вы снова и снова платите налог на восстановление контекста: перечитываете старые документы, заново объясняете агенту проект, теряете хорошие ответы в чатах и не можете быстро ответить «почему мы так решили». LLM-Wiki превращает сырые источники в живой Markdown-слой, который агент может поддерживать, а человек — проверять.
-
-### “Что я получу?”
-
-> Ожидаемый выигрыш: быстрее возвращаться к темам, переиспользовать прошлые исследования, не терять хорошие ответы, поддерживать decision memory, давать coding agents карту проекта и видеть, где знания устарели или не имеют источников. Это стоит измерять не числом заметок, а retrieval hit rate, reuse rate, review backlog и output beyond vault.
-
-### “Есть доказательства?”
-
-> Прямые benchmark’и именно LLM-Wiki пока ранние, но уже есть работа 2026 года, где LLM-Wiki обходит несколько graph/RAG baseline’ов на multi-hop и structured-query задачах. Точные F1/accuracy числа нужно перепроверять в статье перед цитированием. Сильнее доказан общий механизм: GraphRAG/global-RAG показывают, что предвычисленная структура помогает на corpus-level вопросах, memory-системы показывают пользу persistent memory, а long-context исследования показывают, что просто загрузить всё в контекст недостаточно.
-
-### “Как поддерживать живым?”
-
-> Нужен цикл: capture → triage → ingest → query → file-back → lint → review → refresh. Самый важный шаг — сохранять хорошие ответы обратно в wiki и регулярно запускать lint, который ищет stale claims, unsupported claims, contradictions и orphan pages.
-
-### “Нужен Obsidian?”
-
-> Нет. Obsidian — хороший интерфейс для человека, но не ядро паттерна. Ядро — Markdown, git, raw/wiki/schema, index/log и skills. Obsidian стоит брать, если вам нужен удобный local-first vault с backlinks и ручным чтением. Для repo docs или команды часто лучше начать с docs-as-code и PR-based workflow.
-
-## Source map
-
-Primary and adjacent sources to re-check before making strong claims:
-
-- Karpathy LLM-Wiki idea: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
-- LangChain Wiki Memory: https://www.langchain.com/blog/wiki-memory
-- LangChain OpenWiki: https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation
-- OpenWiki repository: https://github.com/langchain-ai/openwiki
-- Anthropic context engineering: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
-- Lost in the Middle: https://arxiv.org/abs/2307.03172
-- GraphRAG: https://arxiv.org/abs/2404.16130
-- GlobalQA / GlobalRAG: https://arxiv.org/abs/2510.26205
-- Mem0: https://arxiv.org/abs/2504.19413
-- MemMachine: https://arxiv.org/abs/2604.04853
-- Retrieval as Reasoning via LLM-Wiki: https://arxiv.org/abs/2605.25480
-- Infini Memory: https://arxiv.org/abs/2606.10677
-
-## Re-verification rules
-
-Re-check before answering with exact current facts about:
-
-- OpenWiki maturity, stars, releases and supported providers;
-- Obsidian plugin ecosystem and CLI status;
-- qmd installation and capabilities;
-- model/provider privacy and retention claims;
-- Agent Skills CLI syntax and supported agents;
-- new LLM-Wiki papers or benchmark results.
+Success is not more notes. Success is fewer repeated context-reconstruction sessions and more useful outputs.

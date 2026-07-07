@@ -2,6 +2,7 @@
 
 > Status: draft
 > Scope: source families behind this documentation and claims that should be re-verified before product decisions.
+> Current as of: 2026-07-07
 
 ## Source families
 

@@ -42,7 +42,7 @@ single accountable product pod + shared platform/security support + domain-owner
 
 For most teams:
 
-![Diagram of a team using a shared wiki with reviewable changes and team answers.](assets/team-rollout.png)
+![Diagram of a team using a shared wiki with reviewable changes and team answers.](assets/team-rollout.webp)
 
 - use **PR/proposal-based writes** rather than direct agent writes;
 - use **CODEOWNERS/branch protection/required checks** for durable knowledge changes;
@@ -475,7 +475,7 @@ dashboards:
 - https://prometheus.io/docs/operating/security/
 - https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-61r3.pdf
 - https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-218.pdf
-- https://slsa.dev/spec/v1.1/levels
+- https://slsa.dev/spec/v1.2/
 - https://slsa.dev/provenance/v1
 - https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 - https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule

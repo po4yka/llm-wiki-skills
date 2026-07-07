@@ -68,7 +68,7 @@ Mitigation:
 
 Use these types consistently:
 
-![Diagram of an agent auditing wiki content for evidence, confidence and review status.](assets/trust-audit.png)
+![Diagram of an agent auditing wiki content for evidence, confidence and review status.](assets/trust-audit.webp)
 
 | Type | Meaning | Default action |
 |---|---|---|

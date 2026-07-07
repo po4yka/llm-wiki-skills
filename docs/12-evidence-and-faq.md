@@ -295,7 +295,6 @@ Primary and adjacent sources to re-check before making strong claims:
 - Mem0: https://arxiv.org/abs/2504.19413
 - MemMachine: https://arxiv.org/abs/2604.04853
 - Retrieval as Reasoning via LLM-Wiki: https://arxiv.org/abs/2605.25480
-- Infini Memory: https://arxiv.org/abs/2606.10677
 
 ## Re-verification rules
 

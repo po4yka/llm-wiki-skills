@@ -2,6 +2,7 @@
 
 > Status: draft
 > Scope: where LLM-Wiki sits among current agent memory, retrieval and knowledge tooling.
+> Current as of: 2026-07-07
 
 ## Thesis
 
@@ -15,7 +16,7 @@ Markdown + git + ripgrep + index.md + skills + review gates
 
 Only add vector search, graph stores or sidecars when a specific bottleneck appears.
 
-![Comparison diagram showing retrieval from cited sources versus lightweight agent memory.](assets/retrieval-vs-memory.png)
+![Comparison diagram showing retrieval from cited sources versus lightweight agent memory.](assets/retrieval-vs-memory.webp)
 
 ## LLM-Wiki vs RAG
 

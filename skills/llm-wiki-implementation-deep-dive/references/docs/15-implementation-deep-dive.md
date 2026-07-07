@@ -477,7 +477,7 @@ A next-generation LLM-Wiki product should combine:
 - https://github.com/lucasastorian/llmwiki
 - https://github.com/Pratiyush/llm-wiki
 - https://github.com/ussumant/llm-wiki-compiler
-- https://modelcontextprotocol.io/specification/2025-06-18
+- https://modelcontextprotocol.io/specification/2025-11-25
 - https://qdrant.tech/documentation/search/filtering/
 - https://docs.lancedb.com/search/hybrid-search
 - https://docs.haystack.deepset.ai/docs/metadata-filtering

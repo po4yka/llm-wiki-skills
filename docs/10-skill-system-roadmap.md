@@ -2,6 +2,7 @@
 
 > Status: draft
 > Scope: product direction for this repository as an installable Agent Skills pack.
+> Current as of: 2026-07-07
 
 ## Thesis
 

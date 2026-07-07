@@ -1,11 +1,12 @@
 # Additional adoption Q&A playbook
 
 > Scope: additional questions that commonly appear after the first LLM-Wiki explanation: start-small path, governance, cost, ROI, migration, ownership, mistakes, vendor lock-in, RAG/search boundaries, multi-agent use, access control and long-term durability.
+> Current as of: 2026-07-07
 > Audience: agents using this skill pack, maintainers writing adoption docs, and reviewers evaluating rollout readiness.
 
 ## How to use this playbook
 
-Use this document after `docs/20-adoption-objections.md` when the user has already accepted the basic idea but still needs practical adoption answers.
+Use this document after `docs/adoption-objections.md` when the user has already accepted the basic idea but still needs practical adoption answers.
 
 Answer style:
 

@@ -149,7 +149,7 @@ Seed URLs:
 - https://github.com/Pratiyush/llm-wiki
 - https://github.com/microsoft/graphrag
 - https://modelcontextprotocol.io/docs/getting-started/intro
-- https://modelcontextprotocol.io/specification/2025-06-18
+- https://modelcontextprotocol.io/specification/2025-11-25
 - https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
 - https://docs.langchain.com/oss/python/langgraph/overview
 - https://haystack.deepset.ai/overview/intro

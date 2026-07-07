@@ -1,6 +1,7 @@
 # Adoption objection playbook
 
 > Scope: concrete answer patterns for non-developers, browser-first teams, token-growth concerns, human-readable documentation, LLM slop, and sensitive content boundaries.
+> Current as of: 2026-07-07
 > Audience: agents using this skill pack, maintainers writing user-facing docs, and reviewers evaluating whether an LLM-Wiki rollout is practical.
 
 ## How to use this playbook

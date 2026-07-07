@@ -30,10 +30,10 @@ Use when the user asks:
 
 Read these when available:
 
-- `references/docs/22-paf-nexus-cortex.md`
+- `references/docs/paf-nexus-cortex.md`
 - `skills/llm-wiki-faq/references/additional-adoption-q-and-a.md`
-- `references/docs/20-adoption-objections.md`
-- `references/docs/21-adoption-q-and-a.md`
+- `references/docs/adoption-objections.md`
+- `references/docs/adoption-q-and-a.md`
 
 For PAF source claims, browse and cite the current Product Framework page or the specific PAF source the user provides.
 

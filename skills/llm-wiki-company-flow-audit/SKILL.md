@@ -33,9 +33,9 @@ Use when the user asks:
 
 Read these when available:
 
-- `references/docs/23-company-information-flows.md`
-- `references/docs/20-adoption-objections.md`
-- `references/docs/21-adoption-q-and-a.md`
+- `references/docs/company-information-flows.md`
+- `references/docs/adoption-objections.md`
+- `references/docs/adoption-q-and-a.md`
 - `references/docs/19-security-threat-model.md`
 
 For vendor claims about Confluence, Jira, Slack, Teams, Google Drive, SharePoint or GitHub, browse and cite current official docs.

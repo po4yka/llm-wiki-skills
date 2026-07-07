@@ -2,6 +2,7 @@
 
 > Status: draft
 > Scope: how to decide whether an LLM-Wiki workflow is actually working.
+> Current as of: 2026-07-07
 
 ## Thesis
 

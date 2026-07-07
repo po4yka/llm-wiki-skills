@@ -2,6 +2,7 @@
 
 > Status: draft
 > Scope: advanced use-case and hardening skills that extend the core LLM-Wiki lifecycle pack.
+> Current as of: 2026-07-07
 
 ## Thesis
 

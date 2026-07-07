@@ -70,29 +70,3 @@ measure time-to-answer, retrieval hit rate, answer reuse and output beyond the v
 | Wiki pages | Domain knowledge, decisions, source summaries, concepts, entities. |
 | Raw sources | Original evidence and captures. |
 | Agent memory | Temporary preferences or project-local operational hints. |
-
-## Russian templates
-
-### «С чего начать?»
-
-> Начните с маленького обратимого пилота: один домен, 20–50 источников, 10–20 реальных вопросов, еженедельный lint и сохранение удачных ответов обратно в wiki.
-
-### «Когда это не нужно?»
-
-> Не нужно, если корпус маленький, поиск уже работает, никто не будет ревьюить generated pages или нет повторяющихся вопросов, которые должны компаундиться.
-
-### «Кто владеет wiki?»
-
-> Агент — библиотекарь, а не владелец истины. Люди должны отвечать за источники, verified pages, схемы, security policy и review queue.
-
-### «Сколько стоит?»
-
-> Сначала почти ничего кроме времени: Markdown, git, search, skills. Деньги появляются на cloud inference, embeddings, CI и access control, но их стоит добавлять только после пилота.
-
-### «Заменит ли это Confluence/RAG?»
-
-> Обычно нет. Confluence/Notion могут остаться поверхностью ввода, RAG/search — механизмом поиска, а LLM-Wiki — compiled, source-aware слой синтеза и повторного использования.
-
-### «Что если агент ошибётся?»
-
-> Предполагайте ошибки и проектируйте видимость: raw immutable, pages draft by default, provenance, lint, review gates and dry-run for destructive changes.

@@ -55,9 +55,9 @@ Read these when available:
 4. `references/criticism-pack.md` for serious criticism and mitigation answers.
 5. Repository-level docs:
    - `references/docs/12-evidence-and-faq.md`
-   - `references/docs/20-adoption-objections.md`
-   - `references/docs/21-adoption-q-and-a.md`
-   - `references/docs/22-criticism-and-mitigations.md`
+   - `references/docs/adoption-objections.md`
+   - `references/docs/adoption-q-and-a.md`
+   - `references/docs/criticism-and-mitigations.md`
 
 ## Evidence policy
 

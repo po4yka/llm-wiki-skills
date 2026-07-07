@@ -2,6 +2,7 @@
 
 > Status: draft
 > Scope: practical risk register for the LLM-Wiki pattern: real objections, mitigations, residual risks and routing to skills.
+> Current as of: 2026-07-07
 > Source basis: consolidated criticism report supplied to this repository review, plus existing project docs on trust, provenance, evaluation and security.
 
 ## Thesis

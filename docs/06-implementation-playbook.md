@@ -2,6 +2,7 @@
 
 > Status: draft
 > Scope: phased adoption path for a personal workflow, a team workflow or a product prototype.
+> Current as of: 2026-07-07
 
 ## Thesis
 
@@ -175,7 +176,7 @@ Graph visualization is less important than trust and reviewability.
 
 For an existing vault:
 
-![Diagram of raw documents moving through a migration pipeline into an organized wiki.](assets/migration-pipeline.png)
+![Diagram of raw documents moving through a migration pipeline into an organized wiki.](assets/migration-pipeline.webp)
 
 1. Freeze schema changes for a week.
 2. Run a read-only inventory.

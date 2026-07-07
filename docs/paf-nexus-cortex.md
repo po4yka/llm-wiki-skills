@@ -1,6 +1,7 @@
 # PAF Nexus/Cortex mapping for LLM-Wiki adoption
 
 > Scope: answer whether LLM-Wiki mechanics map to Product Architecture Framework (PAF) concepts of Nexus and Cortex, how far that analogy goes, and what first company-level step is practical.
+> Current as of: 2026-07-07
 > Source to re-check for current PAF wording: https://productframework.ru/ops/main
 
 ## Short answer

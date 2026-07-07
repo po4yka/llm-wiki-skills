@@ -414,9 +414,9 @@ Run these before enabling users:
 
 ## Source URLs to re-check
 
-- https://modelcontextprotocol.io/specification/2025-06-18
-- https://modelcontextprotocol.io/specification/2025-06-18/server/tools
-- https://modelcontextprotocol.io/specification/draft/server/resources
+- https://modelcontextprotocol.io/specification/2025-11-25
+- https://modelcontextprotocol.io/specification/2025-11-25/server/tools
+- https://modelcontextprotocol.io/specification/2025-11-25/server/resources
 - https://modelcontextprotocol.io/docs/sdk
 - https://modelcontextprotocol.io/community/sdk-tiers
 - https://modelcontextprotocol.io/docs/tutorials/security/authorization

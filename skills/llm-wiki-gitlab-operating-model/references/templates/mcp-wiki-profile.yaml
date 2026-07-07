@@ -6,7 +6,7 @@ server:
   name: "LLM-Wiki MCP Server"
   version: "0.1.0"
   protocol_targets:
-    - "2025-06-18"
+    - "2025-11-25"
   transport:
     mode: stdio # stdio|local-http|streamable-http
     bind: "127.0.0.1"

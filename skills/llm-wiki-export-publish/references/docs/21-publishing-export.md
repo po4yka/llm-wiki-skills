@@ -448,7 +448,7 @@ Release gates:
 - https://graphml.graphdrawing.org/
 - https://www.openapis.org/
 - https://spec.openapis.org/oas/v3.1.0.html
-- https://modelcontextprotocol.io/specification/2025-06-18
+- https://modelcontextprotocol.io/specification/2025-11-25
 - https://www.w3.org/TR/activitystreams-core/
 - https://iipc.github.io/warc-specifications/
 - https://github.com/webrecorder/warcio

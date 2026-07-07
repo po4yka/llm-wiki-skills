@@ -5,7 +5,7 @@
 
 ## How to use this playbook
 
-Use this document after `docs/20-adoption-objections.md` when the user has already accepted the basic idea but still needs practical adoption answers.
+Use this document after `docs/adoption-objections.md` when the user has already accepted the basic idea but still needs practical adoption answers.
 
 Answer style:
 
@@ -483,45 +483,3 @@ Corrective actions:
 - create weekly digest or open-questions report;
 - prune low-value areas;
 - run a with-wiki vs without-wiki benchmark.
-
-## Compact Russian answer templates
-
-### «С чего начать?»
-
-> Начните не с миграции всего архива, а с маленького пилота: один домен, 20–50 источников, 10–20 реальных вопросов, еженедельный lint и сохранение удачных ответов обратно в wiki. Если через 2–4 недели ответы не стали быстрее, полезнее или проверяемее, не масштабируйте.
-
-### «Когда это не нужно?»
-
-> Не нужно, если корпус маленький, поиск уже справляется, никто не будет ревьюить сгенерированные страницы, нет повторяющихся вопросов или результат не используется вне самой wiki. LLM-Wiki работает, когда знание переиспользуется и компаундится.
-
-### «Кто владелец wiki?»
-
-> Агент может быть библиотекарем, но не владельцем истины. Нужны человеческие владельцы: кто отвечает за источники, кто промоутит страницы до reviewed/verified, кто задаёт схемы, кто отвечает за sensitive data и кто смотрит lint-отчёты.
-
-### «Сколько это стоит?»
-
-> Самая дешёвая версия — Markdown, git, `index.md`, `log.md`, ripgrep и skills. Деньги появляются позже: облачные модели, embeddings, rerank, CI, доступы и поддержка. Сначала докажите пользу пилотом, потом платите за узкое место.
-
-### «Как доказать пользу?»
-
-> Не числом страниц. Измеряйте, насколько быстрее отвечаются реальные повторяющиеся вопросы, как часто ответы опираются на wiki, сколько удачных ответов переиспользуется, сколько stale/unsupported claims найдено, и появились ли внешние результаты: отчёты, PR, onboarding, решения.
-
-### «Это заменит Confluence или Notion?»
-
-> Не обязательно. Часто лучше оставить Confluence/Notion как удобную поверхность ввода, а LLM-Wiki использовать как compiled knowledge layer: агентный, проверяемый, source-aware слой для синтеза и повторного использования.
-
-### «Это заменит RAG?»
-
-> Нет. Нормальная архитектура гибридная: LLM-Wiki хранит долговечный синтез, карты и decision memory, а search/RAG помогает находить релевантные страницы и raw-доказательства.
-
-### «Что если агент ошибётся?»
-
-> Предполагайте, что он ошибётся. Поэтому raw-источники неизменяемы, generated pages начинаются как draft, важные claims получают provenance, verified/public страницы проходят human review, а bulk edits и удаления идут только через dry-run.
-
-### «Как избежать lock-in?»
-
-> Держите source of truth в скучных форматах: Markdown, YAML/JSON, git и raw files. Векторные базы, индексы и MCP/API — это rebuildable cache, а не единственная копия знания.
-
-### «Можно ли нескольким агентам работать с одной wiki?»
-
-> Да, если есть явные границы: короткий AGENTS.md/CLAUDE.md, page schemas, status fields, write permissions, review gates и запрет следовать инструкциям из тела источников. Без этого агенты начнут плодить разные conventions и тихие ошибки.

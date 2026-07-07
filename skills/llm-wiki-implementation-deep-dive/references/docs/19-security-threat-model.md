@@ -433,8 +433,8 @@ scorecard:
 - https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html
 - https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
 - https://modelcontextprotocol.io/docs/develop/clients/client-best-practices
-- https://modelcontextprotocol.io/specification/2025-06-18/server/tools
-- https://modelcontextprotocol.io/specification/2025-06-18/basic/transports
+- https://modelcontextprotocol.io/specification/2025-11-25/server/tools
+- https://modelcontextprotocol.io/specification/2025-11-25/basic/transports
 - https://modelcontextprotocol.io/seps/1024-mcp-client-security-requirements-for-local-server-
 - https://arxiv.org/abs/2302.12173
 - https://arxiv.org/abs/2402.07867

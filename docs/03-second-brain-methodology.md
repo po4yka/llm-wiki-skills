@@ -2,6 +2,7 @@
 
 > Status: draft
 > Scope: how established second-brain methods change when agents can maintain bookkeeping.
+> Current as of: 2026-07-07
 
 ## Thesis
 
