@@ -31,6 +31,10 @@ Complete when adding or changing skills:
 - [ ] The skill has explicit safety gates.
 - [ ] Risky write operations default to report-only, dry-run, proposal or PR-based mode.
 - [ ] The skill is listed in `skills.sh.json`.
+- [ ] The skill is listed in `docs/07-skills-overview.md`.
+- [ ] The skill has a route in `skill-router.json` and is mentioned in `docs/skill-router.md`.
+- [ ] New docs pages are linked from `docs/00-index.md`.
+- [ ] `CHANGELOG.md` records the change.
 - [ ] README and `docs/skills-catalog.md` are updated or regenerated.
 
 ## Schema/domain-pack checklist

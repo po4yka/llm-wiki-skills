@@ -17,6 +17,7 @@ This repository contains operational instructions for agents. CI should fail on 
 | Agent safety boundaries | `npm run validate:agent-safety` | fail | fail | Unsafe write/external-data patterns must not merge silently. |
 | Domain pack consistency | `npm run validate:domain-packs` | fail | fail | Domain packs must not break the core page schema. |
 | Skill router metadata | `npm run validate:router` | fail | fail | Agents need reliable routing metadata. |
+| Catalog and index coverage | `npm run validate:coverage` | fail | fail | Hand-maintained catalogs (skills overview, skill router, docs index) must not drift from the skills on disk. |
 | Claim anchors | `npm run validate:claim-anchors` | fail | fail | Duplicate or unsupported claim anchors create false trust. |
 | Examples / semantic fixtures | `npm run check:examples` | fail | fail | Examples are the executable user contract. |
 | Distribution smoke test | `npm run smoke:skills` | fail | fail | The pack must work with the upstream `skills` CLI. |

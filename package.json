@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "validate": "npm run validate:skills && npm run validate:manifest && npm run validate:links && npm run validate:agent-safety && npm run validate:skill-smells && npm run validate:claim-anchors && npm run validate:domain-packs && npm run validate:router && npm run check:examples",
+    "validate": "npm run validate:skills && npm run validate:manifest && npm run validate:links && npm run validate:agent-safety && npm run validate:skill-smells && npm run validate:claim-anchors && npm run validate:domain-packs && npm run validate:router && npm run validate:coverage && npm run check:examples",
     "validate:skills": "node scripts/validate-skills.mjs",
     "validate:manifest": "node scripts/validate-skills-manifest.mjs",
     "validate:links": "node scripts/validate-markdown-links.mjs",
@@ -12,6 +12,7 @@
     "validate:claim-anchors": "node scripts/validate-claim-anchors.mjs",
     "validate:domain-packs": "node scripts/validate-domain-packs.mjs",
     "validate:router": "node scripts/validate-skill-router.mjs",
+    "validate:coverage": "node scripts/validate-coverage.mjs",
     "check:skill-versions": "node scripts/check-skill-version-bumps.mjs",
     "lint:markdown": "npx --yes markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
     "catalog:generate": "node scripts/generate-skills-catalog.mjs && node scripts/generate-skills-catalog-md.mjs",

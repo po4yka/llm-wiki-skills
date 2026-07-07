@@ -101,7 +101,7 @@ metadata:
 ## PR checklist
 
 - [ ] Each new skill has valid frontmatter and the `name` matches the directory.
-- [ ] `skills.sh.json` includes any new top-level skill.
+- [ ] `skills.sh.json`, `skill-router.json` and `docs/07-skills-overview.md` include any new top-level skill.
 - [ ] New volatile facts are sourced or explicitly marked for re-verification.
 - [ ] Skills remain procedural and do not become hidden domain knowledge dumps.
 - [ ] Templates are safe for local-first, git-based use.

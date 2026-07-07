@@ -82,6 +82,19 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 13. [`technology-decision-record-template.md`](technology-decision-record-template.md)
 14. [`release-policy.md`](release-policy.md)
 
+### Deep-dive path: architecture and stack
+
+1. [`02-architecture.md`](02-architecture.md)
+2. [`13-ecosystem-matrix.md`](13-ecosystem-matrix.md)
+3. [`14-technology-stack.md`](14-technology-stack.md)
+4. [`15-implementation-deep-dive.md`](15-implementation-deep-dive.md)
+5. [`16-retrieval-architecture.md`](16-retrieval-architecture.md)
+6. [`17-mcp-api-integration.md`](17-mcp-api-integration.md)
+7. [`20-ingestion-pipelines.md`](20-ingestion-pipelines.md)
+8. [`21-publishing-export.md`](21-publishing-export.md)
+9. [`22-team-operating-model.md`](22-team-operating-model.md)
+10. [`23-gitlab-self-hosted-operating-model.md`](23-gitlab-self-hosted-operating-model.md)
+
 ### Reviewer path: risk and trust
 
 1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
@@ -95,7 +108,8 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 9. [`domain-pack-schema.md`](domain-pack-schema.md)
 10. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
 11. [`security/ci-severity-policy.md`](security/ci-severity-policy.md)
-12. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
+12. [`security/redaction-policy.md`](security/redaction-policy.md)
+13. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
 
 ### Operations path
 
@@ -106,6 +120,8 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 5. [`operations/quarterly.md`](operations/quarterly.md)
 
 ## Document map
+
+> Note on numbering: prefixes 20-23 are used by two parallel series. The **adoption track** (`20-adoption-objections`, `21-adoption-q-and-a`, `22-criticism-and-mitigations`, `22-paf-nexus-cortex`, `23-company-information-flows`) answers adoption questions and objections. The **architecture track** (`20-ingestion-pipelines`, `21-publishing-export`, `22-team-operating-model`, `23-gitlab-self-hosted-operating-model`) specifies how to build and operate the system. Bare numeric references like "doc 21" are ambiguous; always use the full filename.
 
 | Document | Role |
 |---|---|
@@ -121,6 +137,17 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`10-skill-system-roadmap.md`](10-skill-system-roadmap.md) | Product roadmap for the Agent Skills distribution pack. |
 | [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md) | Catalog of advanced use-case skills. |
 | [`12-evidence-and-faq.md`](12-evidence-and-faq.md) | Evidence-backed arguments and FAQ answers for adoption questions. |
+| [`13-ecosystem-matrix.md`](13-ecosystem-matrix.md) | Comparison matrix of concrete LLM-Wiki implementations and adjacent tools. |
+| [`14-technology-stack.md`](14-technology-stack.md) | Technology stack reference for building an LLM-Wiki system. |
+| [`15-implementation-deep-dive.md`](15-implementation-deep-dive.md) | Deep dive into open-source LLM-Wiki systems and implementation archetypes. |
+| [`16-retrieval-architecture.md`](16-retrieval-architecture.md) | Retrieval architecture: index contracts, chunking and metadata for wiki-aware search. |
+| [`17-mcp-api-integration.md`](17-mcp-api-integration.md) | MCP and API integration patterns for exposing the wiki to agents. |
+| [`18-evaluation-methodology.md`](18-evaluation-methodology.md) | Layered evaluation methodology for LLM-Wiki pilots and live systems. |
+| [`19-security-threat-model.md`](19-security-threat-model.md) | Security threat model and control baseline. |
+| [`20-ingestion-pipelines.md`](20-ingestion-pipelines.md) | Ingestion pipeline architecture (architecture track). |
+| [`21-publishing-export.md`](21-publishing-export.md) | Publishing and export architecture (architecture track). |
+| [`22-team-operating-model.md`](22-team-operating-model.md) | Team operating model: roles, review gates and rituals (architecture track). |
+| [`23-gitlab-self-hosted-operating-model.md`](23-gitlab-self-hosted-operating-model.md) | Self-hosted GitLab operating model (architecture track). |
 | [`20-adoption-objections.md`](20-adoption-objections.md) | Concrete answers for non-developers, browser-first workflows, PR/MR friction, token growth, human-readable documentation, LLM slop and sensitive content. |
 | [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md) | Additional adoption Q&A for start-small pilots, ownership, review, cost, ROI, migration, tool replacement, RAG/search boundaries, lock-in, permissions and multi-agent use. |
 | [`22-criticism-and-mitigations.md`](22-criticism-and-mitigations.md) | Criticism-first risk register: consensus smoothing, poisoning, cognitive debt, drift, greppable negative value, token burn, injection, benchmark vacuum and novelty decay. |
@@ -135,8 +162,12 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`provenance/claim-anchors.md`](provenance/claim-anchors.md) | Claim-level provenance convention. |
 | [`security/skill-supply-chain.md`](security/skill-supply-chain.md) | Security review guide for installing and authoring skills. |
 | [`security/ci-severity-policy.md`](security/ci-severity-policy.md) | CI severity rules for blocking vs advisory checks. |
-| [`agents/README.md`](agents/README.md) | Adapter docs for Claude Code, Codex, Cursor and OpenCode. |
+| [`security/redaction-policy.md`](security/redaction-policy.md) | Privacy checks before publishing a wiki subset or sending context to external models. |
+| [`agents/README.md`](agents/README.md) | Adapter docs for [Claude Code](agents/claude-code.md), [Codex](agents/codex.md), [Cursor](agents/cursor.md) and [OpenCode](agents/opencode.md). |
 | [`operations/daily.md`](operations/daily.md) | Daily living-wiki checklist. |
+| [`operations/weekly.md`](operations/weekly.md) | Weekly operations checklist. |
+| [`operations/monthly.md`](operations/monthly.md) | Monthly operations checklist. |
+| [`operations/quarterly.md`](operations/quarterly.md) | Quarterly operations checklist. |
 | [`operations/refresh.md`](operations/refresh.md) | Offline operational refresh reports for stale sources and ecosystem registry verification. |
 
 ## Core vocabulary

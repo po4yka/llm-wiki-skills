@@ -28,7 +28,7 @@ This repository is an installable Agent Skills pack for LLM-Wiki workflows.
 
 1. Inspect the target document.
 2. Make the smallest coherent edit.
-3. Update cross-links and `skills.sh.json` when skills change.
+3. Update cross-links, `skills.sh.json`, `skill-router.json` and `docs/07-skills-overview.md` when skills change.
 4. Summarize what changed and what still needs review.
 
 ## Repository map

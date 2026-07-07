@@ -21,10 +21,22 @@ Skills are operators over the user's context. They should describe **how to work
 |---|---|
 | [`llm-wiki-orient`](../skills/llm-wiki-orient/SKILL.md) | Explain the LLM-Wiki pattern and solution landscape. |
 | [`llm-wiki-faq`](../skills/llm-wiki-faq/SKILL.md) | Answer evidence-backed adoption questions and serious criticism. |
+| [`llm-wiki-paf-adoption`](../skills/llm-wiki-paf-adoption/SKILL.md) | Map LLM-Wiki adoption to Product Architecture Framework concepts such as Nexus and Cortex. |
 | [`llm-wiki-news-radar`](../skills/llm-wiki-news-radar/SKILL.md) | Browse for fresh ecosystem news, releases, papers and technologies. |
 | [`llm-wiki-choose`](../skills/llm-wiki-choose/SKILL.md) | Recommend ready-made vs custom paths. |
 
-### Diagnose, plan and evaluate
+### Technology landscape
+
+| Skill | Purpose |
+|---|---|
+| [`llm-wiki-ecosystem-registry`](../skills/llm-wiki-ecosystem-registry/SKILL.md) | Build or refresh a current registry of LLM-Wiki implementations and adjacent frameworks. |
+| [`llm-wiki-implementation-deep-dive`](../skills/llm-wiki-implementation-deep-dive/SKILL.md) | Compare concrete open-source LLM-Wiki implementations at architecture depth. |
+| [`llm-wiki-retrieval-architect`](../skills/llm-wiki-retrieval-architect/SKILL.md) | Design the retrieval/indexing layer for an LLM-Wiki. |
+| [`llm-wiki-ingestion-stack`](../skills/llm-wiki-ingestion-stack/SKILL.md) | Design a source-preserving ingestion and document-conversion stack. |
+| [`llm-wiki-mcp-integration`](../skills/llm-wiki-mcp-integration/SKILL.md) | Design or review MCP/API integration for an LLM-Wiki. |
+| [`llm-wiki-eval-tooling`](../skills/llm-wiki-eval-tooling/SKILL.md) | Map evaluation goals to concrete tools, datasets, scorecards and CI gates. |
+
+### Diagnose, plan, and evaluate
 
 | Skill | Purpose |
 |---|---|
@@ -53,6 +65,7 @@ Skills are operators over the user's context. They should describe **how to work
 
 | Skill | Purpose |
 |---|---|
+| [`llm-wiki-company-flow-audit`](../skills/llm-wiki-company-flow-audit/SKILL.md) | Map company/team information flows into an LLM-Wiki adoption plan. |
 | [`llm-wiki-capture-pipeline`](../skills/llm-wiki-capture-pipeline/SKILL.md) | Design general inbox/capture pipelines. |
 | [`llm-wiki-channel-capture`](../skills/llm-wiki-channel-capture/SKILL.md) | Design channel-specific capture workflows. |
 | [`llm-wiki-interview`](../skills/llm-wiki-interview/SKILL.md) | Extract tacit knowledge through interviews. |
@@ -70,6 +83,7 @@ Skills are operators over the user's context. They should describe **how to work
 | [`llm-wiki-trust-audit`](../skills/llm-wiki-trust-audit/SKILL.md) | Audit anti-slop and human-synthesis boundaries. |
 | [`llm-wiki-source-refresh`](../skills/llm-wiki-source-refresh/SKILL.md) | Refresh stale source-backed claims with reports. |
 | [`llm-wiki-privacy-redactor`](../skills/llm-wiki-privacy-redactor/SKILL.md) | Preview redactions before publishing or external model use. |
+| [`llm-wiki-threat-model`](../skills/llm-wiki-threat-model/SKILL.md) | Build a security threat model across ingestion, retrieval, MCP/API, agents and CI. |
 | [`llm-wiki-security-review`](../skills/llm-wiki-security-review/SKILL.md) | Review data boundaries and skill safety. |
 | [`llm-wiki-model-policy`](../skills/llm-wiki-model-policy/SKILL.md) | Define model/provider policy by data class and task. |
 | [`llm-wiki-export-publish`](../skills/llm-wiki-export-publish/SKILL.md) | Export or publish safe subsets. |
@@ -83,6 +97,7 @@ Skills are operators over the user's context. They should describe **how to work
 | [`llm-wiki-skill-compiler`](../skills/llm-wiki-skill-compiler/SKILL.md) | Compile wiki procedures into skills. |
 | [`llm-wiki-agent-memory-bridge`](../skills/llm-wiki-agent-memory-bridge/SKILL.md) | Separate wiki knowledge from instruction files and agent memory. |
 | [`llm-wiki-team-rollout`](../skills/llm-wiki-team-rollout/SKILL.md) | Roll out LLM-Wiki across a team. |
+| [`llm-wiki-gitlab-operating-model`](../skills/llm-wiki-gitlab-operating-model/SKILL.md) | Design a team operating model for self-hosted GitLab and internal enterprise environments. |
 
 ![Diagram of wiki procedures being compiled into reusable agent skills.](assets/skill-compiler.png)
 
@@ -125,6 +140,8 @@ A typical repo/team loop:
 ```text
 llm-wiki-repo-docs -> llm-wiki-adr-memory -> llm-wiki-github-action -> llm-wiki-team-rollout -> llm-wiki-security-review
 ```
+
+On self-hosted GitLab, use `llm-wiki-gitlab-operating-model` alongside `llm-wiki-team-rollout` and replace `llm-wiki-github-action` with GitLab CI/CD equivalents.
 
 A typical publication loop:
 

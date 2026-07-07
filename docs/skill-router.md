@@ -4,7 +4,7 @@
 
 ## Machine-readable router
 
-The human guide below is mirrored by [`../skill-router.json`](../skill-router.json). Agents and tooling should prefer the JSON file when they need structured routing metadata such as:
+The decision tree below and [`../skill-router.json`](../skill-router.json) cover the same set of skills: every skill in `skills/` has an entry in both. The JSON file is the authoritative machine-readable router; agents and tooling should prefer it when they need structured routing metadata such as:
 
 - user intents;
 - dependencies;
@@ -49,6 +49,12 @@ Asking where to start, when not to use it, who owns/reviews it, cost, ROI, migra
 Need current tools/news/releases?
   -> llm-wiki-news-radar
 
+Need a registry of implementations and adjacent frameworks?
+  -> llm-wiki-ecosystem-registry
+
+Need an architecture-depth comparison of concrete implementations?
+  -> llm-wiki-implementation-deep-dive
+
 Need to choose ready-made vs custom?
   -> llm-wiki-choose
 ```
@@ -69,6 +75,12 @@ Approved to restructure files?
 ## Setup target
 
 ```text
+Chosen a workflow and ready to install and configure it?
+  -> llm-wiki-setup
+
+Building a custom implementation, CLI, plugin or product?
+  -> llm-wiki-design
+
 Need a local-first stack?
   -> llm-wiki-local-first-stack
 
@@ -78,11 +90,23 @@ Already use Obsidian?
 Working on a codebase?
   -> llm-wiki-repo-docs
 
+Need domain-specific templates, taxonomies and review gates?
+  -> llm-wiki-domain-pack
+
 Need GitHub maintenance automation?
   -> llm-wiki-github-action
 
-Need browser-first capture or team contribution without git friction?
-  -> llm-wiki-team-rollout
+Need browser-first or low-friction capture into an inbox?
+  -> llm-wiki-capture-pipeline
+
+Need channel-specific capture (Telegram, email, Slack, voice notes)?
+  -> llm-wiki-channel-capture
+
+Need a document-conversion and ingestion stack (PDF, Office, audio, OCR)?
+  -> llm-wiki-ingestion-stack
+
+Need agents to reach the wiki over MCP or an API?
+  -> llm-wiki-mcp-integration
 
 Need PAF-style Market/Product/Growth Nexus schema or Cortex workflow?
   -> llm-wiki-paf-adoption
@@ -103,6 +127,9 @@ Trusted raw source?
 Question from the wiki?
   -> wiki-query
 
+Tacit knowledge, onboarding gaps or open questions to extract by interview?
+  -> llm-wiki-interview
+
 Health check?
   -> wiki-lint
 ```
@@ -112,6 +139,12 @@ Health check?
 ```text
 Unsupported claims?
   -> llm-wiki-provenance
+
+Need claim-level anchors with stable claim IDs?
+  -> llm-wiki-claim-anchors
+
+Need to recover why decisions were made (ADRs, decision memory)?
+  -> llm-wiki-adr-memory
 
 Contradictions?
   -> llm-wiki-conflict-resolver
@@ -127,6 +160,9 @@ Need to prove value?
 
 Need a with-wiki vs without-wiki adoption benchmark?
   -> llm-wiki-benchmark-suite
+
+Need concrete eval tools, datasets, scorecards or CI gates?
+  -> llm-wiki-eval-tooling
 
 Need to prove a Nexus affects company decisions?
   -> llm-wiki-paf-adoption
@@ -144,6 +180,9 @@ Worried the wiki will not fit in context?
 Security and data boundaries?
   -> llm-wiki-security-review
 
+Need a structured threat model (STRIDE, trust boundaries, risk matrix)?
+  -> llm-wiki-threat-model
+
 Sensitive data, PII, customer data or secrets in sources?
   -> llm-wiki-privacy-redactor
 
@@ -155,6 +194,9 @@ Permissions, multi-agent access or AGENTS.md/wiki boundary?
 
 Team rollout, ownership or review gates?
   -> llm-wiki-team-rollout
+
+Rolling out on self-hosted GitLab or an internal enterprise contour?
+  -> llm-wiki-gitlab-operating-model
 
 Product Engineer / Product Ops ownership of Nexus/Cortex?
   -> llm-wiki-paf-adoption

@@ -28,28 +28,43 @@ Each skill lives in `skills/<skill-name>/SKILL.md` and has valid Agent Skills fr
 
 ## Current skill families
 
-### 1. Orientation, evidence and education
+The pack currently ships 49 skills, grouped as in `skills.sh.json`:
+
+### 1. Learn and choose
 
 - `llm-wiki-orient`
 - `llm-wiki-faq`
+- `llm-wiki-paf-adoption`
 - `llm-wiki-news-radar`
 - `llm-wiki-choose`
 
-These skills explain the pattern, answer adoption objections with direct/adjacent/local evidence, refresh the current landscape and help the user decide between ready-made and custom paths.
+These skills explain the pattern, answer adoption objections with direct/adjacent/local evidence, map PAF Nexus/Cortex adoption, refresh the current landscape and help the user decide between ready-made and custom paths.
 
-### 2. Diagnosis, planning, provenance and evaluation
+### 2. Technology landscape
+
+- `llm-wiki-ecosystem-registry`
+- `llm-wiki-implementation-deep-dive`
+- `llm-wiki-retrieval-architect`
+- `llm-wiki-ingestion-stack`
+- `llm-wiki-mcp-integration`
+- `llm-wiki-eval-tooling`
+
+These skills map concrete implementations, implementation archetypes, retrieval stacks, ingestion tooling, MCP/API integration and evaluation/security tooling for LLM-Wiki systems.
+
+### 3. Diagnosis, planning, provenance and evaluation
 
 - `llm-wiki-doctor`
 - `llm-wiki-migration-planner`
 - `llm-wiki-eval`
 - `llm-wiki-benchmark-suite`
+- `llm-wiki-critique-audit`
 - `llm-wiki-provenance`
 - `llm-wiki-claim-anchors`
 - `llm-wiki-conflict-resolver`
 
-These skills turn messy existing material into a safe adoption plan and provide evidence that the wiki is trustworthy and useful.
+These skills turn messy existing material into a safe adoption plan, audit criticism risk and provide evidence that the wiki is trustworthy and useful.
 
-### 3. Implementation and migration
+### 4. Implementation and migration
 
 - `llm-wiki-setup`
 - `llm-wiki-design`
@@ -61,17 +76,18 @@ These skills turn messy existing material into a safe adoption plan and provide 
 
 These skills help users set up local-first vaults, harden Obsidian, build repo documentation and add safe maintenance automation.
 
-### 4. Capture and domain workflows
+### 5. Capture and domain workflows
 
+- `llm-wiki-company-flow-audit`
 - `llm-wiki-capture-pipeline`
 - `llm-wiki-channel-capture`
 - `llm-wiki-interview`
 - `llm-wiki-adr-memory`
 - `llm-wiki-domain-pack`
 
-These skills cover the capture and knowledge-shaping scenarios that make the wiki compound over time.
+These skills map company information flows and cover the capture and knowledge-shaping scenarios that make the wiki compound over time.
 
-### 5. Operation and trust
+### 6. Operation and trust
 
 - `wiki-triage`
 - `wiki-ingest`
@@ -80,21 +96,23 @@ These skills cover the capture and knowledge-shaping scenarios that make the wik
 - `llm-wiki-trust-audit`
 - `llm-wiki-source-refresh`
 - `llm-wiki-privacy-redactor`
+- `llm-wiki-threat-model`
 - `llm-wiki-security-review`
 - `llm-wiki-model-policy`
 - `llm-wiki-export-publish`
 - `llm-wiki-archive`
 
-These skills maintain day-to-day wiki health, data boundaries, source freshness, model policy, publication boundaries and long-term durability.
+These skills maintain day-to-day wiki health, data boundaries, threat modeling, source freshness, model policy, publication boundaries and long-term durability.
 
-### 6. Skill and memory governance
+### 7. Skill and memory governance
 
 - `llm-wiki-skill-doctor`
 - `llm-wiki-skill-compiler`
 - `llm-wiki-agent-memory-bridge`
 - `llm-wiki-team-rollout`
+- `llm-wiki-gitlab-operating-model`
 
-These skills help teams and builders govern Agent Skills, instruction files, memory surfaces and organizational rollout.
+These skills help teams and builders govern Agent Skills, instruction files, memory surfaces, organizational rollout and self-hosted GitLab operating models.
 
 ## Product hardening layer
 
