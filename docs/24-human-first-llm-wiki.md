@@ -1,6 +1,7 @@
 # Human-first LLM-Wiki design
 
 > Scope: fix the adoption argument that LLM-Wiki must not be treated as an agent-generated document dump. The wiki must remain useful when agents are unavailable, while agents assist with bookkeeping, linking, linting and refresh.
+> Current as of: 2026-07-07
 
 ## Short answer
 

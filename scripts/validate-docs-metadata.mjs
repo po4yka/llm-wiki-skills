@@ -1,24 +1,10 @@
 import path from 'node:path';
 import { failFactory, listFiles, repoRelative, repoRoot, readText } from './lib/repo.mjs';
+import { readCanonicalVocabularies } from './lib/canonical-vocabularies.mjs';
+import { currentAsOfPattern, docsRequiringCurrentAsOf } from './lib/freshness.mjs';
 
 const { fail, finish } = failFactory();
-
-const currentAsOfDocs = [
-  'docs/03-second-brain-methodology.md',
-  'docs/04-anti-slop-and-trust.md',
-  'docs/05-tooling-landscape.md',
-  'docs/06-implementation-playbook.md',
-  'docs/07-skills-overview.md',
-  'docs/08-evaluation-and-metrics.md',
-  'docs/09-references.md',
-  'docs/10-skill-system-roadmap.md',
-  'docs/11-use-case-skill-catalog.md',
-  'docs/adoption-objections.md',
-  'docs/adoption-q-and-a.md',
-  'docs/criticism-and-mitigations.md',
-  'docs/paf-nexus-cortex.md',
-  'docs/company-information-flows.md',
-];
+const canonical = readCanonicalVocabularies();
 
 const removedAdoptionPaths = [
   '20-adoption-objections.md',
@@ -50,9 +36,9 @@ function checkUniqueDocPrefixes() {
 }
 
 function checkCurrentAsOfMarkers() {
-  for (const relPath of currentAsOfDocs) {
-    const text = readText(path.join(repoRoot, relPath));
-    if (!/^> Current as of: \d{4}-\d{2}-\d{2}$/m.test(text)) {
+  for (const { filePath, relPath } of docsRequiringCurrentAsOf()) {
+    const text = readText(filePath);
+    if (!currentAsOfPattern.test(text)) {
       fail(`${relPath}: missing '> Current as of: YYYY-MM-DD' marker for refresh scanning`);
     }
   }
@@ -75,26 +61,33 @@ function checkRemovedAdoptionPaths() {
 }
 
 function checkExternalSpecPins() {
+  const mcpSpecDate = canonical.external_specs?.mcp_spec_date;
+  const slsaSpecVersion = canonical.external_specs?.slsa_spec_version;
+  if (!mcpSpecDate) fail('templates/schemas/canonical-vocabularies.json: missing external_specs.mcp_spec_date');
+  if (!slsaSpecVersion) fail('templates/schemas/canonical-vocabularies.json: missing external_specs.slsa_spec_version');
+
   const mcpDatePattern = /modelcontextprotocol\.io\/specification\/(\d{4}-\d{2}-\d{2})/g;
   const unsupportedMcpVersionPattern = /\b2025-06-18\b/g;
-  const oldSlsaPattern = /slsa\.dev\/spec\/v1\.1\b/g;
+  const slsaSpecPattern = /slsa\.dev\/spec\/(v\d+\.\d+)\b/g;
 
   for (const filePath of textFiles) {
     const relPath = repoRelative(filePath);
     const text = readText(filePath);
 
     for (const match of text.matchAll(mcpDatePattern)) {
-      if (match[1] !== '2025-11-25') {
-        fail(`${relPath}: MCP spec links must use 2025-11-25, found ${match[1]}`);
+      if (match[1] !== mcpSpecDate) {
+        fail(`${relPath}: MCP spec links must use ${mcpSpecDate}, found ${match[1]}`);
       }
     }
 
     for (const match of text.matchAll(unsupportedMcpVersionPattern)) {
-      fail(`${relPath}: stale MCP spec revision '${match[0]}'`);
+      if (match[0] !== mcpSpecDate) fail(`${relPath}: stale MCP spec revision '${match[0]}'`);
     }
 
-    for (const match of text.matchAll(oldSlsaPattern)) {
-      fail(`${relPath}: stale SLSA spec revision '${match[0]}'`);
+    for (const match of text.matchAll(slsaSpecPattern)) {
+      if (match[1] !== slsaSpecVersion) {
+        fail(`${relPath}: SLSA spec links must use ${slsaSpecVersion}, found ${match[1]}`);
+      }
     }
   }
 }

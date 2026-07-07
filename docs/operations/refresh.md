@@ -2,6 +2,7 @@
 
 > Status: draft
 > Scope: deterministic offline refresh reports for stale source-backed claims and ecosystem registry entries.
+> Current as of: 2026-07-07
 
 ## Thesis
 
@@ -10,7 +11,7 @@ Refresh workflows should create review queues, not silently rewrite truth.
 The repository has two operational refresh reports:
 
 | Report | Command | Workflow | Purpose |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Source refresh | `npm run refresh:source-report` | `source-refresh-report.yml` | Find expired `stale_after`, missing provenance and current-as-of docs that need review. |
 | Ecosystem refresh | `npm run refresh:ecosystem-report` | `ecosystem-refresh-report.yml` | Turn `docs/13-ecosystem-matrix.md` into a verification queue for current project/tool claims. |
 

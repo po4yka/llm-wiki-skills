@@ -19,7 +19,7 @@
       "count_pattern": "^! "
     },
     "markdownlint_errors": {
-      "max": 9227,
+      "max": 9216,
       "command": ["npm", "run", "lint:markdown"],
       "count_pattern": " error MD[0-9]{3}/",
       "allow_nonzero_exit": true

@@ -67,5 +67,9 @@
       "consulted": ["TL", "KE", "RE", "SEC", "SME"],
       "informed": ["PE"]
     }
+  },
+  "external_specs": {
+    "mcp_spec_date": "2025-11-25",
+    "slsa_spec_version": "v1.2"
   }
 }

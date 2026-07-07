@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { listFiles, repoRelative, repoRoot, readText } from './lib/repo.mjs';
+import { currentAsOfPattern, docsRequiringCurrentAsOf } from './lib/freshness.mjs';
 
 const args = process.argv.slice(2);
 const outIndex = args.indexOf('--out');
@@ -118,8 +119,10 @@ const stalePages = [];
 const sourceGaps = [];
 const missingLocalSources = [];
 const currentAsOfItems = [];
+const missingCurrentAsOfItems = [];
 const urlSources = [];
 let frontmatterPages = 0;
+const currentAsOfRequired = new Set(docsRequiringCurrentAsOf().map((doc) => doc.relPath));
 
 for (const filePath of markdownFiles()) {
   const rel = repoRelative(filePath);
@@ -172,6 +175,10 @@ for (const filePath of markdownFiles()) {
       currentAsOfItems.push({ rel, currentAsOf, ageDays, action: 'Re-run relevant refresh skill and update current-as-of metadata.' });
     }
   }
+
+  if (currentAsOfRequired.has(rel) && !currentAsOfPattern.test(text)) {
+    missingCurrentAsOfItems.push({ rel, action: 'Add > Current as of: YYYY-MM-DD after verifying external/current-state claims.' });
+  }
 }
 
 function table(headers, rows, formatter) {
@@ -194,6 +201,7 @@ const lines = [
   `- Missing local source paths: ${missingLocalSources.length}`,
   `- External source URLs found: ${urlSources.length}`,
   `- Current-as-of docs older than ${currentAsOfMaxAgeDays} days: ${currentAsOfItems.length}`,
+  `- Docs missing required current-as-of marker: ${missingCurrentAsOfItems.length}`,
   '',
   '> This is an offline deterministic report. It does not browse the web and does not update truth claims. Use `llm-wiki-source-refresh` with web access for source verification and patch proposals.',
   '',
@@ -226,6 +234,13 @@ if (currentAsOfItems.length > 0) {
   lines.push(table(['Document', 'Current as of', 'Age days', 'Action'], currentAsOfItems, (row) => [row.rel, row.currentAsOf, row.ageDays, row.action]));
 } else {
   lines.push('No stale `Current as of` markers were found.\n');
+}
+
+lines.push('## Missing current-as-of markers', '');
+if (missingCurrentAsOfItems.length > 0) {
+  lines.push(table(['Document', 'Action'], missingCurrentAsOfItems, (row) => [row.rel, row.action]));
+} else {
+  lines.push('No required `Current as of` markers are missing.\n');
 }
 
 lines.push('## External source URLs', '');
