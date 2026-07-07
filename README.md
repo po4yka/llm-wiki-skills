@@ -52,6 +52,7 @@ learn -> answer objections -> choose -> diagnose -> plan -> set up -> migrate ->
 It includes skills for:
 
 - explaining the pattern and evidence behind it;
+- answering serious criticism: consensus smoothing, context poisoning, cognitive debt, drift, token burn, prompt injection, benchmark vacuum and write-only archive risk;
 - choosing ready-made versus custom solutions;
 - mapping concrete open-source implementations, implementation archetypes, retrieval stacks, ingestion stacks, MCP integrations and eval tooling;
 - setting up local-first, repo-docs, Obsidian, MCP/API, retrieval, ingestion or team workflows;
@@ -69,7 +70,7 @@ It includes skills for:
 | Skill | Use when |
 |---|---|
 | [`llm-wiki-orient`](skills/llm-wiki-orient/SKILL.md) | The user is new to LLM-Wiki and wants the pattern, trade-offs and solution landscape explained. |
-| [`llm-wiki-faq`](skills/llm-wiki-faq/SKILL.md) | The user asks why LLM-Wiki is needed, what benefits it gives, what evidence exists, how to keep it alive, or whether Obsidian is required. |
+| [`llm-wiki-faq`](skills/llm-wiki-faq/SKILL.md) | The user asks why LLM-Wiki is needed, what benefits it gives, what evidence exists, how to keep it alive, whether Obsidian is required, or how to answer serious criticism. |
 | [`llm-wiki-paf-adoption`](skills/llm-wiki-paf-adoption/SKILL.md) | The user asks how LLM-Wiki maps to PAF Nexus/Cortex adoption, company-level Nexus pilots, shared context governance or decision-impact measurement. |
 | [`llm-wiki-news-radar`](skills/llm-wiki-news-radar/SKILL.md) | The user asks for fresh news, projects, papers, releases or ecosystem changes. |
 | [`llm-wiki-choose`](skills/llm-wiki-choose/SKILL.md) | The user needs help deciding whether to adopt a ready-made solution or build their own. |
@@ -93,6 +94,7 @@ It includes skills for:
 | [`llm-wiki-migration-planner`](skills/llm-wiki-migration-planner/SKILL.md) | The user wants a dry-run migration plan before moving files. |
 | [`llm-wiki-eval`](skills/llm-wiki-eval/SKILL.md) | The user wants to measure whether the wiki is useful, grounded, maintainable and safe. |
 | [`llm-wiki-benchmark-suite`](skills/llm-wiki-benchmark-suite/SKILL.md) | The user wants a practical with-wiki versus without-wiki pilot benchmark. |
+| [`llm-wiki-critique-audit`](skills/llm-wiki-critique-audit/SKILL.md) | The user wants to stress-test a domain, vault, rollout or product plan against known LLM-Wiki criticisms and residual risks. |
 | [`llm-wiki-provenance`](skills/llm-wiki-provenance/SKILL.md) | Claims need source-level or claim-level provenance. |
 | [`llm-wiki-claim-anchors`](skills/llm-wiki-claim-anchors/SKILL.md) | Important claims need deterministic anchors and support labels. |
 | [`llm-wiki-conflict-resolver`](skills/llm-wiki-conflict-resolver/SKILL.md) | Lint or review found contradictory wiki claims. |
@@ -152,7 +154,7 @@ It includes skills for:
 |---|---|
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
-| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md), and [`docs/20-ingestion-pipelines.md`](docs/20-ingestion-pipelines.md). |
+| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md), [`docs/20-ingestion-pipelines.md`](docs/20-ingestion-pipelines.md), and [`docs/22-criticism-and-mitigations.md`](docs/22-criticism-and-mitigations.md). |
 | [`templates/`](templates/) | Starter vault files, source manifests, ingestion profiles, schemas and page/report/evaluation/API/security templates. |
 | [`policies/`](policies/) | Policy templates for redaction, retention, review and incident response. |
 | [`examples/`](examples/) | Small fixtures for first-run and validation scenarios. |
@@ -191,4 +193,4 @@ The agent may maintain links, frontmatter, indexes, logs, drafts, MOCs, deduplic
 
 ## Freshness and evidence policy
 
-Skills that answer current ecosystem questions should use fresh sources. Skills that argue for adoption should distinguish direct LLM-Wiki evidence, adjacent evidence from RAG/memory/context-engineering work, and the user's own pilot metrics.
+Skills that answer current ecosystem questions should use fresh sources. Skills that argue for adoption should distinguish direct LLM-Wiki evidence, adjacent evidence from RAG/memory/context-engineering work, criticism-derived residual risks, and the user's own pilot metrics.
