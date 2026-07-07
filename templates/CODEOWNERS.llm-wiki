@@ -1,0 +1,46 @@
+# LLM-Wiki CODEOWNERS starter
+# Copy into .github/CODEOWNERS and replace teams/users.
+
+# Core LLM-Wiki architecture and skills
+/skills/                         @org/llm-wiki-maintainers @org/security
+/templates/                      @org/llm-wiki-maintainers
+/docs/*security*.md              @org/security @org/llm-wiki-maintainers
+/docs/*threat*.md                @org/security @org/llm-wiki-maintainers
+/docs/*mcp*.md                   @org/platform @org/security
+/docs/*api*.md                   @org/platform @org/security
+
+# Workflow and CI/CD controls
+/.github/                        @org/platform @org/security
+/scripts/                        @org/platform @org/llm-wiki-maintainers
+/package*.json                   @org/platform @org/security
+/pyproject.toml                  @org/platform @org/security
+/requirements*.txt               @org/platform @org/security
+
+# Raw/source manifests and ingestion profiles
+/raw/manifests/                  @org/knowledge-engineering
+/raw/extracted/                  @org/knowledge-engineering
+/evals/ingestion/                @org/knowledge-engineering @org/retrieval-eval
+
+# Wiki domains
+/wiki/policies/                  @org/domain-policy @org/security
+/wiki/security/                  @org/security
+/wiki/architecture/              @org/architecture
+/wiki/runbooks/                  @org/platform
+/wiki/concepts/                  @org/knowledge-engineering
+/wiki/synthesis/                 @org/knowledge-engineering @org/domain-editors
+/wiki/sources/                   @org/knowledge-engineering
+
+# Retrieval, evaluation and dashboards
+/evals/                          @org/retrieval-eval
+/benchmarks/                     @org/retrieval-eval
+/dist/*report*.md                @org/llm-wiki-maintainers
+
+# MCP/API and publishing/export
+/api/                            @org/platform @org/security
+/mcp/                            @org/platform @org/security
+/exports/profiles/               @org/publishing @org/security
+/policies/                       @org/security @org/product-owner
+
+# Public-facing artifacts require publishing and security review
+/public/                         @org/publishing @org/security
+/site/                           @org/publishing @org/security

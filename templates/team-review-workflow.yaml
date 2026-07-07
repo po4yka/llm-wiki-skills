@@ -1,0 +1,116 @@
+# LLM-Wiki team review workflow template
+# Use with llm-wiki-team-rollout and llm-wiki-github-action.
+
+review_states:
+  draft:
+    production_retrieval: false
+    description: Generated or unreviewed content.
+  reviewed:
+    production_retrieval: true
+    description: Human checked for domain fitness.
+  verified:
+    production_retrieval: true
+    description: High-confidence source-backed material.
+  published:
+    production_retrieval: true
+    description: Approved for selected export profile.
+  stale:
+    production_retrieval: false
+    description: Past freshness SLA.
+  rejected:
+    production_retrieval: false
+    description: Known bad or superseded.
+  quarantined:
+    production_retrieval: false
+    description: Suspected poisoning, leakage or security issue.
+
+change_tiers:
+  low:
+    examples:
+      - typo_or_link_fix
+      - low_risk_source_page_update
+    approvals:
+      - domain_owner_or_knowledge_engineer
+    required_checks:
+      - wiki_lint
+      - link_check
+  medium:
+    examples:
+      - ingestion_profile_change
+      - chunking_or_schema_change
+      - retrieval_tuning
+      - eval_threshold_change
+    approvals:
+      - technical_lead
+      - workflow_owner
+    required_checks:
+      - wiki_lint
+      - retrieval_smoke
+      - eval_scorecard
+  high:
+    examples:
+      - security_policy_change
+      - mcp_api_permission_change
+      - public_export_profile
+      - agent_bundle_profile
+      - workflow_file_change
+    approvals:
+      - technical_lead
+      - security_engineer
+      - product_owner
+    required_checks:
+      - security_review
+      - redaction_or_scope_check
+      - eval_scorecard
+      - branch_protection
+
+proposal_flow:
+  - state: proposed
+    owner: proposer
+    required_artifacts:
+      - diff
+      - rationale
+      - source_support
+      - affected_paths
+  - state: automated_checks
+    owner: ci
+    required_artifacts:
+      - lint_report
+      - eval_report
+      - security_report_if_applicable
+  - state: domain_review
+    owner: domain_owner
+    required_artifacts:
+      - claim_review
+      - review_state_update
+  - state: technical_review
+    owner: technical_lead
+    required_artifacts:
+      - architecture_or_schema_notes_if_needed
+  - state: merge
+    owner: maintainer
+    required_artifacts:
+      - passing_checks
+      - approvals
+  - state: post_merge
+    owner: workflow_owner
+    required_artifacts:
+      - index_refresh
+      - scorecard_update
+      - release_or_export_if_needed
+
+review_queue:
+  fields:
+    - id
+    - domain
+    - risk_tier
+    - owner
+    - review_state
+    - age_days
+    - blocker
+    - next_action
+    - due_date
+  slo:
+    median_age_days_max: 7
+    high_risk_age_days_max: 3
+    quarantined_items_triage_hours_max: 24

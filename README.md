@@ -1,5 +1,9 @@
 # LLM-Wiki Skills
 
+<p align="center">
+  <img src="docs/assets/llm-wiki-skills-overview.png" alt="Illustration of raw context being transformed by LLM-Wiki into useful answers" width="100%">
+</p>
+
 Portable Agent Skills for coding agents that help users understand, choose, build, migrate, operate, evaluate and govern **LLM-Wiki** systems.
 
 LLM-Wiki is a pattern where an agent compiles raw sources into a persistent, human-readable, git-versioned Markdown wiki:
@@ -61,6 +65,7 @@ It includes skills for:
 - benchmarking pilot value and evaluating whether the wiki is useful;
 - auditing provenance, claim anchors, trust, security threat model and model/data policy;
 - refreshing stale sources, redacting private content, publishing and archiving;
+- designing team operating models, ownership, review queues, SLOs, onboarding and GitOps governance;
 - compiling reusable wiki procedures into installable Agent Skills.
 
 ## Skill groups
@@ -109,7 +114,7 @@ It includes skills for:
 | [`llm-wiki-local-first-stack`](skills/llm-wiki-local-first-stack/SKILL.md) | The user wants Markdown/git/Obsidian/local search/local model architecture. |
 | [`llm-wiki-obsidian-hardening`](skills/llm-wiki-obsidian-hardening/SKILL.md) | An Obsidian vault needs agent-safe wikilink, attachment, frontmatter and sync rules. |
 | [`llm-wiki-repo-docs`](skills/llm-wiki-repo-docs/SKILL.md) | A codebase needs OpenWiki-style agent-readable repository documentation. |
-| [`llm-wiki-github-action`](skills/llm-wiki-github-action/SKILL.md) | The user wants scheduled lint, validation, eval, ingestion, or PR-based maintenance. |
+| [`llm-wiki-github-action`](skills/llm-wiki-github-action/SKILL.md) | The user wants scheduled lint, validation, eval, ingestion, publishing, or PR-based maintenance. |
 
 ### Capture and domain workflows
 
@@ -136,7 +141,7 @@ It includes skills for:
 | [`llm-wiki-threat-model`](skills/llm-wiki-threat-model/SKILL.md) | The user needs a STRIDE/LINDDUN-style threat model, attack-surface map, risk matrix, security architecture or red-team rollout plan. |
 | [`llm-wiki-security-review`](skills/llm-wiki-security-review/SKILL.md) | Existing skills, ingestion, retrieval, MCP/API, CI, vault access, exports or write permissions need security review. |
 | [`llm-wiki-model-policy`](skills/llm-wiki-model-policy/SKILL.md) | The user needs local/cloud model and data-use policy. |
-| [`llm-wiki-export-publish`](skills/llm-wiki-export-publish/SKILL.md) | A public or internal subset of the wiki should be exported or published. |
+| [`llm-wiki-export-publish`](skills/llm-wiki-export-publish/SKILL.md) | A public, internal, agent-readable, API, graph or archive subset of the wiki should be exported or published with manifests, redaction, checksums and release gates. |
 | [`llm-wiki-archive`](skills/llm-wiki-archive/SKILL.md) | The wiki needs long-term durability and archive manifests. |
 
 ### Skill and memory governance
@@ -146,7 +151,7 @@ It includes skills for:
 | [`llm-wiki-skill-doctor`](skills/llm-wiki-skill-doctor/SKILL.md) | Agent Skills need quality, trigger, overlap or safety review. |
 | [`llm-wiki-skill-compiler`](skills/llm-wiki-skill-compiler/SKILL.md) | Procedural wiki knowledge should become installable Agent Skills. |
 | [`llm-wiki-agent-memory-bridge`](skills/llm-wiki-agent-memory-bridge/SKILL.md) | The user needs boundaries between wiki, skills, instruction files and agent memory. |
-| [`llm-wiki-team-rollout`](skills/llm-wiki-team-rollout/SKILL.md) | A team wants onboarding, ownership, PR review, permissions and knowledge-maintenance workflows. |
+| [`llm-wiki-team-rollout`](skills/llm-wiki-team-rollout/SKILL.md) | A team wants onboarding, ownership, RACI/DACI, PR review, permissions, SLOs, dashboards, operating rituals and knowledge-maintenance workflows. |
 
 ## Repository contents
 
@@ -154,8 +159,8 @@ It includes skills for:
 |---|---|
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
-| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md), [`docs/20-ingestion-pipelines.md`](docs/20-ingestion-pipelines.md), and [`docs/22-criticism-and-mitigations.md`](docs/22-criticism-and-mitigations.md). |
-| [`templates/`](templates/) | Starter vault files, source manifests, ingestion profiles, schemas and page/report/evaluation/API/security templates. |
+| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md), [`docs/20-ingestion-pipelines.md`](docs/20-ingestion-pipelines.md), [`docs/21-publishing-export.md`](docs/21-publishing-export.md), [`docs/22-team-operating-model.md`](docs/22-team-operating-model.md), and [`docs/22-criticism-and-mitigations.md`](docs/22-criticism-and-mitigations.md). |
+| [`templates/`](templates/) | Starter vault files, source manifests, ingestion profiles, export profiles, team operating-model files, schemas and page/report/evaluation/API/security/publishing templates. |
 | [`policies/`](policies/) | Policy templates for redaction, retention, review and incident response. |
 | [`examples/`](examples/) | Small fixtures for first-run and validation scenarios. |
 | [`domain-packs/`](domain-packs/) | Domain-specific starter taxonomies and workflows. |
