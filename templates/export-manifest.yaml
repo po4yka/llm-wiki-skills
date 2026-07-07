@@ -1,0 +1,91 @@
+# LLM-Wiki export manifest template
+# Generated for every export build.
+
+export_id: "public-site-YYYY-MM-DD"
+profile_id: public-site
+created_at: "YYYY-MM-DDTHH:MM:SSZ"
+created_by: ci # human|agent|ci
+wiki_revision: ""
+source_revision: ""
+policy_revision: ""
+profile_revision: ""
+
+inputs:
+  wiki_paths: []
+  raw_manifest_paths: []
+  excluded_paths: []
+  export_profile: templates/export-profile.yaml
+
+outputs:
+  - path: exports/builds/public-site/YYYY-MM-DD/site/
+    kind: static-site
+    sha256: ""
+  - path: exports/builds/public-site/YYYY-MM-DD/llms.txt
+    kind: llms-txt
+    sha256: ""
+  - path: exports/builds/public-site/YYYY-MM-DD/pages.jsonl
+    kind: pages-jsonl
+    sha256: ""
+  - path: exports/builds/public-site/YYYY-MM-DD/manifest.json
+    kind: manifest-json
+    sha256: ""
+  - path: exports/builds/public-site/YYYY-MM-DD/graph.jsonld
+    kind: jsonld-graph
+    sha256: ""
+  - path: exports/builds/public-site/YYYY-MM-DD/checksums.sha256
+    kind: checksums
+    sha256: ""
+
+counts:
+  pages_considered: 0
+  pages_included: 0
+  pages_excluded: 0
+  citations_checked: 0
+  citations_failed: 0
+  links_checked: 0
+  broken_links: 0
+  redactions_applied: 0
+  files_emitted: 0
+  graph_nodes: 0
+  graph_edges: 0
+
+eligibility:
+  included_review_states:
+    - approved
+    - published
+    - verified
+  excluded_review_states:
+    - draft
+    - rejected
+    - stale
+    - quarantined
+  included_publication_states:
+    - public
+  excluded_sensitivity:
+    - sensitive
+    - regulated
+    - unknown
+
+reports:
+  redaction: exports/reports/public-site/YYYY-MM-DD/redaction-report.md
+  citation: exports/reports/public-site/YYYY-MM-DD/citation-report.md
+  broken_links: exports/reports/public-site/YYYY-MM-DD/broken-link-report.md
+  search_index: exports/reports/public-site/YYYY-MM-DD/search-index-report.md
+  security: exports/reports/public-site/YYYY-MM-DD/security-report.md
+  changelog: exports/reports/public-site/YYYY-MM-DD/changelog.md
+
+approvals:
+  - reviewer: ""
+    role: owner
+    approved_at: ""
+    comment: ""
+
+status: draft # draft|passed|failed|published|archived
+publication:
+  url: ""
+  git_tag: ""
+  github_release: ""
+  artifact_url: ""
+  rollback_artifact: ""
+
+known_limitations: []

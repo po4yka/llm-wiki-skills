@@ -1,0 +1,78 @@
+# LLM-Wiki static-site export profile template
+# Use with llm-wiki-export-publish.
+
+site_id: internal-docs
+profile_id: internal-site
+generator: mkdocs-material # mkdocs-material|docusaurus|vitepress|quartz|astro-starlight|other
+version: "0.1.0"
+owner: ""
+
+input:
+  wiki_root: wiki/
+  include_paths:
+    - wiki/sources/**
+    - wiki/concepts/**
+    - wiki/synthesis/**
+  exclude_paths:
+    - wiki/drafts/**
+    - wiki/private/**
+    - raw/**
+
+output:
+  root: exports/builds/internal-site/latest/site
+  markdown_stage: exports/builds/internal-site/latest/markdown
+  assets: exports/builds/internal-site/latest/assets
+  sitemap: true
+  robots: true
+  offline_bundle: false
+
+navigation:
+  generate_from_index: true
+  include_backlinks: true
+  include_tags: true
+  include_updated_dates: true
+  max_depth: 4
+
+link_rewrite:
+  rewrite_wikilinks: true
+  preserve_source_paths_in_metadata: true
+  emit_link_map: true
+  link_map_path: exports/reports/internal-site/latest/link-map.json
+
+citations:
+  preserve_footnotes: true
+  emit_citation_report: true
+  require_source_support: true
+  citation_report_path: exports/reports/internal-site/latest/citation-report.md
+
+search:
+  enabled: true
+  engine: pagefind # pagefind|lunr|minisearch|algolia|none
+  build_after_redaction: true
+  inspect_index: true
+  include_roots:
+    - exports/builds/internal-site/latest/site
+  exclude_selectors:
+    - "[data-llm-private]"
+    - "[data-pagefind-ignore]"
+  report_path: exports/reports/internal-site/latest/search-index-report.md
+
+redaction:
+  required: true
+  report_path: exports/reports/internal-site/latest/redaction-report.md
+  fail_on_findings: false
+
+validation:
+  broken_links: fail
+  missing_titles: fail
+  invalid_frontmatter: fail
+  draft_pages: fail
+  unknown_sensitivity: warn
+  missing_citations: warn
+
+publication:
+  destination: github-pages # github-pages|internal-static-host|object-storage|release-artifact|none
+  require_approval: true
+  create_changelog: true
+  create_export_manifest: true
+  create_checksums: true

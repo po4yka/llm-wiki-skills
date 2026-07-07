@@ -1,8 +1,8 @@
 # LLM-Wiki technology stack reference
 
 > Status: draft
-> Current as of: 2026-07-06
-> Scope: concrete technology choices for retrieval, ingestion, MCP integration, evaluation, security and publishing.
+> Current as of: 2026-07-07
+> Scope: concrete technology choices for retrieval, ingestion, MCP integration, evaluation, security, publishing and archiving.
 
 ## Stack principle
 
@@ -23,6 +23,8 @@ For evaluation methodology, use [`docs/18-evaluation-methodology.md`](18-evaluat
 For security threat modeling, use [`docs/19-security-threat-model.md`](19-security-threat-model.md). It defines trust boundaries, STRIDE/LINDDUN mappings, LLM-specific threat classes, security scorecards, red-team scenarios, CI gates and incident response.
 
 For ingestion pipeline architecture, use [`docs/20-ingestion-pipelines.md`](20-ingestion-pipelines.md). It defines source taxonomy, pipeline archetypes, tool selection, manifests, chunk schemas, fidelity gates, sync/dedupe and ingestion rollout.
+
+For publishing/export architecture, use [`docs/21-publishing-export.md`](21-publishing-export.md). It defines export profiles, human/agent/API/graph/archive outputs, `llms.txt` bundles, redaction pipelines, export manifests, checksums, release gates and rollback artifacts.
 
 ## Reference architecture
 
@@ -49,9 +51,11 @@ evals/
   versioned datasets, qrels, promptfoo configs, scorecards and CI reports
 security/
   threat model, scorecards, red-team fixtures, redaction reports and incident playbooks
+exports/
+  profile-driven static sites, agent bundles, API/graph exports, manifests, checksums and archives
 ```
 
-Indexes are rebuildable artifacts. Markdown and raw sources remain the durable source of truth unless the product has a clear reason to choose a database-first model.
+Indexes and exports are rebuildable artifacts. Markdown and raw sources remain the durable source of truth unless the product has a clear reason to choose a database-first model.
 
 ## Retrieval decision tree
 
@@ -143,6 +147,7 @@ Evaluation is a layered system, not a single score:
 | Grounding | Is the answer supported by sources? | citation coverage, unsupported-claim rate, source-support labels, Ragas/DeepEval faithfulness, TruLens groundedness, custom claim audit. |
 | Answer quality | Does the answer solve the task? | human rubric, pairwise preference, model-graded rubric, correctness/completeness/actionability. |
 | Wiki usefulness | Does the wiki reduce work? | retrieval hit rate, answer reuse, read/write ratio, output beyond vault, context reconstruction avoided. |
+| Publishing/export | Is the exported artifact scoped, cited and safe? | export profile validity, redaction findings, broken links, citation coverage, search-index leakage, checksum coverage. |
 | Prompt/model regression | Did behavior change after prompt/model edits? | promptfoo matrix tests, LangSmith evals, DeepEval tests, snapshot tests. |
 | Security | Can malicious sources or prompts bypass policy? | promptfoo red-team, garak, malicious-source fixtures, indirect prompt-injection checks, PII/private-data canaries. |
 | Operational health | Is the wiki alive and trusted? | `wiki-lint`, stale-page counts, orphan pages, broken links, review backlog, provenance coverage. |
@@ -189,14 +194,33 @@ Recommended security artifacts:
 
 ## Publishing and export stack
 
+Publish through explicit export profiles rather than copying the whole wiki.
+
 | Target | Tools/formats | Controls |
 |---|---|---|
-| Human static site | MkDocs Material, Docusaurus, VitePress, Quartz, Astro/Starlight | Publish allowlist, redaction report, broken-link check. |
-| Agent-readable corpus | `llms.txt`, `llms-full.txt`, JSONL, Markdown bundle | Include provenance, status and refresh metadata; exclude private/raw restricted pages. |
-| Searchable site | Pagefind, FlexSearch, Lunr | Do not index private/raw restricted pages. |
-| Graph export | Mermaid, GraphML, Cytoscape JSON, RDF/JSON-LD | Include edge provenance and confidence; redact sensitive nodes. |
+| Human static site | MkDocs Material, Docusaurus, VitePress, Quartz, Astro/Starlight | Publish allowlist, redaction report, broken-link check, citation report. |
+| Agent-readable corpus | `llms.txt`, `llms-full.txt`, JSONL, per-page Markdown/TXT, Markdown bundle | Include provenance, status and refresh metadata; exclude private/raw restricted pages. |
+| Searchable site | Pagefind, FlexSearch, Lunr, Algolia DocSearch when appropriate | Build search after filtering/redaction; do not index private/raw restricted pages. |
+| Graph export | JSON-LD, RDF/Turtle, Mermaid, GraphML, GraphViz DOT, Cytoscape JSON | Include edge provenance and confidence; redact sensitive nodes. |
 | API export | OpenAPI, MCP server manifest/profile, server-card metadata when stable | Keep read-only public surface separate from governed write surface. |
-| Archive | git tag, WARC for web captures, checksum manifest, release artifact | Store raw sources and schema version with sensitivity-aware access. |
+| Archive | git tag, WARC for web captures, checksum manifest, release artifact | Store source manifests, schema version and export profile with sensitivity-aware access. |
+
+Recommended export artifacts:
+
+| Artifact | Purpose |
+|---|---|
+| `docs/21-publishing-export.md` | Canonical publishing/export architecture and control baseline. |
+| `templates/export-profile.yaml` | Export profile for audience, include/exclude rules, outputs and gates. |
+| `templates/export-manifest.yaml` | Auditable export record with inputs, outputs, counts, reports, checksums and approvals. |
+| `templates/agent-export-bundle.yaml` | `llms.txt`, `llms-full.txt`, per-page Markdown/TXT and JSONL bundle profile. |
+| `templates/static-site-export-profile.yaml` | Static-site build/search/link/citation profile. |
+| `templates/llm-wiki-publish.github-actions.yml` | CI workflow starter for profile validation, build, redaction, checksums and publication. |
+
+Publishing sequence:
+
+```text
+candidate pages -> export profile allowlist -> policy filters -> redaction scan -> link/citation validation -> site/agent/API/graph/archive build -> manifest/checksums -> release/publish
+```
 
 ## Upgrade triggers
 
@@ -220,6 +244,10 @@ Add complexity only after a concrete trigger:
 | Ingested sources change over time. | Add source hashes, cursors, tombstones, sync reports and changed-chunk re-embedding. |
 | Untrusted documents enter ingestion. | Add parser sandboxing, file allowlists, secret/private-data scans and quarantine states. |
 | Remote/local MCP surfaces are enabled. | Add MCP security profile, auth, origin checks, audit logs and red-team tests. |
+| Internal users need browsable docs. | Add internal static-site export profile. |
+| Public docs are needed. | Add public allowlist, redaction report, citation checks, search-index inspection and release manifest. |
+| Agents need website-scale context. | Add scoped `llms.txt`, per-page Markdown/TXT and JSONL agent bundle; enable `llms-full.txt` only by explicit profile. |
+| Long-term reproducibility is needed. | Add archive bundle, checksums, release tag, export manifest and rollback artifact. |
 | Prompt or model changes break behavior. | Add promptfoo/Ragas/DeepEval CI gates. |
 | Evaluation depends only on synthetic questions. | Add reviewed real queries, qrels and human calibration. |
 | LLM judges disagree with humans. | Update rubrics, thresholds, calibration set and judge choice. |
@@ -240,6 +268,11 @@ Add complexity only after a concrete trigger:
 - Syncing mutable index databases across devices without conflict strategy.
 - Allowing direct-write agents to edit team knowledge without review.
 - Publishing a wiki subset without a manifest and redaction pass.
+- Publishing by copying the whole `wiki/` directory.
+- Treating `llms-full.txt` as safe because it is plain text.
+- Reusing an internal static search index in a public site.
+- Publishing graph exports without edge provenance or sensitivity filters.
+- Archiving only rendered HTML and losing source manifests/checksums.
 - Treating note count, graph density or LLM-judge score as sufficient proof of wiki quality.
 - Treating `127.0.0.1` as enough without auth/origin/rebinding controls.
 - Running parsers with repo write access or model/provider secrets.
