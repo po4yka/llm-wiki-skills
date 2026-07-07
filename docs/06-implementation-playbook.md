@@ -176,7 +176,7 @@ Graph visualization is less important than trust and reviewability.
 
 For an existing vault:
 
-![Diagram of raw documents moving through a migration pipeline into an organized wiki.](assets/migration-pipeline.webp)
+![Diagram of raw documents moving through a migration pipeline into an organized wiki.](assets/preview/migration-pipeline.webp)
 
 1. Freeze schema changes for a week.
 2. Run a read-only inventory.

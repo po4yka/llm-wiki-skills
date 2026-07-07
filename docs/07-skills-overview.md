@@ -101,7 +101,7 @@ Skills are operators over the user's context. They should describe **how to work
 | [`llm-wiki-team-rollout`](../skills/llm-wiki-team-rollout/SKILL.md) | Roll out LLM-Wiki across a team. |
 | [`llm-wiki-gitlab-operating-model`](../skills/llm-wiki-gitlab-operating-model/SKILL.md) | Design a team operating model for self-hosted GitLab and internal enterprise environments. |
 
-![Diagram of wiki procedures being compiled into reusable agent skills.](assets/skill-compiler.webp)
+![Diagram of wiki procedures being compiled into reusable agent skills.](assets/preview/skill-compiler.webp)
 
 ## Installation model
 

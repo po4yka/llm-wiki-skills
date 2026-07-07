@@ -14,7 +14,7 @@ The repository has two operational refresh reports:
 | Source refresh | `npm run refresh:source-report` | `source-refresh-report.yml` | Find expired `stale_after`, missing provenance and current-as-of docs that need review. |
 | Ecosystem refresh | `npm run refresh:ecosystem-report` | `ecosystem-refresh-report.yml` | Turn `docs/13-ecosystem-matrix.md` into a verification queue for current project/tool claims. |
 
-![Diagram of stale sources being verified and refreshed into updated wiki pages.](../assets/source-refresh.webp)
+![Diagram of stale sources being verified and refreshed into updated wiki pages.](../assets/preview/source-refresh.webp)
 
 Run both:
 

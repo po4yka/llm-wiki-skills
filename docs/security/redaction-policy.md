@@ -7,7 +7,7 @@
 
 Preview redactions first. Patch only an export copy unless the user explicitly asks to modify the source wiki.
 
-![Diagram of private wiki content being redacted before safe export.](../assets/security-redaction.webp)
+![Diagram of private wiki content being redacted before safe export.](../assets/preview/security-redaction.webp)
 
 ## Sensitive patterns
 

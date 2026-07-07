@@ -1,7 +1,7 @@
 # LLM-Wiki Skills
 
 <p align="center">
-  <img src="docs/assets/llm-wiki-skills-overview.webp" alt="Illustration of raw context being transformed by LLM-Wiki into useful answers" width="100%">
+  <img src="docs/assets/preview/llm-wiki-skills-overview.webp" alt="Illustration of raw context being transformed by LLM-Wiki into useful answers" width="100%">
 </p>
 
 Portable Agent Skills for coding agents that help users understand, choose, build, migrate, operate, evaluate and govern **LLM-Wiki** systems.
