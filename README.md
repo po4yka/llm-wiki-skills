@@ -1,8 +1,8 @@
-<p align="center">
-  <img src="docs/assets/llm-agent-harness.jpeg" alt="Illustration of an LLM constrained by a harness, with an agent transforming its output into code" width="100%">
-</p>
-
 # LLM-Wiki Skills
+
+<p align="center">
+  <img src="docs/assets/llm-wiki-skills-overview.png" alt="Illustration of raw context being transformed by LLM-Wiki into useful answers" width="100%">
+</p>
 
 Portable Agent Skills for coding agents that help users understand, choose, build, migrate, operate, evaluate and govern **LLM-Wiki** systems.
 
