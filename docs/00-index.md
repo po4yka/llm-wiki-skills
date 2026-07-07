@@ -43,29 +43,39 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 4. [`19-security-threat-model.md`](19-security-threat-model.md)
 5. [`operations/weekly.md`](operations/weekly.md)
 
+### Fast path: PAF Nexus/Cortex adoption
+
+1. [`22-paf-nexus-cortex.md`](22-paf-nexus-cortex.md)
+2. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
+3. [`18-evaluation-methodology.md`](18-evaluation-methodology.md)
+4. [`19-security-threat-model.md`](19-security-threat-model.md)
+5. [`skill-router.md`](skill-router.md)
+
 ### Builder path: tool or plugin
 
 1. [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md)
 2. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
 3. [`20-adoption-objections.md`](20-adoption-objections.md)
 4. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
-5. [`05-tooling-landscape.md`](05-tooling-landscape.md)
-6. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-7. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
-8. [`09-references.md`](09-references.md)
-9. [`domain-pack-schema.md`](domain-pack-schema.md)
-10. [`release-policy.md`](release-policy.md)
+5. [`22-paf-nexus-cortex.md`](22-paf-nexus-cortex.md)
+6. [`05-tooling-landscape.md`](05-tooling-landscape.md)
+7. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+8. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
+9. [`09-references.md`](09-references.md)
+10. [`domain-pack-schema.md`](domain-pack-schema.md)
+11. [`release-policy.md`](release-policy.md)
 
 ### Reviewer path: risk and trust
 
 1. [`12-evidence-and-faq.md`](12-evidence-and-faq.md)
 2. [`20-adoption-objections.md`](20-adoption-objections.md)
 3. [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md)
-4. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
-5. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
-6. [`domain-pack-schema.md`](domain-pack-schema.md)
-7. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
-8. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
+4. [`22-paf-nexus-cortex.md`](22-paf-nexus-cortex.md)
+5. [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md)
+6. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
+7. [`domain-pack-schema.md`](domain-pack-schema.md)
+8. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
+9. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
 
 ### Operations path
 
@@ -93,6 +103,7 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`12-evidence-and-faq.md`](12-evidence-and-faq.md) | Evidence-backed arguments and FAQ answers for adoption questions. |
 | [`20-adoption-objections.md`](20-adoption-objections.md) | Concrete answers for non-developers, browser-first workflows, PR/MR friction, token growth, human-readable documentation, LLM slop and sensitive content. |
 | [`21-adoption-q-and-a.md`](21-adoption-q-and-a.md) | Additional adoption Q&A for start-small pilots, ownership, review, cost, ROI, migration, tool replacement, RAG/search boundaries, lock-in, permissions and multi-agent use. |
+| [`22-paf-nexus-cortex.md`](22-paf-nexus-cortex.md) | PAF-specific mapping of LLM-Wiki to Nexus/Cortex, first company-level Nexus pilot, shared context governance, decision-impact metrics and portable-vs-build gaps. |
 | [`domain-pack-schema.md`](domain-pack-schema.md) | Core `type` and domain `domain_type` schema contract. |
 | [`quickstart.md`](quickstart.md) | Ten-minute first-run guide. |
 | [`skill-router.md`](skill-router.md) | Decision tree for choosing the right skill. |
