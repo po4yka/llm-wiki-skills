@@ -95,7 +95,7 @@ relevance:
 Use support labels for grounding:
 
 ```yaml
-support_level: source-backed|wiki-backed|inferred|missing|conflicting
+support_level: extracted|inferred|ambiguous|synthesis|unsupported|conflicting
 ```
 
 ### 5. Compare baselines

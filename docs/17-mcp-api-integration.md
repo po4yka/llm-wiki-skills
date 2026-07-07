@@ -213,7 +213,7 @@ retrieval_lane: lexical|dense|hybrid|rerank|graph
 source_uris: []
 review_state: approved
 sensitivity: internal
-support_level: source-backed|wiki-backed|inferred|missing|conflicting
+support_level: extracted|inferred|ambiguous|synthesis|unsupported|conflicting
 ```
 
 A proposal result should be auditable:

@@ -96,7 +96,7 @@ required_pages: []
 required_sources: []
 forbidden_sources: []
 answer_saved: false
-support_level: source-backed|wiki-backed|inferred|missing|conflicting
+support_level: extracted|inferred|ambiguous|synthesis|unsupported|conflicting
 citation_coverage: 0.0
 unsupported_claims: 0
 rating: useful|partial|miss

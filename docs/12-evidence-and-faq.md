@@ -93,7 +93,9 @@ There is early direct evidence for LLM-Wiki-style retrieval, plus stronger adjac
 
 ### Direct LLM-Wiki evidence
 
-The 2026 paper **“Retrieval as Reasoning: Self-Evolving Agent-Native Retrieval via LLM-Wiki”** reports that LLM-Wiki outperforms seven baselines, including HippoRAG 2, LightRAG and GraphRAG, with **2.0–8.1 F1 point gains over the strongest graph-based baseline** on HotpotQA, MuSiQue and 2WikiMultiHopQA, and also performs best overall on AuthTrace.
+The 2026 paper **“Retrieval as Reasoning: Self-Evolving Agent-Native Retrieval via LLM-Wiki”** reports that LLM-Wiki outperforms several graph/RAG baselines on multi-hop and structured-query benchmarks.
+
+> verify-before-use: Re-open the paper before quoting exact F1, accuracy, dataset or baseline numbers. This repository intentionally keeps exact benchmark figures out of repeated docs to avoid drift.
 
 How to use this claim:
 
@@ -108,7 +110,7 @@ GraphRAG research supports the core idea that precomputing structure helps with 
 
 Source: https://arxiv.org/abs/2404.16130
 
-GlobalQA / GlobalRAG is another adjacent signal. The paper reports that existing RAG methods perform poorly on corpus-level tasks such as counting, sorting, extrema and top-k extraction; its GlobalRAG framework achieved **6.63 F1** versus the strongest baseline's **1.51 F1** on Qwen2.5-14B.
+GlobalQA / GlobalRAG is another adjacent signal. The paper reports that existing RAG methods perform poorly on corpus-level tasks such as counting, sorting, extrema and top-k extraction, while a global-retrieval strategy improves corpus-level question answering.
 
 Source: https://arxiv.org/abs/2510.26205
 
@@ -119,7 +121,7 @@ How to use these claims:
 
 ### Memory evidence
 
-Mem0 reports that persistent memory outperforms six baseline categories on LOCOMO, including RAG variants and full-context approaches, with **26% relative improvement** in the LLM-as-a-Judge metric over OpenAI memory and **91% lower p95 latency** plus **over 90% token-cost savings** versus full-context processing.
+Mem0 reports that persistent memory outperforms multiple baseline categories on LOCOMO, including RAG variants and full-context approaches, with better judge-rated quality and lower latency/cost than full-context processing.
 
 Source: https://arxiv.org/abs/2504.19413
 
@@ -268,7 +270,7 @@ Do not recommend LLM-Wiki when:
 
 ### “Есть доказательства?”
 
-> Прямые benchmark’и именно LLM-Wiki пока ранние, но уже есть работа 2026 года, где LLM-Wiki обходит семь baseline’ов, включая GraphRAG/LightRAG/HippoRAG 2, на multi-hop задачах. Сильнее доказан общий механизм: GraphRAG/global-RAG показывают, что предвычисленная структура помогает на corpus-level вопросах, memory-системы показывают пользу persistent memory, а long-context исследования показывают, что просто загрузить всё в контекст недостаточно.
+> Прямые benchmark’и именно LLM-Wiki пока ранние, но уже есть работа 2026 года, где LLM-Wiki обходит несколько graph/RAG baseline’ов на multi-hop и structured-query задачах. Точные F1/accuracy числа нужно перепроверять в статье перед цитированием. Сильнее доказан общий механизм: GraphRAG/global-RAG показывают, что предвычисленная структура помогает на corpus-level вопросах, memory-системы показывают пользу persistent memory, а long-context исследования показывают, что просто загрузить всё в контекст недостаточно.
 
 ### “Как поддерживать живым?”
 

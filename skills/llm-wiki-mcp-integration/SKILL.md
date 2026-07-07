@@ -150,7 +150,7 @@ retrieval_lane: lexical|dense|hybrid|rerank|graph
 source_uris: []
 review_state: ""
 sensitivity: ""
-support_level: source-backed|wiki-backed|inferred|missing|conflicting
+support_level: extracted|inferred|ambiguous|synthesis|unsupported|conflicting
 ```
 
 Every write proposal should include:

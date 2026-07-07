@@ -43,6 +43,10 @@ Examples:
 - `inferred`
 - `ambiguous`
 - `synthesis`
+- `unsupported`
+- `conflicting`
+
+Use this same set for `claim_mix`, claim-anchor `Support:` lines and provenance reports. Do not substitute older labels such as `source-backed`, `wiki-backed` or `missing` in claim-support fields; those may be answer-evaluation labels, but they are not the claim-support taxonomy.
 
 ## Suggested top-level tags
 

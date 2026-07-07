@@ -299,7 +299,7 @@ components:
         sensitivity: { type: string }
         support_level:
           type: string
-          enum: [source-backed, wiki-backed, inferred, missing, conflicting]
+          enum: [extracted, inferred, ambiguous, synthesis, unsupported, conflicting]
 
     WikiPage:
       type: object

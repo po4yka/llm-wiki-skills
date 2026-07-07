@@ -57,6 +57,8 @@ This repo distinguishes between four claim types:
 - `inferred`: reasoned from sources.
 - `ambiguous`: plausible but unresolved.
 - `synthesis`: editorial conclusion.
+- `unsupported`: no inspected source currently supports the claim.
+- `conflicting`: inspected sources disagree about the claim.
 
 When a document makes a recommendation, name the trade-off and the failure mode. Do not present a workflow as production-grade merely because it is elegant.
 

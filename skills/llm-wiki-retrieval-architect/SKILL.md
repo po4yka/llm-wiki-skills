@@ -43,7 +43,7 @@ Classify the failure:
 | thin context | Retrieved chunk is relevant but too small to answer. | Add parent-child or contextual retrieval. |
 | synthesis miss | Individual pages are found but no cross-page answer exists. | Add synthesis pages or graph lane. |
 | multi-hop miss | Relationships across entities/concepts are not traversed. | Add graph-aware retrieval or GraphRAG lane. |
-| provenance miss | The result is plausible but unsupported by raw sources. | Add citation metadata and source-support checks. |
+| provenance miss | The result is plausible but unsupported by raw sources. | Add citation metadata and claim-support checks. |
 | permission miss | Retrieval can expose restricted content. | Stop and fix filters/security before tuning relevance. |
 
 Do not add infrastructure until a real retrieval failure is identified.
@@ -132,7 +132,8 @@ Default governed query filter:
 
 ```text
 tenant_id = current_tenant
-AND review_state IN ('approved', 'published', 'verified')
+AND review_state IN ('reviewed', 'verified')
+AND publication_state IN ('internal', 'public')
 AND publication_state != 'archived'
 AND sensitivity IN allowed_sensitivity_classes
 AND source_domain IN allowed_source_domains
@@ -166,7 +167,7 @@ edge_type: cites|mentions|defines|contradicts|depends_on|similar_to|derived_from
 source_chunks: []
 confidence: 0.0
 created_by: human|agent|importer
-review_state: draft|reviewed|verified
+review_state: draft|reviewed|verified|stale|archived
 ```
 
 Do not use graph visualization as proof of knowledge quality. Evaluate the graph lane against multi-hop/global query classes.

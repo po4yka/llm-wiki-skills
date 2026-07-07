@@ -14,7 +14,7 @@ metadata:
 
 Turn messy source material into preserved raw sources, normalized manifests, evaluated extraction artifacts and reviewable wiki drafts without losing provenance or trusting generated summaries as evidence.
 
-Use `references/docs/20-ingestion-pipelines.md` as the reference architecture for source taxonomy, pipeline archetypes, tool choices, manifests, chunk schemas, quality gates, sync/dedupe and rollout.
+Use `references/docs/20-ingestion-pipelines.md` as the reference architecture for source taxonomy, pipeline archetypes, tool choices, manifests, chunk schemas, quality gates, sync/dedupe and rollout. Use `references/templates/source-manifest.yaml` as the canonical source manifest shape; do not recreate a partial manifest schema in prose.
 
 ## Inputs
 
@@ -82,40 +82,12 @@ raw/extracted/<source_id>/...
 wiki/sources/<source_id>.md
 ```
 
-Minimum manifest:
+Manifest contract:
 
-```yaml
-source_id: ""
-source_type: pdf|scan|web|audio|video|repo|chat|email|table|image|other
-original_uri: ""
-stored_path: ""
-content_sha256: ""
-captured_at: "YYYY-MM-DDTHH:MM:SSZ"
-captured_by: human|agent|connector|importer
-mime_type: ""
-language: ""
-sensitivity: public|internal|sensitive|regulated|unknown
-retention_class: default|short|long|archive|do-not-retain
-model_policy: local-only|cloud-allowed|redacted-cloud|unknown
-parser:
-  name: ""
-  version: ""
-  command: ""
-extraction:
-  status: pending|success|partial|failed|quarantined
-  quality: high|medium|low|failed
-  output_paths: []
-provenance:
-  anchors:
-    page: true|false
-    timestamp: true|false
-    message: true|false
-    row: true|false
-    bbox: true|false
-review:
-  required: true|false
-  state: draft|reviewed|verified|rejected|quarantined
-```
+- Start from `references/templates/source-manifest.yaml`.
+- Keep `captured_by` for the actor class: `human|agent|connector|importer`.
+- Use `capture_method` and channel-specific metadata for the capture mechanism or channel.
+- Do not paste a shortened manifest schema into this skill; update the template instead.
 
 Do not synthesize entity/concept pages directly from unmanifested files.
 

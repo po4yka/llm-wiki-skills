@@ -305,7 +305,7 @@ language: ""
 author: ""
 created_at: YYYY-MM-DD
 updated_at: YYYY-MM-DD
-review_state: draft|reviewed|verified|stale|rejected|approved|published
+review_state: draft|reviewed|verified|stale|archived
 publication_state: private|internal|public|archived
 tenant_id: ""
 acl_tags: []
@@ -378,7 +378,7 @@ edge_type: cites|mentions|defines|contradicts|depends_on|derived_from|similar_to
 source_chunks: []
 confidence: 0.0
 created_by: human|agent|importer
-review_state: draft|reviewed|verified
+review_state: draft|reviewed|verified|stale|archived
 ```
 
 Do not let generated graph edges become trusted unless evidence and review state are explicit.
@@ -459,7 +459,8 @@ Default filter for governed wiki queries:
 
 ```text
 tenant_id = current_tenant
-AND review_state IN ('approved', 'published', 'verified')
+AND review_state IN ('reviewed', 'verified')
+AND publication_state IN ('internal', 'public')
 AND publication_state != 'archived'
 AND sensitivity IN allowed_sensitivity_classes
 AND source_domain IN allowed_source_domains
@@ -498,7 +499,7 @@ score: 0.0
 retrieval_lane: lexical|dense|hybrid|rerank|graph
 review_state: ""
 sensitivity: ""
-support_level: source-backed|wiki-backed|inferred|missing|conflicting
+support_level: extracted|inferred|ambiguous|synthesis|unsupported|conflicting
 ```
 
 ## Anti-patterns

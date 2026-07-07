@@ -122,7 +122,7 @@ Recommended roles:
 | Eval rubric/threshold change | A | C | C | R | I | C | C | I |
 | MCP/API contract change | I | A | C | C | R | C | I | I |
 | Security policy or threat model change | A | C | I | I | C | R | C | I |
-| Public/agent export release | A | C | C | C | C | C | R | R |
+| Public/agent export release | A | C | C | C | I | C | C | R |
 | Production deployment | I | C | I | C | A/R | C | I | C |
 | Incident response | I | C | I | I | R | A | I | C |
 

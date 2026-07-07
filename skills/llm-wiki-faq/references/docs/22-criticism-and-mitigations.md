@@ -58,7 +58,7 @@ extraction over summary
 antagonist rule
 friction point
 mandatory linking
-claim type: extracted | inferred | ambiguous
+claim type: extracted | inferred | ambiguous | synthesis | unsupported | conflicting
 ```
 
 For high-value synthesis, use adversarial compilation:

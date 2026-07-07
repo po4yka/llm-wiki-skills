@@ -263,47 +263,13 @@ Rule: preserve thread/message/attachment relationships; do not flatten into one 
 
 Every source must have a manifest before generated wiki pages are trusted.
 
-```yaml
-source_id: ""
-source_type: pdf|scan|web|audio|video|repo|chat|email|table|image|other
-original_uri: ""
-stored_path: "raw/sources/<source_id>/original"
-content_sha256: ""
-captured_at: "YYYY-MM-DDTHH:MM:SSZ"
-captured_by: human|agent|connector|importer
-capture_method: manual|watch-folder|api|export|crawler|repo-scan
-mime_type: ""
-size_bytes: 0
-language: ""
-owner: ""
-sensitivity: public|internal|sensitive|regulated|unknown
-retention_class: default|short|long|archive|do-not-retain
-model_policy: local-only|cloud-allowed|redacted-cloud|unknown
-parser:
-  name: ""
-  version: ""
-  command: ""
-  container_image: ""
-extraction:
-  status: pending|success|partial|failed|quarantined
-  output_paths: []
-  quality: high|medium|low|failed
-  warnings: []
-provenance:
-  anchors:
-    page: true|false
-    timestamp: true|false
-    message: true|false
-    row: true|false
-    bbox: true|false
-security:
-  scanned_for_sensitive_data: true|false
-  redaction_report: ""
-  prompt_injection_review: pending|passed|failed|not-applicable
-review:
-  required: true|false
-  state: draft|reviewed|verified|rejected|quarantined
-```
+The canonical template is [`../templates/source-manifest.yaml`](../templates/source-manifest.yaml). Do not maintain partial schema copies in docs or skills.
+
+Key field boundaries:
+
+- `captured_by` is the actor class: `human|agent|connector|importer`.
+- `capture_method` is the mechanism: `manual|watch-folder|api|export|crawler|repo-scan`.
+- Channel names belong in channel-specific metadata, source identifiers, or capture pipeline envelopes, not in `captured_by`.
 
 ## Chunk schema
 

@@ -13,7 +13,9 @@ LLM-Wiki is not proven to be universally better than RAG, Obsidian, GraphRAG, ag
 
 ### 1. Direct LLM-Wiki evidence
 
-**Retrieval as Reasoning: Self-Evolving Agent-Native Retrieval via LLM-Wiki** reports that LLM-Wiki outperforms seven baselines, including HippoRAG 2, LightRAG and GraphRAG, with 2.0-8.1 F1 point gains over the strongest graph-based baseline on HotpotQA, MuSiQue and 2WikiMultiHopQA. It also reports best overall accuracy on AuthTrace.
+**Retrieval as Reasoning: Self-Evolving Agent-Native Retrieval via LLM-Wiki** reports that LLM-Wiki outperforms several graph/RAG baselines on multi-hop and structured-query benchmarks.
+
+> verify-before-use: Re-open the paper before quoting exact F1, accuracy, dataset or baseline numbers. This skill intentionally avoids carrying repeated exact benchmark figures.
 
 Use carefully:
 
@@ -38,13 +40,13 @@ GraphRAG shows that naive RAG struggles with global questions over a corpus, suc
 
 Source: https://arxiv.org/abs/2404.16130
 
-GlobalQA / GlobalRAG shows that many RAG methods perform poorly on corpus-level tasks such as counting, sorting, extrema and top-k extraction. It reports GlobalRAG at 6.63 F1 versus 1.51 F1 for the strongest baseline on Qwen2.5-14B.
+GlobalQA / GlobalRAG shows that many RAG methods perform poorly on corpus-level tasks such as counting, sorting, extrema and top-k extraction, while a global-retrieval strategy improves corpus-level question answering.
 
 Source: https://arxiv.org/abs/2510.26205
 
 ### 4. Long-term memory evidence
 
-Mem0 reports persistent memory improvements over six baseline categories, including RAG variants and full-context processing, with 26% relative improvement over OpenAI memory in LLM-as-a-Judge and 91% lower p95 latency plus over 90% token-cost savings compared with full-context processing.
+Mem0 reports persistent memory improvements over multiple baseline categories, including RAG variants and full-context processing, with better judge-rated quality and lower latency/cost than full-context processing.
 
 Source: https://arxiv.org/abs/2504.19413
 
