@@ -27,12 +27,13 @@
     },
     {
       "title": "Diagnose, plan, and evaluate",
-      "description": "Inspect existing vaults, plan migrations, evaluate usefulness, benchmark pilots, and repair trust-critical gaps before large changes.",
+      "description": "Inspect existing vaults, plan migrations, evaluate usefulness, audit criticism risk, benchmark pilots, and repair trust-critical gaps before large changes.",
       "skills": [
         "llm-wiki-doctor",
         "llm-wiki-migration-planner",
         "llm-wiki-eval",
         "llm-wiki-benchmark-suite",
+        "llm-wiki-critique-audit",
         "llm-wiki-provenance",
         "llm-wiki-claim-anchors",
         "llm-wiki-conflict-resolver"

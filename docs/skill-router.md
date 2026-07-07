@@ -28,6 +28,9 @@ New to LLM-Wiki?
 Asking why this matters or whether there is evidence?
   -> llm-wiki-faq
 
+Asking for serious arguments against LLM-Wiki, what can fail, or whether a domain is a bad fit?
+  -> llm-wiki-critique-audit
+
 Asking whether LLM-Wiki maps to PAF Nexus/Cortex, which Nexus to start with, or how to build company-level shared context?
   -> llm-wiki-paf-adoption
 
@@ -113,7 +116,10 @@ Unsupported claims?
 Contradictions?
   -> llm-wiki-conflict-resolver
 
-Worried about slop?
+Worried about slop, context poisoning, consensus smoothing, cognitive debt, drift or write-only archive risk?
+  -> llm-wiki-critique-audit
+
+Need anti-slop controls audited in an existing vault?
   -> llm-wiki-trust-audit
 
 Need to prove value?
