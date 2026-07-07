@@ -3,6 +3,7 @@
 .env
 .env.*
 *.log
+.omc/
 
 # Local indexes and caches
 *.sqlite
