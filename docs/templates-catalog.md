@@ -99,6 +99,7 @@ Starter workflow schedules are commented out by default. Enable cron only after 
 
 | Template | Primary skill | Use |
 |---|---|---|
+| `templates/schemas/canonical-vocabularies.json` | `llm-wiki-domain-pack` | Canonical shared enums and workflow ownership. |
 | `templates/schemas/page.schema.json` | `wiki-lint` | Core page schema. |
 | `templates/schemas/domain-pack.schema.json` | `llm-wiki-domain-pack` | Domain pack overlay schema. |
 | `templates/schemas/domain-pack-profile.schema.json` | `llm-wiki-domain-pack` | Domain pack apply profile schema. |

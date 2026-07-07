@@ -1,6 +1,7 @@
 # Taxonomy
 
 > Purpose: controlled vocabulary for an LLM-Wiki vault.
+> Canonical machine-readable source: `templates/schemas/canonical-vocabularies.json`.
 
 ## Core page types
 

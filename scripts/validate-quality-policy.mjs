@@ -1,9 +1,10 @@
 import path from 'node:path';
 import { failFactory, listFiles, repoRelative, repoRoot, readText } from './lib/repo.mjs';
+import { canonicalList } from './lib/canonical-vocabularies.mjs';
 
 const { fail, finish } = failFactory();
 const packageJson = JSON.parse(readText(path.join(repoRoot, 'package.json')));
-const claimSupportLabels = ['extracted', 'inferred', 'ambiguous', 'synthesis', 'unsupported', 'conflicting'];
+const claimSupportLabels = canonicalList('claim_support');
 
 function assertIncludes(filePath, needle, message) {
   const text = readText(path.join(repoRoot, filePath));

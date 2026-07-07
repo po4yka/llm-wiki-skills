@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/llm-wiki/canonical-vocabularies.json",
+  "title": "LLM-Wiki canonical vocabularies",
+  "description": "Single source of truth for shared enums and workflow ownership used by templates, docs and validators.",
+  "claim_support": [
+    "extracted",
+    "inferred",
+    "ambiguous",
+    "synthesis",
+    "unsupported",
+    "conflicting"
+  ],
+  "core_page_types": [
+    "source",
+    "entity",
+    "concept",
+    "comparison",
+    "synthesis",
+    "query",
+    "report"
+  ],
+  "page_statuses": [
+    "draft",
+    "reviewed",
+    "verified",
+    "stale",
+    "archived"
+  ],
+  "source_manifest": {
+    "captured_by": [
+      "human",
+      "agent",
+      "connector",
+      "importer"
+    ],
+    "capture_method": [
+      "manual",
+      "watch-folder",
+      "api",
+      "export",
+      "crawler",
+      "repo-scan"
+    ],
+    "sensitivity": [
+      "public",
+      "internal",
+      "sensitive",
+      "regulated",
+      "unknown"
+    ]
+  },
+  "roles": [
+    "PO",
+    "TL",
+    "KE",
+    "RE",
+    "PE",
+    "SEC",
+    "SME",
+    "PUB"
+  ],
+  "workflow_ownership": {
+    "public_agent_export_release": {
+      "responsible": ["PUB"],
+      "accountable": "PO",
+      "consulted": ["TL", "KE", "RE", "SEC", "SME"],
+      "informed": ["PE"]
+    }
+  }
+}

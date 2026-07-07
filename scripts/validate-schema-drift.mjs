@@ -1,9 +1,11 @@
 import path from 'node:path';
 import { failFactory, listFiles, repoRoot, readText } from './lib/repo.mjs';
+import { assertSameList, readCanonicalVocabularies } from './lib/canonical-vocabularies.mjs';
 
 const { fail, finish } = failFactory();
 
-const claimSupport = ['extracted', 'inferred', 'ambiguous', 'synthesis', 'unsupported', 'conflicting'];
+const canonical = readCanonicalVocabularies();
+const claimSupport = canonical.claim_support;
 const claimSupportPipe = claimSupport.join('|');
 const claimSupportCsv = claimSupport.join(', ');
 
@@ -28,9 +30,19 @@ function assertFilesEqual(leftRel, rightRel) {
 const pageSchema = JSON.parse(readText(path.join(repoRoot, 'templates/schemas/page.schema.json')));
 const claimMixKeys = Object.keys(pageSchema.properties?.claim_mix?.properties ?? {}).sort();
 const expectedClaimMixKeys = [...claimSupport].sort();
-if (claimMixKeys.join('|') !== expectedClaimMixKeys.join('|')) {
-  fail(`templates/schemas/page.schema.json: claim_mix keys must be ${expectedClaimMixKeys.join(', ')}`);
-}
+assertSameList(fail, 'templates/schemas/page.schema.json', 'claim_mix keys', claimMixKeys, expectedClaimMixKeys);
+assertSameList(fail, 'templates/schemas/page.schema.json', 'type enum', pageSchema.properties?.type?.enum ?? [], canonical.core_page_types);
+assertSameList(fail, 'templates/schemas/page.schema.json', 'status enum', pageSchema.properties?.status?.enum ?? [], canonical.page_statuses);
+
+const domainPackSchema = JSON.parse(readText(path.join(repoRoot, 'templates/schemas/domain-pack.schema.json')));
+assertSameList(fail, 'templates/schemas/domain-pack.schema.json', 'core_types item enum', domainPackSchema.properties?.core_types?.items?.enum ?? [], canonical.core_page_types);
+assertSameList(
+  fail,
+  'templates/schemas/domain-pack.schema.json',
+  'domain_type_mappings enum',
+  domainPackSchema.properties?.domain_type_mappings?.patternProperties?.['^[a-z0-9]+(?:-[a-z0-9]+)*$']?.enum ?? [],
+  canonical.core_page_types,
+);
 
 for (const relPath of [
   'AGENTS.md',
@@ -85,6 +97,7 @@ assertFilesEqual(
 );
 assertFilesEqual('docs/16-retrieval-architecture.md', 'skills/llm-wiki-retrieval-architect/references/docs/16-retrieval-architecture.md');
 assertFilesEqual('templates/team-raci-daci.yaml', 'skills/llm-wiki-gitlab-operating-model/references/templates/team-raci-daci.yaml');
+assertFilesEqual('templates/schemas/canonical-vocabularies.json', 'skills/llm-wiki-gitlab-operating-model/references/templates/schemas/canonical-vocabularies.json');
 
 const volatileBenchmarkPatterns = [
   /\b2\.0[-–]8\.1\s+F1\b/i,
@@ -111,10 +124,12 @@ for (const relPath of [
 }
 
 const raci = readText(path.join(repoRoot, 'templates/team-raci-daci.yaml'));
+const publicExportOwnership = canonical.workflow_ownership.public_agent_export_release;
 assertIncludes('templates/team-raci-daci.yaml', 'workflow: public_agent_export_release');
-assertIncludes('templates/team-raci-daci.yaml', 'responsible: [PUB]');
-assertIncludes('templates/team-raci-daci.yaml', 'consulted: [TL, KE, RE, SEC, SME]');
-assertIncludes('templates/team-raci-daci.yaml', 'informed: [PE]');
+assertIncludes('templates/team-raci-daci.yaml', `responsible: [${publicExportOwnership.responsible.join(', ')}]`);
+assertIncludes('templates/team-raci-daci.yaml', `accountable: ${publicExportOwnership.accountable}`);
+assertIncludes('templates/team-raci-daci.yaml', `consulted: [${publicExportOwnership.consulted.join(', ')}]`);
+assertIncludes('templates/team-raci-daci.yaml', `informed: [${publicExportOwnership.informed.join(', ')}]`);
 if (/workflow: public_agent_export_release[\s\S]*responsible: \[[^\]]*\bSME\b/.test(raci)) {
   fail('templates/team-raci-daci.yaml: SME must not be Responsible for public_agent_export_release');
 }

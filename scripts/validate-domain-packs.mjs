@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { failFactory, listSkillNames, repoRoot, readText } from './lib/repo.mjs';
+import { canonicalList } from './lib/canonical-vocabularies.mjs';
 
 const { fail, finish } = failFactory();
 const namePattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -21,10 +22,15 @@ function readJson(filePath) {
 const coreSchema = readJson(coreSchemaPath);
 const profileSchema = readJson(profileSchemaPath);
 const coreTypes = new Set(coreSchema?.properties?.type?.enum ?? []);
+const canonicalCoreTypes = canonicalList('core_page_types');
 const requiredProfileFields = new Set(profileSchema?.required ?? []);
 const allowedProfileFields = new Set(Object.keys(profileSchema?.properties ?? {}));
 const skillNames = new Set(listSkillNames());
 let profileCount = 0;
+
+if ([...coreTypes].join('|') !== canonicalCoreTypes.join('|')) {
+  fail('templates/schemas/page.schema.json: core type enum drifted from templates/schemas/canonical-vocabularies.json');
+}
 
 if (!fs.existsSync(domainPacksDir)) {
   fail('domain-packs/ directory is missing');

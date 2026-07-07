@@ -58,7 +58,7 @@ domain-packs/<name>/
   "$schema": "../../templates/schemas/domain-pack.schema.json",
   "name": "codebase-docs",
   "version": "0.1.0",
-  "core_types": ["source", "entity", "concept", "synthesis", "query", "report"],
+  "core_types": ["source", "entity", "concept", "comparison", "synthesis", "query", "report"],
   "domain_type_mappings": {
     "decision": "synthesis",
     "module": "entity",
