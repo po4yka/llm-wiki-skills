@@ -76,7 +76,7 @@ It includes skills for:
 | Skill | Use when |
 |---|---|
 | [`llm-wiki-orient`](skills/llm-wiki-orient/SKILL.md) | The user is new to LLM-Wiki and wants the pattern, trade-offs and solution landscape explained. |
-| [`llm-wiki-faq`](skills/llm-wiki-faq/SKILL.md) | The user asks why LLM-Wiki is needed, what benefits it gives, what evidence exists, how to keep it alive, whether Obsidian is required, or how to answer serious criticism. |
+| [`llm-wiki-faq`](skills/llm-wiki-faq/SKILL.md) | The user needs an adoption explanation, evidence summary, ROI framing, migration answer, stakeholder FAQ or concise objection response. |
 | [`llm-wiki-human-first-design`](skills/llm-wiki-human-first-design/SKILL.md) | The user asks how to avoid an agent-generated document dump, make the wiki human-readable, pass an agent-disappears test, or design page contracts and navigation maps. |
 | [`llm-wiki-paf-adoption`](skills/llm-wiki-paf-adoption/SKILL.md) | The user asks how LLM-Wiki maps to PAF Nexus/Cortex adoption, company-level Nexus pilots, shared context governance or decision-impact measurement. |
 | [`llm-wiki-news-radar`](skills/llm-wiki-news-radar/SKILL.md) | The user asks for fresh news, projects, papers, releases or ecosystem changes. |
@@ -91,7 +91,7 @@ It includes skills for:
 | [`llm-wiki-retrieval-architect`](skills/llm-wiki-retrieval-architect/SKILL.md) | The user needs to choose between lexical search, SQLite FTS, hybrid retrieval, vector DBs, rerankers, GraphRAG, metadata filters, MCP retrieval or custom indexes. |
 | [`llm-wiki-ingestion-stack`](skills/llm-wiki-ingestion-stack/SKILL.md) | The user has PDFs, Office docs, HTML, web clips, audio/video, code, chats, email, tables, databases, scans or production ETL needs and wants source-preserving ingestion, manifests, fidelity gates or sync/dedupe design. |
 | [`llm-wiki-mcp-integration`](skills/llm-wiki-mcp-integration/SKILL.md) | The user wants to expose a wiki to Claude Code, Codex, Cursor, ChatGPT, VS Code, GitHub Copilot, LangGraph or other clients through MCP or a local/remote API. |
-| [`llm-wiki-eval-tooling`](skills/llm-wiki-eval-tooling/SKILL.md) | The user wants concrete Ragas, promptfoo, DeepEval, TruLens, LangSmith, retrieval-metric, scorecard, CI or red-team evaluation gates. |
+| [`llm-wiki-eval-tooling`](skills/llm-wiki-eval-tooling/SKILL.md) | The user needs to choose eval frameworks, dataset formats, scorecards, red-team configs, prompt regression tests or CI gates. |
 
 ### Diagnose, plan and evaluate
 
@@ -99,11 +99,11 @@ It includes skills for:
 |---|---|
 | [`llm-wiki-doctor`](skills/llm-wiki-doctor/SKILL.md) | An existing vault/docs folder needs read-only diagnosis before changes. |
 | [`llm-wiki-migration-planner`](skills/llm-wiki-migration-planner/SKILL.md) | The user wants a dry-run migration plan before moving files. |
-| [`llm-wiki-eval`](skills/llm-wiki-eval/SKILL.md) | The user wants to measure whether the wiki is useful, grounded, maintainable and safe. |
-| [`llm-wiki-benchmark-suite`](skills/llm-wiki-benchmark-suite/SKILL.md) | The user wants a practical with-wiki versus without-wiki pilot benchmark. |
-| [`llm-wiki-critique-audit`](skills/llm-wiki-critique-audit/SKILL.md) | The user wants to stress-test a domain, vault, rollout or product plan against known LLM-Wiki criticisms and residual risks. |
-| [`llm-wiki-provenance`](skills/llm-wiki-provenance/SKILL.md) | Claims need source-level or claim-level provenance. |
-| [`llm-wiki-claim-anchors`](skills/llm-wiki-claim-anchors/SKILL.md) | Important claims need deterministic anchors and support labels. |
+| [`llm-wiki-eval`](skills/llm-wiki-eval/SKILL.md) | The user wants to define or interpret usefulness, grounding, maintenance, review-backlog or decision-gate metrics. |
+| [`llm-wiki-benchmark-suite`](skills/llm-wiki-benchmark-suite/SKILL.md) | The user wants to run a bounded pilot with baseline and with-wiki passes, scoring and a continue/pause/redesign decision. |
+| [`llm-wiki-critique-audit`](skills/llm-wiki-critique-audit/SKILL.md) | The user wants an adversarial failure-mode register, bad-fit decision, mitigation plan or residual-risk scorecard. |
+| [`llm-wiki-provenance`](skills/llm-wiki-provenance/SKILL.md) | Claims need missing-source investigation, evidence-link repair, support-label correction or a provenance gap report. |
+| [`llm-wiki-claim-anchors`](skills/llm-wiki-claim-anchors/SKILL.md) | Already inspected claims need deterministic claim IDs, source anchor IDs, support-label formatting or anchor validation. |
 | [`llm-wiki-conflict-resolver`](skills/llm-wiki-conflict-resolver/SKILL.md) | Lint or review found contradictory wiki claims. |
 
 ### Implement and migrate
@@ -123,8 +123,8 @@ It includes skills for:
 | Skill | Use when |
 |---|---|
 | [`llm-wiki-company-flow-audit`](skills/llm-wiki-company-flow-audit/SKILL.md) | The user wants to map company knowledge flows, automation boundaries, sync points, permissions, review UI needs or maintenance trade-offs into an adoption plan. |
-| [`llm-wiki-capture-pipeline`](skills/llm-wiki-capture-pipeline/SKILL.md) | The user wants a general inbox/capture pipeline. |
-| [`llm-wiki-channel-capture`](skills/llm-wiki-channel-capture/SKILL.md) | A specific channel such as Telegram, email, browser clips, voice, PDFs, GitHub or Slack needs capture rules. |
+| [`llm-wiki-capture-pipeline`](skills/llm-wiki-capture-pipeline/SKILL.md) | The user wants cross-channel capture architecture, inbox/raw topology, metadata contracts, dedupe boundaries or triage handoff. |
+| [`llm-wiki-channel-capture`](skills/llm-wiki-channel-capture/SKILL.md) | A named connector or channel such as Telegram, email, browser clips, voice, PDFs, GitHub or Slack needs capture rules. |
 | [`llm-wiki-interview`](skills/llm-wiki-interview/SKILL.md) | Tacit knowledge should be extracted through an agent-led interview. |
 | [`llm-wiki-adr-memory`](skills/llm-wiki-adr-memory/SKILL.md) | The user wants to recover or maintain decision provenance and ADR memory. |
 | [`llm-wiki-domain-pack`](skills/llm-wiki-domain-pack/SKILL.md) | A domain-specific taxonomy, templates and review policy are needed. |
@@ -140,8 +140,8 @@ It includes skills for:
 | [`llm-wiki-trust-audit`](skills/llm-wiki-trust-audit/SKILL.md) | The user wants an anti-slop, provenance, confidence and human-synthesis audit. |
 | [`llm-wiki-source-refresh`](skills/llm-wiki-source-refresh/SKILL.md) | Stale or current-state source-backed claims need refresh reports. |
 | [`llm-wiki-privacy-redactor`](skills/llm-wiki-privacy-redactor/SKILL.md) | Private content needs preview redaction before export or model-boundary use. |
-| [`llm-wiki-threat-model`](skills/llm-wiki-threat-model/SKILL.md) | The user needs a STRIDE/LINDDUN-style threat model, attack-surface map, risk matrix, security architecture or red-team rollout plan. |
-| [`llm-wiki-security-review`](skills/llm-wiki-security-review/SKILL.md) | Existing skills, ingestion, retrieval, MCP/API, CI, vault access, exports or write permissions need security review. |
+| [`llm-wiki-threat-model`](skills/llm-wiki-threat-model/SKILL.md) | The user needs a new STRIDE/LINDDUN threat model, data-flow diagram, attack-surface map, risk matrix or control baseline. |
+| [`llm-wiki-security-review`](skills/llm-wiki-security-review/SKILL.md) | Existing skills, ingestion, retrieval, MCP/API, CI, vault access, exports or write permissions need safety review. |
 | [`llm-wiki-model-policy`](skills/llm-wiki-model-policy/SKILL.md) | The user needs local/cloud model and data-use policy. |
 | [`llm-wiki-export-publish`](skills/llm-wiki-export-publish/SKILL.md) | A public, internal, agent-readable, API, graph or archive subset of the wiki should be exported or published with manifests, redaction, checksums and release gates. |
 | [`llm-wiki-archive`](skills/llm-wiki-archive/SKILL.md) | The wiki needs long-term durability and archive manifests. |

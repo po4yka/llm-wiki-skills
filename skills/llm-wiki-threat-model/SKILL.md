@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-threat-model
-description: Build a formal threat model for an LLM-Wiki system. Use when the user asks for STRIDE, LINDDUN, PASTA, trust-boundary diagrams, attack-surface mapping, risk matrices, red-team scenarios, or security architecture controls.
+description: Build a formal security architecture threat model for an LLM-Wiki system. Use when the user asks for STRIDE, LINDDUN, PASTA, data-flow diagrams, trust boundaries, attack-surface mapping, abuse cases, risk matrices, red-team scenarios, or control baselines; route existing-config safety reviews to llm-wiki-security-review.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current vendor, MCP, OWASP, CVE and tooling docs before making current security claims or version-specific recommendations.
 metadata:

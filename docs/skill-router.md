@@ -31,7 +31,7 @@ Asking why this matters or whether there is evidence?
 Arguing that LLM-Wiki must not be an agent-generated dump, or asking whether humans can find information without agents?
   -> llm-wiki-human-first-design
 
-Asking for serious arguments against LLM-Wiki, what can fail, or whether a domain is a bad fit?
+Need a failure-mode register, residual-risk scorecard, mitigation plan, or bad-fit decision?
   -> llm-wiki-critique-audit
 
 Asking whether LLM-Wiki maps to PAF Nexus/Cortex, which Nexus to start with, or how to build company-level shared context?
@@ -43,7 +43,7 @@ Asking where company/team information lives, what can be automated, how to sync 
 Non-developer, browser-first or Confluence-style adoption concern?
   -> llm-wiki-faq
 
-Worried about PR/MR friction, branch sync, token growth, human-readable docs, LLM slop or sensitive data?
+Need a concise adoption answer about PR/MR friction, branch sync, token growth, human-readable docs, slop risk or sensitive data?
   -> llm-wiki-faq
 
 Asking where to start, when not to use it, who owns/reviews it, cost, ROI, migration risk, replacing Confluence/RAG, vendor lock-in or multi-agent use?
@@ -99,10 +99,10 @@ Need domain-specific templates, taxonomies and review gates?
 Need GitHub maintenance automation?
   -> llm-wiki-github-action
 
-Need browser-first or low-friction capture into an inbox?
+Need cross-channel capture architecture, an inbox/raw topology, metadata contract or triage handoff?
   -> llm-wiki-capture-pipeline
 
-Need channel-specific capture (Telegram, email, Slack, voice notes)?
+Need a named capture connector or channel runbook (Telegram, email, Slack, voice notes)?
   -> llm-wiki-channel-capture
 
 Need a document-conversion and ingestion stack (PDF, Office, audio, OCR)?
@@ -143,10 +143,10 @@ Health check?
 ## Trust and evidence
 
 ```text
-Unsupported claims?
+Need to investigate unsupported claims, missing sources or wrong support labels?
   -> llm-wiki-provenance
 
-Need claim-level anchors with stable claim IDs?
+Need deterministic claim/source IDs or anchor validation after evidence is known?
   -> llm-wiki-claim-anchors
 
 Need to recover why decisions were made (ADRs, decision memory)?
@@ -155,7 +155,7 @@ Need to recover why decisions were made (ADRs, decision memory)?
 Contradictions?
   -> llm-wiki-conflict-resolver
 
-Need an adversarial risk report on slop, context poisoning, consensus smoothing, cognitive debt, drift or write-only archive behavior?
+Need an adversarial failure-mode audit with residual-risk scoring and mitigation planning?
   -> llm-wiki-critique-audit
 
 Need anti-slop controls audited in an existing vault?
@@ -164,13 +164,13 @@ Need anti-slop controls audited in an existing vault?
 Need to prove humans can find answers without agents?
   -> llm-wiki-human-first-design
 
-Need to prove value?
+Need to define or interpret LLM-Wiki quality/usefulness metrics?
   -> llm-wiki-eval
 
-Need a with-wiki vs without-wiki adoption benchmark?
+Need to run a bounded pilot benchmark with baseline and with-wiki passes?
   -> llm-wiki-benchmark-suite
 
-Need concrete eval tools, datasets, scorecards or CI gates?
+Need to choose eval frameworks, dataset formats, scorecards or CI gates?
   -> llm-wiki-eval-tooling
 
 Need to prove a Nexus affects company decisions?
@@ -186,10 +186,10 @@ Worried the wiki will not fit in context?
 ## Governance
 
 ```text
-Is an existing setup safe enough, or are data boundaries unclear?
+Is an existing setup safe enough, or are current data boundaries unclear?
   -> llm-wiki-security-review
 
-Need a structured threat model (STRIDE, trust-boundary diagram, attack surface, risk matrix)?
+Need a new structured threat model (STRIDE/LINDDUN, data-flow diagram, trust boundaries, attack surface, risk matrix)?
   -> llm-wiki-threat-model
 
 Sensitive data, PII, customer data or secrets in sources?

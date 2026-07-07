@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-critique-audit
-description: Audit an LLM-Wiki proposal, domain, vault, rollout, or product plan for failure modes. Use when the user wants a risk report, bad-fit assessment, mitigation plan, or adversarial critique of slop, cognitive debt, drift, token cost, prompt injection, or write-only archive behavior.
+description: Produce an adversarial risk audit for an LLM-Wiki proposal, domain, vault, rollout, or product plan. Use when the user wants a failure-mode register, bad-fit decision, mitigation plan, residual-risk scorecard, or criticism-first stress test; route short adoption answers to llm-wiki-faq.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh sources for current benchmark, provider, tool or security claims.
 metadata:

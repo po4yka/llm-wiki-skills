@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-capture-pipeline
-description: Design the cross-channel capture architecture for LLM-Wiki. Use when the user wants an inbox/raw pipeline, dedupe policy, metadata contract, triage handoff, or capture-to-ingestion flow before choosing channel-specific connectors.
+description: Design the cross-channel capture architecture for LLM-Wiki before connector work. Use when the user wants an inbox/raw topology, metadata contract, dedupe boundary, triage handoff, privacy defaults, or capture-to-ingestion flow across many channels; route named Telegram/email/Slack/PDF connector rules to llm-wiki-channel-capture.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. May require browsing official API docs for current connector setup.
 metadata:
@@ -12,7 +12,7 @@ metadata:
 
 ## Goal
 
-Design or implement a capture pipeline that makes source capture fast, safe and reviewable.
+Design the capture architecture that makes source capture fast, safe and reviewable across channels.
 
 ## Core rule
 
@@ -20,26 +20,22 @@ Capture should require near-zero filing decisions. Put material into `inbox/` or
 
 ## Inputs
 
-- Desired capture channels.
+- Desired capture channel classes.
 - Existing vault/repo path.
 - Local-first/privacy requirements.
 - Target agent and automation environment.
-- Whether implementation is requested or only design.
+- Whether the output should stop at architecture or include a handoff to `llm-wiki-channel-capture`.
 
-## Capture channels
+## Capture channel classes
 
-Common channels:
+Use classes here, not connector runbooks:
 
-- web clips and URLs;
-- PDFs and papers;
-- screenshots and images;
-- voice notes and transcripts;
-- chat outputs worth keeping;
-- Telegram/Slack/Discord messages;
-- email/newsletters;
-- GitHub issues, PRs and discussions;
-- code-session notes and agent discoveries;
-- calendar/meeting notes.
+- manual quick capture;
+- durable documents and sources;
+- media assets;
+- high-volume message streams;
+- meeting or transcript streams;
+- repo or ticket-system events.
 
 ## Procedure
 
@@ -54,7 +50,7 @@ Use one of:
 | `raw/assets/` | Images, audio, screenshots, diagrams, media. |
 | external event log | High-volume streams that need dedup/retry before writing files. |
 
-### 2. Define source envelopes
+### 2. Define the shared source envelope
 
 Every captured item should include:
 
@@ -69,17 +65,17 @@ privacy: public|internal|sensitive
 triage_status: new
 ```
 
-### 3. Add dedup and safety
+### 3. Define cross-channel dedup and safety
 
-For each channel, decide:
+At the architecture level, decide:
 
-- filename convention;
-- content hash;
-- duplicate policy;
-- sensitive data classification;
-- prompt-injection handling;
-- retention/deletion policy;
-- offline fallback.
+- where filenames are assigned;
+- which component computes content hashes;
+- whether dedup happens before or after triage;
+- where sensitive data classification is stored;
+- how untrusted instructions are isolated as content;
+- what retention/deletion policy applies by default;
+- how offline capture is reconciled.
 
 ### 4. Design automation loop
 
@@ -95,7 +91,11 @@ High-volume loop:
 connector -> durable event log -> normalize -> dedup -> raw/inbox -> triage report
 ```
 
-### 5. Implement only safe pieces
+### 5. Hand off connector details
+
+When the user names a channel such as Telegram, email, Slack, Discord, Teams, browser clips, voice notes, PDFs or GitHub, hand off to `llm-wiki-channel-capture` after the shared envelope and safety boundary are clear.
+
+### 6. Implement only safe shared pieces
 
 When writing code or config:
 

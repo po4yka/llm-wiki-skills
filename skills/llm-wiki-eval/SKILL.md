@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-eval
-description: Define and run LLM-Wiki quality measurement. Use when the user wants metrics for usefulness, grounding, maintenance health, review backlog, stale pages, unsupported claims, citation coverage, or operational decision gates.
+description: Define LLM-Wiki measurement questions and interpret quality metrics. Use when the user wants usefulness, grounding, maintenance-health, review-backlog, stale-page, unsupported-claim, citation-coverage, or decision-gate metrics; route concrete pilot execution to llm-wiki-benchmark-suite and tool selection to llm-wiki-eval-tooling.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki; optional write access for evaluation reports.
 metadata:

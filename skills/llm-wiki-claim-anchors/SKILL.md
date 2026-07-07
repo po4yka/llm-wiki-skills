@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-claim-anchors
-description: Add deterministic claim and source anchor IDs to already inspected LLM-Wiki evidence. Use when the user wants stable claim IDs, support labels, source anchors, or claim-anchor validation after provenance gaps are known.
+description: Insert deterministic claim and source anchor IDs after evidence has been inspected. Use when the user wants stable claim IDs, source anchor IDs, support-label formatting, anchor validation, or reproducible claim references; route missing-evidence investigation to llm-wiki-provenance.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to wiki/raw sources; write access is optional for patch mode.
 metadata:

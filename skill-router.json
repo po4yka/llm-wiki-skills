@@ -20,7 +20,7 @@
     },
     {
       "skill": "llm-wiki-faq",
-      "intents": ["why needed", "benefits", "evidence", "proof", "obsidian required", "living wiki", "answer objections", "stakeholder faq"],
+      "intents": ["why needed", "benefits", "evidence summary", "proof question", "obsidian required", "living wiki", "answer objection", "stakeholder faq", "concise rebuttal"],
       "depends_on": [],
       "next": ["llm-wiki-human-first-design", "llm-wiki-critique-audit", "llm-wiki-choose", "llm-wiki-eval", "llm-wiki-trust-audit"],
       "write_risk": "none",
@@ -200,7 +200,7 @@
     },
     {
       "skill": "llm-wiki-capture-pipeline",
-      "intents": ["capture pipeline architecture", "inbox raw flow", "capture metadata contract", "dedupe before triage"],
+      "intents": ["capture pipeline architecture", "cross channel topology", "inbox raw flow", "capture metadata contract", "dedupe boundary", "triage handoff"],
       "depends_on": [],
       "next": ["llm-wiki-channel-capture", "wiki-triage"],
       "write_risk": "low",
@@ -209,7 +209,7 @@
     },
     {
       "skill": "llm-wiki-channel-capture",
-      "intents": ["telegram capture", "email capture", "voice note capture", "slack export capture", "specific channel connector"],
+      "intents": ["telegram connector", "email connector", "voice note connector", "slack export runbook", "specific channel connector", "channel api setup"],
       "depends_on": ["llm-wiki-capture-pipeline"],
       "next": ["wiki-triage", "llm-wiki-ingestion-stack"],
       "write_risk": "low",
@@ -281,7 +281,7 @@
     },
     {
       "skill": "llm-wiki-provenance",
-      "intents": ["missing sources", "provenance gaps", "unsupported claims", "repair evidence links"],
+      "intents": ["missing sources", "provenance gaps", "unsupported claims", "repair evidence links", "investigate support labels"],
       "depends_on": ["wiki-lint"],
       "next": ["llm-wiki-claim-anchors", "llm-wiki-conflict-resolver"],
       "write_risk": "medium",
@@ -290,7 +290,7 @@
     },
     {
       "skill": "llm-wiki-claim-anchors",
-      "intents": ["claim anchors", "stable claim ids", "source anchor ids", "support labels"],
+      "intents": ["claim anchors", "stable claim ids", "source anchor ids", "format support labels", "validate claim anchors"],
       "depends_on": ["llm-wiki-provenance"],
       "next": ["llm-wiki-conflict-resolver"],
       "write_risk": "medium",
@@ -308,7 +308,7 @@
     },
     {
       "skill": "llm-wiki-eval",
-      "intents": ["evaluate usefulness", "quality metrics", "retrieval hit rate", "maintenance health"],
+      "intents": ["define measurement", "evaluate usefulness", "quality metrics", "retrieval hit rate", "maintenance health", "interpret eval results"],
       "depends_on": [],
       "next": ["llm-wiki-benchmark-suite", "llm-wiki-eval-tooling", "llm-wiki-human-first-design", "llm-wiki-critique-audit"],
       "write_risk": "low",
@@ -317,7 +317,7 @@
     },
     {
       "skill": "llm-wiki-benchmark-suite",
-      "intents": ["pilot benchmark", "with wiki without wiki trial", "run adoption experiment"],
+      "intents": ["pilot benchmark", "run baseline pass", "run with wiki pass", "score pilot tasks", "continue pause redesign decision"],
       "depends_on": ["llm-wiki-eval"],
       "next": ["llm-wiki-eval-tooling", "llm-wiki-human-first-design", "llm-wiki-critique-audit"],
       "write_risk": "low",
@@ -326,7 +326,7 @@
     },
     {
       "skill": "llm-wiki-eval-tooling",
-      "intents": ["eval tools", "ragas promptfoo deepeval", "ci eval gates", "choose scorecard"],
+      "intents": ["eval tools", "ragas promptfoo deepeval", "ci eval gates", "choose scorecard", "eval framework selection"],
       "depends_on": ["llm-wiki-eval"],
       "next": ["llm-wiki-benchmark-suite"],
       "write_risk": "none",
@@ -335,7 +335,7 @@
     },
     {
       "skill": "llm-wiki-critique-audit",
-      "intents": ["risk report", "what could go wrong", "bad fit assessment", "adversarial critique", "cognitive debt", "consensus smoothing", "context poisoning", "write-only archive", "token burn", "benchmark vacuum"],
+      "intents": ["risk report", "what could go wrong", "bad fit assessment", "adversarial critique", "failure mode register", "residual risk scorecard", "mitigation plan"],
       "depends_on": [],
       "next": ["llm-wiki-human-first-design", "llm-wiki-eval", "llm-wiki-trust-audit", "llm-wiki-provenance", "llm-wiki-security-review"],
       "write_risk": "none",
@@ -353,7 +353,7 @@
     },
     {
       "skill": "llm-wiki-security-review",
-      "intents": ["security review", "is my setup safe", "data boundaries", "mcp exposure", "skill safety"],
+      "intents": ["security review", "is my setup safe", "existing configuration safety", "data boundary review", "mcp exposure review", "skill safety review"],
       "depends_on": [],
       "next": ["llm-wiki-model-policy", "llm-wiki-privacy-redactor"],
       "write_risk": "none",
@@ -362,7 +362,7 @@
     },
     {
       "skill": "llm-wiki-threat-model",
-      "intents": ["threat model", "stride analysis", "attack surface mapping", "trust boundaries", "risk matrix"],
+      "intents": ["threat model", "stride analysis", "linddun analysis", "data flow diagram", "attack surface mapping", "trust boundaries", "risk matrix", "security architecture controls"],
       "depends_on": [],
       "next": ["llm-wiki-security-review", "llm-wiki-trust-audit"],
       "write_risk": "none",

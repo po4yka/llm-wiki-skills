@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-faq
-description: Answer adoption questions and objections about LLM-Wiki. Use when the user asks for an explanation, FAQ answer, stakeholder response, ROI framing, migration answer, or concise rebuttal to risks such as slop, cognitive debt, drift, prompt injection, benchmark vacuum or write-only archive behavior.
+description: Explain LLM-Wiki adoption and answer stakeholder objections. Use when the user wants a concise FAQ response, evidence summary, ROI framing, migration answer, or plain-language rebuttal; route adversarial risk registers and bad-fit audits to llm-wiki-critique-audit.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh sources for current ecosystem, tool maturity, pricing, release, or benchmark claims.
 metadata:

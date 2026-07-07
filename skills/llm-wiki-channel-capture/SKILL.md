@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-channel-capture
-description: Design one concrete capture connector for LLM-Wiki. Use when the user names a specific channel such as Telegram, email, browser clips, Readwise/Omnivore, voice notes, PDFs, GitHub, Slack, Discord, Teams, or meeting notes.
+description: Design one named capture connector or channel runbook for LLM-Wiki. Use when the user names Telegram, email, browser clips, Readwise/Omnivore, voice notes, PDFs, GitHub, Slack, Discord, Teams, meetings, auth scopes, rate limits, attachment rules, or API setup; route shared inbox design to llm-wiki-capture-pipeline.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse official API docs before recommending connector-specific commands or auth scopes.
 metadata:
@@ -12,15 +12,15 @@ metadata:
 
 ## Goal
 
-Design safe capture pipelines for specific input channels while preserving the inbox-first LLM-Wiki model.
+Design safe connector-level capture rules for specific input channels while preserving the inbox-first LLM-Wiki model.
 
 ## Inputs
 
-- Target channel(s).
+- Target named channel or connector.
 - Vault/repository path.
 - Privacy constraints.
 - Desired implementation depth: design, config, script, or docs only.
-- Existing capture tooling.
+- Existing capture tooling or API/account constraints.
 
 ## Procedure
 
@@ -51,14 +51,16 @@ privacy: public|internal|sensitive|unknown
 triage_status: new
 ```
 
-### 3. Design channel rules
+### 3. Design connector rules
 
-For each channel, define:
+For the named channel, define:
 
 - filename convention;
 - dedup method;
 - rate/retry behavior;
 - attachment handling;
+- auth scopes and credential storage;
+- API/export limits;
 - prompt-injection treatment;
 - sensitive-data policy;
 - triage frequency.

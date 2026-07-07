@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-security-review
-description: Review an LLM-Wiki or Agent Skills setup for practical security and data-boundary risks. Use when the user asks whether an existing configuration, permission model, export, MCP/API exposure, cloud-model use, capture pipeline, or automation is safe enough.
+description: Review an existing LLM-Wiki or Agent Skills setup for practical security gaps. Use when the user asks whether current permissions, MCP/API exposure, exports, cloud-model use, capture automation, installed skills, CI, vault access, or data boundaries are safe enough; route new architecture threat modeling to llm-wiki-threat-model.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to project instructions, skill files, and relevant configuration; write access is optional. Browse current vendor, CVE, scanner and MCP docs before giving version-specific security advice.
 metadata:

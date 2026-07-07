@@ -20,7 +20,7 @@ Skills are operators over the user's context. They should describe **how to work
 | Skill | Purpose |
 |---|---|
 | [`llm-wiki-orient`](../skills/llm-wiki-orient/SKILL.md) | Explain the LLM-Wiki pattern and solution landscape. |
-| [`llm-wiki-faq`](../skills/llm-wiki-faq/SKILL.md) | Answer evidence-backed adoption questions and serious criticism. |
+| [`llm-wiki-faq`](../skills/llm-wiki-faq/SKILL.md) | Answer adoption questions, evidence requests, ROI framing and concise stakeholder objections. |
 | [`llm-wiki-human-first-design`](../skills/llm-wiki-human-first-design/SKILL.md) | Design human-readable wiki structures, page contracts and agent-free acceptance tests. |
 | [`llm-wiki-paf-adoption`](../skills/llm-wiki-paf-adoption/SKILL.md) | Map LLM-Wiki adoption to Product Architecture Framework concepts such as Nexus and Cortex. |
 | [`llm-wiki-news-radar`](../skills/llm-wiki-news-radar/SKILL.md) | Browse for fresh ecosystem news, releases, papers and technologies. |
@@ -35,7 +35,7 @@ Skills are operators over the user's context. They should describe **how to work
 | [`llm-wiki-retrieval-architect`](../skills/llm-wiki-retrieval-architect/SKILL.md) | Design the retrieval/indexing layer for an LLM-Wiki. |
 | [`llm-wiki-ingestion-stack`](../skills/llm-wiki-ingestion-stack/SKILL.md) | Design a source-preserving ingestion and document-conversion stack. |
 | [`llm-wiki-mcp-integration`](../skills/llm-wiki-mcp-integration/SKILL.md) | Design or review MCP/API integration for an LLM-Wiki. |
-| [`llm-wiki-eval-tooling`](../skills/llm-wiki-eval-tooling/SKILL.md) | Map evaluation goals to concrete tools, datasets, scorecards and CI gates. |
+| [`llm-wiki-eval-tooling`](../skills/llm-wiki-eval-tooling/SKILL.md) | Select eval frameworks, dataset formats, scorecards, red-team configs and CI gates. |
 
 ### Diagnose, plan, and evaluate
 
@@ -43,11 +43,11 @@ Skills are operators over the user's context. They should describe **how to work
 |---|---|
 | [`llm-wiki-doctor`](../skills/llm-wiki-doctor/SKILL.md) | Read-only diagnosis of existing docs or vaults. |
 | [`llm-wiki-migration-planner`](../skills/llm-wiki-migration-planner/SKILL.md) | Dry-run migration planning. |
-| [`llm-wiki-eval`](../skills/llm-wiki-eval/SKILL.md) | Measure usefulness and retrieval/reuse outcomes. |
-| [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Run a local with-wiki/without-wiki pilot benchmark. |
-| [`llm-wiki-critique-audit`](../skills/llm-wiki-critique-audit/SKILL.md) | Stress-test a domain, vault, rollout or product plan against known LLM-Wiki criticisms and residual risks. |
-| [`llm-wiki-provenance`](../skills/llm-wiki-provenance/SKILL.md) | Add or repair source and claim-level provenance. |
-| [`llm-wiki-claim-anchors`](../skills/llm-wiki-claim-anchors/SKILL.md) | Add deterministic claim anchors and source support labels. |
+| [`llm-wiki-eval`](../skills/llm-wiki-eval/SKILL.md) | Define and interpret usefulness, grounding, maintenance and decision-gate metrics. |
+| [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Execute a bounded pilot benchmark with baseline and with-wiki passes. |
+| [`llm-wiki-critique-audit`](../skills/llm-wiki-critique-audit/SKILL.md) | Produce adversarial failure-mode registers, bad-fit decisions and residual-risk scorecards. |
+| [`llm-wiki-provenance`](../skills/llm-wiki-provenance/SKILL.md) | Investigate missing sources, repair evidence links and correct support labels. |
+| [`llm-wiki-claim-anchors`](../skills/llm-wiki-claim-anchors/SKILL.md) | Insert deterministic claim/source IDs and validate anchors after evidence is known. |
 | [`llm-wiki-conflict-resolver`](../skills/llm-wiki-conflict-resolver/SKILL.md) | Mediate contradictions without auto-fixing truth. |
 
 ### Implement and migrate
@@ -67,8 +67,8 @@ Skills are operators over the user's context. They should describe **how to work
 | Skill | Purpose |
 |---|---|
 | [`llm-wiki-company-flow-audit`](../skills/llm-wiki-company-flow-audit/SKILL.md) | Map company/team information flows into an LLM-Wiki adoption plan. |
-| [`llm-wiki-capture-pipeline`](../skills/llm-wiki-capture-pipeline/SKILL.md) | Design general inbox/capture pipelines. |
-| [`llm-wiki-channel-capture`](../skills/llm-wiki-channel-capture/SKILL.md) | Design channel-specific capture workflows. |
+| [`llm-wiki-capture-pipeline`](../skills/llm-wiki-capture-pipeline/SKILL.md) | Design cross-channel capture topology, metadata contracts and triage handoff. |
+| [`llm-wiki-channel-capture`](../skills/llm-wiki-channel-capture/SKILL.md) | Design named connector/channel runbooks and API-specific capture rules. |
 | [`llm-wiki-interview`](../skills/llm-wiki-interview/SKILL.md) | Extract tacit knowledge through interviews. |
 | [`llm-wiki-adr-memory`](../skills/llm-wiki-adr-memory/SKILL.md) | Recover decision provenance and ADR memory. |
 | [`llm-wiki-domain-pack`](../skills/llm-wiki-domain-pack/SKILL.md) | Generate domain-specific taxonomies and templates. |
@@ -84,8 +84,8 @@ Skills are operators over the user's context. They should describe **how to work
 | [`llm-wiki-trust-audit`](../skills/llm-wiki-trust-audit/SKILL.md) | Audit anti-slop and human-synthesis boundaries. |
 | [`llm-wiki-source-refresh`](../skills/llm-wiki-source-refresh/SKILL.md) | Refresh stale source-backed claims with reports. |
 | [`llm-wiki-privacy-redactor`](../skills/llm-wiki-privacy-redactor/SKILL.md) | Preview redactions before publishing or external model use. |
-| [`llm-wiki-threat-model`](../skills/llm-wiki-threat-model/SKILL.md) | Build a security threat model across ingestion, retrieval, MCP/API, agents and CI. |
-| [`llm-wiki-security-review`](../skills/llm-wiki-security-review/SKILL.md) | Review data boundaries and skill safety. |
+| [`llm-wiki-threat-model`](../skills/llm-wiki-threat-model/SKILL.md) | Build formal threat models, data-flow diagrams, attack-surface maps and control baselines. |
+| [`llm-wiki-security-review`](../skills/llm-wiki-security-review/SKILL.md) | Review existing data boundaries, permissions, MCP/API exposure, CI and skill safety. |
 | [`llm-wiki-model-policy`](../skills/llm-wiki-model-policy/SKILL.md) | Define model/provider policy by data class and task. |
 | [`llm-wiki-export-publish`](../skills/llm-wiki-export-publish/SKILL.md) | Export or publish safe subsets. |
 | [`llm-wiki-archive`](../skills/llm-wiki-archive/SKILL.md) | Prepare the wiki for long-term durability. |

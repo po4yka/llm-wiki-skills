@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-benchmark-suite
-description: Run a bounded pilot experiment for an LLM-Wiki. Use when the user wants to execute a with-wiki versus without-wiki trial on real tasks and produce a continue/pause/redesign decision.
+description: Execute a bounded LLM-Wiki pilot benchmark. Use when the user already has or wants a small task set, baseline pass, with-wiki pass, scoring rubric, and continue/pause/redesign decision; route metric design to llm-wiki-eval and framework/CI choices to llm-wiki-eval-tooling.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to a vault and optional write access for benchmark reports.
 metadata:

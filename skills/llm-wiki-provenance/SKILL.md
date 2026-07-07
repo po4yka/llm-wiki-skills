@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-provenance
-description: Inspect and repair evidence links in an LLM-Wiki. Use when pages have unsupported claims, generated summaries cite other summaries, source links are missing, or the user wants a provenance gap report before adding stable claim anchors.
+description: Inspect and repair evidence links before adding stable IDs. Use when pages have unsupported claims, generated summaries cite other summaries, raw-source links are missing, support labels are wrong, or the user wants a provenance gap report; route deterministic ID insertion to llm-wiki-claim-anchors.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to wiki and raw sources; write access is optional for patch mode.
 metadata:

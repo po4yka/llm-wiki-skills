@@ -1,6 +1,6 @@
 ---
 name: llm-wiki-eval-tooling
-description: Select evaluation tooling for an LLM-Wiki. Use when the user asks which eval framework, dataset format, scorecard, CI gate, red-team config, prompt regression test, or human calibration workflow to use.
+description: Select evaluation tools and CI gates for LLM-Wiki measurement. Use when the user asks which eval framework, dataset format, scorecard file, red-team config, prompt regression test, hosted/self-hosted service, or human calibration workflow to use; route actual pilot runs to llm-wiki-benchmark-suite.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current tool docs before giving package commands, metric names, license, pricing, hosted/self-hosted, deprecation or integration details.
 metadata:
