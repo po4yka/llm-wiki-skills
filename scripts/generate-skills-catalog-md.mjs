@@ -17,10 +17,10 @@ export function buildSkillsCatalogMarkdown() {
   ];
 
   manifest.groupings.forEach((group, index) => {
-    lines.push(`## ${group.title}`, '', group.description, '', '| Skill | Description | Version |', '|---|---|---|');
+    lines.push(`## ${group.title}`, '', group.description, '', '| Skill | Description | Version | Install |', '|---|---|---|---|');
     for (const skillName of group.skills) {
       const skill = skillMap.get(skillName);
-      lines.push(`| [${skillName}](../skills/${skillName}/SKILL.md) | ${escapeTableCell(skill.description)} | ${skill.version ?? ''} |`);
+      lines.push(`| [${skillName}](../skills/${skillName}/SKILL.md) | ${escapeTableCell(skill.description)} | ${skill.version ?? ''} | ${skill.install_scope ?? ''} |`);
     }
     if (index < manifest.groupings.length - 1) {
       lines.push('');

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { repoRoot, readText } from './lib/repo.mjs';
+import { validateSkillSelfContainment } from './lib/skill-self-containment.mjs';
 
 const cliPackage = process.env.SKILLS_CLI_PACKAGE ?? 'skills@1.5.15';
 const smokeRoot = path.join(repoRoot, '.tmp', 'skills-distribution-smoke');
@@ -95,30 +96,9 @@ function findInstalledSkillRoot(skillName) {
 }
 
 function assertStandaloneSkill(skillRoot, skillName) {
-  const skillText = readText(path.join(skillRoot, 'SKILL.md'));
-  const rootRefPattern = /`((?:docs|templates|benchmarks|domain-packs|policies|examples)\/[^`]+)`/g;
-  const npmRunPattern = /`?npm run [^`\n]+`?/g;
-  const localRefPattern = /`((?:references|scripts|assets)\/[^`]+)`/g;
-  const missingRefs = [];
-
-  for (const match of skillText.matchAll(rootRefPattern)) {
-    throw new Error(`${skillName}: SKILL.md references repository-root file '${match[1]}' instead of a file inside the skill directory`);
-  }
-
-  for (const match of skillText.matchAll(npmRunPattern)) {
-    throw new Error(`${skillName}: SKILL.md advertises package.json command '${match[0]}' that is not shipped with a single-skill install`);
-  }
-
-  for (const match of skillText.matchAll(localRefPattern)) {
-    const rel = match[1].replace(/\/\*\*$/, '');
-    const abs = path.join(skillRoot, rel);
-    if (!fs.existsSync(abs)) {
-      missingRefs.push(match[1]);
-    }
-  }
-
-  if (missingRefs.length > 0) {
-    throw new Error(`${skillName}: missing installed local references:\n${missingRefs.map((ref) => `- ${ref}`).join('\n')}`);
+  const errors = validateSkillSelfContainment(skillRoot);
+  if (errors.length > 0) {
+    throw new Error(errors.join('\n'));
   }
 }
 

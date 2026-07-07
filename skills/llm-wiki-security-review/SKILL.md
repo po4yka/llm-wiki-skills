@@ -6,6 +6,7 @@ compatibility: Designed for Agent Skills-compatible coding agents. Requires read
 metadata:
   author: po4yka
   version: "0.3.0"
+  install_scope: self-contained
 ---
 
 # LLM-Wiki Security Review

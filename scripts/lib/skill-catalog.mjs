@@ -22,6 +22,7 @@ export function readSkillRecords() {
       compatibility: parsed.fields.compatibility,
       author: parsed.fields.metadata?.author,
       version: parsed.fields.metadata?.version,
+      install_scope: parsed.fields.metadata?.install_scope,
       path: `skills/${skillName}/SKILL.md`,
       fields: parsed.fields,
     };
@@ -88,4 +89,3 @@ export function readDocsRecords() {
     })
     .sort((a, b) => a.path.localeCompare(b.path));
 }
-

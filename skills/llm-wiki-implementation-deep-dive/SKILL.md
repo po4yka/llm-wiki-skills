@@ -6,6 +6,7 @@ compatibility: Designed for Agent Skills-compatible coding agents. Browse offici
 metadata:
   author: po4yka
   version: "0.1.0"
+  install_scope: self-contained
 ---
 
 # LLM-Wiki Implementation Deep Dive

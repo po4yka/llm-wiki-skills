@@ -6,6 +6,7 @@ compatibility: Designed for Agent Skills-compatible coding agents. Browse and ci
 metadata:
   author: po4yka
   version: "0.1.3"
+  install_scope: self-contained
 ---
 
 # LLM-Wiki FAQ

@@ -3,8 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "validate": "npm run validate:skills && npm run validate:manifest && npm run validate:links && npm run validate:agent-safety && npm run validate:skill-smells && npm run validate:claim-anchors && npm run validate:schema-drift && npm run validate:quality-policy && npm run validate:docs-metadata && npm run validate:templates && npm run validate:domain-packs && npm run validate:router && npm run validate:coverage && npm run check:examples",
+    "validate": "npm run validate:skills && npm run validate:skill-self-containment && npm run validate:manifest && npm run validate:links && npm run validate:agent-safety && npm run validate:skill-smells && npm run validate:claim-anchors && npm run validate:schema-drift && npm run validate:quality-policy && npm run validate:docs-metadata && npm run validate:templates && npm run validate:domain-packs && npm run validate:router && npm run validate:coverage && npm run check:examples",
     "validate:skills": "node scripts/validate-skills.mjs",
+    "validate:skill-self-containment": "node scripts/validate-skill-self-containment.mjs",
     "validate:manifest": "node scripts/validate-skills-manifest.mjs",
     "validate:links": "node scripts/validate-markdown-links.mjs",
     "validate:agent-safety": "node scripts/validate-agent-safety.mjs",

@@ -32,6 +32,10 @@ Rules:
 4. Keep `description` trigger-oriented: mention the user intents that should activate the skill.
 5. Keep skills procedural. Do not turn them into hidden domain encyclopedias.
 6. Skills that require current information must instruct the agent to browse and cite fresh sources.
+7. Every skill must declare `metadata.install_scope`:
+   - `self-contained`: a single-skill install must include every referenced `references/`, `scripts/` and `assets/` file.
+   - `pack-install-only`: the skill must explain in `compatibility` that it requires a full repository/pack install.
+8. `self-contained` skills must not instruct agents to use repository-root `docs/`, `templates/`, `scripts/`, `benchmarks/`, `domain-packs/`, `policies/` or `examples/` paths. Copy required material into the skill directory instead.
 
 ## Language policy
 
@@ -83,6 +87,7 @@ compatibility: Designed for Agent Skills-compatible coding agents. Add concrete 
 metadata:
   author: po4yka
   version: "0.1.0"
+  install_scope: self-contained
 ---
 
 # <Title>

@@ -6,6 +6,7 @@ compatibility: Designed for Agent Skills-compatible coding agents. Browse MCP an
 metadata:
   author: po4yka
   version: "0.2.0"
+  install_scope: self-contained
 ---
 
 # LLM-Wiki MCP Integration
