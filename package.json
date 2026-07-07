@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "validate": "npm run validate:skills && npm run validate:skill-self-containment && npm run validate:manifest && npm run validate:links && npm run validate:agent-safety && npm run validate:skill-smells && npm run validate:claim-anchors && npm run validate:schema-drift && npm run validate:quality-policy && npm run validate:docs-metadata && npm run validate:templates && npm run validate:domain-packs && npm run validate:router && npm run validate:coverage && npm run check:examples",
+    "validate": "npm run validate:skills && npm run validate:skill-self-containment && npm run validate:manifest && npm run validate:links && npm run validate:agent-safety && npm run validate:skill-smells && npm run validate:claim-anchors && npm run validate:schema-drift && npm run validate:quality-policy && npm run validate:quality-ratchet && npm run validate:docs-metadata && npm run validate:templates && npm run validate:domain-packs && npm run validate:router && npm run validate:coverage && npm run check:examples",
     "validate:skills": "node scripts/validate-skills.mjs",
     "validate:skill-self-containment": "node scripts/validate-skill-self-containment.mjs",
     "validate:manifest": "node scripts/validate-skills-manifest.mjs",
@@ -13,6 +13,7 @@
     "validate:claim-anchors": "node scripts/validate-claim-anchors.mjs",
     "validate:schema-drift": "node scripts/validate-schema-drift.mjs",
     "validate:quality-policy": "node scripts/validate-quality-policy.mjs",
+    "validate:quality-ratchet": "node scripts/validate-quality-ratchet.mjs",
     "validate:docs-metadata": "node scripts/validate-docs-metadata.mjs",
     "validate:templates": "node scripts/validate-templates.mjs",
     "validate:domain-packs": "node scripts/validate-domain-packs.mjs",

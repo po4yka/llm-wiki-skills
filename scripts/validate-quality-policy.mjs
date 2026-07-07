@@ -57,6 +57,10 @@ function checkNoUnpinnedTooling() {
 function checkAgentsRulesAreExecutable() {
   assertScriptIncludes('validate', 'validate:quality-policy');
   assertScriptIncludes('validate:quality-policy', 'scripts/validate-quality-policy.mjs');
+  assertScriptIncludes('validate', 'validate:quality-ratchet');
+  assertScriptIncludes('validate:quality-ratchet', 'scripts/validate-quality-ratchet.mjs');
+  assertIncludes('quality-baseline.json', '"skill_smell_warnings"', 'quality-baseline.json: must ratchet skill smell advisory warnings');
+  assertIncludes('quality-baseline.json', '"markdownlint_errors"', 'quality-baseline.json: must ratchet markdownlint advisory errors');
 
   const textFiles = listFiles(repoRoot, (_absPath, relPath) => {
     if (/^(node_modules|\.git|\.tmp|dist)\//.test(relPath)) return false;
@@ -124,6 +128,10 @@ function checkWorkflowPolicy() {
 
   if (!policy.includes('| markdownlint | workflow job | advisory | advisory |')) {
     fail('docs/security/ci-severity-policy.md: markdownlint advisory status must remain explicit');
+  }
+
+  if (!policy.includes('`npm run validate:quality-ratchet`')) {
+    fail('docs/security/ci-severity-policy.md: quality ratchet gate must be documented');
   }
 
   if (!ci.includes('go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.12')) {

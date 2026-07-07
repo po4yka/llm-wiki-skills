@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "updated": "2026-07-07",
+  "policy": "These values are maximum allowed advisory findings. Lower counts pass and should be followed by lowering this baseline in the same change.",
+  "metrics": {
+    "skill_metadata_warnings": {
+      "max": 9,
+      "command": ["node", "scripts/validate-skills.mjs"],
+      "count_pattern": "^! "
+    },
+    "agent_safety_warnings": {
+      "max": 7,
+      "command": ["node", "scripts/validate-agent-safety.mjs"],
+      "count_pattern": "^! "
+    },
+    "skill_smell_warnings": {
+      "max": 83,
+      "command": ["node", "scripts/validate-skill-smells.mjs"],
+      "count_pattern": "^! "
+    },
+    "markdownlint_errors": {
+      "max": 9227,
+      "command": ["npm", "run", "lint:markdown"],
+      "count_pattern": " error MD[0-9]{3}/",
+      "allow_nonzero_exit": true
+    }
+  }
+}

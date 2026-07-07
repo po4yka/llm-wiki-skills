@@ -20,6 +20,7 @@ This repository contains operational instructions for agents. CI should fail on 
 | Skill router metadata and evals | `npm run validate:router` | fail | fail | Agents need reliable routing metadata and measured utterance-to-skill behavior. |
 | Catalog and index coverage | `npm run validate:coverage` | fail | fail | Hand-maintained catalogs (skills overview, skill router, docs index) must not drift from the skills on disk. |
 | Claim anchors | `npm run validate:claim-anchors` | fail | fail | Duplicate or unsupported claim anchors create false trust. |
+| Advisory quality ratchet | `npm run validate:quality-ratchet` | fail on regressions | fail on regressions | Advisory checks may remain noisy, but the total finding count must not get worse than `quality-baseline.json`. |
 | Examples / semantic fixtures | `npm run check:examples` | fail | fail | Examples are the executable user contract. |
 | Distribution smoke test | `npm run smoke:skills` | fail | fail | The pack must work with the upstream `skills` CLI. |
 | Skill version bump | `npm run check:skill-versions -- --strict` | fail on PRs that change skills | fail | Installed behavior changes must be versioned. In strict mode, missing base refs are failures, not skips. |
@@ -27,6 +28,8 @@ This repository contains operational instructions for agents. CI should fail on 
 | gitleaks | workflow job | advisory until baseline is clean | fail | Prevents secret leakage while allowing existing synthetic fixtures to be reviewed before release. |
 | zizmor | workflow job | advisory | advisory unless configured otherwise | Workflow hardening signal; can be noisy during early governance. |
 | markdownlint | workflow job | advisory | advisory | Style issues should not block urgent safety fixes. |
+
+`quality-baseline.json` stores the current maximum allowed counts for advisory outputs, including skill metadata warnings, agent-safety warnings, skill-smell warnings and markdownlint errors. When a change reduces a count, lower the matching baseline in the same PR; when a change increases a count, fix the underlying issue instead of raising the baseline unless the reviewer accepts the new debt explicitly.
 
 Pinned tool versions:
 
