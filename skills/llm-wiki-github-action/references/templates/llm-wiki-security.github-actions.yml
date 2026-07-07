@@ -89,7 +89,7 @@ jobs:
             redteam_config=templates/promptfoo-llm-wiki-redteam.yaml
           fi
 
-          npx promptfoo@latest redteam run \
+          npx promptfoo@0.121.17 redteam run \
             --config "$redteam_config"
 
   pii-and-export-policy:

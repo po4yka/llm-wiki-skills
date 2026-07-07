@@ -67,7 +67,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          npx promptfoo@latest eval \
+          npx promptfoo@0.121.17 eval \
             -c evals/promptfooconfig.yaml \
             -o eval-results/promptfoo-results.json \
             -o eval-results/promptfoo-report.html \
@@ -78,7 +78,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          npx promptfoo@latest redteam run \
+          npx promptfoo@0.121.17 redteam run \
             --config evals/promptfooconfig.yaml \
             --output eval-results/redteam.yaml
 

@@ -34,6 +34,7 @@ Pinned tool versions:
 - `github.com/gitleaks/gitleaks/v8/cmd/gitleaks@v8.30.1`
 - `github.com/rhysd/actionlint/cmd/actionlint@v1.7.12`
 - `zizmor==1.26.1`
+- `promptfoo@0.121.17` in reusable workflow templates.
 
 ## Promotion path
 

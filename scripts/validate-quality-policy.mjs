@@ -22,15 +22,20 @@ function assertScriptIncludes(scriptName, needle) {
 
 function checkNoUnpinnedTooling() {
   const workflowFiles = listFiles(path.join(repoRoot, '.github', 'workflows'), (_absPath, relPath) => /\.ya?ml$/.test(relPath));
+  const workflowTemplateFiles = listFiles(repoRoot, (_absPath, relPath) => {
+    if (/^(node_modules|\.git|\.tmp|dist)\//.test(relPath)) return false;
+    return /(?:^templates\/|\/references\/templates\/).+\.ya?ml$/.test(relPath);
+  });
   const packageScriptsText = Object.values(packageJson.scripts ?? {}).join('\n');
   const bannedPatterns = [
-    /npx\s+--yes\s+(?!skills@1\.5\.15\b|markdownlint-cli2@0\.23\.0\b)[^\s"'`]+/g,
+    /npx\s+--yes\s+(?!skills@1\.5\.15\b|markdownlint-cli2@0\.23\.0\b|promptfoo@0\.121\.17\b)[^\s"'`]+/g,
     /go install [^\s]+@latest/g,
     /pip install(?: --upgrade)? zizmor(?!==1\.26\.1\b)/g,
+    /\b[\w@./-]+@latest\b/g,
     /skills@latest/g,
   ];
 
-  for (const filePath of workflowFiles) {
+  for (const filePath of [...workflowFiles, ...workflowTemplateFiles]) {
     const relPath = repoRelative(filePath);
     const text = readText(filePath);
 
