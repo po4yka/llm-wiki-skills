@@ -14,6 +14,9 @@ Asking why this matters or whether there is evidence?
 Asking whether LLM-Wiki maps to PAF Nexus/Cortex, which Nexus to start with, or how to build company-level shared context?
   -> llm-wiki-paf-adoption
 
+Asking where company/team information lives, what can be automated, how to sync Confluence/Jira/docs changes, how fragile review is, or whether the cost is worth it?
+  -> llm-wiki-company-flow-audit
+
 Non-developer, browser-first or Confluence-style adoption concern?
   -> llm-wiki-faq
 
@@ -63,6 +66,9 @@ Need browser-first capture or team contribution without git friction?
 
 Need PAF-style Market/Product/Growth Nexus schema or Cortex workflow?
   -> llm-wiki-paf-adoption
+
+Need a connector/source registry plan for Confluence, Jira, Slack, Teams, Drive, GitHub or meetings?
+  -> llm-wiki-company-flow-audit
 ```
 
 ## Daily operation
@@ -102,6 +108,9 @@ Need a with-wiki vs without-wiki adoption benchmark?
 Need to prove a Nexus affects company decisions?
   -> llm-wiki-paf-adoption
 
+Need to weigh maintenance effort against benefit across information flows?
+  -> llm-wiki-company-flow-audit
+
 Worried the wiki will not fit in context?
   -> llm-wiki-retrieval-architect
 ```
@@ -126,6 +135,9 @@ Team rollout, ownership or review gates?
 
 Product Engineer / Product Ops ownership of Nexus/Cortex?
   -> llm-wiki-paf-adoption
+
+Source access boundaries, connector permissions or confidential source routing?
+  -> llm-wiki-company-flow-audit
 ```
 
 ## Publishing and long-term use
