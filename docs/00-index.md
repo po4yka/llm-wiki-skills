@@ -43,7 +43,8 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 6. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
 7. [`09-references.md`](09-references.md)
 8. [`domain-pack-schema.md`](domain-pack-schema.md)
-9. [`release-policy.md`](release-policy.md)
+9. [`technology-decision-record-template.md`](technology-decision-record-template.md)
+10. [`release-policy.md`](release-policy.md)
 
 ### Reviewer path: risk and trust
 
@@ -53,7 +54,8 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 4. [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md)
 5. [`domain-pack-schema.md`](domain-pack-schema.md)
 6. [`security/skill-supply-chain.md`](security/skill-supply-chain.md)
-7. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
+7. [`security/ci-severity-policy.md`](security/ci-severity-policy.md)
+8. [`provenance/claim-anchors.md`](provenance/claim-anchors.md)
 
 ### Operations path
 
@@ -82,11 +84,13 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`20-adoption-objections.md`](20-adoption-objections.md) | Concrete answers for non-developers, browser-first workflows, PR/MR friction, token growth, human-readable documentation, LLM slop and sensitive content. |
 | [`domain-pack-schema.md`](domain-pack-schema.md) | Core `type` and domain `domain_type` schema contract. |
 | [`quickstart.md`](quickstart.md) | Ten-minute first-run guide. |
-| [`skill-router.md`](skill-router.md) | Decision tree for choosing the right skill. |
+| [`skill-router.md`](skill-router.md) | Decision tree for choosing the right skill; mirrored by `skill-router.json`. |
 | [`skills-catalog.md`](skills-catalog.md) | Human-readable skill catalog generated from package metadata. |
+| [`technology-decision-record-template.md`](technology-decision-record-template.md) | Decision record template for adding new infrastructure. |
 | [`release-policy.md`](release-policy.md) | Versioning and release rules. |
 | [`provenance/claim-anchors.md`](provenance/claim-anchors.md) | Claim-level provenance convention. |
 | [`security/skill-supply-chain.md`](security/skill-supply-chain.md) | Security review guide for installing and authoring skills. |
+| [`security/ci-severity-policy.md`](security/ci-severity-policy.md) | CI severity rules for blocking vs advisory checks. |
 | [`agents/README.md`](agents/README.md) | Adapter docs for Claude Code, Codex, Cursor and OpenCode. |
 | [`operations/daily.md`](operations/daily.md) | Daily living-wiki checklist. |
 | [`operations/refresh.md`](operations/refresh.md) | Offline operational refresh reports for stale sources and ecosystem registry verification. |

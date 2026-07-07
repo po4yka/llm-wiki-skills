@@ -1,0 +1,201 @@
+{
+  "$schema": "./templates/schemas/skill-router.schema.json",
+  "version": "0.1.0",
+  "default_entrypoints": [
+    "llm-wiki-orient",
+    "llm-wiki-faq",
+    "llm-wiki-choose",
+    "llm-wiki-doctor"
+  ],
+  "routes": [
+    {
+      "skill": "llm-wiki-orient",
+      "intents": ["what is llm-wiki", "explain pattern", "compare with rag", "solution landscape"],
+      "depends_on": [],
+      "next": ["llm-wiki-faq", "llm-wiki-news-radar", "llm-wiki-choose"],
+      "write_risk": "none",
+      "requires_web": false,
+      "default_mode": "answer"
+    },
+    {
+      "skill": "llm-wiki-faq",
+      "intents": ["why needed", "benefits", "evidence", "proof", "obsidian required", "living wiki"],
+      "depends_on": [],
+      "next": ["llm-wiki-choose", "llm-wiki-eval", "llm-wiki-trust-audit"],
+      "write_risk": "none",
+      "requires_web": false,
+      "default_mode": "answer"
+    },
+    {
+      "skill": "llm-wiki-news-radar",
+      "intents": ["latest news", "fresh releases", "recent papers", "ecosystem changes"],
+      "depends_on": [],
+      "next": ["llm-wiki-ecosystem-registry", "llm-wiki-choose"],
+      "write_risk": "none",
+      "requires_web": true,
+      "default_mode": "answer-with-citations"
+    },
+    {
+      "skill": "llm-wiki-choose",
+      "intents": ["choose tool", "ready-made vs custom", "openwiki vs obsidian", "build or buy"],
+      "depends_on": ["llm-wiki-faq"],
+      "next": ["llm-wiki-setup", "llm-wiki-design", "llm-wiki-doctor"],
+      "write_risk": "none",
+      "requires_web": true,
+      "default_mode": "recommendation"
+    },
+    {
+      "skill": "llm-wiki-doctor",
+      "intents": ["diagnose vault", "what is wrong", "existing docs", "read-only audit"],
+      "depends_on": [],
+      "next": ["llm-wiki-migration-planner", "llm-wiki-provenance", "llm-wiki-trust-audit"],
+      "write_risk": "none",
+      "requires_web": false,
+      "default_mode": "report-only"
+    },
+    {
+      "skill": "llm-wiki-migration-planner",
+      "intents": ["migration plan", "dry-run refactor", "move docs later"],
+      "depends_on": ["llm-wiki-doctor"],
+      "next": ["llm-wiki-refactor", "llm-wiki-obsidian-hardening"],
+      "write_risk": "none",
+      "requires_web": false,
+      "default_mode": "plan-only"
+    },
+    {
+      "skill": "llm-wiki-refactor",
+      "intents": ["refactor docs", "organize vault", "apply migration", "frontmatter normalization"],
+      "depends_on": ["llm-wiki-migration-planner"],
+      "next": ["wiki-lint", "llm-wiki-provenance"],
+      "write_risk": "high",
+      "requires_web": false,
+      "default_mode": "dry-run-first"
+    },
+    {
+      "skill": "wiki-triage",
+      "intents": ["triage inbox", "sort captures", "keep defer drop", "duplicate review"],
+      "depends_on": [],
+      "next": ["wiki-ingest", "llm-wiki-channel-capture"],
+      "write_risk": "low",
+      "requires_web": false,
+      "default_mode": "report-only"
+    },
+    {
+      "skill": "wiki-ingest",
+      "intents": ["ingest source", "add pdf", "add article", "create source page"],
+      "depends_on": ["wiki-triage"],
+      "next": ["wiki-query", "wiki-lint", "llm-wiki-provenance"],
+      "write_risk": "medium",
+      "requires_web": false,
+      "default_mode": "analyze-before-write"
+    },
+    {
+      "skill": "wiki-query",
+      "intents": ["answer from wiki", "research answer", "save reusable answer"],
+      "depends_on": [],
+      "next": ["llm-wiki-eval", "wiki-lint"],
+      "write_risk": "low",
+      "requires_web": false,
+      "default_mode": "answer-and-offer-file-back"
+    },
+    {
+      "skill": "wiki-lint",
+      "intents": ["lint wiki", "broken links", "orphan pages", "stale claims", "review queue"],
+      "depends_on": [],
+      "next": ["llm-wiki-provenance", "llm-wiki-conflict-resolver"],
+      "write_risk": "low",
+      "requires_web": false,
+      "default_mode": "report-only"
+    },
+    {
+      "skill": "llm-wiki-provenance",
+      "intents": ["missing sources", "claim support", "provenance gaps", "unsupported claims"],
+      "depends_on": ["wiki-lint"],
+      "next": ["llm-wiki-claim-anchors", "llm-wiki-conflict-resolver"],
+      "write_risk": "medium",
+      "requires_web": false,
+      "default_mode": "report-or-patch"
+    },
+    {
+      "skill": "llm-wiki-claim-anchors",
+      "intents": ["claim anchors", "claim-level provenance", "stable claim ids", "support labels"],
+      "depends_on": ["llm-wiki-provenance"],
+      "next": ["llm-wiki-conflict-resolver"],
+      "write_risk": "medium",
+      "requires_web": false,
+      "default_mode": "patch-after-evidence"
+    },
+    {
+      "skill": "llm-wiki-conflict-resolver",
+      "intents": ["contradictions", "conflicting claims", "resolve lint findings"],
+      "depends_on": ["wiki-lint", "llm-wiki-provenance"],
+      "next": ["llm-wiki-source-refresh"],
+      "write_risk": "medium",
+      "requires_web": false,
+      "default_mode": "resolution-options"
+    },
+    {
+      "skill": "llm-wiki-eval",
+      "intents": ["evaluate usefulness", "retrieval hit rate", "answer reuse", "wiki value"],
+      "depends_on": [],
+      "next": ["llm-wiki-benchmark-suite", "llm-wiki-eval-tooling"],
+      "write_risk": "low",
+      "requires_web": false,
+      "default_mode": "report-only"
+    },
+    {
+      "skill": "llm-wiki-benchmark-suite",
+      "intents": ["pilot benchmark", "with wiki without wiki", "score usefulness"],
+      "depends_on": ["llm-wiki-eval"],
+      "next": ["llm-wiki-eval-tooling"],
+      "write_risk": "low",
+      "requires_web": false,
+      "default_mode": "report-only"
+    },
+    {
+      "skill": "llm-wiki-security-review",
+      "intents": ["security review", "data boundaries", "mcp exposure", "skill safety"],
+      "depends_on": [],
+      "next": ["llm-wiki-model-policy", "llm-wiki-privacy-redactor"],
+      "write_risk": "none",
+      "requires_web": false,
+      "default_mode": "report-only"
+    },
+    {
+      "skill": "llm-wiki-source-refresh",
+      "intents": ["stale sources", "refresh current claims", "dead links", "current as of"],
+      "depends_on": ["wiki-lint"],
+      "next": ["llm-wiki-provenance", "llm-wiki-conflict-resolver"],
+      "write_risk": "medium",
+      "requires_web": true,
+      "default_mode": "report-or-propose-patch"
+    },
+    {
+      "skill": "llm-wiki-export-publish",
+      "intents": ["publish wiki", "export docs", "public subset", "handbook"],
+      "depends_on": ["llm-wiki-privacy-redactor"],
+      "next": ["llm-wiki-archive"],
+      "write_risk": "medium",
+      "requires_web": false,
+      "default_mode": "publish-plan-first"
+    },
+    {
+      "skill": "llm-wiki-skill-compiler",
+      "intents": ["wiki to skill", "compile procedure", "generate skill"],
+      "depends_on": [],
+      "next": ["llm-wiki-skill-doctor"],
+      "write_risk": "medium",
+      "requires_web": false,
+      "default_mode": "propose-first"
+    },
+    {
+      "skill": "llm-wiki-skill-doctor",
+      "intents": ["review skill", "skill smells", "unsafe skill", "quality audit"],
+      "depends_on": [],
+      "next": [],
+      "write_risk": "none",
+      "requires_web": false,
+      "default_mode": "report-only"
+    }
+  ]
+}
