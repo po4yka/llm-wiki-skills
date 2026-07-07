@@ -137,54 +137,64 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 
 > Numbering policy: numeric prefixes are reserved for the architecture series. Adoption documents use stable named slugs so a prefix identifies at most one root document.
 
-| Document | Role |
-|---|---|
-| [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md) | Defines the pattern: raw/wiki/schema, index/log, ingest/query/lint. |
-| [`02-architecture.md`](02-architecture.md) | Gives a concrete vault layout, metadata model and lifecycle. |
-| [`03-second-brain-methodology.md`](03-second-brain-methodology.md) | Separates useful second-brain methods from methods that become brittle under automation. |
-| [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md) | Describes the failure modes that decide whether the wiki becomes useful or becomes organized misinformation. |
-| [`05-tooling-landscape.md`](05-tooling-landscape.md) | Places LLM-Wiki among RAG, GraphRAG, OpenWiki, Claude Code, Obsidian and local retrieval tools. |
-| [`06-implementation-playbook.md`](06-implementation-playbook.md) | Turns the theory into phases and operating rules. |
-| [`07-skills-overview.md`](07-skills-overview.md) | Explains the provided `skills/*/SKILL.md` procedures. |
-| [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md) | Defines success metrics, lint checks and review gates. |
-| [`09-references.md`](09-references.md) | Lists source families and claims that must be re-verified before decisions. |
-| [`10-skill-system-roadmap.md`](10-skill-system-roadmap.md) | Product roadmap for the Agent Skills distribution pack. |
-| [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md) | Catalog of advanced use-case skills. |
-| [`12-evidence-and-faq.md`](12-evidence-and-faq.md) | Evidence-backed arguments and FAQ answers for adoption questions. |
-| [`13-ecosystem-matrix.md`](13-ecosystem-matrix.md) | Comparison matrix of concrete LLM-Wiki implementations and adjacent tools. |
-| [`14-technology-stack.md`](14-technology-stack.md) | Technology stack reference for building an LLM-Wiki system. |
-| [`15-implementation-deep-dive.md`](15-implementation-deep-dive.md) | Deep dive into open-source LLM-Wiki systems and implementation archetypes. |
-| [`16-retrieval-architecture.md`](16-retrieval-architecture.md) | Retrieval architecture: index contracts, chunking and metadata for wiki-aware search. |
-| [`17-mcp-api-integration.md`](17-mcp-api-integration.md) | MCP and API integration patterns for exposing the wiki to agents. |
-| [`18-evaluation-methodology.md`](18-evaluation-methodology.md) | Layered evaluation methodology for LLM-Wiki pilots and live systems. |
-| [`19-security-threat-model.md`](19-security-threat-model.md) | Security threat model and control baseline. |
-| [`20-ingestion-pipelines.md`](20-ingestion-pipelines.md) | Ingestion pipeline architecture (architecture track). |
-| [`21-publishing-export.md`](21-publishing-export.md) | Publishing and export architecture (architecture track). |
-| [`22-team-operating-model.md`](22-team-operating-model.md) | Team operating model: roles, review gates and rituals (architecture track). |
-| [`23-gitlab-self-hosted-operating-model.md`](23-gitlab-self-hosted-operating-model.md) | Self-hosted GitLab operating model (architecture track). |
-| [`adoption-objections.md`](adoption-objections.md) | Concrete answers for non-developers, browser-first workflows, PR/MR friction, token growth, human-readable documentation, LLM slop and sensitive content. |
-| [`adoption-q-and-a.md`](adoption-q-and-a.md) | Additional adoption Q&A for start-small pilots, ownership, review, cost, ROI, migration, tool replacement, RAG/search boundaries, lock-in, permissions and multi-agent use. |
-| [`criticism-and-mitigations.md`](criticism-and-mitigations.md) | Criticism-first risk register: consensus smoothing, poisoning, cognitive debt, drift, greppable negative value, token burn, injection, benchmark vacuum and novelty decay. |
-| [`paf-nexus-cortex.md`](paf-nexus-cortex.md) | PAF-specific mapping of LLM-Wiki to Nexus/Cortex, first company-level Nexus pilot, shared context governance, decision-impact metrics and portable-vs-build gaps. |
-| [`company-information-flows.md`](company-information-flows.md) | Company information-flow audit: source inventory, automation boundaries, Confluence/Jira/external version refresh, fragility, UI, confidentiality, pitfalls and cost-benefit checks. |
-| [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md) | Human-first design guide: agent-disappears test, human navigation, page contracts, protected synthesis, anti-dump structure and Confluence replacement acceptance tests. |
-| [`domain-pack-schema.md`](domain-pack-schema.md) | Core `type` and domain `domain_type` schema contract. |
-| [`templates-catalog.md`](templates-catalog.md) | Discoverability map for every starter file in `templates/`. |
-| [`quickstart.md`](quickstart.md) | Ten-minute first-run guide. |
-| [`skill-router.md`](skill-router.md) | Decision tree for choosing the right skill; mirrored by `skill-router.json`. |
-| [`skills-catalog.md`](skills-catalog.md) | Human-readable skill catalog generated from package metadata. |
-| [`technology-decision-record-template.md`](technology-decision-record-template.md) | Decision record template for adding new infrastructure. |
-| [`release-policy.md`](release-policy.md) | Versioning and release rules. |
-| [`provenance/claim-anchors.md`](provenance/claim-anchors.md) | Claim-level provenance convention. |
-| [`security/skill-supply-chain.md`](security/skill-supply-chain.md) | Security review guide for installing and authoring skills. |
-| [`security/ci-severity-policy.md`](security/ci-severity-policy.md) | CI severity rules for blocking vs advisory checks. |
-| [`security/redaction-policy.md`](security/redaction-policy.md) | Privacy checks before publishing a wiki subset or sending context to external models. |
-| [`agents/README.md`](agents/README.md) | Adapter docs for [Claude Code](agents/claude-code.md), [Codex](agents/codex.md), [Cursor](agents/cursor.md) and [OpenCode](agents/opencode.md). |
-| [`operations/daily.md`](operations/daily.md) | Daily living-wiki checklist. |
-| [`operations/weekly.md`](operations/weekly.md) | Weekly operations checklist. |
-| [`operations/monthly.md`](operations/monthly.md) | Monthly operations checklist. |
-| [`operations/quarterly.md`](operations/quarterly.md) | Quarterly operations checklist. |
-| [`operations/refresh.md`](operations/refresh.md) | Offline operational refresh reports for stale sources and ecosystem registry verification. |
+<!-- generated:document-map:start -->
+<!-- Generated by `npm run catalog:generate`. Do not edit this block by hand. -->
+
+| Document | Title | Scope | Freshness |
+|---|---|---|---|
+| [`00-index.md`](00-index.md) | LLM-Wiki knowledge base index | navigation map for this repository's LLM-Wiki documentation and skills. |  |
+| [`01-llm-wiki-canon.md`](01-llm-wiki-canon.md) | LLM-Wiki canon | canonical mental model of LLM-Wiki as a data-layer pattern. |  |
+| [`02-architecture.md`](02-architecture.md) | Architecture | concrete local-first architecture for an LLM-Wiki vault. |  |
+| [`03-second-brain-methodology.md`](03-second-brain-methodology.md) | Second-brain methodology in the LLM era | how established second-brain methods change when agents can maintain bookkeeping. | 2026-07-07 |
+| [`04-anti-slop-and-trust.md`](04-anti-slop-and-trust.md) | Anti-slop and trust | controls that prevent an LLM-Wiki from becoming organized misinformation. | 2026-07-07 |
+| [`05-tooling-landscape.md`](05-tooling-landscape.md) | Tooling landscape | where LLM-Wiki sits among current agent memory, retrieval and knowledge tooling. | 2026-07-07 |
+| [`06-implementation-playbook.md`](06-implementation-playbook.md) | Implementation playbook | phased adoption path for a personal workflow, a team workflow or a product prototype. | 2026-07-07 |
+| [`07-skills-overview.md`](07-skills-overview.md) | Skills overview | how the included installable Agent Skills help users adopt and operate LLM-Wiki systems. | 2026-07-07 |
+| [`08-evaluation-and-metrics.md`](08-evaluation-and-metrics.md) | Evaluation and metrics | how to decide whether an LLM-Wiki workflow is actually working. | 2026-07-07 |
+| [`09-references.md`](09-references.md) | References and re-verification map | source families behind this documentation and claims that should be re-verified before product decisions. | 2026-07-07 |
+| [`10-skill-system-roadmap.md`](10-skill-system-roadmap.md) | LLM-Wiki skill system roadmap | product direction for this repository as an installable Agent Skills pack. | 2026-07-07 |
+| [`11-use-case-skill-catalog.md`](11-use-case-skill-catalog.md) | Advanced LLM-Wiki use-case skill catalog | advanced use-case and hardening skills that extend the core LLM-Wiki lifecycle pack. | 2026-07-07 |
+| [`12-evidence-and-faq.md`](12-evidence-and-faq.md) | Evidence-backed FAQ for LLM-Wiki | аргументы, сравнительные данные и честные оговорки для ответов пользователям, которые спрашивают «зачем LLM-Wiki», «что я получу», «есть ли доказательства», «как поддерживать живой wiki» и «нужен ли Obsidian». | 2026-07-06 |
+| [`13-ecosystem-matrix.md`](13-ecosystem-matrix.md) | LLM-Wiki ecosystem matrix | concrete open-source implementations, adjacent frameworks, and decision criteria for choosing an LLM-Wiki stack. | 2026-07-06 |
+| [`14-technology-stack.md`](14-technology-stack.md) | LLM-Wiki technology stack reference | concrete technology choices for retrieval, ingestion, MCP integration, evaluation, security, publishing and archiving. | 2026-07-07 |
+| [`15-implementation-deep-dive.md`](15-implementation-deep-dive.md) | Implementation deep dive: open-source LLM-Wiki systems | implementation-level comparison of public LLM-Wiki and adjacent wiki-memory systems. | 2026-07-06 |
+| [`16-retrieval-architecture.md`](16-retrieval-architecture.md) | Retrieval architecture for LLM-Wiki | retrieval/index architecture for local-first, repo-docs, hosted, team and product LLM-Wiki systems. | 2026-07-06 |
+| [`17-mcp-api-integration.md`](17-mcp-api-integration.md) | MCP/API integration for LLM-Wiki | Model Context Protocol and HTTP/API integration architecture for LLM-Wiki systems. | 2026-07-06 |
+| [`18-evaluation-methodology.md`](18-evaluation-methodology.md) | Evaluation methodology for LLM-Wiki | retrieval, grounding, usefulness, operations, security and rollout evaluation for LLM-Wiki systems. | 2026-07-06 |
+| [`19-security-threat-model.md`](19-security-threat-model.md) | Security threat model for LLM-Wiki | LLM-Wiki security architecture, threat model, controls, CI gates and incident response. | 2026-07-06 |
+| [`20-ingestion-pipelines.md`](20-ingestion-pipelines.md) | Ingestion pipelines for LLM-Wiki | capture, parsing, normalization, enrichment, chunking, provenance, review and compilation into durable LLM-Wiki artifacts. | 2026-07-06 |
+| [`21-publishing-export.md`](21-publishing-export.md) | Publishing and export architecture for LLM-Wiki | publishing reviewed LLM-Wiki content into human-readable, agent-readable, API, graph and archive outputs. | 2026-07-07 |
+| [`22-team-operating-model.md`](22-team-operating-model.md) | Team operating model for LLM-Wiki | organizational model, governance, ownership, review workflows, metrics, rituals and rollout practices for teams operating LLM-Wiki systems. | 2026-07-07 |
+| [`23-gitlab-self-hosted-operating-model.md`](23-gitlab-self-hosted-operating-model.md) | Self-hosted GitLab operating model for LLM-Wiki | team operating model for LLM-Wiki in self-managed GitLab and internal enterprise environments. | 2026-07-07 |
+| [`24-human-first-llm-wiki.md`](24-human-first-llm-wiki.md) | Human-first LLM-Wiki design | fix the adoption argument that LLM-Wiki must not be treated as an agent-generated document dump. The wiki must remain useful when agents are unavailable, while agents assist with bookkeeping, linking, linting and refresh. |  |
+| [`adoption-objections.md`](adoption-objections.md) | Adoption objection playbook | concrete answer patterns for non-developers, browser-first teams, token-growth concerns, human-readable documentation, LLM slop, and sensitive content boundaries. | 2026-07-07 |
+| [`adoption-q-and-a.md`](adoption-q-and-a.md) | Additional adoption Q&A playbook | additional questions that commonly appear after the first LLM-Wiki explanation: start-small path, governance, cost, ROI, migration, ownership, mistakes, vendor lock-in, RAG/search boundaries, multi-agent use, access control and long-term durability. | 2026-07-07 |
+| [`agents/claude-code.md`](agents/claude-code.md) | Claude Code adapter | Claude Code adapter |  |
+| [`agents/codex.md`](agents/codex.md) | Codex adapter | Codex adapter |  |
+| [`agents/cursor.md`](agents/cursor.md) | Cursor adapter | Cursor adapter |  |
+| [`agents/opencode.md`](agents/opencode.md) | OpenCode adapter | OpenCode adapter |  |
+| [`agents/README.md`](agents/README.md) | Agent adapter docs | Agent adapter docs |  |
+| [`company-information-flows.md`](company-information-flows.md) | Company information flows for LLM-Wiki adoption | answer how a typical product/engineering/company team can collect internal knowledge into an LLM-Wiki, what can be automated, what cannot, how external document changes are tracked, how fragile the system is, how to handle confidential information, and how to weigh maintenance cost against value. | 2026-07-07 |
+| [`criticism-and-mitigations.md`](criticism-and-mitigations.md) | LLM-Wiki criticism and mitigation map | practical risk register for the LLM-Wiki pattern: real objections, mitigations, residual risks and routing to skills. | 2026-07-07 |
+| [`domain-pack-schema.md`](domain-pack-schema.md) | Domain pack schema consistency | how domain packs extend LLM-Wiki without changing the stable core page schema. |  |
+| [`operations/daily.md`](operations/daily.md) | Daily LLM-Wiki operations | Daily LLM-Wiki operations |  |
+| [`operations/monthly.md`](operations/monthly.md) | Monthly LLM-Wiki operations | Monthly LLM-Wiki operations |  |
+| [`operations/quarterly.md`](operations/quarterly.md) | Quarterly LLM-Wiki operations | Quarterly LLM-Wiki operations |  |
+| [`operations/refresh.md`](operations/refresh.md) | Operational refresh reports | deterministic offline refresh reports for stale source-backed claims and ecosystem registry entries. |  |
+| [`operations/weekly.md`](operations/weekly.md) | Weekly LLM-Wiki operations | Weekly LLM-Wiki operations |  |
+| [`paf-nexus-cortex.md`](paf-nexus-cortex.md) | PAF Nexus/Cortex mapping for LLM-Wiki adoption | answer whether LLM-Wiki mechanics map to Product Architecture Framework (PAF) concepts of Nexus and Cortex, how far that analogy goes, and what first company-level step is practical. | 2026-07-07 |
+| [`provenance/claim-anchors.md`](provenance/claim-anchors.md) | Claim-level provenance anchors | deterministic Markdown convention for claim-level provenance in LLM-Wiki pages. |  |
+| [`quickstart.md`](quickstart.md) | Quickstart: first LLM-Wiki in 10 minutes | Quickstart: first LLM-Wiki in 10 minutes |  |
+| [`release-policy.md`](release-policy.md) | Release and versioning policy | how this Agent Skills pack versions skills, docs and release artifacts. |  |
+| [`security/ci-severity-policy.md`](security/ci-severity-policy.md) | CI severity policy | which checks should fail CI and which are advisory for this Agent Skills pack. |  |
+| [`security/redaction-policy.md`](security/redaction-policy.md) | Redaction policy | privacy checks before publishing an LLM-Wiki subset or sending context to external models. |  |
+| [`security/skill-supply-chain.md`](security/skill-supply-chain.md) | Agent Skills supply-chain security | how to review third-party Agent Skills before installation or distribution. |  |
+| [`skill-router.md`](skill-router.md) | Skill router | Skill router |  |
+| [`skills-catalog.md`](skills-catalog.md) | Skills catalog | Skills catalog |  |
+| [`technology-decision-record-template.md`](technology-decision-record-template.md) | Technology decision record template | review-gated decision record for adding retrieval, ingestion, MCP/API, evaluation, security or publishing infrastructure to an LLM-Wiki. |  |
+| [`templates-catalog.md`](templates-catalog.md) | Templates catalog | discoverability map for starter files in `templates/`. |  |
+
+<!-- generated:document-map:end -->
 
 ## Core vocabulary
 

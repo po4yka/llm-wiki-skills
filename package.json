@@ -19,7 +19,7 @@
     "validate:coverage": "node scripts/validate-coverage.mjs",
     "check:skill-versions": "node scripts/check-skill-version-bumps.mjs",
     "lint:markdown": "npx --yes markdownlint-cli2@0.23.0 \"**/*.md\" \"#node_modules\"",
-    "catalog:generate": "node scripts/generate-skills-catalog.mjs && node scripts/generate-skills-catalog-md.mjs",
+    "catalog:generate": "node scripts/generate-skills-catalog.mjs && node scripts/generate-skills-catalog-md.mjs && node scripts/generate-catalog-mirrors.mjs",
     "check:examples": "node scripts/check-examples.mjs",
     "smoke:skills": "node scripts/smoke-skills-distribution.mjs",
     "refresh:source-report": "node scripts/source-refresh-scan.mjs",

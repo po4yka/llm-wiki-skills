@@ -46,8 +46,8 @@ jobs:
       - name: Generate catalogs
         run: npm run catalog:generate
 
-      - name: Verify generated Markdown catalog is committed
-        run: git diff --exit-code -- docs/skills-catalog.md
+      - name: Verify generated catalog mirrors are committed
+        run: git diff --exit-code -- docs/skills-catalog.md docs/07-skills-overview.md docs/00-index.md docs/skill-router.md
 
   distribution-smoke:
     name: Distribution smoke test
