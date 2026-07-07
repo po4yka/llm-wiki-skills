@@ -4,10 +4,11 @@
   "groupings": [
     {
       "title": "Learn and choose",
-      "description": "Explain the LLM-Wiki pattern, answer evidence-backed adoption questions, track current ecosystem changes, and help users choose a ready-made or custom solution.",
+      "description": "Explain the LLM-Wiki pattern, answer evidence-backed adoption questions, track current ecosystem changes, map PAF Nexus/Cortex adoption, and help users choose a ready-made or custom solution.",
       "skills": [
         "llm-wiki-orient",
         "llm-wiki-faq",
+        "llm-wiki-paf-adoption",
         "llm-wiki-news-radar",
         "llm-wiki-choose"
       ]
