@@ -1,0 +1,135 @@
+# GitLab protected branch and environment policy template for LLM-Wiki
+# Use with llm-wiki-gitlab-operating-model.
+
+metadata:
+  policy_id: gitlab-llm-wiki-protection
+  version: "0.1.0"
+  owner: ""
+  reviewed_at: "YYYY-MM-DD"
+  applies_to:
+    groups: []
+    projects: []
+
+protected_branches:
+  - name: main
+    allowed_to_merge:
+      - Maintainers
+    allowed_to_push_and_merge: []
+    allowed_to_force_push: false
+    require_code_owner_approval: true
+    required_mr_approvals: 2
+    prevent_author_approval: true
+    reset_approvals_on_push: true
+    required_checks:
+      - wiki_lint
+      - citation_check
+      - eval_smoke
+      - security_scan
+
+  - name: release/*
+    allowed_to_merge:
+      - ReleaseManagers
+    allowed_to_push_and_merge: []
+    allowed_to_force_push: false
+    require_code_owner_approval: true
+    required_mr_approvals: 2
+    prevent_author_approval: true
+    reset_approvals_on_push: true
+    required_checks:
+      - full_eval
+      - export_manifest
+      - redaction_report
+      - release_artifacts
+
+  - name: hotfix/*
+    allowed_to_merge:
+      - Maintainers
+    allowed_to_push_and_merge:
+      - ReleaseAutomation
+    allowed_to_force_push: false
+    require_code_owner_approval: true
+    required_mr_approvals: 1
+    prevent_author_approval: true
+    reset_approvals_on_push: true
+    required_checks:
+      - security_scan
+      - rollback_plan
+
+protected_environments:
+  - name: production
+    deployment_tier: production
+    allowed_deployers:
+      - ReleaseManagers
+      - PlatformDeployers
+    required_approvals: 2
+    approvers:
+      - SecurityApprovers
+      - DomainOwners
+    required_artifacts:
+      - release_manifest
+      - eval_scorecard
+      - rollback_plan
+
+  - name: internal-docs
+    deployment_tier: production
+    allowed_deployers:
+      - PublishingMaintainers
+    required_approvals: 1
+    approvers:
+      - PublishingApprovers
+    required_artifacts:
+      - export_manifest
+      - broken_link_report
+      - citation_report
+
+  - name: public-export
+    deployment_tier: production
+    allowed_deployers:
+      - PublishingMaintainers
+    required_approvals: 2
+    approvers:
+      - SecurityApprovers
+      - PublishingApprovers
+    required_artifacts:
+      - export_manifest
+      - redaction_report
+      - search_index_report
+      - checksums
+
+  - name: agent-bundle
+    deployment_tier: production
+    allowed_deployers:
+      - PublishingMaintainers
+    required_approvals: 2
+    approvers:
+      - SecurityApprovers
+      - ProductOwners
+    required_artifacts:
+      - agent_bundle_manifest
+      - redaction_report
+      - eval_scorecard
+      - checksums
+
+  - name: mcp-api-internal
+    deployment_tier: production
+    allowed_deployers:
+      - PlatformDeployers
+    required_approvals: 2
+    approvers:
+      - SecurityApprovers
+      - PlatformApprovers
+    required_artifacts:
+      - openapi_or_mcp_contract
+      - auth_scope_report
+      - redteam_report
+      - rollback_plan
+
+exceptions:
+  break_glass:
+    allowed: true
+    requires_issue: true
+    requires_post_incident_review: true
+    max_duration_hours: 24
+    approvers:
+      - SecurityApprovers
+      - IncidentCommander
