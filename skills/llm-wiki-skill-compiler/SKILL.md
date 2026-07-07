@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki and write access to a skills repository for apply mode.
 metadata:
   author: po4yka
-  version: "0.1.1"
+  version: "0.2.0"
   install_scope: self-contained
 ---
 
@@ -87,9 +87,15 @@ Set `install_scope: self-contained` when the skill bundles everything it referen
 
 Add links back to source wiki pages in a `## Source knowledge` section when useful.
 
-### 5. Update package metadata
+### 5. Update package metadata and validate
 
-If writing files, update `skills.sh.json` and run or recommend validation.
+If writing files, update `skills.sh.json`, then validate the generated skills with the bundled read-only auditor:
+
+```bash
+node scripts/audit-skills.mjs <path-to-generated-skills>
+```
+
+Fix every reported error before delivering; treat warnings as review items. Do not declare a generated skill valid without running the script.
 
 ## Output
 

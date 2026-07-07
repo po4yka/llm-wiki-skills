@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access to a Markdown LLM-Wiki vault; git history improves protected-section and agent-edit checks.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.3.0"
   install_scope: self-contained
 ---
 
@@ -43,41 +43,42 @@ Not allowed by default:
 
 ## Procedure
 
-### 1. Inventory
+### 1. Run deterministic checks
 
-Collect total pages by type and status, pages missing required frontmatter, pages changed since last lint and pages without source backlinks.
+```bash
+node scripts/wiki-lint-core.mjs <vault-path>
+```
 
-### 2. Link checks
+The bundled script is read-only and prints a draft report covering the mechanical checks. Do not re-derive these by hand; re-run the script instead:
 
-Report broken wikilinks, orphan pages, pages with no outbound links, duplicate titles, near-duplicate page slugs and pages missing from `wiki/index.md` but likely important.
+- inventory: page counts by type/status, missing or malformed required frontmatter;
+- links: broken wikilinks and relative links, orphan pages, pages with no outbound links, duplicate titles, near-duplicate slugs;
+- provenance: generated or `reviewed`/`verified` factual pages without `source_paths`/`source_urls`, high-confidence pages with no source reference;
+- trust: `ai_confidence < 0.70` without `review_required: true`, `review_required: false` on draft pages, `verified` pages past `stale_after`, ambiguous claim support outside review;
+- taxonomy: unknown types/statuses, tags missing from `_meta/taxonomy.md`, unused taxonomy tags.
 
-### 3. Provenance checks
+Use `--strict` in CI to fail on critical/high findings.
 
-Report factual pages without `source_paths` or `source_urls`, high-confidence claims with no source reference, `reviewed`/`verified` pages with missing provenance, stale source hashes when available and generated pages that cite only other generated pages.
+### 2. Add judgement-only checks
 
-### 4. Trust checks
+The script cannot see these; check them manually:
 
-Report:
-
-- `ai_confidence < 0.70` without `review_required: true`;
-- `review_required: false` on draft pages;
-- `verified` pages past `stale_after`;
+- pages changed since the last lint and pages without source backlinks in git history;
 - protected human sections changed by recent agent commits;
-- ambiguous claims outside review queues.
+- stale source hashes when available;
+- generated pages that cite only other generated pages;
+- pages missing from `wiki/index.md` that are likely important;
+- spelling-variant and overbroad tags beyond exact taxonomy mismatches.
 
-### 5. Contradiction checks
+### 3. Contradiction checks
 
 Look for tensions such as incompatible tool maturity claims, local-first vs cloud-only descriptions, stale landscape claims contradicting newer source pages, lifecycle status conflicts or incompatible defaults.
 
 Report contradictions with evidence. Do not auto-resolve them.
 
-### 6. Taxonomy checks
+### 4. Report
 
-Compare tags and page types against `_meta/taxonomy.md`. Report unknown tags, spelling variants, unused tags, overbroad tags and page type drift.
-
-### 7. Report
-
-Create a report like:
+Start from the script's draft report, merge in the judgement-only and contradiction findings, and save it as `_agent/reports/YYYY-MM-DD-lint.md`:
 
 ```markdown
 # Wiki lint report: YYYY-MM-DD

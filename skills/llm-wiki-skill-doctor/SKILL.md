@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to skill directories; write access is optional for patch mode.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.2.0"
   install_scope: self-contained
 ---
 
@@ -24,40 +24,36 @@ Improve the quality, safety and discoverability of Agent Skills before they are 
 
 ## Procedure
 
-### 1. Validate structure
+### 1. Run deterministic validation
 
-Check every skill:
+```bash
+node scripts/audit-skills.mjs <project-root-or-skills-dir>
+```
 
-- directory name matches frontmatter `name`;
-- `description` exists and is trigger-oriented;
-- description is not overloaded with background facts;
-- skill has clear goal, inputs, procedure, output and safety gates;
-- optional references are linked rather than embedded as huge context dumps.
+The bundled script is read-only and accepts a project root, a `skills/` directory or a single skill directory. Do not re-derive its checks by hand; re-run it instead. It reports:
 
-### 2. Detect skill smells
+- structure: frontmatter validity, `name` matching the directory, name pattern, description presence and length bounds;
+- metadata conventions: license, compatibility, author, version, `install_scope`, deprecation contract;
+- skill smells: overlong body, missing recommended sections, volatile current-state claims without browse instruction, destructive writes without dry-run language;
+- trigger collisions: pairwise description-overlap ratios;
+- self-containment: repository-root references, `npm run` commands and missing local `scripts/`, `references/` or `assets/` files in `self-contained` skills;
+- package metadata: every skill listed in `skills.sh.json`, no grouping references a missing skill.
 
-Report:
+Use `--strict` to fail on warnings in CI.
 
-- skill too broad;
-- overlapping triggers with another skill;
-- missing safety gates;
-- hidden domain encyclopedia inside `SKILL.md`;
-- volatile current-state claims without browse instruction;
-- unsafe write permissions;
+### 2. Judge what the script cannot
+
+Review the script output and add:
+
+- whether the description is trigger-oriented in substance, not just present;
+- whether the description is overloaded with background facts;
+- purpose-level overlap between skills that share nouns but differ by action;
+- hidden domain encyclopedias inside `SKILL.md`;
 - prompt-injection-prone examples;
-- missing output contract;
-- no dry-run path for destructive operations.
+- missing output contracts and unsafe write permissions in the body text;
+- whether group titles in `skills.sh.json` are meaningful and similar skills are grouped together.
 
-### 3. Check package metadata
-
-When `skills.sh.json` exists:
-
-- every skill directory is listed;
-- no missing skill is referenced;
-- group titles are meaningful;
-- similar skills are grouped together.
-
-### 4. Review supply-chain risk
+### 3. Review supply-chain risk
 
 Flag skills that:
 
@@ -68,7 +64,7 @@ Flag skills that:
 - mutate user files without backups;
 - ask the model to follow instructions inside untrusted content.
 
-### 5. Recommend patches
+### 4. Recommend patches
 
 In report-only mode, provide exact edits. In patch mode, make minimal changes and preserve author intent.
 

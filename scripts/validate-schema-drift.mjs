@@ -99,6 +99,13 @@ assertFilesEqual('docs/16-retrieval-architecture.md', 'skills/llm-wiki-retrieval
 assertFilesEqual('templates/team-raci-daci.yaml', 'skills/llm-wiki-gitlab-operating-model/references/templates/team-raci-daci.yaml');
 assertFilesEqual('templates/schemas/canonical-vocabularies.json', 'skills/llm-wiki-gitlab-operating-model/references/templates/schemas/canonical-vocabularies.json');
 
+// Bundled script copies must not drift from their canonical scripts/ versions.
+assertFilesEqual('scripts/validate-claim-anchors.mjs', 'skills/llm-wiki-claim-anchors/scripts/validate-claim-anchors.mjs');
+assertFilesEqual('scripts/redact-preview.mjs', 'skills/llm-wiki-privacy-redactor/scripts/redact-preview.mjs');
+assertFilesEqual('scripts/wiki-lint-core.mjs', 'skills/wiki-lint/scripts/wiki-lint-core.mjs');
+assertFilesEqual('scripts/audit-skills.mjs', 'skills/llm-wiki-skill-doctor/scripts/audit-skills.mjs');
+assertFilesEqual('scripts/audit-skills.mjs', 'skills/llm-wiki-skill-compiler/scripts/audit-skills.mjs');
+
 const volatileBenchmarkPatterns = [
   /\b2\.0[-–]8\.1\s+F1\b/i,
   /\b6\.63\s+F1\b/i,
