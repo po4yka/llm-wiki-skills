@@ -1,0 +1,166 @@
+# LLM-Wiki team operating model template
+# Use with llm-wiki-team-rollout.
+
+team:
+  name: "LLM-Wiki Core Team"
+  stage: pilot # pilot|early-production|business-critical|regulated-or-24x7
+  owner: ""
+  product_owner: ""
+  technical_lead: ""
+  timezone_policy: "business-hours"
+  support_model: business-hours # business-hours|extended-hours|24x7
+
+mission:
+  primary_use_cases:
+    - onboarding
+    - agent-context
+    - decision-provenance
+  users: []
+  non_goals: []
+  success_criteria: []
+
+roles:
+  product_owner:
+    owner: ""
+    responsibilities:
+      - roadmap
+      - prioritization
+      - stakeholder alignment
+      - acceptance thresholds
+  technical_lead:
+    owner: ""
+    responsibilities:
+      - architecture
+      - schemas
+      - MCP/API contracts
+      - technical decisions
+  knowledge_engineer:
+    owner: ""
+    responsibilities:
+      - source model
+      - taxonomy
+      - page conventions
+      - review queues
+  retrieval_eval_engineer:
+    owner: ""
+    responsibilities:
+      - retrieval quality
+      - eval datasets
+      - scorecards
+      - regression triage
+  platform_sre:
+    owner: ""
+    responsibilities:
+      - CI/CD
+      - observability
+      - SLOs
+      - runbooks
+      - incident response
+  security_engineer:
+    owner: ""
+    responsibilities:
+      - threat model
+      - approval boundaries
+      - redaction/security checks
+      - incident readiness
+  publishing_owner:
+    owner: ""
+    responsibilities:
+      - export profiles
+      - release notes
+      - publication manifests
+      - docs IA
+  domain_editors:
+    - domain: ""
+      owner: ""
+      paths: []
+
+governance:
+  decision_model: daci
+  execution_model: raci
+  write_model: pr-based # read-only|pr-based|draft-wiki|direct-local
+  self_approval_allowed: false
+  direct_agent_writes_allowed: false
+  required_review_states_for_production:
+    - reviewed
+    - verified
+    - published
+  excluded_review_states:
+    - draft
+    - rejected
+    - stale
+    - quarantined
+
+repository_controls:
+  codeowners: true
+  branch_protection: true
+  required_checks: true
+  protected_environments:
+    - production
+    - public-export
+  workflow_permissions_minimal: true
+  required_review_paths:
+    - .github/**
+    - skills/**
+    - templates/**
+    - policies/**
+    - api/**
+    - mcp/**
+    - exports/profiles/**
+    - wiki/policies/**
+
+metrics:
+  review_queue:
+    median_age_days_max: 7
+    high_risk_age_days_max: 3
+  retrieval:
+    recall_at_10_min: 0.80
+    query_success_rate_min: 0.85
+  grounding:
+    citation_coverage_min: 0.90
+    material_unsupported_claims_max: 0
+  operations:
+    index_freshness_hours_max: 24
+    stale_page_rate_max: 0.10
+  publishing:
+    blocking_redaction_findings_max: 0
+    broken_public_links_max: 0
+  team_health:
+    toil_percentage_max: 0.35
+    monthly_health_monitor: true
+
+rituals:
+  daily_async_triage: true
+  weekly_eval_review: true
+  weekly_review_queue_grooming: true
+  biweekly_architecture_security_review: true
+  monthly_scorecard_review: true
+  monthly_team_health_review: true
+  quarterly_operating_model_review: true
+
+rollout:
+  day_1_14:
+    - charter
+    - working_agreements
+    - owners
+    - initial_raci
+  day_15_30:
+    - pr_based_write_model
+    - codeowners
+    - review_states
+    - review_queues
+  day_31_45:
+    - eval_scorecard
+    - handoff_maps
+  day_46_60:
+    - slos
+    - dashboards
+    - runbooks
+  day_61_75:
+    - mcp_api_export_governance
+    - protected_environments
+    - decision_records
+  day_76_90:
+    - health_monitor
+    - toil_review
+    - staffing_gap_review
