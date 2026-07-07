@@ -70,6 +70,7 @@ It includes skills for:
 |---|---|
 | [`llm-wiki-orient`](skills/llm-wiki-orient/SKILL.md) | The user is new to LLM-Wiki and wants the pattern, trade-offs and solution landscape explained. |
 | [`llm-wiki-faq`](skills/llm-wiki-faq/SKILL.md) | The user asks why LLM-Wiki is needed, what benefits it gives, what evidence exists, how to keep it alive, or whether Obsidian is required. |
+| [`llm-wiki-paf-adoption`](skills/llm-wiki-paf-adoption/SKILL.md) | The user asks how LLM-Wiki maps to PAF Nexus/Cortex adoption, company-level Nexus pilots, shared context governance or decision-impact measurement. |
 | [`llm-wiki-news-radar`](skills/llm-wiki-news-radar/SKILL.md) | The user asks for fresh news, projects, papers, releases or ecosystem changes. |
 | [`llm-wiki-choose`](skills/llm-wiki-choose/SKILL.md) | The user needs help deciding whether to adopt a ready-made solution or build their own. |
 
@@ -112,6 +113,7 @@ It includes skills for:
 
 | Skill | Use when |
 |---|---|
+| [`llm-wiki-company-flow-audit`](skills/llm-wiki-company-flow-audit/SKILL.md) | The user wants to map company knowledge flows, automation boundaries, sync points, permissions, review UI needs or maintenance trade-offs into an adoption plan. |
 | [`llm-wiki-capture-pipeline`](skills/llm-wiki-capture-pipeline/SKILL.md) | The user wants a general inbox/capture pipeline. |
 | [`llm-wiki-channel-capture`](skills/llm-wiki-channel-capture/SKILL.md) | A specific channel such as Telegram, email, browser clips, voice, PDFs, GitHub or Slack needs capture rules. |
 | [`llm-wiki-interview`](skills/llm-wiki-interview/SKILL.md) | Tacit knowledge should be extracted through an agent-led interview. |

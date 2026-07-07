@@ -28,10 +28,19 @@ New to LLM-Wiki?
 Asking why this matters or whether there is evidence?
   -> llm-wiki-faq
 
+Asking whether LLM-Wiki maps to PAF Nexus/Cortex, which Nexus to start with, or how to build company-level shared context?
+  -> llm-wiki-paf-adoption
+
+Asking where company/team information lives, what can be automated, how to sync Confluence/Jira/docs changes, how fragile review is, or whether the cost is worth it?
+  -> llm-wiki-company-flow-audit
+
 Non-developer, browser-first or Confluence-style adoption concern?
   -> llm-wiki-faq
 
 Worried about PR/MR friction, branch sync, token growth, human-readable docs, LLM slop or sensitive data?
+  -> llm-wiki-faq
+
+Asking where to start, when not to use it, who owns/reviews it, cost, ROI, migration risk, replacing Confluence/RAG, vendor lock-in or multi-agent use?
   -> llm-wiki-faq
 
 Need current tools/news/releases?
@@ -71,6 +80,12 @@ Need GitHub maintenance automation?
 
 Need browser-first capture or team contribution without git friction?
   -> llm-wiki-team-rollout
+
+Need PAF-style Market/Product/Growth Nexus schema or Cortex workflow?
+  -> llm-wiki-paf-adoption
+
+Need a connector/source registry plan for Confluence, Jira, Slack, Teams, Drive, GitHub or meetings?
+  -> llm-wiki-company-flow-audit
 ```
 
 ## Daily operation
@@ -104,6 +119,15 @@ Worried about slop?
 Need to prove value?
   -> llm-wiki-eval
 
+Need a with-wiki vs without-wiki adoption benchmark?
+  -> llm-wiki-benchmark-suite
+
+Need to prove a Nexus affects company decisions?
+  -> llm-wiki-paf-adoption
+
+Need to weigh maintenance effort against benefit across information flows?
+  -> llm-wiki-company-flow-audit
+
 Worried the wiki will not fit in context?
   -> llm-wiki-retrieval-architect
 ```
@@ -120,11 +144,17 @@ Sensitive data, PII, customer data or secrets in sources?
 Model/provider policy?
   -> llm-wiki-model-policy
 
-Agent memory boundary?
+Permissions, multi-agent access or AGENTS.md/wiki boundary?
   -> llm-wiki-agent-memory-bridge
 
-Team rollout?
+Team rollout, ownership or review gates?
   -> llm-wiki-team-rollout
+
+Product Engineer / Product Ops ownership of Nexus/Cortex?
+  -> llm-wiki-paf-adoption
+
+Source access boundaries, connector permissions or confidential source routing?
+  -> llm-wiki-company-flow-audit
 ```
 
 ## Publishing and long-term use
@@ -133,10 +163,10 @@ Team rollout?
 Publish safe subset?
   -> llm-wiki-export-publish
 
-Archive for long-term durability?
+Archive for long-term durability or avoid vendor lock-in?
   -> llm-wiki-archive
 
-Refresh stale sources?
+Refresh stale sources or source-link rot?
   -> llm-wiki-source-refresh
 
 Redact private content?

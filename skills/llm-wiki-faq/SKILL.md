@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-faq
-description: Answer evidence-backed user questions and objections about LLM-Wiki. Use when the user asks why LLM-Wiki is needed, what benefits they will get, whether there is comparative evidence, how to keep the wiki alive, whether Obsidian is required, whether non-developers can use it, whether PR/MR workflows are too heavy, whether tokens will be enough, whether docs are for humans or agents, or how to handle sensitive data.
+description: Answer evidence-backed adoption questions and objections about LLM-Wiki. Use when the user asks why it matters, what benefits or evidence exist, how to keep it alive, whether Obsidian/RAG/Confluence are required or replaced, whether non-developers can use it, whether PR/MR workflows are too heavy, whether tokens/costs will scale, who owns or reviews it, how to prove ROI, how to migrate safely, or how to handle sensitive data.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh sources for current ecosystem, tool maturity, pricing, release, or benchmark claims.
 metadata:
   author: po4yka
-  version: "0.1.1"
+  version: "0.1.2"
 ---
 
 # LLM-Wiki FAQ
@@ -32,6 +32,15 @@ Use when the user asks:
 - "Will the wiki fit in the model context as it grows?"
 - "Is this knowledge for agents or humans?"
 - "What content can I upload, and what about sensitive data?"
+- "Where should I start?"
+- "When should I not use it?"
+- "Who owns or reviews the wiki?"
+- "How much time or money will this take?"
+- "How do I prove ROI?"
+- "Does this replace Confluence, Notion, SharePoint, RAG or search?"
+- "How do I migrate safely?"
+- "What if the agent is wrong?"
+- "How do permissions, vendor lock-in, link rot or multi-agent access work?"
 
 ## Required references
 
@@ -39,9 +48,11 @@ Read these when available:
 
 1. `references/evidence-pack.md` for evidence-backed adoption arguments.
 2. `references/adoption-objections.md` for non-developer, Confluence/browser, token, human-readable, slop and sensitive-data objections.
-3. Repository-level docs:
+3. `references/additional-adoption-q-and-a.md` for start-small, ownership, cost, ROI, migration, RAG/search, lock-in and multi-agent questions.
+4. Repository-level docs:
    - `docs/12-evidence-and-faq.md`
    - `docs/20-adoption-objections.md`
+   - `docs/21-adoption-q-and-a.md`
 
 ## Evidence policy
 
@@ -72,6 +83,16 @@ Map the question to one of:
 | Tokens enough? | Do not paste the whole wiki; load `index.md`, search, and open relevant pages progressively. |
 | Agents or humans? | Both; Markdown must stay human-readable, source-backed and reviewable, not an opaque agent cache. |
 | Sensitive content? | Classify data first; route public/internal/confidential/restricted/secrets through different storage/model policies. |
+| Where to start? | Run a small reversible pilot before migrating or building infrastructure. |
+| When not to use? | Avoid it when the corpus is tiny, unreviewed, not reused or ownerless. |
+| Cost/time? | Start with files/search; add model/retrieval/CI cost only after metrics justify it. |
+| ROI? | Compare with-wiki vs without-wiki on real questions and output beyond the vault. |
+| Ownership/review? | Agents draft and maintain bookkeeping; humans promote reviewed/verified knowledge. |
+| Replace tools? | Usually no; Confluence/Notion can be capture surfaces, RAG/search can remain retrieval. |
+| Migration? | Inventory first, dry-run plan second, staged reversible migration third. |
+| Agent mistakes? | Assume errors; use raw sources, draft status, provenance, lint, review gates and dry-run. |
+| Vendor lock-in? | Keep Markdown/JSON/YAML/git/raw files as source of truth; indexes are caches. |
+| Multi-agent use? | Use explicit schemas, write boundaries, least privilege and review gates. |
 
 ### 2. Answer with the right level of confidence
 
@@ -82,6 +103,7 @@ Use language like:
 - "The local decision should be based on a 2-4 week pilot and metrics."
 - "For your case, the key benefit is..."
 - "This objection is valid; the workflow should be designed to avoid that friction."
+- "The safe default is a reversible pilot, not a full migration."
 
 Avoid:
 
@@ -93,6 +115,8 @@ Avoid:
 - "Token limits do not matter."
 - "Generated summaries are documentation quality by default."
 - "It is safe to upload everything."
+- "This replaces your existing tools immediately."
+- "No one needs to own review."
 
 ### 3. Use the core argument
 
@@ -156,7 +180,21 @@ Classify before ingesting:
 
 Route to `llm-wiki-privacy-redactor`, `llm-wiki-model-policy`, `llm-wiki-threat-model` or `llm-wiki-security-review` when the user mentions PII, secrets, regulated records, customer data, credentials or provider boundaries.
 
-### 8. Cite or name evidence
+### 8. Handle broader adoption questions
+
+For start-small, cost, ROI, ownership, review, migration, replacement, lock-in and multi-agent questions, use `references/additional-adoption-q-and-a.md`.
+
+Key defaults:
+
+- start with a reversible pilot;
+- assign human owners for truth and review;
+- keep capture cheap and review risk-based;
+- keep existing tools until the wiki proves value;
+- use search/RAG as complements, not enemies;
+- keep Markdown/raw files as source of truth;
+- measure outputs, not page count.
+
+### 9. Cite or name evidence
 
 For current facts, browse and cite. For static bundled evidence, summarize the source map from `references/evidence-pack.md`.
 
@@ -169,7 +207,7 @@ Important sources to know:
 - Mem0 / MemMachine: persistent structured memory can outperform full-context or naive RAG baselines.
 - 2026 LLM-Wiki retrieval paper: early direct evidence on multi-hop and structured queries.
 
-### 9. Offer a pilot instead of a leap of faith
+### 10. Offer a pilot instead of a leap of faith
 
 Recommend a bounded pilot:
 
@@ -181,17 +219,19 @@ file back reusable answers
 measure retrieval hit rate and answer reuse
 ```
 
-### 10. Route to the next skill
+### 11. Route to the next skill
 
 - Needs solution choice: `llm-wiki-choose`.
 - Needs setup: `llm-wiki-setup`.
 - Has existing docs: `llm-wiki-doctor` then `llm-wiki-migration-planner`.
-- Needs evidence measurement: `llm-wiki-eval`.
+- Needs evidence measurement: `llm-wiki-eval` and `llm-wiki-benchmark-suite`.
 - Worries about slop: `llm-wiki-trust-audit` and `llm-wiki-provenance`.
 - Asks about Obsidian: `llm-wiki-obsidian-hardening` if they already use it; otherwise `llm-wiki-local-first-stack`.
-- Asks about token growth: `llm-wiki-retrieval-architect`.
-- Asks about team/browser workflow: `llm-wiki-team-rollout` and `llm-wiki-github-action`.
-- Asks about sensitive data: `llm-wiki-privacy-redactor`, `llm-wiki-model-policy`, `llm-wiki-threat-model`, `llm-wiki-security-review`.
+- Asks about token growth or RAG/search boundaries: `llm-wiki-retrieval-architect`.
+- Asks about team/browser workflow, ownership or review: `llm-wiki-team-rollout` and `llm-wiki-github-action`.
+- Asks about sensitive data, permissions or model boundaries: `llm-wiki-privacy-redactor`, `llm-wiki-model-policy`, `llm-wiki-threat-model`, `llm-wiki-security-review`.
+- Asks about archive/lock-in/publishing: `llm-wiki-archive` and `llm-wiki-export-publish`.
+- Asks about instruction files or multiple agents: `llm-wiki-agent-memory-bridge`.
 
 ## Output
 
@@ -202,7 +242,7 @@ Use this shape:
 
 ## Why this matters for your case
 
-## Evidence level
+## Evidence level / operating assumption
 
 ## Trade-offs and failure modes
 
@@ -220,3 +260,6 @@ Use this shape:
 - Do not solve token concerns by suggesting larger context windows alone.
 - Do not call generated pages "documentation" unless they are readable, source-backed and reviewable.
 - Do not ingest secrets.
+- Do not claim existing tools must be replaced before a pilot.
+- Do not recommend a team rollout without explicit owners and review gates.
+- Do not use page count as a success metric.
