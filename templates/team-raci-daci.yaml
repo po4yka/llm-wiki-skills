@@ -1,0 +1,121 @@
+# LLM-Wiki RACI/DACI template
+# Use with llm-wiki-team-rollout.
+
+roles:
+  PO: Product Owner
+  TL: Technical Lead / Architect
+  KE: Knowledge Engineer
+  RE: Retrieval and Eval Engineer
+  PE: Platform / SRE Engineer
+  SEC: Security Engineer
+  SME: Domain Editor / SME
+  PUB: Publishing / Docs Manager
+
+raci:
+  - workflow: source_intake_classification
+    responsible: [KE]
+    accountable: PO
+    consulted: [SEC, SME]
+    informed: [TL, RE, PE, PUB]
+    required_checks:
+      - source_manifest_valid
+      - sensitivity_classified
+
+  - workflow: ingestion_profile_change
+    responsible: [KE]
+    accountable: TL
+    consulted: [RE, PE, SEC, SME]
+    informed: [PO, PUB]
+    required_checks:
+      - ingestion_fidelity_smoke
+      - parser_security_review
+
+  - workflow: schema_chunking_metadata_change
+    responsible: [KE]
+    accountable: TL
+    consulted: [RE, PE, SEC, SME]
+    informed: [PO, PUB]
+    required_checks:
+      - wiki_lint
+      - retrieval_smoke
+      - migration_plan_if_breaking
+
+  - workflow: wiki_page_promotion
+    responsible: [KE]
+    accountable: SME
+    consulted: [TL, SEC, PUB]
+    informed: [PO, RE, PE]
+    required_checks:
+      - citations_valid
+      - review_state_valid
+      - no_blocking_lint
+
+  - workflow: retrieval_index_tuning
+    responsible: [RE]
+    accountable: TL
+    consulted: [KE, PE, SEC]
+    informed: [PO, SME, PUB]
+    required_checks:
+      - retrieval_eval_pass
+      - grounding_eval_pass
+      - filter_safety_test
+
+  - workflow: eval_threshold_change
+    responsible: [RE]
+    accountable: PO
+    consulted: [TL, KE, SEC, SME]
+    informed: [PE, PUB]
+    required_checks:
+      - threshold_change_record
+      - human_calibration_sample
+
+  - workflow: mcp_api_contract_change
+    responsible: [PE]
+    accountable: TL
+    consulted: [KE, RE, SEC]
+    informed: [PO, SME, PUB]
+    required_checks:
+      - contract_tests
+      - auth_scope_tests
+      - security_review
+
+  - workflow: public_agent_export_release
+    responsible: [PUB]
+    accountable: PO
+    consulted: [TL, KE, RE, SEC, SME]
+    informed: [PE]
+    required_checks:
+      - export_profile_valid
+      - redaction_report_pass
+      - citation_report_pass
+      - search_index_inspected
+      - export_manifest_and_checksums
+
+  - workflow: incident_response
+    responsible: [PE]
+    accountable: SEC
+    consulted: [TL]
+    informed: [PO, KE, RE, SME, PUB]
+    required_checks:
+      - incident_record
+      - regression_case_added
+      - postmortem_action_items
+
+daci_template:
+  title: ""
+  driver: ""
+  approver: ""
+  contributors: []
+  informed: []
+  context: ""
+  decision_type: architecture|policy|security|publishing|staffing|other
+  options:
+    - option: ""
+      pros: []
+      cons: []
+      risks: []
+  decision: ""
+  consequences: []
+  review_date: "YYYY-MM-DD"
+  linked_prs: []
+  linked_adrs: []

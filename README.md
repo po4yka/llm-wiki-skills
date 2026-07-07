@@ -64,6 +64,7 @@ It includes skills for:
 - benchmarking pilot value and evaluating whether the wiki is useful;
 - auditing provenance, claim anchors, trust, security threat model and model/data policy;
 - refreshing stale sources, redacting private content, publishing and archiving;
+- designing team operating models, ownership, review queues, SLOs, onboarding and GitOps governance;
 - compiling reusable wiki procedures into installable Agent Skills.
 
 ## Skill groups
@@ -148,7 +149,7 @@ It includes skills for:
 | [`llm-wiki-skill-doctor`](skills/llm-wiki-skill-doctor/SKILL.md) | Agent Skills need quality, trigger, overlap or safety review. |
 | [`llm-wiki-skill-compiler`](skills/llm-wiki-skill-compiler/SKILL.md) | Procedural wiki knowledge should become installable Agent Skills. |
 | [`llm-wiki-agent-memory-bridge`](skills/llm-wiki-agent-memory-bridge/SKILL.md) | The user needs boundaries between wiki, skills, instruction files and agent memory. |
-| [`llm-wiki-team-rollout`](skills/llm-wiki-team-rollout/SKILL.md) | A team wants onboarding, ownership, PR review, permissions and knowledge-maintenance workflows. |
+| [`llm-wiki-team-rollout`](skills/llm-wiki-team-rollout/SKILL.md) | A team wants onboarding, ownership, RACI/DACI, PR review, permissions, SLOs, dashboards, operating rituals and knowledge-maintenance workflows. |
 
 ## Repository contents
 
@@ -156,8 +157,8 @@ It includes skills for:
 |---|---|
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
-| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md), [`docs/20-ingestion-pipelines.md`](docs/20-ingestion-pipelines.md), and [`docs/21-publishing-export.md`](docs/21-publishing-export.md). |
-| [`templates/`](templates/) | Starter vault files, source manifests, ingestion profiles, export profiles, schemas and page/report/evaluation/API/security/publishing templates. |
+| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md), [`docs/20-ingestion-pipelines.md`](docs/20-ingestion-pipelines.md), [`docs/21-publishing-export.md`](docs/21-publishing-export.md), and [`docs/22-team-operating-model.md`](docs/22-team-operating-model.md). |
+| [`templates/`](templates/) | Starter vault files, source manifests, ingestion profiles, export profiles, team operating-model files, schemas and page/report/evaluation/API/security/publishing templates. |
 | [`policies/`](policies/) | Policy templates for redaction, retention, review and incident response. |
 | [`examples/`](examples/) | Small fixtures for first-run and validation scenarios. |
 | [`domain-packs/`](domain-packs/) | Domain-specific starter taxonomies and workflows. |
