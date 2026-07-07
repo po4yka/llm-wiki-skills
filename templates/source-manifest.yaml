@@ -14,13 +14,13 @@ size_bytes: 0
 language: ""
 title: ""
 owner: ""
+sensitivity: unknown # public|internal|sensitive|regulated|unknown
+retention_class: default # default|short|long|archive|do-not-retain
+model_policy: unknown # local-only|cloud-allowed|redacted-cloud|unknown
 
 classification:
-  sensitivity: unknown # public|internal|sensitive|regulated|unknown
   tenant_id: ""
   acl_tags: []
-  retention_class: default # default|short|long|archive|do-not-retain
-  model_policy: unknown # local-only|cloud-allowed|redacted-cloud|unknown
   publication_state: private # private|internal|public|archived
 
 parser:
