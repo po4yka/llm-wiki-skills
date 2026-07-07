@@ -1,0 +1,93 @@
+name: llm-wiki-ingestion
+
+on:
+  pull_request:
+    paths:
+      - "raw/**"
+      - "wiki/**"
+      - "templates/source-manifest.yaml"
+      - "templates/ingestion-pipeline-profile.yaml"
+      - "templates/ingestion-fidelity-suite.yaml"
+      - "evals/ingestion/**"
+      - ".github/workflows/llm-wiki-ingestion.yml"
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  security-events: write
+
+jobs:
+  manifest-and-layout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ingestion validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml jsonschema pandas
+
+      - name: Validate manifests and source layout
+        run: |
+          echo "Replace with scripts/validate_ingestion_manifests.py when adopted."
+          test -d raw || echo "No raw/ directory found in this starter workflow."
+          test -d wiki || echo "No wiki/ directory found in this starter workflow."
+
+  fidelity-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install parser/eval dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install docling markitdown pyyaml pandas
+
+      - name: Run ingestion fidelity smoke suite
+        run: |
+          echo "Replace with evals/run_ingestion_fidelity.py."
+          test -f templates/ingestion-fidelity-suite.yaml
+
+      - name: Upload ingestion reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ingestion-fidelity-results
+          path: |
+            dist/ingestion/
+            eval-results/
+
+  security-scan-extracted-text:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Secret scan
+        uses: gitleaks/gitleaks-action@v2
+
+      - name: Sensitive-data scan placeholder
+        run: |
+          echo "Replace with Presidio/scrubadub/custom redaction checks before indexing/export."
+
+  retrieval-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Retrieval smoke placeholder
+        run: |
+          echo "Replace with retrieval eval over newly ingested chunks."
+          echo "Recommended gates: recall@10 non-regression, provenance coverage >= 0.99."

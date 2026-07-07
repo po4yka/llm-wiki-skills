@@ -22,12 +22,15 @@ For evaluation methodology, use [`docs/18-evaluation-methodology.md`](18-evaluat
 
 For security threat modeling, use [`docs/19-security-threat-model.md`](19-security-threat-model.md). It defines trust boundaries, STRIDE/LINDDUN mappings, LLM-specific threat classes, security scorecards, red-team scenarios, CI gates and incident response.
 
+For ingestion pipeline architecture, use [`docs/20-ingestion-pipelines.md`](20-ingestion-pipelines.md). It defines source taxonomy, pipeline archetypes, tool selection, manifests, chunk schemas, fidelity gates, sync/dedupe and ingestion rollout.
+
 ## Reference architecture
 
 ```text
 raw/
   sources/      immutable source files
   manifests/    hashes, provenance, extraction metadata
+  extracted/    parser outputs, normalized Markdown/JSON/chunks
 wiki/
   sources/      one page per source
   entities/     people, orgs, products, systems
@@ -66,25 +69,41 @@ Indexes are rebuildable artifacts. Markdown and raw sources remain the durable s
 
 ## Ingestion decision tree
 
-| Source type | First choice | Upgrade when |
-|---|---|---|
-| Office/PDF/HTML/images/audio in a simple local workflow | MarkItDown | Use Docling or Unstructured when layout, tables, structured extraction or production ETL matters. |
-| Complex PDFs, tables and page layout | Docling | Add OCR/cloud analyzers only when local extraction fails. |
-| Production ingestion with connectors/chunking/enrichment | Unstructured | Add queueing, retries and data contracts for team workflows. |
-| Scanned documents | OCRmyPDF + Tesseract; PaddleOCR for stronger OCR needs | Use cloud OCR only with explicit data policy. |
-| Web pages | Readability, Playwright, SingleFile, browser clipper | Use crawling only with robots/legal review. |
-| Audio/video | Whisper or faster-whisper; yt-dlp where lawful | Add diarization and speaker metadata only when useful. |
-| Code repositories | tree-sitter, ast-grep, language servers, RepoAgent/OpenWiki-style scanners | Use semantic code indexing only after module maps and docs are insufficient. |
-| Tabular/structured data | Pandas, DuckDB, CSV/Parquet readers | Preserve raw files and extraction schema. |
+| Source type / symptom | First choice | Upgrade when | Notes |
+|---|---|---|---|
+| Native PDF, Office, HTML, EPUB | Docling | MarkItDown for lightweight Markdown; Unstructured/Tika when connector breadth dominates. | Prefer structure/layout/provenance over plain text. |
+| Simple local file conversion | MarkItDown | Docling when tables/layout/page anchors matter. | Good for fast Markdown-first local workflows. |
+| Complex PDFs, tables and page layout | Docling | PaddleOCR or Marker for scan/table/formula-heavy cases. | Sample fidelity before trusting outputs. |
+| Scanned documents | OCRmyPDF + downstream parser | Tesseract/PaddleOCR/Marker for harder OCR/layout. | Keep page anchors and OCR metadata. |
+| Web pages | Playwright + Readability | ArchiveBox/SingleFile when durable provenance matters. | Cite archived snapshot, not only extracted text. |
+| Audio/video | Whisper or faster-whisper; yt-dlp where lawful | Add diarization/speaker metadata only when useful. | Preserve timestamp anchors. |
+| Code repositories | tree-sitter, ast-grep, language servers, RepoAgent/OpenWiki-style scanners | Semantic code indexing only after module maps and docs are insufficient. | Chunk by syntax/symbol, not arbitrary tokens. |
+| Email/chat exports | mail-parser, Notmuch, platform exports | Custom connector/API when approved. | Preserve thread/message/attachment links. |
+| Tabular/structured data | DuckDB, pandas, CSV/Parquet readers | dlt/Airbyte when connectors/sync matter. | Preserve schema, query and row-group provenance. |
+| Production volume | Queue/worker ETL | Connector platform and observability. | Add retries, idempotency, dead-letter queue and metrics. |
+
+Recommended ingestion artifacts:
+
+| Artifact | Purpose |
+|---|---|
+| `raw/manifests/<source_id>.yaml` | Source identity, hash, sensitivity, parser version, extraction status and review state. |
+| `raw/extracted/<source_id>/` | Rebuildable parser outputs such as Markdown, JSON and chunks. |
+| `wiki/sources/<source_id>.md` | Human-readable source page with warnings, provenance and links to derived pages. |
+| `templates/source-manifest.yaml` | Source manifest schema starter. |
+| `templates/ingestion-pipeline-profile.yaml` | Source routing, tool choice, quality gates and security policy starter. |
+| `templates/ingestion-fidelity-suite.yaml` | Golden corpus and conversion/provenance eval starter. |
+| `templates/llm-wiki-ingestion.github-actions.yml` | CI workflow starter for manifests, fidelity, scans and retrieval smoke tests. |
 
 Security defaults for ingestion:
 
 - quarantine untrusted sources before parsing;
-- sandbox parser/OCR workers;
-- prevent parser workers from accessing repository write credentials;
+- sandbox parser/OCR/ASR workers;
+- prevent parser workers from accessing repository write credentials and model/provider secrets;
 - record source hashes and extraction metadata;
 - scan extracted text before indexing or export;
-- classify source sensitivity before production retrieval.
+- classify source sensitivity before production retrieval;
+- create source manifests before synthesis pages;
+- preserve page, timestamp, message, row and symbol anchors where relevant.
 
 ## MCP integration pattern
 
@@ -118,12 +137,14 @@ Evaluation is a layered system, not a single score:
 
 | Evaluation layer | Question | Metric/tooling |
 |---|---|---|
+| Ingestion fidelity | Did conversion preserve text, structure and anchors? | parser success, text coverage, heading/table preservation, timestamp coverage, thread integrity. |
+| Provenance completeness | Can every chunk trace back to source? | source hash coverage, manifest coverage, chunk anchor coverage, duplicate chunk rate. |
 | Retrieval | Did retrieval find the right pages/passages? | recall@k, MRR, nDCG, qrels, manual hit/miss labels, pytrec_eval, Ragas context precision/recall. |
 | Grounding | Is the answer supported by sources? | citation coverage, unsupported-claim rate, source-support labels, Ragas/DeepEval faithfulness, TruLens groundedness, custom claim audit. |
 | Answer quality | Does the answer solve the task? | human rubric, pairwise preference, model-graded rubric, correctness/completeness/actionability. |
 | Wiki usefulness | Does the wiki reduce work? | retrieval hit rate, answer reuse, read/write ratio, output beyond vault, context reconstruction avoided. |
 | Prompt/model regression | Did behavior change after prompt/model edits? | promptfoo matrix tests, LangSmith evals, DeepEval tests, snapshot tests. |
-| Security | Can malicious sources or prompts bypass policy? | promptfoo red-team, garak, malicious-source fixtures, indirect prompt-injection checks, PII/secret canaries. |
+| Security | Can malicious sources or prompts bypass policy? | promptfoo red-team, garak, malicious-source fixtures, indirect prompt-injection checks, PII/private-data canaries. |
 | Operational health | Is the wiki alive and trusted? | `wiki-lint`, stale-page counts, orphan pages, broken links, review backlog, provenance coverage. |
 | MCP/API safety | Is agent access safely bounded? | read-only allowlist test, proposal-only write test, denied direct-write test, audit event check, cross-tenant filter test. |
 
@@ -132,8 +153,9 @@ Recommended eval artifacts:
 | Artifact | Purpose |
 |---|---|
 | `evals/retrieval-eval-set.yaml` | Versioned questions, qrels, required pages/sources and risk tiers. |
+| `evals/ingestion/ingestion-fidelity-suite.yaml` | Versioned golden corpus for parser/conversion/provenance checks. |
 | `evals/promptfooconfig.yaml` | Prompt/RAG regression and rubric checks. |
-| `evals/redteam.yaml` | Indirect prompt injection, PII and canary security tests. |
+| `evals/redteam.yaml` | Indirect prompt injection, private-data and canary security tests. |
 | `eval-results/eval-scorecard.yaml` | Multi-layer scorecard for CI, nightly jobs and release review. |
 | Human calibration queue | Monthly reviewer sample for judge/rubric calibration. |
 
@@ -193,8 +215,10 @@ Add complexity only after a concrete trigger:
 | Team/enterprise access is needed. | Add OAuth/API gateway, tenant filters, audit logs and CODEOWNERS review. |
 | Generated pages accumulate without review. | Add review-gated workflow or Vouch-style proposal loop. |
 | Answers lack traceability. | Add claim-level provenance and stricter lint. |
-| Ingest fails on layout-heavy documents. | Add Docling/Unstructured/OCR path. |
-| Untrusted documents enter ingestion. | Add parser sandboxing, file allowlists, secret/PII scans and quarantine states. |
+| Ingest fails on layout-heavy documents. | Add Docling/Unstructured/OCR path plus ingestion fidelity tests. |
+| Sources include scans, audio, code, email/chat or tables. | Add source-type-specific pipeline profiles and anchors. |
+| Ingested sources change over time. | Add source hashes, cursors, tombstones, sync reports and changed-chunk re-embedding. |
+| Untrusted documents enter ingestion. | Add parser sandboxing, file allowlists, secret/private-data scans and quarantine states. |
 | Remote/local MCP surfaces are enabled. | Add MCP security profile, auth, origin checks, audit logs and red-team tests. |
 | Prompt or model changes break behavior. | Add promptfoo/Ragas/DeepEval CI gates. |
 | Evaluation depends only on synthetic questions. | Add reviewed real queries, qrels and human calibration. |
@@ -205,6 +229,10 @@ Add complexity only after a concrete trigger:
 
 - Starting with a vector DB before measuring search failure.
 - Starting with GraphRAG before hybrid retrieval has failed on multi-hop/global query tests.
+- Flattening every source into one text field.
+- Creating synthesis pages from unmanifested files.
+- Discarding raw sources after conversion.
+- Losing page, timestamp, message, row or symbol anchors.
 - Exposing raw filesystem access as the main MCP contract.
 - Giving cloud/autonomous clients proposal-write or admin tools by default.
 - Treating generated summaries as raw evidence.

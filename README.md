@@ -80,7 +80,7 @@ It includes skills for:
 | [`llm-wiki-ecosystem-registry`](skills/llm-wiki-ecosystem-registry/SKILL.md) | The user asks what LLM-Wiki implementations or adjacent open-source projects exist, or how OpenWiki, nashsu/llm_wiki, Vouch, RepoAgent and smaller projects compare. |
 | [`llm-wiki-implementation-deep-dive`](skills/llm-wiki-implementation-deep-dive/SKILL.md) | The user wants implementation-level comparison, architecture patterns, production-readiness analysis, or what to copy from concrete LLM-Wiki projects. |
 | [`llm-wiki-retrieval-architect`](skills/llm-wiki-retrieval-architect/SKILL.md) | The user needs to choose between lexical search, SQLite FTS, hybrid retrieval, vector DBs, rerankers, GraphRAG, metadata filters, MCP retrieval or custom indexes. |
-| [`llm-wiki-ingestion-stack`](skills/llm-wiki-ingestion-stack/SKILL.md) | The user has PDFs, Office docs, HTML, web clips, audio/video, code, chats, email or scanned sources and needs source-preserving ingestion. |
+| [`llm-wiki-ingestion-stack`](skills/llm-wiki-ingestion-stack/SKILL.md) | The user has PDFs, Office docs, HTML, web clips, audio/video, code, chats, email, tables, databases, scans or production ETL needs and wants source-preserving ingestion, manifests, fidelity gates or sync/dedupe design. |
 | [`llm-wiki-mcp-integration`](skills/llm-wiki-mcp-integration/SKILL.md) | The user wants to expose a wiki to Claude Code, Codex, Cursor, ChatGPT, VS Code, GitHub Copilot, LangGraph or other clients through MCP or a local/remote API. |
 | [`llm-wiki-eval-tooling`](skills/llm-wiki-eval-tooling/SKILL.md) | The user wants concrete Ragas, promptfoo, DeepEval, TruLens, LangSmith, retrieval-metric, scorecard, CI or red-team evaluation gates. |
 
@@ -106,7 +106,7 @@ It includes skills for:
 | [`llm-wiki-local-first-stack`](skills/llm-wiki-local-first-stack/SKILL.md) | The user wants Markdown/git/Obsidian/local search/local model architecture. |
 | [`llm-wiki-obsidian-hardening`](skills/llm-wiki-obsidian-hardening/SKILL.md) | An Obsidian vault needs agent-safe wikilink, attachment, frontmatter and sync rules. |
 | [`llm-wiki-repo-docs`](skills/llm-wiki-repo-docs/SKILL.md) | A codebase needs OpenWiki-style agent-readable repository documentation. |
-| [`llm-wiki-github-action`](skills/llm-wiki-github-action/SKILL.md) | The user wants scheduled lint, validation, eval, or PR-based maintenance. |
+| [`llm-wiki-github-action`](skills/llm-wiki-github-action/SKILL.md) | The user wants scheduled lint, validation, eval, ingestion, or PR-based maintenance. |
 
 ### Capture and domain workflows
 
@@ -150,8 +150,8 @@ It includes skills for:
 |---|---|
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
-| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), and [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md). |
-| [`templates/`](templates/) | Starter vault files, schemas and page/report/evaluation/API/security templates. |
+| [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md), and [`docs/20-ingestion-pipelines.md`](docs/20-ingestion-pipelines.md). |
+| [`templates/`](templates/) | Starter vault files, source manifests, ingestion profiles, schemas and page/report/evaluation/API/security templates. |
 | [`policies/`](policies/) | Policy templates for redaction, retention, review and incident response. |
 | [`examples/`](examples/) | Small fixtures for first-run and validation scenarios. |
 | [`domain-packs/`](domain-packs/) | Domain-specific starter taxonomies and workflows. |
