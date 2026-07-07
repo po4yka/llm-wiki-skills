@@ -9,6 +9,43 @@ const namePattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const semverPattern = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/;
 const requiredFrontmatterFields = ['name', 'description', 'license', 'compatibility'];
 const recommendedBodyHeadings = ['Goal', 'Procedure', 'Output', 'Safety gates'];
+const routingDescriptionVerbs = new Set([
+  'answer',
+  'audit',
+  'build',
+  'compare',
+  'compile',
+  'configure',
+  'convert',
+  'create',
+  'decide',
+  'define',
+  'design',
+  'diagnose',
+  'execute',
+  'explain',
+  'export',
+  'extract',
+  'find',
+  'generate',
+  'harden',
+  'help',
+  'insert',
+  'inspect',
+  'install',
+  'map',
+  'plan',
+  'prepare',
+  'preview',
+  'produce',
+  're-check',
+  'recover',
+  'refactor',
+  'review',
+  'run',
+  'select',
+  'sort',
+]);
 const warnings = [];
 
 function warn(message) {
@@ -90,6 +127,15 @@ for (const skillName of skillNames) {
 
   if ((frontmatter.description ?? '').length < 40) {
     fail(`${skillName}: description is too short to be useful for agent routing`);
+  }
+
+  const firstDescriptionWord = (frontmatter.description ?? '')
+    .trim()
+    .split(/\s+/)[0]
+    ?.toLowerCase()
+    .replace(/[^\w-]+$/g, '');
+  if (!routingDescriptionVerbs.has(firstDescriptionWord)) {
+    fail(`${skillName}: description must start with a routing verb, got '${firstDescriptionWord || '(empty)'}'`);
   }
 
   if (frontmatter.license !== 'MIT') {

@@ -30,12 +30,14 @@ Rules:
 2. Use lowercase letters, numbers and hyphens only.
 3. Put long background material in `references/`, not in the main `SKILL.md`.
 4. Keep `description` trigger-oriented: mention the user intents that should activate the skill.
-5. Keep skills procedural. Do not turn them into hidden domain encyclopedias.
-6. Skills that require current information must instruct the agent to browse and cite fresh sources.
-7. Every skill must declare `metadata.install_scope`:
+5. Start `description` with a routing verb such as `Design`, `Execute`, `Audit`, `Explain`, `Review`, `Generate` or `Configure`. Avoid noun-list descriptions where the first differentiator is only a topic.
+6. Keep router intents action-oriented: `verb + object + intent boundary`. When two skills share nouns, add `not_for` boundaries and at least one `benchmarks/router-eval.json` case.
+7. Keep skills procedural. Do not turn them into hidden domain encyclopedias.
+8. Skills that require current information must instruct the agent to browse and cite fresh sources.
+9. Every skill must declare `metadata.install_scope`:
    - `self-contained`: a single-skill install must include every referenced `references/`, `scripts/` and `assets/` file.
    - `pack-install-only`: the skill must explain in `compatibility` that it requires a full repository/pack install.
-8. `self-contained` skills must not instruct agents to use repository-root `docs/`, `templates/`, `scripts/`, `benchmarks/`, `domain-packs/`, `policies/` or `examples/` paths. Copy required material into the skill directory instead.
+10. `self-contained` skills must not instruct agents to use repository-root `docs/`, `templates/`, `scripts/`, `benchmarks/`, `domain-packs/`, `policies/` or `examples/` paths. Copy required material into the skill directory instead.
 
 ## Language policy
 

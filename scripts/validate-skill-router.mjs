@@ -1,9 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { failFactory, listSkillNames, repoRoot, readText } from './lib/repo.mjs';
+import { chooseSkill, normalizeIntent } from './lib/skill-router-eval.mjs';
 
 const { fail, finish } = failFactory();
 const routerPath = path.join(repoRoot, 'skill-router.json');
+const routerEvalPath = path.join(repoRoot, 'benchmarks', 'router-eval.json');
 const allowedRisk = new Set(['none', 'low', 'medium', 'high']);
 const skillNames = new Set(listSkillNames());
 
@@ -25,6 +27,7 @@ if (router.$schema !== './templates/schemas/skill-router.schema.json') {
 }
 
 const routeSkills = new Set();
+const intentOwners = new Map();
 
 for (const entrypoint of router.default_entrypoints ?? []) {
   if (!skillNames.has(entrypoint)) {
@@ -46,6 +49,19 @@ for (const [index, route] of (router.routes ?? []).entries()) {
 
   if (!Array.isArray(route.intents) || route.intents.length === 0) {
     fail(`${prefix}: intents must be a non-empty array`);
+  } else {
+    for (const intent of route.intents) {
+      const normalizedIntent = normalizeIntent(intent);
+      const owner = intentOwners.get(normalizedIntent);
+      if (owner && owner !== route.skill) {
+        fail(`${prefix}: intent '${intent}' duplicates route '${owner}' after normalization`);
+      }
+      intentOwners.set(normalizedIntent, route.skill);
+    }
+  }
+
+  if (route.not_for !== undefined && !Array.isArray(route.not_for)) {
+    fail(`${prefix}: not_for must be an array when present`);
   }
 
   if (!allowedRisk.has(route.write_risk)) {
@@ -80,6 +96,54 @@ const highRiskWithoutSafeMode = [...(router.routes ?? [])].filter((route) => {
 
 for (const route of highRiskWithoutSafeMode) {
   fail(`route '${route.skill}' has ${route.write_risk} write_risk but default_mode '${route.default_mode}' is not obviously review-gated`);
+}
+
+if (!fs.existsSync(routerEvalPath)) {
+  fail('benchmarks/router-eval.json is missing');
+} else {
+  let routerEval;
+  try {
+    routerEval = JSON.parse(readText(routerEvalPath));
+  } catch (error) {
+    fail(`benchmarks/router-eval.json is not valid JSON: ${error.message}`);
+  }
+
+  if (routerEval) {
+    if (!Array.isArray(routerEval.cases) || routerEval.cases.length === 0) {
+      fail('benchmarks/router-eval.json: cases must be a non-empty array');
+    }
+
+    const coveredSkills = new Set();
+
+    for (const [index, testCase] of (routerEval.cases ?? []).entries()) {
+      const prefix = `router-eval cases[${index}]`;
+
+      if (!testCase.utterance || typeof testCase.utterance !== 'string') {
+        fail(`${prefix}: utterance must be a non-empty string`);
+        continue;
+      }
+
+      if (!skillNames.has(testCase.expected_skill)) {
+        fail(`${prefix}: expected_skill '${testCase.expected_skill}' does not exist`);
+        continue;
+      }
+
+      coveredSkills.add(testCase.expected_skill);
+
+      const winner = chooseSkill(testCase.utterance, router.routes ?? []);
+      if (!winner || winner.skill !== testCase.expected_skill) {
+        fail(`${prefix}: expected ${testCase.expected_skill}, got ${winner?.skill ?? '(none)'} for '${testCase.utterance}'`);
+      } else if (winner.score <= 0) {
+        fail(`${prefix}: expected ${testCase.expected_skill}, but winning score was not positive`);
+      }
+    }
+
+    for (const skillName of skillNames) {
+      if (!coveredSkills.has(skillName)) {
+        fail(`${skillName}: missing router eval case in benchmarks/router-eval.json`);
+      }
+    }
+  }
 }
 
 finish(`validated ${routeSkills.size} skill router entries against ${skillNames.size} skills`);

@@ -24,6 +24,11 @@
             "minItems": 1,
             "uniqueItems": true
           },
+          "not_for": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 2 },
+            "uniqueItems": true
+          },
           "depends_on": {
             "type": "array",
             "items": { "type": "string" },
