@@ -11,6 +11,9 @@ New to LLM-Wiki?
 Asking why this matters or whether there is evidence?
   -> llm-wiki-faq
 
+Asking whether LLM-Wiki maps to PAF Nexus/Cortex, which Nexus to start with, or how to build company-level shared context?
+  -> llm-wiki-paf-adoption
+
 Non-developer, browser-first or Confluence-style adoption concern?
   -> llm-wiki-faq
 
@@ -57,6 +60,9 @@ Need GitHub maintenance automation?
 
 Need browser-first capture or team contribution without git friction?
   -> llm-wiki-team-rollout
+
+Need PAF-style Market/Product/Growth Nexus schema or Cortex workflow?
+  -> llm-wiki-paf-adoption
 ```
 
 ## Daily operation
@@ -93,6 +99,9 @@ Need to prove value?
 Need a with-wiki vs without-wiki adoption benchmark?
   -> llm-wiki-benchmark-suite
 
+Need to prove a Nexus affects company decisions?
+  -> llm-wiki-paf-adoption
+
 Worried the wiki will not fit in context?
   -> llm-wiki-retrieval-architect
 ```
@@ -114,6 +123,9 @@ Permissions, multi-agent access or AGENTS.md/wiki boundary?
 
 Team rollout, ownership or review gates?
   -> llm-wiki-team-rollout
+
+Product Engineer / Product Ops ownership of Nexus/Cortex?
+  -> llm-wiki-paf-adoption
 ```
 
 ## Publishing and long-term use
