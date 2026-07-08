@@ -22,7 +22,6 @@ Related skills and docs:
 
 - `skills/llm-wiki-eval/SKILL.md`
 - `skills/llm-wiki-eval-tooling/SKILL.md`
-- `skills/llm-wiki-benchmark-suite/SKILL.md`
 - `skills/llm-wiki-retrieval-architect/SKILL.md`
 - `skills/llm-wiki-security-review/SKILL.md`
 - `docs/16-retrieval-architecture.md`

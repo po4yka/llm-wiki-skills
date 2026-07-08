@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access to an Obsidian vault; git or backup is required before write mode.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

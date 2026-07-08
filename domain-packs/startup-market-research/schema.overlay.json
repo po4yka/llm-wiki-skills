@@ -16,7 +16,7 @@
     "customer-interview-notes": "review before publication"
   },
   "recommended_skills": [
-    "llm-wiki-channel-capture",
+    "llm-wiki-capture-pipeline",
     "wiki-ingest",
     "llm-wiki-source-refresh",
     "wiki-query",

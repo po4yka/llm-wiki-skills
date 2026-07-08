@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access to a Markdown LLM-Wiki vault; git is recommended for reviewable edits.
 metadata:
   author: po4yka
-  version: "0.3.0"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

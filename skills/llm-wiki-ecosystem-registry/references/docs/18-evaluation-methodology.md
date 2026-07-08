@@ -22,7 +22,6 @@ Related skills and docs:
 
 - `skills/llm-wiki-eval/SKILL.md`
 - `skills/llm-wiki-eval-tooling/SKILL.md`
-- `skills/llm-wiki-benchmark-suite/SKILL.md`
 - `skills/llm-wiki-retrieval-architect/SKILL.md`
 - `skills/llm-wiki-security-review/SKILL.md`
 - `docs/16-retrieval-architecture.md`
@@ -102,7 +101,7 @@ Use graded relevance when possible:
 | Citation coverage | Share of answer sentences/atomic claims with valid citations. | Parse answer into sentences/claims and verify each cited source exists in retrieved context. |
 | Unsupported-claim rate | Unsupported atomic claims divided by all atomic claims. | FActScore-style decomposition plus evidence verification. |
 | Faithfulness | Whether answer is consistent with context. | Ragas/DeepEval/TruLens-like LLM judge with human calibration. |
-| Source-support labels | `source-backed`, `wiki-backed`, `inferred`, `missing`, `conflicting`. | Deterministic + judge + human review for ambiguous cases. |
+| Claim-support labels | `extracted`, `inferred`, `ambiguous`, `synthesis`, `unsupported`, `conflicting`. | Deterministic + judge + human review for ambiguous cases. |
 | Citation validity | Citations point to accessible source/page/span and support the cited claim. | Deterministic URI/anchor check plus sampled human verification. |
 
 Recommended gates by risk:

@@ -161,13 +161,6 @@ It includes skills for:
 | [`llm-wiki-adr-memory`](skills/llm-wiki-adr-memory/SKILL.md) | The user wants to recover or maintain decision provenance and ADR memory. |
 | [`llm-wiki-domain-pack`](skills/llm-wiki-domain-pack/SKILL.md) | A domain-specific taxonomy, templates and review policy are needed. |
 
-### Deprecated compatibility aliases
-
-| Skill | Use instead |
-| --- | --- |
-| [`llm-wiki-benchmark-suite`](skills/llm-wiki-benchmark-suite/SKILL.md) | `llm-wiki-eval` pilot benchmark mode. |
-| [`llm-wiki-channel-capture`](skills/llm-wiki-channel-capture/SKILL.md) | `llm-wiki-capture-pipeline` named-channel mode. |
-
 ### Operate and trust
 
 | Skill | Use when |

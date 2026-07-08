@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access for local setup; may require internet access for installing external tools.
 metadata:
   author: po4yka
-  version: "0.2.1"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

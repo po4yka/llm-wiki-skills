@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki and write access only when generating export files. Browse current publishing-tool docs before giving version-specific commands, hosted-feature claims or generator compatibility advice.
 metadata:
   author: po4yka
-  version: "0.2.1"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

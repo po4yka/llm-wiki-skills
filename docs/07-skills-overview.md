@@ -117,15 +117,6 @@ Review, compile, and govern Agent Skills, team operating models, self-hosted Git
 | [`llm-wiki-team-rollout`](../skills/llm-wiki-team-rollout/SKILL.md) | Plan and implement LLM-Wiki adoption for a team or company. |
 | [`llm-wiki-gitlab-operating-model`](../skills/llm-wiki-gitlab-operating-model/SKILL.md) | Design an LLM-Wiki team operating model for self-hosted GitLab and internal enterprise environments. |
 
-### Deprecated compatibility aliases
-
-Installable aliases kept until the next major release. New routing should use the replacement skills listed in each SKILL.md.
-
-| Skill | Purpose |
-| --- | --- |
-| [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Execute legacy bounded pilot benchmark requests by routing them to llm-wiki-eval. |
-| [`llm-wiki-channel-capture`](../skills/llm-wiki-channel-capture/SKILL.md) | Design legacy named channel capture requests by routing them to llm-wiki-capture-pipeline. |
-
 <!-- generated:skill-families:end -->
 
 ## Installation model

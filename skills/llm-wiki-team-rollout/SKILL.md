@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires access to the relevant repository or docs workspace; may require GitHub permissions for PR-based workflows. Browse current GitHub, SRE, eval, observability and platform docs before giving version-specific configuration advice.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

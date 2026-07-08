@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse MCP and client docs before giving current protocol, client configuration, auth, SDK or extension-specific instructions.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

@@ -15,7 +15,6 @@ Related skills and docs:
 - `skills/llm-wiki-ingestion-stack/SKILL.md`
 - `skills/wiki-ingest/SKILL.md`
 - `skills/llm-wiki-capture-pipeline/SKILL.md`
-- `skills/llm-wiki-channel-capture/SKILL.md`
 - `skills/llm-wiki-security-review/SKILL.md`
 - `skills/llm-wiki-retrieval-architect/SKILL.md`
 - `docs/16-retrieval-architecture.md`
@@ -263,7 +262,7 @@ Rule: preserve thread/message/attachment relationships; do not flatten into one 
 
 Every source must have a manifest before generated wiki pages are trusted.
 
-The canonical standalone template is `references/templates/source-manifest.yaml` inside this installed skill. Do not maintain partial schema copies in docs or skills.
+The canonical template is [`../templates/source-manifest.yaml`](../templates/source-manifest.yaml). Do not maintain partial schema copies in docs or skills.
 
 Key field boundaries:
 

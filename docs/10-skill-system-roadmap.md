@@ -57,7 +57,6 @@ These skills map concrete implementations, implementation archetypes, retrieval 
 - `llm-wiki-doctor`
 - `llm-wiki-migration-planner`
 - `llm-wiki-eval`
-- `llm-wiki-benchmark-suite`
 - `llm-wiki-critique-audit`
 - `llm-wiki-provenance`
 - `llm-wiki-claim-anchors`
@@ -81,7 +80,6 @@ These skills help users set up local-first vaults, harden Obsidian, build repo d
 
 - `llm-wiki-company-flow-audit`
 - `llm-wiki-capture-pipeline`
-- `llm-wiki-channel-capture`
 - `llm-wiki-interview`
 - `llm-wiki-adr-memory`
 - `llm-wiki-domain-pack`

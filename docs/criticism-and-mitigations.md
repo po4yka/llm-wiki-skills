@@ -194,7 +194,7 @@ For codebases, prefer concise maps, ADRs and “how to change X” pages over on
 
 **Residual risk.** There is no perfect pre-adoption detector. Pilot metrics decide.
 
-**Route to skills.** `llm-wiki-benchmark-suite`, `llm-wiki-repo-docs`, `llm-wiki-eval`.
+**Route to skills.** `llm-wiki-repo-docs`, `llm-wiki-eval`.
 
 ### 9. Structured data in flat Markdown
 
@@ -229,7 +229,7 @@ For codebases, prefer concise maps, ADRs and “how to change X” pages over on
 
 **Residual risk.** Long-term public cost data is sparse. Every serious deployment should collect local metrics.
 
-**Route to skills.** `llm-wiki-eval`, `llm-wiki-benchmark-suite`, `llm-wiki-model-policy`.
+**Route to skills.** `llm-wiki-eval`, `llm-wiki-model-policy`.
 
 ## Class V. Architectural objections
 
@@ -340,7 +340,7 @@ Treat indexes, MCP wrappers and retrieval glue as replaceable.
 
 **Residual risk.** Until independent long-running benchmarks exist, adoption is a mechanism-based bet.
 
-**Route to skills.** `llm-wiki-benchmark-suite`, `llm-wiki-eval`, `llm-wiki-eval-tooling`.
+**Route to skills.** `llm-wiki-eval`, `llm-wiki-eval-tooling`.
 
 ### 17. Novelty decay
 

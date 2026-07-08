@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires repository filesystem access; PR-based writes are recommended for team repos.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

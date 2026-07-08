@@ -92,14 +92,6 @@
         "llm-wiki-team-rollout",
         "llm-wiki-gitlab-operating-model"
       ]
-    },
-    {
-      "title": "Deprecated compatibility aliases",
-      "description": "Installable aliases kept until the next major release. New routing should use the replacement skills listed in each SKILL.md.",
-      "skills": [
-        "llm-wiki-benchmark-suite",
-        "llm-wiki-channel-capture"
-      ]
     }
   ]
 }

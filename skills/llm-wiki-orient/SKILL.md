@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. For current ecosystem claims, browse and cite fresh sources.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

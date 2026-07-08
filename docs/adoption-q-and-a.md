@@ -20,12 +20,12 @@ Answer style:
 
 | User asks | First answer | Then route to |
 | --- | --- | --- |
-| Where should I start? | Start with a reversible pilot, not a full migration. | `llm-wiki-setup`, `llm-wiki-benchmark-suite` |
+| Where should I start? | Start with a reversible pilot, not a full migration. | `llm-wiki-setup`, `llm-wiki-eval` |
 | When should I not use it? | Do not use it when the corpus is tiny, unreviewed or has no output loop. | `llm-wiki-eval` |
 | Who owns the wiki? | Assign explicit owners for raw, wiki, schema, security and review. | `llm-wiki-team-rollout` |
 | Who reviews agent changes? | Agent writes drafts/reports; humans promote trusted pages. | `llm-wiki-trust-audit` |
 | How expensive is it? | Start with Markdown/git/search; add models/retrieval only when metrics justify it. | `llm-wiki-local-first-stack` |
-| How do I prove ROI? | Compare with-wiki vs without-wiki on real questions and outputs. | `llm-wiki-eval`, `llm-wiki-benchmark-suite` |
+| How do I prove ROI? | Compare with-wiki vs without-wiki on real questions and outputs. | `llm-wiki-eval` |
 | Does it replace Confluence/Notion/RAG? | Usually no; it can complement them as a compiled knowledge layer. | `llm-wiki-choose` |
 | How do we migrate safely? | Inventory first, dry-run plan second, staged migration third. | `llm-wiki-doctor`, `llm-wiki-migration-planner` |
 | What if the agent is wrong? | Treat generated pages as drafts until sourced, reviewed and linted. | `llm-wiki-provenance`, `wiki-lint` |

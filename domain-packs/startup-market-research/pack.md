@@ -41,7 +41,7 @@ Use `domain_type` for specialization. The source of truth is `schema.overlay.jso
 ## Recommended skills
 
 ```text
-llm-wiki-channel-capture -> wiki-ingest -> llm-wiki-source-refresh -> wiki-query -> llm-wiki-export-publish
+llm-wiki-capture-pipeline -> wiki-ingest -> llm-wiki-source-refresh -> wiki-query -> llm-wiki-export-publish
 ```
 
 ## Stale policy

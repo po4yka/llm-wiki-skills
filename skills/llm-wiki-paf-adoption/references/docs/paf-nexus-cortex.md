@@ -1,6 +1,7 @@
 # PAF Nexus/Cortex mapping for LLM-Wiki adoption
 
 > Scope: answer whether LLM-Wiki mechanics map to Product Architecture Framework (PAF) concepts of Nexus and Cortex, how far that analogy goes, and what first company-level step is practical.
+> Current as of: 2026-07-07
 > Source to re-check for current PAF wording: <https://productframework.ru/ops/main>
 
 ## Short answer
@@ -164,11 +165,11 @@ Minimum Cortex workflows:
 
 | Workflow | What it does | Skill fit |
 | --- | --- | --- |
-| Capture triage | Sort new sources into Nexus nodes. | `wiki-triage`, `llm-wiki-channel-capture` |
+| Capture triage | Sort new sources into Nexus nodes. | `wiki-triage`, `llm-wiki-capture-pipeline` |
 | Source ingest | Turn evidence into source-backed nodes. | `wiki-ingest` |
 | Decision query | Answer decision questions with source links. | `wiki-query` |
 | Gap/risk report | Find missing context before a decision. | `wiki-lint`, `llm-wiki-provenance` |
-| Confidence update | Explain why confidence increased/decreased. | `llm-wiki-eval`, `llm-wiki-benchmark-suite` |
+| Confidence update | Explain why confidence increased/decreased. | `llm-wiki-eval` |
 | Decision file-back | Save useful answers and decisions into the Nexus. | `wiki-query`, `llm-wiki-adr-memory` |
 
 Minimum operating cadence:
@@ -243,10 +244,10 @@ Useful skills immediately:
 - `llm-wiki-faq` for objections;
 - `llm-wiki-team-rollout` for ownership and review;
 - `llm-wiki-domain-pack` for Nexus node taxonomy;
-- `llm-wiki-capture-pipeline` and `llm-wiki-channel-capture` for evidence intake;
+- `llm-wiki-capture-pipeline` for evidence intake;
 - `wiki-triage`, `wiki-ingest`, `wiki-query`, `wiki-lint` for Cortex operations;
 - `llm-wiki-provenance`, `llm-wiki-trust-audit`, `llm-wiki-model-policy` for safety;
-- `llm-wiki-eval` and `llm-wiki-benchmark-suite` for effect measurement.
+- `llm-wiki-eval` for effect measurement.
 
 ## What must be built for company-level PAF alignment
 
@@ -265,3 +266,25 @@ Needs additional design:
 ## Recommended answer to the user's question
 
 > You are not wrong: LLM-Wiki plus skills is very close to the technical mechanics of Nexus and Cortex. But it is a simplification if we stop there. A Nexus is not just a wiki; it is a living model of a managed object such as market, product or growth system. A Cortex is not just an agent; it is the operating system of workflows, rules, permissions and decision loops that manipulate the Nexus. The first practical company step is a small Market Opportunity Nexus for one strategic segment, with browser-first capture, weekly Cortex workflows, explicit owners, and a decision benchmark: do real feature/growth/strategy decisions cite the Nexus and change confidence/risk because of it?
+
+## Compact answer templates
+
+### “Is LLM-Wiki the Nexus and Cortex?”
+
+> In spirit, yes, but the equivalence is incomplete. LLM-Wiki can be the technical skeleton of a Nexus: a living, source-backed context layer. Skills/agents can be an early Cortex: the rules and operations for working with that context. PAF needs more than that: a managed object, node schema, confidence/ripeness, owners, decision loops and links to bunches/goals/risks.
+
+### “Which Nexus should a company start with?”
+
+> The most practical start is a Market Opportunity Nexus for one strategic segment or market. It is naturally shared: product, marketing, sales, support and leadership bring different sources, while product and growth decisions begin to rely on one external context. If the market is already clear and the pain is inside the product, start with a Product Nexus.
+
+### “How do we make it shared rather than personal?”
+
+> Choose a managed object that matters to several functions, give everyone simple capture through a browser/form/bot, define a shared node schema, assign review owners and require decisions/experiments/feature bunches to cite the Nexus. The repository does not make it shared; cross-functional evidence and decisions that actually use the context do.
+
+### “How can we quickly test decision impact?”
+
+> Take 10 real decision questions and compare the normal mode with Nexus/Cortex mode. Measure time-to-answer, source coverage, confidence delta, surfaced gaps and the number of decisions/PRDs/experiments that cite the Nexus, not page count. If no decision changes or becomes clearer after a month, this is still a dump, not a Nexus.
+
+### “What is portable and what still needs to be built?”
+
+> Portable pieces include raw/wiki/schema, capture -> triage -> ingest -> query -> lint -> refresh, provenance, review states, privacy/model policy and evaluation. PAF-specific work remains: node schemas, Confidence Point/Ripeness, links to Goal Map/Feature Bunch/mNSM, Product Engineer/Product Ops roles, access control, browser capture and decision templates.

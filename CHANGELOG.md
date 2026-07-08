@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## 1.0.0 - 2026-07-08
+
+First stable release. Every skill's `metadata.version` resets to `1.0.0`; prior `0.x` version history for individual skills is superseded by this baseline.
 
 ### Added
 
@@ -19,6 +21,11 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Synced docs/07 skills overview, docs/00-index, skill router (JSON and MD) and roadmap with the 49 shipped skills; added coverage validator to prevent catalog drift.
+
+### Removed
+
+- `llm-wiki-benchmark-suite` (deprecated compatibility alias; use `llm-wiki-eval`'s pilot benchmark mode).
+- `llm-wiki-channel-capture` (deprecated compatibility alias; use `llm-wiki-capture-pipeline`'s named-channel mode).
 
 ### Release process
 

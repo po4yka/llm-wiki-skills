@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current GitLab, security, compliance and platform docs before giving version-specific configuration, feature-tier, API or deployment advice.
 metadata:
   author: po4yka
-  version: "0.1.1"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

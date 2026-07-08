@@ -14,7 +14,7 @@ The organizing lifecycle is:
 diagnose -> plan -> migrate -> operate -> prove trust -> publish/archive -> evolve skills
 ```
 
-## The original 20 advanced skills
+## The original 19 advanced skills
 
 | # | Skill | Primary use-case |
 | ---: | --- | --- |
@@ -29,21 +29,19 @@ diagnose -> plan -> migrate -> operate -> prove trust -> publish/archive -> evol
 | 9 | [`llm-wiki-github-action`](../skills/llm-wiki-github-action/SKILL.md) | Configure scheduled or PR-based wiki maintenance. |
 | 10 | [`llm-wiki-security-review`](../skills/llm-wiki-security-review/SKILL.md) | Review data boundaries, skill supply chain and write permissions. |
 | 11 | [`llm-wiki-local-first-stack`](../skills/llm-wiki-local-first-stack/SKILL.md) | Design local-first Markdown/git/search/model stacks. |
-| 12 | [`llm-wiki-channel-capture`](../skills/llm-wiki-channel-capture/SKILL.md) | Add channel-specific capture from Telegram, email, PDFs, voice, GitHub, etc. |
-| 13 | [`llm-wiki-interview`](../skills/llm-wiki-interview/SKILL.md) | Extract tacit knowledge through an agent-led interview. |
-| 14 | [`llm-wiki-adr-memory`](../skills/llm-wiki-adr-memory/SKILL.md) | Recover and maintain decision provenance and ADR memory. |
-| 15 | [`llm-wiki-domain-pack`](../skills/llm-wiki-domain-pack/SKILL.md) | Generate domain-specific templates, taxonomies and review gates. |
-| 16 | [`llm-wiki-export-publish`](../skills/llm-wiki-export-publish/SKILL.md) | Publish safe subsets as docs, websites, handbooks or bundles. |
-| 17 | [`llm-wiki-archive`](../skills/llm-wiki-archive/SKILL.md) | Prepare the wiki for 5-10+ year durability and archival. |
-| 18 | [`llm-wiki-conflict-resolver`](../skills/llm-wiki-conflict-resolver/SKILL.md) | Mediate contradictory claims without auto-fixing truth. |
-| 19 | [`llm-wiki-model-policy`](../skills/llm-wiki-model-policy/SKILL.md) | Define local/cloud model and data-use policy. |
-| 20 | [`llm-wiki-agent-memory-bridge`](../skills/llm-wiki-agent-memory-bridge/SKILL.md) | Separate wiki knowledge from skills, instruction files and agent memory. |
+| 12 | [`llm-wiki-interview`](../skills/llm-wiki-interview/SKILL.md) | Extract tacit knowledge through an agent-led interview. |
+| 13 | [`llm-wiki-adr-memory`](../skills/llm-wiki-adr-memory/SKILL.md) | Recover and maintain decision provenance and ADR memory. |
+| 14 | [`llm-wiki-domain-pack`](../skills/llm-wiki-domain-pack/SKILL.md) | Generate domain-specific templates, taxonomies and review gates. |
+| 15 | [`llm-wiki-export-publish`](../skills/llm-wiki-export-publish/SKILL.md) | Publish safe subsets as docs, websites, handbooks or bundles. |
+| 16 | [`llm-wiki-archive`](../skills/llm-wiki-archive/SKILL.md) | Prepare the wiki for 5-10+ year durability and archival. |
+| 17 | [`llm-wiki-conflict-resolver`](../skills/llm-wiki-conflict-resolver/SKILL.md) | Mediate contradictory claims without auto-fixing truth. |
+| 18 | [`llm-wiki-model-policy`](../skills/llm-wiki-model-policy/SKILL.md) | Define local/cloud model and data-use policy. |
+| 19 | [`llm-wiki-agent-memory-bridge`](../skills/llm-wiki-agent-memory-bridge/SKILL.md) | Separate wiki knowledge from skills, instruction files and agent memory. |
 
 ## Product-hardening skills added after review
 
 | Skill | Primary use-case |
 | --- | --- |
-| [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Run practical local pilot benchmarks. |
 | [`llm-wiki-claim-anchors`](../skills/llm-wiki-claim-anchors/SKILL.md) | Add deterministic claim-level provenance anchors. |
 | [`llm-wiki-source-refresh`](../skills/llm-wiki-source-refresh/SKILL.md) | Refresh stale source-backed claims. |
 | [`llm-wiki-privacy-redactor`](../skills/llm-wiki-privacy-redactor/SKILL.md) | Preview redactions before publishing or model-boundary use. |
@@ -71,7 +69,7 @@ llm-wiki-trust-audit -> llm-wiki-provenance -> llm-wiki-claim-anchors -> llm-wik
 Run:
 
 ```text
-llm-wiki-obsidian-hardening -> llm-wiki-channel-capture -> wiki-triage -> wiki-ingest
+llm-wiki-obsidian-hardening -> llm-wiki-capture-pipeline -> wiki-triage -> wiki-ingest
 ```
 
 ### User has a codebase

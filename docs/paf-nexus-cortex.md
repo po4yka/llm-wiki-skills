@@ -165,11 +165,11 @@ Minimum Cortex workflows:
 
 | Workflow | What it does | Skill fit |
 | --- | --- | --- |
-| Capture triage | Sort new sources into Nexus nodes. | `wiki-triage`, `llm-wiki-channel-capture` |
+| Capture triage | Sort new sources into Nexus nodes. | `wiki-triage`, `llm-wiki-capture-pipeline` |
 | Source ingest | Turn evidence into source-backed nodes. | `wiki-ingest` |
 | Decision query | Answer decision questions with source links. | `wiki-query` |
 | Gap/risk report | Find missing context before a decision. | `wiki-lint`, `llm-wiki-provenance` |
-| Confidence update | Explain why confidence increased/decreased. | `llm-wiki-eval`, `llm-wiki-benchmark-suite` |
+| Confidence update | Explain why confidence increased/decreased. | `llm-wiki-eval` |
 | Decision file-back | Save useful answers and decisions into the Nexus. | `wiki-query`, `llm-wiki-adr-memory` |
 
 Minimum operating cadence:
@@ -244,10 +244,10 @@ Useful skills immediately:
 - `llm-wiki-faq` for objections;
 - `llm-wiki-team-rollout` for ownership and review;
 - `llm-wiki-domain-pack` for Nexus node taxonomy;
-- `llm-wiki-capture-pipeline` and `llm-wiki-channel-capture` for evidence intake;
+- `llm-wiki-capture-pipeline` for evidence intake;
 - `wiki-triage`, `wiki-ingest`, `wiki-query`, `wiki-lint` for Cortex operations;
 - `llm-wiki-provenance`, `llm-wiki-trust-audit`, `llm-wiki-model-policy` for safety;
-- `llm-wiki-eval` and `llm-wiki-benchmark-suite` for effect measurement.
+- `llm-wiki-eval` for effect measurement.
 
 ## What must be built for company-level PAF alignment
 

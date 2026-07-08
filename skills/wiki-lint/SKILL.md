@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access to a Markdown LLM-Wiki vault; git history improves protected-section and agent-edit checks.
 metadata:
   author: po4yka
-  version: "0.3.1"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

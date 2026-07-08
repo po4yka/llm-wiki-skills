@@ -1,6 +1,7 @@
 # Additional adoption Q&A playbook
 
 > Scope: additional questions that commonly appear after the first LLM-Wiki explanation: start-small path, governance, cost, ROI, migration, ownership, mistakes, vendor lock-in, RAG/search boundaries, multi-agent use, access control and long-term durability.
+> Current as of: 2026-07-07
 > Audience: agents using this skill pack, maintainers writing adoption docs, and reviewers evaluating rollout readiness.
 
 ## How to use this playbook
@@ -19,12 +20,12 @@ Answer style:
 
 | User asks | First answer | Then route to |
 | --- | --- | --- |
-| Where should I start? | Start with a reversible pilot, not a full migration. | `llm-wiki-setup`, `llm-wiki-benchmark-suite` |
+| Where should I start? | Start with a reversible pilot, not a full migration. | `llm-wiki-setup`, `llm-wiki-eval` |
 | When should I not use it? | Do not use it when the corpus is tiny, unreviewed or has no output loop. | `llm-wiki-eval` |
 | Who owns the wiki? | Assign explicit owners for raw, wiki, schema, security and review. | `llm-wiki-team-rollout` |
 | Who reviews agent changes? | Agent writes drafts/reports; humans promote trusted pages. | `llm-wiki-trust-audit` |
 | How expensive is it? | Start with Markdown/git/search; add models/retrieval only when metrics justify it. | `llm-wiki-local-first-stack` |
-| How do I prove ROI? | Compare with-wiki vs without-wiki on real questions and outputs. | `llm-wiki-eval`, `llm-wiki-benchmark-suite` |
+| How do I prove ROI? | Compare with-wiki vs without-wiki on real questions and outputs. | `llm-wiki-eval` |
 | Does it replace Confluence/Notion/RAG? | Usually no; it can complement them as a compiled knowledge layer. | `llm-wiki-choose` |
 | How do we migrate safely? | Inventory first, dry-run plan second, staged migration third. | `llm-wiki-doctor`, `llm-wiki-migration-planner` |
 | What if the agent is wrong? | Treat generated pages as drafts until sourced, reviewed and linted. | `llm-wiki-provenance`, `wiki-lint` |
@@ -483,3 +484,45 @@ Corrective actions:
 - create weekly digest or open-questions report;
 - prune low-value areas;
 - run a with-wiki vs without-wiki benchmark.
+
+## Compact answer templates
+
+### “Where should I start?”
+
+> Start with a small pilot, not a full archive migration: one domain, 20-50 sources, 10-20 real questions, weekly lint and filing successful answers back into the wiki. If answers are not faster, more useful or more verifiable after 2-4 weeks, do not scale.
+
+### “When is this unnecessary?”
+
+> It is unnecessary when the corpus is small, search already works, nobody will review generated pages, there are no recurring questions or the result is not used beyond the wiki itself. LLM-Wiki works when knowledge is reused and compounds.
+
+### “Who owns the wiki?”
+
+> The agent can be the librarian, but not the owner of truth. You need human owners for sources, promotion to reviewed/verified, schemas, sensitive data and lint reports.
+
+### “How much does this cost?”
+
+> The cheapest version is Markdown, git, `index.md`, `log.md`, ripgrep and skills. Money appears later: cloud models, embeddings, rerank, CI, access controls and support. Prove value with a pilot first, then pay for the bottleneck.
+
+### “How do we prove value?”
+
+> Not by page count. Measure how much faster real recurring questions are answered, how often answers cite the wiki, how many successful answers are reused, how many stale/unsupported claims are found and whether external outputs appear: reports, PRs, onboarding and decisions.
+
+### “Does this replace Confluence or Notion?”
+
+> Not necessarily. It is often better to keep Confluence/Notion as a convenient input surface and use LLM-Wiki as a compiled knowledge layer: an agentic, verifiable, source-aware layer for synthesis and reuse.
+
+### “Does this replace RAG?”
+
+> No. A healthy architecture is hybrid: LLM-Wiki stores durable synthesis, maps and decision memory, while search/RAG helps find relevant pages and raw evidence.
+
+### “What if the agent is wrong?”
+
+> Assume it will be wrong. That is why raw sources are immutable, generated pages start as draft, important claims get provenance, verified/public pages pass human review and bulk edits or deletions go through dry-run first.
+
+### “How do we avoid lock-in?”
+
+> Keep the source of truth in boring formats: Markdown, YAML/JSON, git and raw files. Vector databases, indexes and MCP/API are rebuildable cache, not the only copy of knowledge.
+
+### “Can multiple agents work on one wiki?”
+
+> Yes, if boundaries are explicit: a short AGENTS.md/CLAUDE.md, page schemas, status fields, write permissions, review gates and a ban on following instructions from source bodies. Without that, agents will create divergent conventions and quiet errors.

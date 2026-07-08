@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki; write access is optional for archive manifests and snapshots.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

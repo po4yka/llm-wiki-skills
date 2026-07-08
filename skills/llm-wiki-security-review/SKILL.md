@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to project instructions, skill files, and relevant configuration; write access is optional. Browse current vendor, CVE, scanner and MCP docs before giving version-specific security advice.
 metadata:
   author: po4yka
-  version: "0.3.1"
+  version: "1.0.0"
   install_scope: self-contained
 ---
 

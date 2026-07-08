@@ -15,7 +15,6 @@ Related skills and docs:
 - `skills/llm-wiki-ingestion-stack/SKILL.md`
 - `skills/wiki-ingest/SKILL.md`
 - `skills/llm-wiki-capture-pipeline/SKILL.md`
-- `skills/llm-wiki-channel-capture/SKILL.md`
 - `skills/llm-wiki-security-review/SKILL.md`
 - `skills/llm-wiki-retrieval-architect/SKILL.md`
 - `docs/16-retrieval-architecture.md`
