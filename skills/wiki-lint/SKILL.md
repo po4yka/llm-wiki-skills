@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access to a Markdown LLM-Wiki vault; git history improves protected-section and agent-edit checks.
 metadata:
   author: po4yka
-  version: "0.3.0"
+  version: "0.3.1"
   install_scope: self-contained
 ---
 
@@ -14,6 +14,14 @@ metadata:
 ## Goal
 
 Detect structural decay, provenance gaps, stale claims and contradictions without silently rewriting truth.
+
+## When to use
+
+- The vault needs a structural or trust health check.
+- Before large refactors or after bulk ingestion.
+- A review queue should be generated from mechanical findings.
+
+A filled final report ships in `assets/worked-example.md`.
 
 ## Inputs
 

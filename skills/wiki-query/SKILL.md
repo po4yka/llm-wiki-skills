@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to a Markdown LLM-Wiki vault; write access is optional for saving reusable query pages.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.3.0"
   install_scope: self-contained
 ---
 
@@ -14,6 +14,14 @@ metadata:
 ## Goal
 
 Answer from the compiled wiki first, verify against raw sources when needed, and save reusable answers back into the wiki.
+
+## When to use
+
+- The user asks a question answerable from the existing vault.
+- Research, synthesis, comparison or decision support should reuse wiki knowledge.
+- A reusable answer should be filed back into the wiki.
+
+A filled question-to-answer example ships in `assets/worked-example.md`.
 
 ## Inputs
 

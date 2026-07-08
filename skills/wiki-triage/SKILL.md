@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to an inbox or raw-source folder; write access is optional for reports and draft stubs.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.2.1"
   install_scope: self-contained
 ---
 
@@ -14,6 +14,14 @@ metadata:
 ## Goal
 
 Turn messy captured material into a reviewable triage report and safe next actions without prematurely promoting weak material into the trusted wiki.
+
+## When to use
+
+- An `inbox/` or capture folder has accumulated unsorted material.
+- Captured items need keep/defer/drop decisions before ingestion.
+- Duplicates or sensitive items may be hiding in captures.
+
+Route full ingestion of trusted sources to `wiki-ingest`.
 
 ## Inputs
 
@@ -68,7 +76,7 @@ Compare existing source titles, source URLs, content hashes if available, near-d
 
 ### 5. Produce report
 
-Create:
+Create `_agent/reports/YYYY-MM-DD-triage.md`:
 
 ```markdown
 # Inbox triage report: YYYY-MM-DD

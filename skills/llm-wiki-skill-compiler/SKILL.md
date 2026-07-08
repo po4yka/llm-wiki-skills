@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki and write access to a skills repository for apply mode.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.2.1"
   install_scope: self-contained
 ---
 
@@ -98,6 +98,8 @@ node scripts/audit-skills.mjs <path-to-generated-skills>
 Fix every reported error before delivering; treat warnings as review items. Do not declare a generated skill valid without running the script.
 
 ## Output
+
+Deliver the summary in chat; the persisted artifacts are the generated skill directories and the updated `skills.sh.json`.
 
 ```markdown
 ## Candidate skills

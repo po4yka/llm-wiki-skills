@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access to a Markdown LLM-Wiki vault; git is recommended for reviewable edits.
 metadata:
   author: po4yka
-  version: "0.2.1"
+  version: "0.3.0"
   install_scope: self-contained
 ---
 
@@ -14,6 +14,13 @@ metadata:
 ## Goal
 
 Convert raw source material into reviewable wiki updates while preserving provenance, uncertainty and human-owned synthesis.
+
+## When to use
+
+- A trusted raw source (PDF, article, transcript, notes, repo doc, web capture) should become reviewable wiki pages.
+- Sorted inbox material was approved for ingestion after `wiki-triage`.
+
+Route unsorted captures to `wiki-triage` first. A filled input-to-output example ships in `assets/worked-example.md`.
 
 ## Inputs
 

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the target folder; write access is not required.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
 ---
 
@@ -79,6 +79,8 @@ Choose one next skill:
 - `llm-wiki-setup` for missing vault scaffolding.
 
 ## Output
+
+Deliver the diagnosis in chat; this skill is read-only and must not write any files.
 
 ```markdown
 ## Diagnosis summary

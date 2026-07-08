@@ -106,6 +106,14 @@ assertFilesEqual('scripts/wiki-lint-core.mjs', 'skills/wiki-lint/scripts/wiki-li
 assertFilesEqual('scripts/audit-skills.mjs', 'skills/llm-wiki-skill-doctor/scripts/audit-skills.mjs');
 assertFilesEqual('scripts/audit-skills.mjs', 'skills/llm-wiki-skill-compiler/scripts/audit-skills.mjs');
 
+// Bundled vault/wiki starter templates must not drift from their canonical templates.
+for (const skillName of ['llm-wiki-setup', 'llm-wiki-zero-to-working-wiki']) {
+  assertFilesEqual('templates/vault/AGENTS.md', `skills/${skillName}/references/templates/vault/AGENTS.md`);
+  assertFilesEqual('templates/vault/CLAUDE.md', `skills/${skillName}/references/templates/vault/CLAUDE.md`);
+  assertFilesEqual('templates/wiki/index.md', `skills/${skillName}/references/templates/wiki/index.md`);
+  assertFilesEqual('templates/wiki/log.md', `skills/${skillName}/references/templates/wiki/log.md`);
+}
+
 const volatileBenchmarkPatterns = [
   /\b2\.0[-–]8\.1\s+F1\b/i,
   /\b6\.63\s+F1\b/i,

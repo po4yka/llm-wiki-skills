@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to skill directories; write access is optional for patch mode.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.2.1"
   install_scope: self-contained
 ---
 
@@ -69,6 +69,8 @@ Flag skills that:
 In report-only mode, provide exact edits. In patch mode, make minimal changes and preserve author intent.
 
 ## Output
+
+In report-only mode, deliver this summary in chat without writing files. In patch mode, apply minimal edits and list every modified file in the summary.
 
 ```markdown
 ## Skill doctor summary

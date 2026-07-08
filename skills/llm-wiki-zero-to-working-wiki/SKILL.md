@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access for local setup; keep writes reviewable and git-visible.
 metadata:
   author: po4yka
-  version: "0.1.1"
+  version: "0.2.0"
   install_scope: self-contained
 ---
 
@@ -64,14 +64,14 @@ _agent/reports/
 _meta/schemas/
 ```
 
-Create minimal instruction and navigation files if absent:
+Create minimal instruction and navigation files if absent, starting from the bundled starters:
 
-- `AGENTS.md`;
-- `CLAUDE.md` when the user uses Claude Code;
-- `wiki/index.md`;
-- `wiki/log.md`.
+- `AGENTS.md` from `references/templates/vault/AGENTS.md`;
+- `CLAUDE.md` from `references/templates/vault/CLAUDE.md` when the user uses Claude Code;
+- `wiki/index.md` from `references/templates/wiki/index.md`;
+- `wiki/log.md` from `references/templates/wiki/log.md`.
 
-The instruction files must state:
+Whatever the starting point, the instruction files must state:
 
 - do not edit `raw/` files;
 - generated pages start as `status: draft`;
@@ -117,7 +117,7 @@ If the answer is reusable, save it as a draft page under `wiki/queries/`. If not
 
 ### 6. Run first lint report
 
-Create a report under `_agent/reports/` with:
+Create a report at `_agent/reports/YYYY-MM-DD-first-lint.md` with:
 
 - summary;
 - broken links;

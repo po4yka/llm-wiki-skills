@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access for local setup; may require internet access for installing external tools.
 metadata:
   author: po4yka
-  version: "0.1.1"
+  version: "0.2.0"
   install_scope: self-contained
 ---
 
@@ -69,7 +69,7 @@ _agent/reports/
 _meta/schemas/
 ```
 
-Copy or adapt existing vault templates when the target repository already has them. If this skill is installed by itself, create the files directly from the structure above instead of assuming a packaged `templates/` directory exists.
+Start `wiki/index.md` and `wiki/log.md` from the bundled `references/templates/wiki/` starters; prefer the target repository's own vault templates when they already exist.
 
 ### 4. Install skills
 
@@ -84,7 +84,7 @@ Use project scope when the skills should be committed with a repo; use global sc
 
 ### 5. Configure instructions
 
-Create or update `AGENTS.md` and `CLAUDE.md` with:
+Create or update `AGENTS.md` and `CLAUDE.md`, starting from `references/templates/vault/AGENTS.md` and `references/templates/vault/CLAUDE.md`, keeping:
 
 - raw/wiki/schema model;
 - protected human sections;
@@ -113,6 +113,8 @@ Run a tiny end-to-end test:
 4. Run `wiki-lint` and inspect the report.
 
 ## Output
+
+Deliver the summary in chat; the persisted artifacts are the created vault files and installed skills.
 
 ```markdown
 ## Setup summary
