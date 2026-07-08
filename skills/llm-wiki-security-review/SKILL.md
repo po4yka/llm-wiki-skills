@@ -144,7 +144,7 @@ If MCP or local API exists, check:
 
 ### 8. Review write safety
 
-Check whether agents can edit raw sources, delete files, bypass git review, rewrite many pages without dry-run, modify protected human sections, approve their own generated claims, or alter `.github/`, `policies/`, `templates/`, `skills/` or MCP tool definitions without security review.
+Check whether agents can edit raw sources, delete files, bypass git review, rewrite many pages without dry-run, modify protected human sections, approve their own generated claims, or alter `.github/`, `policies/`, `templates/`, `skills/` or MCP tool definitions — none of this should be possible without explicit approval and security review.
 
 For team/shared knowledge, prefer:
 
@@ -189,7 +189,7 @@ Use severity:
 | Severity | Meaning |
 | --- | --- |
 | Critical | Secrets/regulated data likely exposed, direct unsafe writes, cross-tenant leak, parser RCE path, or remote unauthenticated access. |
-| High | Sensitive data can reach cloud models/indexes/traces or agents can bypass review. |
+| High | Sensitive data can reach cloud models/indexes/traces, or agents can bypass review without explicit approval. |
 | Medium | Missing audit trails, weak filters, stale dependencies, broad permissions. |
 | Low | Documentation gaps or hardening opportunities. |
 

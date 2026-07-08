@@ -4,12 +4,12 @@
   "policy": "These values are maximum allowed advisory findings. Lower counts pass and should be followed by lowering this baseline in the same change.",
   "metrics": {
     "skill_metadata_warnings": {
-      "max": 9,
+      "max": 0,
       "command": ["node", "scripts/validate-skills.mjs"],
       "count_pattern": "^! "
     },
     "agent_safety_warnings": {
-      "max": 7,
+      "max": 0,
       "command": ["node", "scripts/validate-agent-safety.mjs"],
       "count_pattern": "^! "
     },

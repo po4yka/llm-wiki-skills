@@ -18,7 +18,7 @@ Create safe GitHub Actions workflows for LLM-Wiki validation and maintenance.
 ## When to use
 
 - The user wants a scheduled `wiki-lint` or wiki-health report published as a workflow artifact.
-- The user wants PR-based automation for generated docs or maintenance changes instead of direct pushes to `main`.
+- The user wants PR-based automation for generated docs or maintenance changes and wants to avoid direct pushes to `main`.
 - The user needs Agent Skills frontmatter validation (or other repo-specific validation scripts) wired into CI.
 - The user wants to add or enable one of the starter evals, ingestion, publish, or security workflows.
 - The user is deciding what GitHub Actions permissions or triggers a wiki-maintenance job should have.

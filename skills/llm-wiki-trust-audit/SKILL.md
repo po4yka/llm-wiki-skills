@@ -88,7 +88,7 @@ Check whether agents can:
 - edit `raw/`;
 - delete source material;
 - bulk rewrite wiki pages without dry-run;
-- bypass git/PR review;
+- bypass git/PR review without explicit approval;
 - follow prompt-injection instructions from captured content;
 - expose sensitive material to external tools.
 
