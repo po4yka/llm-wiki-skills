@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-ingestion-stack
-description: Design an ingestion and document-conversion stack for LLM-Wiki. Use when the user has PDFs, Office files, HTML, web clips, audio/video, code repositories, emails, chats, images, scanned docs, tables, databases, source manifests, incremental sync, golden corpus, ingestion evals, security/privacy review, or production ETL needs and wants source-preserving Markdown/wiki ingestion.
+description: Design an ingestion and document-conversion stack for LLM-Wiki. Use when PDFs, Office files, web clips, audio/video, code repos, chats, scans, or tables must become source-preserving Markdown, or for source manifests, incremental sync, golden corpora, and ingestion evals.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current package docs before giving install commands, supported file-type claims, license claims, version-specific parser behavior, or cloud parser/API claims.
 metadata:
   author: po4yka
-  version: "0.2.1"
+  version: "0.2.2"
   install_scope: self-contained
 ---
 

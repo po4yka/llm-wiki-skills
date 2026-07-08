@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-company-flow-audit
-description: Map company/team information flows into an LLM-Wiki adoption plan. Use when the user asks where team knowledge can be collected from, which streams can be automated, how Confluence/Jira/GitHub/Slack/Teams/Drive changes stay synced, how fragile vault-review/lint systems are, whether there is UI for fixing links/contradictions, whether confidential data and permissions are supported, what pitfalls to avoid, or whether maintenance cost is worth the benefit.
+description: Map company/team information flows into an LLM-Wiki adoption plan. Use when the user asks where team knowledge lives, which streams can be automated, how Confluence/Jira/Slack/Drive changes stay synced, how fragile review is, how confidential data is handled, or whether maintenance cost is worth the benefit.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh vendor API/security docs before giving exact connector or permission claims.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
 ---
 

@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-gitlab-operating-model
-description: Design an LLM-Wiki team operating model for self-hosted GitLab and internal enterprise environments. Use when the user mentions GitLab Self-Managed, internal contour, air-gapped networks, GitLab Groups/Subgroups, merge requests, CODEOWNERS, approval rules, protected branches/environments, GitLab CI/CD, runners, GitLab Pages, registries, artifacts, LDAP/SAML/SCIM, RBAC, audit events, compliance frameworks, GitOps with Flux/GitLab agent, or internal MCP/API publishing.
+description: Design an LLM-Wiki team operating model for self-hosted GitLab and internal enterprise environments. Use for GitLab Self-Managed or air-gapped contours with groups, merge requests, CODEOWNERS, approval rules, protected branches, CI/CD, LDAP/SAML, RBAC, audit and compliance.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current GitLab, security, compliance and platform docs before giving version-specific configuration, feature-tier, API or deployment advice.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
 ---
 

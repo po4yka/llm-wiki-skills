@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-export-publish
-description: Export or publish a safe subset of an LLM-Wiki as public docs, internal handbook, static website, Markdown bundle, llms.txt / llms-full.txt, JSONL, JSON-LD, graph export, OpenAPI/MCP resource contract, release artifact or archive. Use when the user wants to publish from wiki while preserving provenance and excluding private raw sources, sensitive generated notes, draft pages and unsafe agent-readable bundles.
+description: Export or publish a safe subset of an LLM-Wiki as public docs, an internal handbook, a static site, llms.txt, JSONL/JSON-LD, graph export, or an archive. Use when publishing from the wiki must preserve provenance and exclude private raw sources, sensitive notes, and draft pages.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki and write access only when generating export files. Browse current publishing-tool docs before giving version-specific commands, hosted-feature claims or generator compatibility advice.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.2.1"
   install_scope: self-contained
 ---
 

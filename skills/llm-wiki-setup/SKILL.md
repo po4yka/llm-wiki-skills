@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-setup
-description: Install, configure, and connect a chosen LLM-Wiki workflow. Use when the user wants help setting up a raw/wiki/schema vault, Agent Skills, Claude Code/Codex integration, OpenWiki-style repo docs, Obsidian/local-first workflow, qmd-style retrieval, hooks, templates, or git review; route a guided first-demo walkthrough to llm-wiki-zero-to-working-wiki.
+description: Install, configure, and connect a chosen LLM-Wiki workflow. Use for setting up a raw/wiki/schema vault, Agent Skills, coding-agent integration, Obsidian/local-first workflows, hooks, templates, or git review; route a guided first-demo walkthrough to llm-wiki-zero-to-working-wiki.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access for local setup; may require internet access for installing external tools.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.2.1"
   install_scope: self-contained
 ---
 

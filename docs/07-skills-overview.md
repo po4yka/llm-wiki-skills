@@ -28,7 +28,7 @@ Explain the LLM-Wiki pattern, answer evidence-backed adoption questions, track c
 | [`llm-wiki-orient`](../skills/llm-wiki-orient/SKILL.md) | Explain the LLM-Wiki pattern, its raw/wiki/schema architecture, how it differs from RAG, GraphRAG and agent memory, and what ready-made solution families exist. |
 | [`llm-wiki-faq`](../skills/llm-wiki-faq/SKILL.md) | Explain LLM-Wiki adoption and answer stakeholder objections. |
 | [`llm-wiki-human-first-design`](../skills/llm-wiki-human-first-design/SKILL.md) | Design or audit an LLM-Wiki so it remains useful to humans without agents. |
-| [`llm-wiki-paf-adoption`](../skills/llm-wiki-paf-adoption/SKILL.md) | Answer questions that map LLM-Wiki to Product Architecture Framework concepts such as Nexus, Cortex, Product Engineer, Product Ops, Context Ripeness, Confidence Point, Feature Bunch and company-level AI product operations. |
+| [`llm-wiki-paf-adoption`](../skills/llm-wiki-paf-adoption/SKILL.md) | Answer questions that map LLM-Wiki to Product Architecture Framework concepts such as Nexus, Cortex, Product Engineer, Product Ops, Context Ripeness, Confidence Point. |
 | [`llm-wiki-news-radar`](../skills/llm-wiki-news-radar/SKILL.md) | Find and summarize fresh news, releases, papers, repositories, standards, and technologies related to LLM-Wiki, wiki memory, OpenWiki, Agent Skills, agent memory, RAG/GraphRAG, local-first knowledge tools, and coding-agent knowledge workflows. |
 | [`llm-wiki-choose`](../skills/llm-wiki-choose/SKILL.md) | Help a user choose between ready-made LLM-Wiki tools, a local-first workflow, a team rollout, retrieval/GraphRAG systems, or a custom implementation. |
 
@@ -68,7 +68,7 @@ Set up, customize, and migrate documents into local-first or team LLM-Wiki syste
 | [`llm-wiki-zero-to-working-wiki`](../skills/llm-wiki-zero-to-working-wiki/SKILL.md) | Create a first useful LLM-Wiki from zero. |
 | [`llm-wiki-setup`](../skills/llm-wiki-setup/SKILL.md) | Install, configure, and connect a chosen LLM-Wiki workflow. |
 | [`llm-wiki-design`](../skills/llm-wiki-design/SKILL.md) | Design a custom LLM-Wiki implementation, CLI, Obsidian plugin, repo-docs agent, team workflow, or product architecture. |
-| [`llm-wiki-refactor`](../skills/llm-wiki-refactor/SKILL.md) | Refactor an existing document set, docs folder, research archive, Obsidian vault, repository documentation, or messy note collection into an LLM-Wiki structure. |
+| [`llm-wiki-refactor`](../skills/llm-wiki-refactor/SKILL.md) | Refactor an existing docs folder, Obsidian vault, or messy note collection into an LLM-Wiki structure. |
 | [`llm-wiki-local-first-stack`](../skills/llm-wiki-local-first-stack/SKILL.md) | Design a local-first LLM-Wiki stack. |
 | [`llm-wiki-obsidian-hardening`](../skills/llm-wiki-obsidian-hardening/SKILL.md) | Harden an Obsidian vault for coding-agent and LLM-Wiki workflows. |
 | [`llm-wiki-repo-docs`](../skills/llm-wiki-repo-docs/SKILL.md) | Build or maintain an LLM-Wiki for codebase documentation. |
@@ -96,13 +96,13 @@ Run triage, ingest, query, lint, trust-audit, source-refresh, privacy, threat-mo
 | [`wiki-ingest`](../skills/wiki-ingest/SKILL.md) | Convert trusted raw sources into reviewable LLM-Wiki pages. |
 | [`wiki-query`](../skills/wiki-query/SKILL.md) | Answer questions from an existing LLM-Wiki vault and save reusable answers back into the wiki. |
 | [`wiki-lint`](../skills/wiki-lint/SKILL.md) | Run structural and trust health checks for an LLM-Wiki vault. |
-| [`llm-wiki-trust-audit`](../skills/llm-wiki-trust-audit/SKILL.md) | Audit an LLM-Wiki system for anti-slop controls, provenance, review gates, protected human synthesis, stale claims, confidence misuse, raw-source immutability, prompt-injection exposure, and unsafe agent write permissions. |
+| [`llm-wiki-trust-audit`](../skills/llm-wiki-trust-audit/SKILL.md) | Audit an LLM-Wiki system for anti-slop controls such as provenance, review gates, protected human synthesis, stale claims, and unsafe agent write permissions. |
 | [`llm-wiki-source-refresh`](../skills/llm-wiki-source-refresh/SKILL.md) | Re-check stale or time-sensitive LLM-Wiki sources and create refresh reports or review patches. |
 | [`llm-wiki-privacy-redactor`](../skills/llm-wiki-privacy-redactor/SKILL.md) | Preview and plan redaction of private or sensitive content before publishing, exporting, or sending LLM-Wiki context to external models. |
 | [`llm-wiki-threat-model`](../skills/llm-wiki-threat-model/SKILL.md) | Build a formal security architecture threat model for an LLM-Wiki system. |
 | [`llm-wiki-security-review`](../skills/llm-wiki-security-review/SKILL.md) | Review an existing LLM-Wiki or Agent Skills setup for practical security gaps. |
 | [`llm-wiki-model-policy`](../skills/llm-wiki-model-policy/SKILL.md) | Define model and data-use policy for LLM-Wiki workflows. |
-| [`llm-wiki-export-publish`](../skills/llm-wiki-export-publish/SKILL.md) | Export or publish a safe subset of an LLM-Wiki as public docs, internal handbook, static website, Markdown bundle, llms.txt / llms-full.txt, JSONL, JSON-LD, graph export, OpenAPI/MCP resource contract, release artifact or archive. |
+| [`llm-wiki-export-publish`](../skills/llm-wiki-export-publish/SKILL.md) | Export or publish a safe subset of an LLM-Wiki as public docs, an internal handbook, a static site, llms.txt, JSONL/JSON-LD, graph export, or an archive. |
 | [`llm-wiki-archive`](../skills/llm-wiki-archive/SKILL.md) | Prepare an LLM-Wiki for long-term durability and archival. |
 
 ### Skill and memory governance

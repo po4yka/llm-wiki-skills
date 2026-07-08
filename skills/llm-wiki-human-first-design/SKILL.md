@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-human-first-design
-description: Design or audit an LLM-Wiki so it remains useful to humans without agents. Use when the user argues that LLM-Wiki must not be treated as an agent-generated document dump, asks whether people could find information if agents disappeared, wants to avoid a new Confluence-like mess, needs human-readable page contracts, navigation maps, agent-free acceptance tests, or concrete steps for building a human-first, agent-assisted wiki.
+description: Design or audit an LLM-Wiki so it remains useful to humans without agents. Use when the user fears an agent-generated document dump or a new Confluence-like mess, or needs human-readable page contracts, navigation maps, and agent-free acceptance tests.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Does not require web unless the user asks for current tool-specific UI or SaaS integration details.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
 ---
 

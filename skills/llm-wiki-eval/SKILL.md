@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-eval
-description: Define and execute LLM-Wiki measurement, including bounded pilot benchmarks. Use when the user wants usefulness, grounding, maintenance-health, review-backlog, stale-page, unsupported-claim, citation-coverage, baseline vs with-wiki comparison, scoring, or decision-gate metrics; route framework/CI choices to llm-wiki-eval-tooling.
+description: Define and execute LLM-Wiki measurement, including bounded pilot benchmarks. Use for usefulness, grounding, maintenance-health, and citation-coverage metrics, baseline vs with-wiki comparison, scoring, and decision gates; route framework/CI choices to llm-wiki-eval-tooling.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the wiki; optional write access for evaluation reports.
 metadata:
   author: po4yka
-  version: "0.3.0"
+  version: "0.3.1"
   install_scope: self-contained
 ---
 

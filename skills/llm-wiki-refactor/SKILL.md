@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-refactor
-description: Refactor an existing document set, docs folder, research archive, Obsidian vault, repository documentation, or messy note collection into an LLM-Wiki structure. Use for applying an approved migration plan, frontmatter normalization, raw/wiki separation, link repair, and review-safe restructuring; route no-write migration planning to llm-wiki-migration-planner.
+description: Refactor an existing docs folder, Obsidian vault, or messy note collection into an LLM-Wiki structure. Use for applying an approved migration plan, with frontmatter normalization, raw/wiki separation, link repair, and review-safe restructuring; route no-write migration planning to llm-wiki-migration-planner.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access; git or a backup is required before applying changes.
 metadata:
   author: po4yka
-  version: "0.1.1"
+  version: "0.1.2"
   install_scope: self-contained
 ---
 

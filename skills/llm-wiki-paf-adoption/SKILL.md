@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-paf-adoption
-description: Answer questions that map LLM-Wiki to Product Architecture Framework concepts such as Nexus, Cortex, Product Engineer, Product Ops, Context Ripeness, Confidence Point, Feature Bunch and company-level AI product operations. Use when the user asks whether LLM-Wiki is a Nexus/Cortex, how to start a company-level Nexus, which Nexus to start with, how to make it shared, how to measure decision impact, or what must be added beyond basic LLM-Wiki.
+description: Answer questions that map LLM-Wiki to Product Architecture Framework concepts such as Nexus, Cortex, Product Engineer, Product Ops, Context Ripeness, Confidence Point. Use when the user asks whether LLM-Wiki is a Nexus/Cortex, how to start or share a company-level Nexus, or how to measure decision impact.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh PAF sources when making current or source-specific claims.
 metadata:
   author: po4yka
-  version: "0.1.1"
+  version: "0.1.2"
   install_scope: self-contained
 ---
 

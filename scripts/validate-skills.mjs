@@ -129,6 +129,15 @@ for (const skillName of skillNames) {
     fail(`${skillName}: description is too short to be useful for agent routing`);
   }
 
+  // Unquoted plain YAML scalars must not contain ': ' — strict YAML parsers
+  // (unlike this repo's regex parser) reject it as a nested mapping.
+  for (const field of ['description', 'compatibility']) {
+    const value = frontmatter[field] ?? '';
+    if (value.includes(': ')) {
+      fail(`${skillName}: ${field} contains ': ' which breaks strict YAML frontmatter parsers; reword or quote the value`);
+    }
+  }
+
   const firstDescriptionWord = (frontmatter.description ?? '')
     .trim()
     .split(/\s+/)[0]
