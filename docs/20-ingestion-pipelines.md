@@ -28,7 +28,7 @@ The safest LLM-Wiki ingestion architecture is **structure-first and provenance-p
 capture -> quarantine -> manifest -> convert/OCR/ASR -> normalize -> enrich -> chunk -> QA -> source page -> wiki draft -> review -> index
 ```
 
-The main failure mode is not bad embeddings. It is bad conversion:
+The main failure mode is bad conversion, not bad embeddings:
 
 - dropped tables;
 - broken reading order;

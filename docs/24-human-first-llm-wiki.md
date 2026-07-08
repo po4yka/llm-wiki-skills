@@ -27,7 +27,7 @@ Agents maintain bookkeeping, links, drafts, indexes, lint reports and refresh qu
 
 ## Why this matters
 
-Confluence-style knowledge bases often fail not because there are too few documents, but because context is scattered across spaces, projects, teams and historical layers.
+Confluence-style knowledge bases often fail because context is scattered across spaces, projects, teams and historical layers, not because there are too few documents.
 
 Typical fragmentation:
 

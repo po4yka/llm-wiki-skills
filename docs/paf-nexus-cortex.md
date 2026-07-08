@@ -19,9 +19,9 @@ The important caveat:
 
 ## What PAF says in operational terms
 
-PAF defines Nexus as a living context model for product, business and market decisions. It is not just a document library. It is a structured model of the object being managed: market, product, growth system, operating model or company/portfolio.
+PAF defines Nexus as a living context model for product, business and market decisions, not just a document library. It is a structured model of the object being managed: market, product, growth system, operating model or company/portfolio.
 
-PAF defines Cortex as the AI-based operating system for working with Nexus context. It is not just one chatbot. It is a set of rules, agents, prompts, retrieval, integrations and workflows through which product people manipulate Nexus context and make decisions.
+PAF defines Cortex as the AI-based operating system for working with Nexus context. It is a set of rules, agents, prompts, retrieval, integrations and workflows through which product people manipulate Nexus context and make decisions -- not just one chatbot.
 
 ## Mapping table
 
@@ -145,7 +145,7 @@ decision_links: []
 
 ## How to make it shared, not personal
 
-A company Nexus is not defined by where files live. It is defined by shared object, shared access and shared decision use.
+A company Nexus is defined by shared object, shared access and shared decision use, not by where files live.
 
 Rules:
 
@@ -159,7 +159,7 @@ Rules:
 
 ## Minimal Cortex for the pilot
 
-The first Cortex is not a big platform. It is a set of repeatable agent workflows over the Nexus.
+The first Cortex is a set of repeatable agent workflows over the Nexus, not a big platform.
 
 Minimum Cortex workflows:
 

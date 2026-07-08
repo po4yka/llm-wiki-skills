@@ -22,7 +22,7 @@ Related skills and docs:
 
 ## Executive summary
 
-LLM-Wiki is not just RAG with Markdown. It is a durable knowledge pipeline:
+LLM-Wiki is a durable knowledge pipeline, not just RAG with Markdown:
 
 ```text
 untrusted sources -> ingestion/parsing -> raw store -> indexes -> retrieved context -> agent -> wiki pages/proposals/exports/tools

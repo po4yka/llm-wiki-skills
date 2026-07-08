@@ -20,7 +20,7 @@ Is the ingestion surface treated as untrusted input?
 Is there an output loop beyond capture?
 ```
 
-The strongest criticisms are not objections to Markdown or agents in general. They are objections to **unreviewed compilation of knowledge**: smoothing, context poisoning, cognitive debt, drift, stale derived knowledge and governance failure.
+The strongest criticisms target **unreviewed compilation of knowledge**: smoothing, context poisoning, cognitive debt, drift, stale derived knowledge and governance failure. They are not objections to Markdown or agents in general.
 
 ## Risk map
 

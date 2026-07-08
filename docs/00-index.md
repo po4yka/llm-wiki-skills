@@ -5,7 +5,7 @@
 
 ## Thesis
 
-LLM-Wiki is best understood as a **compiled knowledge layer** between immutable raw sources and agent/user queries. It is not a replacement for search or RAG; it is a durable, human-readable layer that makes repeated research compound.
+LLM-Wiki is best understood as a **compiled knowledge layer** between immutable raw sources and agent/user queries. It is a durable, human-readable layer that makes repeated research compound, not a replacement for search or RAG.
 
 ## Reading paths
 

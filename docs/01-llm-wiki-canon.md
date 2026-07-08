@@ -7,7 +7,7 @@
 
 LLM-Wiki is a **persistent, compounding wiki generated and maintained by an LLM from immutable raw sources**. Its value comes from lowering the bookkeeping cost of a living knowledge base: summaries, cross-links, indexes, status updates, contradiction checks and resurfacing of relevant older material.
 
-The pattern is not a note-taking app. It is a data-layer architecture for agentic knowledge work.
+The pattern is a data-layer architecture for agentic knowledge work, not a note-taking app.
 
 ## The canonical triad
 
