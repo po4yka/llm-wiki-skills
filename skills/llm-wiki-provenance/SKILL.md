@@ -15,6 +15,15 @@ metadata:
 
 Make important wiki claims traceable to raw sources or clearly mark them as unsupported, inferred, or ambiguous.
 
+## When to use
+
+- A page has claims with no visible link back to `raw/` sources or source pages.
+- A generated summary cites another generated summary instead of an original source.
+- Support labels (extracted, inferred, synthesis, unsupported) look wrong or are missing.
+- The user asks for a provenance gap report before assigning stable IDs.
+- Current-state or status claims need re-verified evidence rather than an assumed link.
+- Do not use this skill to insert stable IDs; hand that off to `llm-wiki-claim-anchors`.
+
 ## Inputs
 
 - Target pages or folders.

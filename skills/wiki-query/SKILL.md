@@ -116,8 +116,19 @@ review_required: true
 
 Append to `wiki/log.md` if a page is saved.
 
+## Output
+
+A direct answer to the user's question: a concise thesis, evidence grouped by theme and labeled `extracted | inferred | ambiguous | synthesis | unsupported | conflicting`, explicit uncertainty, and links to the wiki pages used. When the answer is durable, the same content is also filed as `wiki/queries/YYYY-MM-DD-question-slug.md` (using the structure above) with a matching entry appended to `wiki/log.md`.
+
 ## Answer style
 
 Prefer a concise thesis first, evidence grouped by theme, explicit uncertainty, links to relevant wiki pages and one action-oriented next step when appropriate.
 
 Avoid pretending the wiki knows more than it does, citing generated pages as if they were raw sources, or leaving reusable answers in chat only.
+
+## Safety gates
+
+- Default write scope is limited to new `wiki/queries/*` files and, when clearly useful or requested, draft `wiki/synthesis/*` pages.
+- Never rewrite, delete, or archive an existing source/entity/concept page, and never mark a claim verified, without an explicit user request and review.
+- Leave protected human-owned sections untouched.
+- Every saved query page carries `review_required: true` in its frontmatter, and destructive edits to existing pages require explicit request and review before they happen.

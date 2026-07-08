@@ -17,6 +17,14 @@ Expose LLM-Wiki knowledge to agent clients through MCP or a local/remote API whi
 
 Use `references/docs/17-mcp-api-integration.md` as the reference playbook for the detailed MCP/API architecture, resource/tool contracts, auth/governance model, client compatibility, deployment patterns and testing checklist.
 
+## When to use
+
+- The user wants Claude Code, Codex, Cursor, ChatGPT, VS Code, GitHub Copilot, LangGraph or another MCP client to search, read, lint, rescan, propose, review or export wiki knowledge.
+- A wiki maintainer needs to pick an exposure mode (local stdio, local HTTP, remote read-only, remote governed-write) and is unsure which permission defaults apply.
+- Someone is designing MCP resources/tools/prompts or a REST/OpenAPI facade in front of the wiki and needs the contract shapes.
+- A team wants to add write/proposal tools and needs the auth scopes, PR/review gate and audit-log requirements defined before granting access.
+- Before recommending client-specific integration behavior, re-verify each client's current MCP support against its own docs rather than assuming parity across Claude Code, ChatGPT, Copilot and LangGraph.
+
 ## Inputs
 
 - Target clients: Claude Code, Codex, Cursor, ChatGPT, VS Code, GitHub Copilot, LangGraph, OpenCode or other MCP-compatible tools.

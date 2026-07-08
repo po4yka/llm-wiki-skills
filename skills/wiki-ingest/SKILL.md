@@ -83,7 +83,7 @@ Classify claims using the shared support vocabulary:
 - `unsupported`: no inspected source currently supports the claim;
 - `conflicting`: inspected sources disagree about the claim.
 
-Do not collapse competing claims into a single conclusion.
+Do not collapse competing claims into a single conclusion. Search the vault for existing pages on the same entities or concepts and re-verify each extracted claim against the raw source before writing it, so newly generated pages do not silently contradict already-verified material.
 
 ### 4. Write source page
 
@@ -156,6 +156,10 @@ End with:
 - Ambiguous claims:
 - Suggested next sources:
 ```
+
+## Output
+
+Ingestion produces new or updated Markdown pages under `wiki/sources/`, `wiki/entities/`, `wiki/concepts/`, and optionally `wiki/comparisons/`, plus an updated `wiki/index.md` entry and a matching log line in `wiki/log.md`. Each run ends with the `## Ingest summary` report shown above, listing created pages, updated pages, items needing review, and open questions.
 
 ## Safety gates
 

@@ -14,7 +14,7 @@
       "count_pattern": "^! "
     },
     "skill_smell_warnings": {
-      "max": 79,
+      "max": 0,
       "command": ["node", "scripts/validate-skill-smells.mjs"],
       "count_pattern": "^! "
     },

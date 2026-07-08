@@ -15,6 +15,14 @@ metadata:
 
 Design the capture architecture that makes source capture fast, safe and reviewable across channels.
 
+## When to use
+
+- The user wants an inbox/raw topology, metadata contract or dedupe boundary designed for LLM-Wiki capture.
+- The user asks for a named-channel connector runbook (Telegram, email, Slack, Discord, Teams, browser clips, voice notes, PDFs, GitHub).
+- The user needs the triage handoff between capture and `wiki-triage`/`wiki-ingest` defined.
+- The user is setting privacy defaults or prompt-injection isolation rules for captured content.
+- The user is adding a new high-volume or low-confidence capture channel class to an existing vault/repo.
+
 ## Core rule
 
 Capture should require near-zero filing decisions. Put material into `inbox/` or `raw/` first; use `wiki-triage` and `wiki-ingest` later.
@@ -94,7 +102,7 @@ connector -> durable event log -> normalize -> dedup -> raw/inbox -> triage repo
 
 ### 5. Add named-channel details when requested
 
-When the user names a channel such as Telegram, email, Slack, Discord, Teams, browser clips, voice notes, PDFs or GitHub, keep the shared envelope and safety boundary here, then use `references/channel-capture-runbook.md` for connector-specific details.
+When the user names a channel such as Telegram, email, Slack, Discord, Teams, browser clips, voice notes, PDFs or GitHub, keep the shared envelope and safety boundary here, then use `references/channel-capture-runbook.md` for connector-specific details. Browse the provider's official API docs to re-verify current rate limits, auth scopes and export limits before finalizing a connector runbook, since these details drift over time.
 
 For the named channel, define:
 

@@ -15,6 +15,13 @@ metadata:
 
 Produce a current, source-cited ecosystem update for LLM-Wiki and adjacent technologies.
 
+## When to use
+
+- The user asks about the latest, current, or recent state of LLM-Wiki, wiki memory, Agent Skills, RAG/GraphRAG, or related coding-agent knowledge tooling.
+- The user asks "what changed" in these areas since a specific date or event.
+- The user wants a source-cited digest of new releases, papers, tools, or standards before adopting them.
+- Not for general questions that do not need freshness checking (use a vault-query skill instead).
+
 ## Mandatory freshness rule
 
 Always browse. Do not answer current-state questions from memory.
@@ -35,6 +42,12 @@ Search across:
 - provenance, anti-slop, context poisoning, memory benchmarks;
 - arXiv papers and benchmark releases;
 - GitHub repos and release notes.
+
+## Inputs
+
+- The topic or watch area(s) to focus the search on; defaults to the full watch-area list above.
+- The time window to cover (last 7 days, last 30 days, last 90 days, since a known event, or general landscape); infer or ask if not given.
+- Optional: an LLM-Wiki vault path, if the result should be saved via the file-back step.
 
 ## Procedure
 
@@ -106,6 +119,10 @@ For each important item, answer:
 ## Sources checked
 ```
 
+## Output
+
+A single Markdown digest following the section template above (Current as of / Executive summary / Major updates / New or changed tools / New papers / Standards / Risks / Sources checked), grouped by the classification types from step 3, with every current-state claim carrying an inline citation to the source that supports it. When run inside an LLM-Wiki vault, the digest may additionally be offered for file-back as described below.
+
 ## Citation rules
 
 - Cite every factual current-state claim.
@@ -122,3 +139,10 @@ wiki/queries/YYYY-MM-DD-llm-wiki-news-radar.md
 ```
 
 Mark it `status: draft` and `stale_after` within 30-90 days.
+
+## Safety gates
+
+- Never state a current-state fact (release status, version, maintenance status, pricing) without having browsed and cited a source for it.
+- Do not fabricate dates, version numbers, or adoption claims; mark anything unverified as such instead of guessing.
+- File-back into the vault is optional and report-only until the user confirms; never overwrite an existing wiki page.
+- Surface stale, unmaintained, or low-provenance projects under the `risk` category rather than recommending them silently.

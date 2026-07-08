@@ -46,6 +46,13 @@ Use when the user asks:
 - "Will this hurt my own understanding?"
 - "Will this become a write-only archive?"
 
+## Inputs
+
+- The stakeholder's question or objection, in their own words (e.g. "Is this better than RAG?", "Do I need Obsidian?").
+- Context about the target wiki: greenfield vs already migrating, team size, whether git/PR workflows already exist.
+- Whether sensitive or regulated data is involved, so the answer can route to `llm-wiki-privacy-redactor` or `llm-wiki-model-policy` when needed.
+- Which bundled reference files are available under `references/` (evidence-pack, adoption-objections, additional-adoption-q-and-a, criticism-pack) to ground the answer.
+
 ## Required references
 
 Read these when available:

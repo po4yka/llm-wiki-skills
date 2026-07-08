@@ -17,6 +17,14 @@ Plan an LLM-Wiki operating model for a self-managed GitLab instance inside an en
 
 Use `references/docs/23-gitlab-self-hosted-operating-model.md` as the reference model.
 
+## When to use
+
+- The user runs GitLab Self-Managed (CE/EE) or an air-gapped/offline GitLab contour and needs an LLM-Wiki governance and delivery model on top of it.
+- Groups/subgroups, CODEOWNERS, MR approval rules, protected branches/environments or GitLab CI/CD pipelines need to be designed or reviewed for LLM-Wiki content.
+- Identity/RBAC (LDAP, SAML, SCIM), runner topology, audit/compliance evidence, or offline mirror strategy need mapping to GitLab primitives.
+- The user asks how to move LLM-Wiki authorship and publishing off the GitLab Wiki feature onto a CI/CODEOWNERS/eval-gated workflow.
+- Not for GitHub-hosted repositories (use the GitHub-specific operating-model skill instead) or for generic project-management advice unrelated to GitLab.
+
 ## Starter templates
 
 Use these local templates when available:

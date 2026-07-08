@@ -15,6 +15,13 @@ metadata:
 
 Evaluate whether an LLM-Wiki is trustworthy enough to use for decisions and identify the highest-risk failure modes.
 
+## When to use
+
+- The user asks whether their LLM-Wiki can be trusted before relying on it for a decision.
+- Before granting an agent write access to a vault, or after granting it, to confirm the write-safety boundary still holds.
+- After a large ingest, bulk edit, or lint run, to confirm provenance and review gates were not weakened.
+- Route setup/permission-only reviews to `llm-wiki-security-review` and proposal-specific risk reviews to `llm-wiki-critique-audit` instead of this skill.
+
 ## Inputs
 
 - Vault/repository path.
@@ -49,6 +56,8 @@ Sample important pages and report:
 - generated pages citing generated pages;
 - stale or missing source hashes;
 - source links that no longer resolve.
+
+Re-verify any page flagged stale or with an unresolved source link before treating its claims as trustworthy.
 
 ### 3. Audit generated content boundaries
 

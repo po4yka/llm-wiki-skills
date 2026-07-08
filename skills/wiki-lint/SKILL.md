@@ -116,6 +116,10 @@ Start from the script's draft report, merge in the judgement-only and contradict
 
 Append to `wiki/log.md` if the report is saved.
 
+## Output
+
+A structured lint report saved to `_agent/reports/YYYY-MM-DD-lint.md`, using the section skeleton from step 4 (Summary, Critical issues, High-priority review queue, Broken links, Orphans, Provenance gaps, Stale pages, Contradictions, Taxonomy drift, Suggested patches, Metrics). Each finding names the affected page path and the check that raised it, tagged with a severity from the table below so a reviewer can triage top-down. Saving a report also appends a one-line entry to `wiki/log.md`; no other vault content is modified.
+
 ## Severity levels
 
 | Severity | Meaning | Action |
@@ -124,3 +128,11 @@ Append to `wiki/log.md` if the report is saved.
 | high | important provenance or contradiction issue | review soon |
 | medium | structural decay | schedule cleanup |
 | low | cosmetic or taxonomy cleanup | batch later |
+
+## Safety gates
+
+- Deterministic checks run through `node scripts/wiki-lint-core.mjs` are read-only; the script never edits vault files.
+- Contradictions, stale claims and confidence conflicts are reported with evidence, never auto-resolved.
+- Trivial broken-link fixes only run in apply mode when the user explicitly asks for it; every other write stays report-only.
+- Deleting pages, rewriting synthesis pages, marking pages verified, and bulk frontmatter normalization without a dry run are out of scope for this skill.
+- Every saved report is appended as an audit entry to `wiki/log.md`.

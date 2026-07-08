@@ -17,6 +17,14 @@ Produce a threat model for an LLM-Wiki system that maps trust boundaries, attack
 
 Use `references/docs/19-security-threat-model.md` as the reference architecture and control baseline.
 
+## When to use
+
+- The user asks for a STRIDE, LINDDUN, PASTA, or data-flow-diagram threat model of an LLM-Wiki system.
+- The user wants trust boundaries, attack-surface mapping, abuse cases, or a risk/severity matrix for ingestion, retrieval, MCP/API, or write paths.
+- The user is designing or hardening a new LLM-Wiki deployment (local-first, hosted, MCP/API server) and needs a control baseline and red-team scenarios before build-out.
+- The user asks for an incident-response plan or security scorecard tied to a threat model, not an ad-hoc config review.
+- Route requests to review an *existing* config or deployment for known weaknesses to `llm-wiki-security-review` instead; use this skill for building the formal model from scratch.
+
 ## Inputs
 
 - Implementation family: local-first, desktop app, repo-docs, Obsidian, team wiki, hosted product, MCP/API server.

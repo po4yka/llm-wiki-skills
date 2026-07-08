@@ -15,6 +15,14 @@ metadata:
 
 Prevent private content from leaking through public exports, model-boundary payloads or shared reports.
 
+## When to use
+
+- Before exporting wiki pages, folders, or bundles to an external destination.
+- Before sending LLM-Wiki context across a model boundary to a third-party LLM.
+- When a page or raw source is tagged `privacy: sensitive` or marked internal.
+- When preparing a publishable report that may contain unreviewed generated claims.
+- When a redaction policy file exists and must be applied before publication.
+
 ## Inputs
 
 - Target pages, folders or export bundle.
@@ -26,7 +34,7 @@ Prevent private content from leaking through public exports, model-boundary payl
 
 ### 1. Load policy
 
-Read `references/docs/security/redaction-policy.md` and `references/templates/redaction-policy.yml` when available.
+Read `references/docs/security/redaction-policy.md` and `references/templates/redaction-policy.yml` when available, and re-verify the policy file is the current version before applying it, since redaction rules can change between publications.
 
 ### 2. Classify content
 

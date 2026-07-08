@@ -17,6 +17,14 @@ Turn LLM-Wiki usefulness, retrieval quality, grounding, security and maintenance
 
 Use `references/docs/18-evaluation-methodology.md` as the reference methodology for metric definitions, experiment design, dataset construction, CI strategy and rollout.
 
+## When to use
+
+- The user asks which eval framework, dataset format, scorecard, or CI gate fits their LLM-Wiki (e.g. "should we use Ragas or promptfoo", "what does a retrieval eval set look like").
+- The user wants to prove or disprove a claim such as "the wiki saves time" or "hybrid retrieval improved answers" with measurable tests.
+- The user needs to design PR-time, nightly, or release-time CI gates for retrieval, grounding, or security regressions.
+- The user needs a red-team/prompt-injection test plan or a human calibration workflow for LLM judges.
+- Route to `llm-wiki-eval` instead when the user wants an actual pilot run executed, not tool/format selection.
+
 ## Inputs
 
 - Wiki path and evaluation scope.

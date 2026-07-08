@@ -19,6 +19,15 @@ Use `references/docs/18-evaluation-methodology.md` for the detailed methodology:
 
 Use `references/benchmarks/pilot-questions.md` and `references/benchmarks/scoring-rubric.md` when the user wants a bounded pilot benchmark with baseline and with-wiki passes.
 
+## When to use
+
+- The user asks to measure, benchmark or score whether the wiki is actually useful, not just growing.
+- The user requests a bounded pilot benchmark with a baseline pass versus a with-wiki pass.
+- The user wants a continue/pause/redesign decision for the LLM-Wiki workflow or a specific domain.
+- The user wants to check grounding, citation coverage or unsupported-claim rate on recent answers.
+- The user wants an operational-health check (staleness, review backlog, freshness lag) as part of a periodic review.
+- Route pure tooling/CI/framework selection questions to `llm-wiki-eval-tooling` instead.
+
 ## Inputs
 
 - LLM-Wiki vault path.

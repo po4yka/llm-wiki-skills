@@ -72,7 +72,7 @@ For useful items, propose raw source path, wiki page type, existing pages to upd
 
 ### 4. Detect duplicates
 
-Compare existing source titles, source URLs, content hashes if available, near-duplicate filenames and related wiki pages.
+Compare existing source titles, source URLs, content hashes if available, near-duplicate filenames and related wiki pages. Search `wiki/index.md` and `raw/sources/` for near-duplicate titles before finalizing any `merge-duplicate` classification.
 
 ### 5. Produce report
 
@@ -108,6 +108,10 @@ status: draft
 review_required: true
 ai_generated: true
 ```
+
+## Output
+
+A single triage report at `_agent/reports/YYYY-MM-DD-triage.md` following the section skeleton above, with every scanned item assigned exactly one action (`keep-ingest`, `keep-reference`, `merge-duplicate`, `defer`, `drop-candidate`, `sensitive-review`) and, where applicable, a proposed raw-source path, wiki page type, and taxonomy tags. If optional staging was requested, the report also lists the draft stub paths created, each carrying `status: draft` and `review_required: true`.
 
 ## Safety gates
 

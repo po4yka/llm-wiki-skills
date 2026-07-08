@@ -15,6 +15,14 @@ metadata:
 
 Refresh stale source-backed claims without silently rewriting truth.
 
+## When to use
+
+- A page's `stale_after` date has passed.
+- `wiki-lint` flagged stale or unsupported claims that need re-verification.
+- A source URL referenced by a wiki page appears dead or has moved.
+- Ecosystem/tool facts on a page may have changed since `updated` was last set.
+- Someone requests a freshness pass over a set of pages before citing them elsewhere.
+
 ## Inputs
 
 - Target pages, source pages or lint report.

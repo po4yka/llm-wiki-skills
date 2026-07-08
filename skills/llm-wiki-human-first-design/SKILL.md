@@ -28,6 +28,14 @@ Use when the user says or asks:
 - "How do we test human findability?"
 - "How do we design a wiki around decisions/questions rather than sources/spaces?"
 
+## Inputs
+
+- The current wiki tree (or a proposed layout) — directory structure, `index.md`, domain maps.
+- A handful of recurring questions humans actually ask (or need to derive them if the user has not listed any).
+- Sample pages, especially any that mix generated summary with human-authored synthesis.
+- Any existing page-contract or frontmatter convention already in use, so the audit can search for deviations instead of inventing a new contract.
+- Whether the wiki currently has agent write access, and under what review process — needed to assess the draft/review/promote gate in step 7.
+
 ## Required references
 
 Read these when available:

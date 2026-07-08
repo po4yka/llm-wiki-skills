@@ -17,6 +17,14 @@ Turn private or internal LLM-Wiki content into safe, scoped, versioned and prove
 
 Use `references/docs/21-publishing-export.md` as the reference architecture for export profiles, human/agent/API/graph/archive targets, redaction, manifests, CI gates, release workflows and rollout.
 
+## When to use
+
+- A wiki maintainer wants to publish a public docs site, internal handbook, or agent-readable `llms.txt`/JSONL bundle from private wiki content.
+- A release needs a redacted, provenance-preserving export that excludes draft, private, sensitive or unreviewed pages.
+- A team needs a graph export (GraphML, JSON-LD, Cytoscape) or an archive bundle for long-term preservation.
+- CI needs export-profile validation, redaction scanning, or manifest/checksum generation before a release gate.
+- Do not use this skill to author new wiki content, run ingestion, or perform redaction analysis in depth — hand those off to `llm-wiki-ingest`, `llm-wiki-privacy-redactor` or `llm-wiki-security-review`.
+
 ## Inputs
 
 - Source wiki path.

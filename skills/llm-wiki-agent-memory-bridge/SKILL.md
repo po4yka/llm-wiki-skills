@@ -15,6 +15,14 @@ metadata:
 
 Separate durable domain knowledge from runtime/project memory so agents load the right context at the right time.
 
+## When to use
+
+- `AGENTS.md`/`CLAUDE.md` has grown large because domain facts were pasted into instructions instead of the wiki.
+- A wiki page holds procedural agent prompts that belong in a Skill, not domain knowledge.
+- Agent memory (Auto Memory, Codex project memory) duplicates or has drifted from existing wiki pages.
+- You need to decide where a new piece of knowledge belongs: Skill, instruction file, or wiki.
+- Onboarding a new agent (Claude Code, Codex, Cursor, OpenCode) to a project and need to map its existing memory surfaces first.
+
 ## Inputs
 
 - `AGENTS.md`, `CLAUDE.md`, project memory files, agent settings.
@@ -58,7 +66,8 @@ Flag:
 - skills containing volatile facts;
 - agent memory duplicating wiki pages;
 - wiki pages containing procedural prompts;
-- missing pointers from instruction files to wiki index.
+- missing pointers from instruction files to wiki index;
+- volatile facts (pricing, release notes, maintenance status) embedded directly in a skill or instruction file instead of a wiki page whose claims get re-verified against fresh sources before reuse.
 
 ### 4. Propose moves
 

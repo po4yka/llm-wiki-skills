@@ -15,6 +15,20 @@ metadata:
 
 Interview the user enough to recommend a practical path: adopt a ready-made solution, assemble a local-first workflow, roll out a team process, or build a custom LLM-Wiki.
 
+## When to use
+
+- The user asks which LLM-Wiki approach fits: a ready-made tool, a local-first git workflow, a team rollout, a retrieval/GraphRAG system, or a custom build.
+- The user explicitly asks whether OpenWiki, Obsidian, qmd, or a GraphRAG system suits their case.
+- The user is comparing infrastructure options before committing to an architecture or before starting `llm-wiki-paf-adoption`.
+- The user is still skeptical whether an LLM-Wiki is worth building at all.
+
+## Inputs
+
+- User type (individual, team, company, product builder) and corpus type/scale.
+- Privacy tier (public, internal, sensitive, regulated) and update/freshness needs.
+- Preferred coding agent and existing tooling (Obsidian, GitHub, qmd, vector DB, GraphRAG, OpenWiki, custom scripts).
+- Write tolerance (read-only advisory, PR-based writes, direct writes) and infrastructure/maintenance budget.
+
 ## Procedure
 
 ### 1. Gather requirements
@@ -135,6 +149,10 @@ Use this output:
 - Prefer PR-based writes for teams.
 - Do not recommend current project maturity from memory; browse.
 - For skeptical users, recommend a 20-50 source pilot and `llm-wiki-eval` rather than a big migration.
+
+## Output
+
+A short markdown report following the section 7 template: `Recommendation`, `Why this fits`, `Evidence level`, an `Alternatives considered` table (Option / Fit / Setup effort / Trust controls / Notes), `Setup plan`, `Risks and review gates`, and `Next skill to run`.
 
 ## Safety gates
 

@@ -15,6 +15,14 @@ metadata:
 
 Make an Obsidian vault safer for agent-assisted LLM-Wiki work.
 
+## When to use
+
+- Before letting a coding agent edit an Obsidian vault for the first time.
+- When wikilinks, embeds, or attachment folders keep breaking after agent edits.
+- When setting up `AGENTS.md`/`CLAUDE.md` boundaries for a vault used with LLM-Wiki workflows.
+- When a vault syncs via iCloud, Syncthing, or Obsidian Sync and index or WAL files risk corruption.
+- Before running bulk edits or migrations across vault notes.
+
 ## Inputs
 
 - Obsidian vault path.
@@ -34,7 +42,8 @@ Check:
 - wikilink style;
 - frontmatter style;
 - existing `AGENTS.md`/`CLAUDE.md`;
-- sync tool and local cache/index files.
+- sync tool and local cache/index files;
+- re-verify the vault's current file state immediately before applying changes, since sync tools may have modified files since the initial scan.
 
 ### 2. Protect Obsidian semantics
 

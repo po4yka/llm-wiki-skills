@@ -15,6 +15,14 @@ metadata:
 
 Help the user choose and configure a durable local-first LLM-Wiki stack with the least necessary infrastructure.
 
+## When to use
+
+- The user wants their LLM-Wiki to run offline or with minimal cloud dependency.
+- The user asks whether they need a vector database, graph store, or SQLite/FTS index yet.
+- The user is deciding between Markdown+git+rg and a heavier retrieval or product storage layer.
+- The user wants a sync strategy for a vault shared across multiple devices without breaking index files.
+- The user needs a model policy split between local-only and cloud-assisted tasks for privacy reasons.
+
 ## Inputs
 
 - Corpus size and growth rate.

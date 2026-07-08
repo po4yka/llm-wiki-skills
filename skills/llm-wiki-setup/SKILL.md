@@ -15,6 +15,14 @@ metadata:
 
 Turn a chosen LLM-Wiki recommendation into a working setup with safe defaults.
 
+## When to use
+
+- The user has already picked a target vault/architecture and wants it turned into a working setup (directories, templates, skills installed).
+- Configuring `AGENTS.md`/`CLAUDE.md`, hooks, or git/PR review policy for an LLM-Wiki workflow.
+- Connecting a coding agent (Claude Code, Codex, Cursor, OpenCode) to Agent Skills so `wiki-ingest`/`wiki-query`/`wiki-lint` work.
+- Migrating an existing Obsidian vault or repository docs tree into the raw/wiki/schema model.
+- Not for a guided first-demo walkthrough with no prior architecture decision — route that to `llm-wiki-zero-to-working-wiki` instead.
+
 ## Inputs
 
 - Chosen solution or target architecture.

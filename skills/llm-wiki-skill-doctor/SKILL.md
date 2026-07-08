@@ -15,6 +15,14 @@ metadata:
 
 Improve the quality, safety and discoverability of Agent Skills before they are installed or distributed.
 
+## When to use
+
+- Before publishing a new or edited `SKILL.md` in `skills/` to catch frontmatter, trigger-clarity, or smell issues early.
+- When a skill's description looks vague, overloaded, or likely to collide with another skill's triggers.
+- Before granting a skill broader permissions (shell, remote scripts, secrets) to check for supply-chain risk.
+- When preparing a batch of skills for distribution and `skills.sh.json` groupings need a release-readiness check.
+- When a skill body may contain stale or unverifiable claims that need re-verification against current sources before shipping.
+
 ## Inputs
 
 - One or more `skills/*/SKILL.md` files.

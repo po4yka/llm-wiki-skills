@@ -15,6 +15,13 @@ metadata:
 
 Design a custom LLM-Wiki system that starts thin, stays inspectable and has explicit trust controls.
 
+## When to use
+
+- The user wants to build their own LLM-Wiki implementation, CLI, Obsidian plugin, repo-docs agent, or team workflow rather than adopt an existing tool.
+- A product decision is needed on data model, retrieval tier, provenance, storage, sync, review or agent integration before any code is written.
+- The user asks for an MVP plan, architecture sketch, or build-vs-buy justification for a wiki/knowledge-base system.
+- Do not use this skill to answer questions from an already-built wiki (route to a query skill instead) or to pick between existing off-the-shelf tools (route to `llm-wiki-choose`).
+
 ## Inputs
 
 - Product/workflow goal.

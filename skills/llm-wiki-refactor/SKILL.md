@@ -15,6 +15,13 @@ metadata:
 
 Reorganize existing documents into a safe LLM-Wiki without losing provenance, breaking links, or overwriting human synthesis.
 
+## When to use
+
+- The user has an approved migration plan and wants to physically reorganize an existing docs folder, Obsidian vault, or note collection into LLM-Wiki structure.
+- Existing notes contain human-authored synthesis, Obsidian wikilinks, or attachments that must survive the move without breaking.
+- The user needs frontmatter normalized, raw/wiki content separated, or protected pages preserved during restructuring.
+- Do not use this skill for planning-only work with no filesystem writes; route that to llm-wiki-migration-planner instead.
+
 ## Inputs
 
 - Existing docs/vault/repository path.
@@ -86,7 +93,7 @@ When the user approves apply mode:
 - preserve links and attachments;
 - add or normalize frontmatter;
 - create `wiki/index.md` and `wiki/log.md` if missing;
-- run `wiki-lint` after each batch.
+- run `wiki-lint` and re-verify that internal links resolve after each batch, before moving on to the next one.
 
 ### 6. Preserve human synthesis
 

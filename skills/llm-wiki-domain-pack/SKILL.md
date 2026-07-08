@@ -15,6 +15,13 @@ metadata:
 
 Create a domain-specific starter pack that adapts the generic LLM-Wiki pattern to a concrete knowledge domain while preserving the stable core page schema.
 
+## When to use
+
+- Bootstrapping a new LLM-Wiki install for a specialized corpus (research papers, codebase docs, trading research, competitive intelligence, onboarding) that has no existing domain pack.
+- Adding domain-specific `domain_type` mappings, taxonomy, or stale/review policy to a wiki that currently only has the generic core types.
+- A user asks for capture rules, review gates, or templates tailored to one domain rather than the generic core schema.
+- Not for ingesting a single document or answering a query — use `wiki-ingest` or `wiki-query` for that instead.
+
 ## Inputs
 
 - Domain name and purpose.
@@ -191,3 +198,4 @@ Recommend which skills to use first:
 - Do not encode current volatile facts as taxonomy.
 - Do not remove generic lifecycle states.
 - Do not make domain templates look verified by default.
+- Re-verify any pricing, release, version, or other time-sensitive fact against fresh sources before writing it into a template or taxonomy entry.

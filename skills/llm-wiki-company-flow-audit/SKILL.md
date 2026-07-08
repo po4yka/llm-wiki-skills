@@ -30,6 +30,14 @@ Use when the user asks:
 - what pitfalls to avoid;
 - whether the maintenance cost is worth the value.
 
+## Inputs
+
+- The list of systems currently holding team/company knowledge (e.g. Confluence, Jira, GitHub, Slack, Teams, Drive, PagerDuty).
+- Team/org scale (personal pilot, one team, cross-functional, or company-level) so the maintenance-planning range fits.
+- Whether a source registry or ingestion tooling already exists, and its refresh policy (webhook, poll, manual, snapshot).
+- Any confidentiality/access constraints: data classification tiers, who owns which sources, existing permission boundaries.
+- Prior review-queue or UI setup (PR-based review, Obsidian vault, dashboard) if one is already in place.
+
 ## Required references
 
 Read these when available:

@@ -15,6 +15,13 @@ metadata:
 
 Produce an implementation-level comparison of existing open-source LLM-Wiki systems and extract reusable architecture patterns for a user's adoption plan or custom build.
 
+## When to use
+
+- The user asks for an implementation deep dive, architecture comparison, or "what to copy from" for OpenWiki, `nashsu/llm_wiki`, Vouch, RepoAgent, `llm-wiki-compiler`, SwarmVault, Obsidian LLM-Wiki plugins, or session-transcript wikis.
+- The user is deciding between a repo-docs generator, a full local-first desktop wiki, a review-gated agent-memory system, a compiler-first system, an Obsidian-native workflow, or a session-transcript wiki archetype.
+- The user wants production-readiness or licensing guidance before embedding one of these projects.
+- The user maintains `llm-wiki-skills` and wants the ecosystem/stack/deep-dive reference docs refreshed with newly re-verified facts.
+
 ## Inputs
 
 - User use case: repo docs, personal local-first wiki, governed team wiki, product/reference implementation, Obsidian workflow, session-transcript wiki.

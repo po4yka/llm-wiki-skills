@@ -19,6 +19,13 @@ Run a read-only diagnostic pass over an existing document collection and produce
 
 Use before migration, refactoring, setup, or trust work when the user already has material and wants to know where to start.
 
+## Inputs
+
+- Path to the workspace root to diagnose (repository, vault, or docs folder).
+- Whether the user expects read-only mode or has already granted write access (default: read-only).
+- Any existing `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, or project-instruction files to inspect for context.
+- Optional scope hint (a specific subfolder, domain, or wiki space) when the workspace is too large to inventory in full.
+
 ## Procedure
 
 ### 1. Preflight
@@ -33,6 +40,8 @@ Inspect, when present:
 - README, ADRs, docs folders and existing indexes.
 
 ### 2. Inventory
+
+Because file state can drift between invocation and reporting, re-verify counts and examples against the current workspace before finalizing the scorecard rather than trusting a cached impression.
 
 Collect counts and examples for:
 

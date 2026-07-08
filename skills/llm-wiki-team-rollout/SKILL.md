@@ -17,6 +17,14 @@ Introduce and operate LLM-Wiki in a team without creating an unreviewed official
 
 Use `references/docs/22-team-operating-model.md` as the reference operating model for roles, RACI/DACI, governance, SLOs, rituals, staffing stages, dashboards, onboarding and GitOps controls.
 
+## When to use
+
+- A team is adopting LLM-Wiki for the first time and needs an operating model, not just tooling.
+- A pilot wiki is moving to early production and needs PR-based writes, CODEOWNERS and a review queue.
+- Leadership asks for RACI/DACI, SLOs or a rollout plan before expanding to more domains.
+- A team is deciding between read-only reports, PR-based writes, a draft wiki or direct writes.
+- An existing rollout needs a governance or maturity-stage review (e.g. moving toward regulated/24x7).
+
 ## Starter templates
 
 Use these local templates when available:

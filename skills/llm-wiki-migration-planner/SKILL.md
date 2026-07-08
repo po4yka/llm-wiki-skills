@@ -15,6 +15,13 @@ metadata:
 
 Produce a safe, reviewable migration plan without changing the user's files.
 
+## When to use
+
+- The user wants a plan before migrating notes, docs, or an Obsidian vault into an LLM-Wiki, without touching any files yet.
+- The user is deciding between a personal vault, repo wiki, team wiki, research corpus, or product prototype target and needs a mapping proposal first.
+- The source is mixed content (Notion export, chat export, research PDFs, company docs) and needs profile-specific classification before any move happens.
+- The user asks for a dry-run, review, or approval step ahead of running `llm-wiki-refactor`.
+
 ## Inputs
 
 - Current document root.
@@ -61,7 +68,7 @@ Use this table:
 |---|---|---|---:|---|---|
 ```
 
-Use confidence values conservatively. Low-confidence rows should require human review.
+Use confidence values conservatively. Low-confidence rows should require human review. Re-verify each row's proposed path and confidence against the actual current file contents, not just filenames, before finalizing the table.
 
 ### 5. Design phases
 

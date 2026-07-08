@@ -17,6 +17,13 @@ Identify security, privacy and data-boundary risks in an LLM-Wiki workflow or sk
 
 Use `references/docs/19-security-threat-model.md` for the full threat model and control baseline. Use `llm-wiki-threat-model` when the user needs a full architecture-level threat model rather than a review of an existing setup.
 
+## When to use
+
+- The user asks whether an existing LLM-Wiki repo's permissions, MCP/API exposure, exports, cloud-model use, or data boundaries are safe.
+- Before enabling remote MCP/API access, a new export profile, or cloud model/embedding calls on a vault that holds sensitive or regulated content.
+- After adding or changing skills, agent instructions, ingestion pipelines, or CI automation that touch raw sources, indexes, or writes.
+- The user wants a prioritized, severity-ranked list of security findings and concrete mitigations rather than a from-scratch threat model (use `llm-wiki-threat-model` for that instead).
+
 ## Inputs
 
 - Vault/repository path.

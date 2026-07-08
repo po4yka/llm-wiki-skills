@@ -15,6 +15,14 @@ metadata:
 
 Create a practical model/data policy for ingest, query, lint, capture and publication workflows.
 
+## When to use
+
+- The user asks which models or providers are allowed to process a given wiki source or folder.
+- The user wants to decide what must stay local-only versus what can go to a cloud model.
+- The user is setting up or revising the cheap/local vs. heavy/cloud model split across ingest, triage, synthesis, query, lint and embedding tasks.
+- The user asks how to record model provenance (which model produced a page) in wiki frontmatter.
+- The user needs escalation rules for low-confidence outputs or sensitive raw sources before publication.
+
 ## Inputs
 
 - Data sensitivity and domain.

@@ -17,6 +17,14 @@ Turn messy source material into preserved raw sources, normalized manifests, eva
 
 Use `references/docs/20-ingestion-pipelines.md` as the reference architecture for source taxonomy, pipeline archetypes, tool choices, manifests, chunk schemas, quality gates, sync/dedupe and rollout. Use `references/templates/source-manifest.yaml` as the canonical source manifest shape; do not recreate a partial manifest schema in prose.
 
+## When to use
+
+- A batch of PDFs, Office files, scanned documents, web clips, audio/video, code repos, chats/emails or database tables needs to become source-preserving Markdown for the wiki.
+- You need a source manifest, provenance/anchor schema, or chunking scheme before any extraction work starts.
+- An existing ingestion path is producing empty extractions, table loss, OCR gibberish, orphaned attachments or missing provenance anchors.
+- You are deciding incremental sync/dedupe rules or an automation mode (manual batch, watched inbox, PR-based ingest, queue/worker ETL, connector platform).
+- You need a golden corpus and ingestion eval plan before wiring CI gates in `llm-wiki-eval-tooling`.
+
 ## Inputs
 
 - Source types and volume.

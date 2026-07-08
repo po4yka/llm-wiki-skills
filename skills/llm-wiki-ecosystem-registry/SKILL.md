@@ -15,6 +15,14 @@ metadata:
 
 Give the user a current, evidence-backed map of LLM-Wiki implementations and adjacent frameworks, then route them to the right next skill or adoption path.
 
+## When to use
+
+- The user asks what LLM-Wiki projects or adjacent frameworks exist.
+- The user wants to compare named tools (for example OpenWiki, nashsu/llm_wiki, vouch, RepoAgent, GraphRAG stacks).
+- The user asks which technology is missing from their current setup or which ready-made implementation to evaluate.
+- The user needs a routing recommendation between a full application, a repo-doc agent, a review-gated memory system, or a custom build.
+- The registry docs (`references/docs/13-ecosystem-matrix.md`) look stale and need a refresh.
+
 ## Inputs
 
 - User use case: personal wiki, research corpus, code repo, team/company knowledge, product build.

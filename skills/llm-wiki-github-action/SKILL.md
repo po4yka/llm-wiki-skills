@@ -15,6 +15,14 @@ metadata:
 
 Create safe GitHub Actions workflows for LLM-Wiki validation and maintenance.
 
+## When to use
+
+- The user wants a scheduled `wiki-lint` or wiki-health report published as a workflow artifact.
+- The user wants PR-based automation for generated docs or maintenance changes instead of direct pushes to `main`.
+- The user needs Agent Skills frontmatter validation (or other repo-specific validation scripts) wired into CI.
+- The user wants to add or enable one of the starter evals, ingestion, publish, or security workflows.
+- The user is deciding what GitHub Actions permissions or triggers a wiki-maintenance job should have.
+
 ## Starter templates
 
 Use these local templates when available in a full repository checkout. In a single-skill install, recreate the same workflow shapes from this list:
@@ -93,7 +101,7 @@ When the user asks for ready-made workflow files, copy only the relevant starter
 | publish/export pipeline | `llm-wiki-publish.github-actions.yml` |
 | security scans | `llm-wiki-security.github-actions.yml` |
 
-Rename each copied file to `.github/workflows/<purpose>.yml`, replace placeholder commands, and keep permissions minimal.
+Rename each copied file to `.github/workflows/<purpose>.yml`, replace placeholder commands, and keep permissions minimal. Re-verify that the pinned action versions and commands in a copied starter are still current for the target repository's toolchain before enabling its trigger.
 
 ## Output
 

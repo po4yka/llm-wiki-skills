@@ -27,6 +27,14 @@ Use when the user asks:
 
 For objections such as "why do I need this?", "what proof exists?", "what benefits will I get?", "how do I keep it alive?", or "do I need Obsidian?", route to or invoke `llm-wiki-faq`.
 
+## Inputs
+
+- The user's question about LLM-Wiki (what it is, how it differs from RAG/GraphRAG, whether to adopt it).
+- Optional context frame: personal second brain, team/company knowledge, repository documentation, research corpus, or product build.
+- Optional local-first requirement and sensitivity/privacy level.
+- Optional target agent: Claude Code, Codex, Cursor, OpenCode or other.
+- Whether the user already has documents to migrate or is starting empty.
+
 ## Procedure
 
 ### 1. Identify the user's frame

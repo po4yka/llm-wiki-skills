@@ -15,6 +15,13 @@ metadata:
 
 Create or improve a repository LLM-Wiki that helps coding agents understand and modify the codebase safely.
 
+## When to use
+
+- The user asks for an LLM-Wiki, agent-readable repo docs, or architecture maps for a codebase.
+- Setting up or refreshing `AGENTS.md`/`CLAUDE.md` pointer patterns for Claude Code, Codex, Cursor, or similar coding agents.
+- Module/package maps or ADR links have gone stale after a major refactor and need a maintenance pass.
+- Preparing OpenWiki-style repo documentation for a team repo where changes should land via PR.
+
 ## Inputs
 
 - Repository path.
@@ -102,3 +109,4 @@ Recommend:
 - Do not overwrite hand-written ADRs.
 - Do not put secrets or internal URLs in broadly readable docs.
 - Do not generate direct commits to team repos when PR workflow is expected.
+- Re-verify architecture and module descriptions against current source files before publishing pages, since generated maps drift quickly after refactors.

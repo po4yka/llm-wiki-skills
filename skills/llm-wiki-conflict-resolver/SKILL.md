@@ -15,6 +15,14 @@ metadata:
 
 Turn contradictions into explicit review decisions without silently rewriting truth.
 
+## When to use
+
+- `wiki-lint` reports two or more pages making contradictory claims about the same fact.
+- A provenance check finds a claim whose cited source no longer supports it.
+- A human reviewer flags disagreement between a decision note and a concept page.
+- Two pages define the same term differently (terminology drift) or appear to duplicate the same concept.
+- A claim looks stale (tool status, recommendation, or decision that may have changed) and needs a review decision rather than a silent edit.
+
 ## Inputs
 
 - Conflicting pages or lint report.
@@ -92,3 +100,4 @@ In apply mode, patch only the approved resolution and append to `wiki/log.md`.
 - Do not delete minority or outdated claims without preserving history.
 - Do not present inference as extracted fact.
 - Do not mark resolved conflicts verified without human approval.
+- Re-verify a claim against current sources (not just the conflicting page's own text) before recommending which side of a stale or source-disagreement conflict to keep.

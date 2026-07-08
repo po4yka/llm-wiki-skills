@@ -15,6 +15,13 @@ metadata:
 
 Add stable, auditable claim and source anchors to important wiki pages.
 
+## When to use
+
+- The user wants stable claim IDs or source anchor IDs added to a wiki page or folder.
+- A high-impact recommendation or synthesis page needs auditable provenance before it is trusted or merged.
+- The user asks to validate existing claim/source anchors or check anchor formatting.
+- `llm-wiki-provenance` has flagged unsupported, ambiguous, or conflicting claims that need anchors or a gap report.
+
 ## Inputs
 
 - Target wiki pages or folders.
@@ -45,6 +52,8 @@ Prioritize:
 - claims used in synthesis;
 - claims marked verified/reviewed;
 - claims found by `llm-wiki-provenance`.
+
+Re-verify current-state claims (pricing, versions, release status, provider support) against fresh sources before anchoring them as extracted rather than inferred.
 
 ### 3. Classify support
 

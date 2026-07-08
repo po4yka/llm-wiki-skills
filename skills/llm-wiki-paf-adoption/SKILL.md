@@ -27,6 +27,14 @@ Use when the user asks:
 - "What can we reuse from LLM-Wiki skills, and what must be built for PAF?"
 - "How do Product Engineer / Product Ops roles map to LLM-Wiki ownership?"
 
+## Inputs
+
+- The user's question about mapping LLM-Wiki to PAF concepts (Nexus, Cortex, Product Engineer, Product Ops, Context Ripeness, Confidence Point).
+- Any PAF source page or citation the user provides, when the claim involves a current or source-specific PAF definition.
+- The user's current adoption stage: still weighing the analogy, choosing a first Nexus, or already running a pilot.
+- Whether the target scope is company-level, single-team, or personal adoption.
+- The reference docs listed under "Required references", when present in the repo.
+
 ## Required references
 
 Read these when available:

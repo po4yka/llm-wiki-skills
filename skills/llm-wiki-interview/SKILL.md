@@ -15,6 +15,14 @@ metadata:
 
 Use targeted questions to capture a person's tacit knowledge into draft, reviewable wiki pages.
 
+## When to use
+
+- The wiki has open questions, sparse concept pages, or pages marked `review_required`.
+- Onboarding gaps keep producing the same repeated questions from new contributors.
+- A decision page is missing its rationale, history, or trade-offs.
+- The user hands over a voice-note or transcript that should become draft wiki pages.
+- A lint report or contradiction check surfaces a gap only a person can fill in.
+
 ## Inputs
 
 - `wiki/index.md`, `wiki/log.md`, open questions and lint reports.
@@ -35,6 +43,8 @@ Look for:
 - pages marked `review_required`;
 - repeated user questions;
 - decision pages missing rationale.
+
+Search `wiki/index.md` and `wiki/log.md` for prior interview answers before drafting new questions, so the interview does not re-ask what is already captured.
 
 ### 2. Prepare focused questions
 

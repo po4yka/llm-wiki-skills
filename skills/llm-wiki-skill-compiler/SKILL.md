@@ -15,6 +15,14 @@ metadata:
 
 Turn reusable procedural knowledge from the wiki into small, triggerable Agent Skills without moving domain knowledge into hidden prompts.
 
+## When to use
+
+- A wiki page or folder captures a repeated step-by-step workflow, runbook, checklist, or troubleshooting routine worth reusing across sessions or agents.
+- A saved query answer keeps getting re-asked and should become a triggerable skill instead of a synthesis note.
+- An existing `skills/` directory needs a new candidate evaluated against `skills.sh.json` before writing anything.
+- Someone wants to compile a batch of wiki pages into `SKILL.md` files and needs the propose-only vs. write-mode boundary made explicit first.
+- Do not use this skill to answer a one-off question or to publish domain facts as-is; use it only when the target output is a procedural, triggerable skill.
+
 ## Inputs
 
 - Candidate wiki pages or folders.

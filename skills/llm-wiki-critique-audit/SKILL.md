@@ -29,6 +29,14 @@ Use when the user asks:
 - "Can this work for a team?"
 - "What are the residual risks after mitigations?"
 
+## Inputs
+
+- A description of the audit target: a domain (research papers, trading notes, personal notes), an existing vault/docs folder, a proposed team rollout, an implementation (CLI, plugin, MCP/API server), or an operating loop (capture, triage, ingest, lint, refresh, publish).
+- Any existing vault schema, `CLAUDE.md` contracts, or domain wiki structure for the target, so the domain fit screen and risk scorecard are grounded in real answers rather than assumptions.
+- Scale and cost context: source count, corpus size, planned team size, and current token/time budget, needed to answer the domain fit screen and score the token-burn and scale-ceiling risk classes.
+- Any mitigations or rollout plans already committed to, so Step 4 can separate genuine mitigations from residual risk instead of re-deriving them from scratch.
+- The reference docs listed below when present in the repo; re-verify the risk scorecard against their current content rather than relying on memorized summaries.
+
 ## Required references
 
 Read these when available:

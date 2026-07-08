@@ -15,6 +15,13 @@ metadata:
 
 Make architectural and product decisions traceable, searchable and durable.
 
+## When to use
+
+- Someone asks why a technical or product decision was made and no clear record exists.
+- A PR, issue, or discussion thread contains decision rationale that should be distilled into a durable ADR.
+- An existing ADR needs to be linked into the wiki or checked against newer commits/docs for stale assumptions.
+- A subsystem lacks decision provenance and the user wants it recovered from history before further changes land.
+
 ## Inputs
 
 - Existing ADRs, docs, PRs, issues, discussions or commit history.

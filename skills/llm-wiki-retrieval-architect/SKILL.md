@@ -17,6 +17,14 @@ Choose the smallest retrieval tier that solves the user's measured retrieval fai
 
 Use `references/docs/16-retrieval-architecture.md` as the reference playbook for detailed technology comparisons, metadata schema, GraphRAG lane design, evaluation gates, security controls and source URLs to re-check.
 
+## When to use
+
+- The wiki's search misses relevant pages even though the content exists (lexical miss, stale index, poor ranking, thin context, or multi-hop miss).
+- You need to pick or size a retrieval tier (grep-only, lexical index, hybrid semantic search, reranker, parent/context retrieval, graph-aware retrieval, or product storage) for a Markdown/wiki corpus.
+- You must define index contracts, metadata/access filters, chunking policy, or graph edge schema for a new or growing wiki.
+- Retrieval needs to respect tenant, sensitivity, or review-state boundaries before rollout.
+- Whole-stack local-first tooling choices belong in `llm-wiki-local-first-stack`; use this skill once retrieval specifically is the bottleneck.
+
 ## Inputs
 
 - Corpus size and source types.
