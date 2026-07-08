@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-retrieval-architect
-description: Design the retrieval/indexing layer for an LLM-Wiki. Use when the user asks about lexical search, SQLite FTS, BM25, hybrid retrieval, vector DBs, GraphRAG, Qdrant, LanceDB, Chroma, Weaviate, Milvus, pgvector, LlamaIndex, Haystack, rerankers, metadata filters, MCP retrieval, or when `rg`/index.md no longer retrieves enough context.
+description: Design the retrieval/indexing layer for an LLM-Wiki. Use when the user asks about lexical search, SQLite FTS, BM25, hybrid retrieval, vector DBs, GraphRAG, Qdrant, LanceDB, Chroma, Weaviate, Milvus, pgvector, LlamaIndex, Haystack, rerankers, metadata filters, MCP retrieval, or when `rg`/index.md no longer retrieves enough context; route whole-stack local-first tooling choices to llm-wiki-local-first-stack.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse official docs before recommending current install commands, provider behavior, licenses, API behavior or specific package versions.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.2.1"
   install_scope: self-contained
 ---
 

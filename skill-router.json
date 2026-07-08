@@ -1,14 +1,7 @@
 {
   "$schema": "./templates/schemas/skill-router.schema.json",
   "version": "0.1.0",
-  "default_entrypoints": [
-    "llm-wiki-orient",
-    "llm-wiki-faq",
-    "llm-wiki-human-first-design",
-    "llm-wiki-choose",
-    "llm-wiki-zero-to-working-wiki",
-    "llm-wiki-doctor"
-  ],
+  "default_entrypoints": ["llm-wiki-orient", "llm-wiki-faq", "llm-wiki-human-first-design", "llm-wiki-choose", "llm-wiki-zero-to-working-wiki", "llm-wiki-doctor"],
   "routes": [
     {
       "skill": "llm-wiki-zero-to-working-wiki",
@@ -17,7 +10,8 @@
       "next": ["llm-wiki-setup", "wiki-ingest", "wiki-query", "wiki-lint", "llm-wiki-eval"],
       "write_risk": "medium",
       "requires_web": false,
-      "default_mode": "plan-then-scaffold"
+      "default_mode": "plan-then-scaffold",
+      "not_for": ["install workflow", "configure agent skills", "connect coding agent"]
     },
     {
       "skill": "llm-wiki-orient",
@@ -49,7 +43,7 @@
     },
     {
       "skill": "llm-wiki-news-radar",
-      "intents": ["latest news", "fresh releases", "recent papers", "ecosystem changes"],
+      "intents": ["find latest news", "track fresh releases", "summarize recent papers", "monitor ecosystem changes"],
       "depends_on": [],
       "next": ["llm-wiki-ecosystem-registry", "llm-wiki-choose"],
       "write_risk": "none",
@@ -99,7 +93,8 @@
       "next": ["llm-wiki-refactor", "llm-wiki-human-first-design", "llm-wiki-obsidian-hardening"],
       "write_risk": "none",
       "requires_web": false,
-      "default_mode": "plan-only"
+      "default_mode": "plan-only",
+      "not_for": ["refactor docs", "apply migration", "organize vault now"]
     },
     {
       "skill": "llm-wiki-refactor",
@@ -108,7 +103,8 @@
       "next": ["wiki-lint", "llm-wiki-provenance"],
       "write_risk": "high",
       "requires_web": false,
-      "default_mode": "dry-run-first"
+      "default_mode": "dry-run-first",
+      "not_for": ["no-write migration plan", "dry-run plan only", "plan before touching files"]
     },
     {
       "skill": "llm-wiki-setup",
@@ -117,7 +113,8 @@
       "next": ["llm-wiki-domain-pack", "llm-wiki-obsidian-hardening", "wiki-ingest"],
       "write_risk": "medium",
       "requires_web": false,
-      "default_mode": "plan-then-scaffold"
+      "default_mode": "plan-then-scaffold",
+      "not_for": ["zero to working wiki", "first useful wiki", "first demo loop"]
     },
     {
       "skill": "llm-wiki-design",
@@ -135,7 +132,8 @@
       "next": ["llm-wiki-setup", "llm-wiki-obsidian-hardening", "llm-wiki-retrieval-architect"],
       "write_risk": "none",
       "requires_web": true,
-      "default_mode": "recommendation"
+      "default_mode": "recommendation",
+      "not_for": ["hybrid search", "vector database choice", "graphrag architecture", "retrieval layer design"]
     },
     {
       "skill": "llm-wiki-obsidian-hardening",
@@ -211,7 +209,7 @@
     },
     {
       "skill": "llm-wiki-capture-pipeline",
-      "intents": ["capture pipeline architecture", "cross channel topology", "inbox raw flow", "capture metadata contract", "dedupe boundary", "triage handoff", "telegram connector", "email connector", "voice note connector", "slack export runbook", "specific channel connector", "channel api setup"],
+      "intents": ["design capture pipeline architecture", "design cross channel topology", "define inbox raw flow", "define capture metadata contract", "define dedupe boundary", "define triage handoff", "set up telegram connector", "set up email connector", "set up voice note connector", "write slack export runbook", "configure specific channel connector", "configure channel api"],
       "depends_on": [],
       "next": ["wiki-triage", "llm-wiki-ingestion-stack"],
       "write_risk": "low",
@@ -220,7 +218,7 @@
     },
     {
       "skill": "llm-wiki-ingestion-stack",
-      "intents": ["ingestion stack", "document conversion", "pdf to markdown", "ocr pipeline", "incremental source sync"],
+      "intents": ["design ingestion stack", "convert documents to markdown", "convert pdf to markdown", "build ocr pipeline", "plan incremental source sync"],
       "depends_on": [],
       "next": ["wiki-ingest", "llm-wiki-security-review"],
       "write_risk": "none",
@@ -284,7 +282,7 @@
     {
       "skill": "llm-wiki-provenance",
       "intents": ["missing sources", "provenance gaps", "unsupported claims", "repair evidence links", "investigate support labels"],
-      "not_for": ["stable claim ids", "source anchor ids", "validate claim anchors"],
+      "not_for": ["stable claim ids", "source anchor ids", "validate claim anchors", "anti-slop controls", "prompt-injection exposure"],
       "depends_on": ["wiki-lint"],
       "next": ["llm-wiki-claim-anchors", "llm-wiki-conflict-resolver"],
       "write_risk": "medium",
@@ -333,7 +331,7 @@
     {
       "skill": "llm-wiki-critique-audit",
       "intents": ["risk report", "what could go wrong", "bad fit assessment", "adversarial critique", "failure mode register", "residual risk scorecard", "mitigation plan"],
-      "not_for": ["concise rebuttal", "stakeholder faq", "answer objection", "proof question"],
+      "not_for": ["concise rebuttal", "stakeholder faq", "answer objection", "proof question", "anti-slop controls", "can the wiki be trusted"],
       "depends_on": [],
       "next": ["llm-wiki-human-first-design", "llm-wiki-eval", "llm-wiki-trust-audit", "llm-wiki-provenance", "llm-wiki-security-review"],
       "write_risk": "none",
@@ -347,12 +345,13 @@
       "next": ["llm-wiki-provenance", "llm-wiki-critique-audit", "wiki-lint"],
       "write_risk": "none",
       "requires_web": false,
-      "default_mode": "report-only"
+      "default_mode": "report-only",
+      "not_for": ["is my setup safe", "existing configuration safety", "mcp exposure review", "repair evidence links", "missing sources", "failure mode register", "residual risk scorecard"]
     },
     {
       "skill": "llm-wiki-security-review",
       "intents": ["security review", "is my setup safe", "existing configuration safety", "data boundary review", "mcp exposure review", "skill safety review"],
-      "not_for": ["threat model", "stride analysis", "linddun analysis", "data flow diagram", "attack surface mapping"],
+      "not_for": ["threat model", "stride analysis", "linddun analysis", "data flow diagram", "attack surface mapping", "anti-slop controls", "can the wiki be trusted"],
       "depends_on": [],
       "next": ["llm-wiki-model-policy", "llm-wiki-privacy-redactor"],
       "write_risk": "none",
@@ -398,12 +397,13 @@
     },
     {
       "skill": "llm-wiki-retrieval-architect",
-      "intents": ["retrieval design", "hybrid search", "vector database choice", "graphrag architecture", "wiki does not fit in context"],
+      "intents": ["design retrieval layer", "design hybrid search", "choose vector database", "design graphrag architecture", "wiki does not fit in context"],
       "depends_on": [],
       "next": ["llm-wiki-local-first-stack", "llm-wiki-mcp-integration", "llm-wiki-eval"],
       "write_risk": "none",
       "requires_web": true,
-      "default_mode": "recommendation"
+      "default_mode": "recommendation",
+      "not_for": ["offline wiki", "avoid cloud lock-in", "local-first stack choice"]
     },
     {
       "skill": "llm-wiki-mcp-integration",

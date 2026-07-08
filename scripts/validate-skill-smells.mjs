@@ -81,7 +81,7 @@ const routeBoundaryChecks = [
   },
   {
     skillName: 'llm-wiki-capture-pipeline',
-    required: ['cross channel topology', 'dedupe boundary', 'telegram connector', 'channel api setup'],
+    required: ['design cross channel topology', 'define dedupe boundary', 'set up telegram connector', 'configure channel api'],
     banned: [],
   },
   {

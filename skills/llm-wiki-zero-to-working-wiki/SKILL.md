@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-zero-to-working-wiki
-description: Create a first useful LLM-Wiki from zero. Use when the user wants a zero-to-working-wiki walkthrough, first vault, first source ingest, first reusable query, first lint report, or a visible demo loop before a larger rollout.
+description: Create a first useful LLM-Wiki from zero. Use when the user wants a zero-to-working-wiki walkthrough, first vault, first source ingest, first reusable query, first lint report, or a visible demo loop before a larger rollout; route full workflow installs to llm-wiki-setup.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires filesystem access for local setup; keep writes reviewable and git-visible.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
 ---
 

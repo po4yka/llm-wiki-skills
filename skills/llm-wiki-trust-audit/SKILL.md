@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-trust-audit
-description: Audit an LLM-Wiki system for anti-slop controls, provenance, review gates, protected human synthesis, stale claims, confidence misuse, raw-source immutability, prompt-injection exposure, and unsafe agent write permissions. Use when the user asks whether their wiki can be trusted.
+description: Audit an LLM-Wiki system for anti-slop controls, provenance, review gates, protected human synthesis, stale claims, confidence misuse, raw-source immutability, prompt-injection exposure, and unsafe agent write permissions. Use when the user asks whether their wiki can be trusted; route setup/permission safety reviews to llm-wiki-security-review and proposal risk audits to llm-wiki-critique-audit.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to the vault/repo; git history is recommended for edit provenance.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
 ---
 

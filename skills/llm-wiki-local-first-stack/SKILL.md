@@ -1,11 +1,11 @@
 ---
 name: llm-wiki-local-first-stack
-description: Design a local-first LLM-Wiki stack. Use when the user wants Markdown, git, Obsidian, ripgrep, local embeddings, qmd-style retrieval, SQLite/FTS/vector indexes, local LLMs, offline operation, or safe sync without cloud lock-in.
+description: Design a local-first LLM-Wiki stack. Use when the user wants Markdown, git, Obsidian, ripgrep, local embeddings, qmd-style retrieval, SQLite/FTS/vector indexes, local LLMs, offline operation, or safe sync without cloud lock-in; route retrieval/index layer design to llm-wiki-retrieval-architect.
 license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current package docs before recommending concrete install commands or versions.
 metadata:
   author: po4yka
-  version: "0.1.0"
+  version: "0.1.1"
   install_scope: self-contained
 ---
 
