@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse and cite fresh sources for current ecosystem, tool maturity, pricing, release, or benchmark claims.
 metadata:
   author: po4yka
-  version: "0.1.4"
+  version: "0.1.5"
   install_scope: self-contained
 ---
 
@@ -55,7 +55,6 @@ Read these when available:
 3. `references/additional-adoption-q-and-a.md` for start-small, ownership, cost, ROI, migration, RAG/search, lock-in and multi-agent questions.
 4. `references/criticism-pack.md` for serious criticism and mitigation answers.
 5. Repository-level docs:
-   - `references/docs/12-evidence-and-faq.md`
    - `references/docs/adoption-objections.md`
    - `references/docs/adoption-q-and-a.md`
    - `references/docs/criticism-and-mitigations.md`
@@ -251,14 +250,14 @@ Key defaults:
 
 For current facts, browse and cite. For static bundled evidence, summarize the source map from `references/evidence-pack.md` and criticism map from `references/criticism-pack.md`.
 
-Important sources to know:
+Source map (`verify-before-use`: re-check each source before citing its result as current, and label the evidence level):
 
-- LangChain Wiki Memory: wiki memory as compact, persistent, agent-readable knowledge layer.
-- Anthropic context engineering: context is finite; agents benefit from just-in-time file/context navigation.
-- Lost in the Middle: long context alone is unreliable.
-- GraphRAG / GlobalRAG: flat chunk retrieval struggles on global/corpus-level questions.
-- Mem0 / MemMachine: persistent structured memory can outperform full-context or naive RAG baselines.
-- 2026 LLM-Wiki retrieval paper: early direct evidence on multi-hop and structured queries.
+- LangChain wiki-memory writeups: position wiki memory as a compact, persistent, agent-readable knowledge layer (adjacent evidence).
+- Anthropic context-engineering guidance: context is finite; agents benefit from just-in-time file/context navigation (adjacent evidence).
+- "Lost in the Middle": long context alone is unreliable (adjacent evidence).
+- GraphRAG / GlobalRAG papers: flat chunk retrieval struggles on global/corpus-level questions (adjacent evidence).
+- Mem0 / MemMachine reports: vendor-adjacent benchmarks where persistent structured memory beat full-context or naive RAG baselines; do not present as proof for LLM-Wiki.
+- 2026 LLM-Wiki retrieval paper: reported early direct evidence on multi-hop and structured queries; re-verify its scope and status before citing.
 
 ### 11. Offer a pilot instead of a leap of faith
 

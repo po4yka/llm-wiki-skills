@@ -119,7 +119,6 @@ const volatileBenchmarkPatterns = [
 for (const relPath of [
   'docs/12-evidence-and-faq.md',
   'skills/llm-wiki-faq/references/evidence-pack.md',
-  'skills/llm-wiki-faq/references/docs/12-evidence-and-faq.md',
 ]) {
   const text = readText(path.join(repoRoot, relPath));
   for (const pattern of volatileBenchmarkPatterns) {

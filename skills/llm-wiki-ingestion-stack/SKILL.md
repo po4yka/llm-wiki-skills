@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current package docs before giving install commands, supported file-type claims, license claims, version-specific parser behavior, or cloud parser/API claims.
 metadata:
   author: po4yka
-  version: "0.2.0"
+  version: "0.2.1"
   install_scope: self-contained
 ---
 
@@ -47,30 +47,21 @@ Use this taxonomy:
 
 ### 2. Choose pipeline archetype
 
-| Archetype | Use when | Default stack |
+| Archetype | Use when | Default shape |
 |---|---|---|
-| local-first office/PDF | Private documents, reports, slide decks. | Docling or MarkItDown, optional OCRmyPDF, SQLite FTS/LanceDB. |
-| scanned archive | Image-only PDFs, paper archives. | OCRmyPDF, Docling/PaddleOCR/Marker, page/region QA. |
-| web capture | Product docs, help centers, research pages. | Playwright, ArchiveBox/SingleFile, Readability, archive-backed citations. |
-| media/meeting | Audio/video, webinars, recordings. | yt-dlp where lawful, Whisper/faster-whisper, timestamp segments. |
-| code/data hybrid | Repos, docs, schemas, tables. | tree-sitter/ast-grep, OpenWiki/RepoAgent, DuckDB/dlt/Airbyte. |
-| communication | Email, Slack/Telegram/Discord, issue comments. | mail-parser/Notmuch/platform exports, thread/message chunks. |
-| production ETL | High volume, retries, observability. | queue/worker pipeline, object storage, structured outputs, policy gates. |
+| local-first office/PDF | Private documents, reports, slide decks. | Local layout-aware converter, optional OCR pass, embedded local index. |
+| scanned archive | Image-only PDFs, paper archives. | OCR-first pipeline with page/region QA. |
+| web capture | Product docs, help centers, research pages. | Scripted browser capture, archived snapshots, readability extraction, archive-backed citations. |
+| media/meeting | Audio/video, webinars, recordings. | Lawful media download plus local transcription with timestamp segments. |
+| code/data hybrid | Repos, docs, schemas, tables. | Syntax-aware code scanners plus SQL/ELT tooling for tables. |
+| communication | Email, Slack/Telegram/Discord, issue comments. | Mailbox/chat exports parsed into thread/message chunks. |
+| production ETL | High volume, retries, observability. | Queue/worker pipeline, object storage, structured outputs, policy gates. |
 
 ### 3. Choose conversion tools
 
-| Need | Candidate tools |
-|---|---|
-| Lightweight many-format Markdown conversion | MarkItDown, Pandoc. |
-| Layout-heavy documents and tables | Docling, Unstructured, Marker. |
-| Broad file metadata/text extraction | Apache Tika. |
-| OCR | OCRmyPDF, Tesseract, PaddleOCR, cloud OCR only with policy approval. |
-| Scientific PDFs/math | Nougat, Marker, Docling formula-aware paths. |
-| Audio/video transcription | Whisper, faster-whisper, yt-dlp where lawful, diarization if needed. |
-| Web capture | Playwright, Readability/ReadabiliPy, ArchiveBox, SingleFile, browser clipper. |
-| Code structure | tree-sitter, ast-grep, language servers, RepoAgent/OpenWiki-style scanners. |
-| Email/chat | mail-parser, Notmuch, platform exports, attachment extractors. |
-| Data tables | pandas, DuckDB, dlt, Airbyte, CSV/Parquet readers. |
+Match tools to the need category: lightweight many-format Markdown conversion, layout-heavy documents and tables, broad file metadata/text extraction, OCR, scientific PDFs/math, audio/video transcription, web capture, code structure, email/chat, and data tables.
+
+Pick named candidates from the per-category tool sections in `references/docs/20-ingestion-pipelines.md`, then browse each tool's docs to re-verify supported file types, license and maintenance status before recommending it. Cloud OCR/ASR requires policy approval first.
 
 ### 4. Preserve raw sources and manifests
 

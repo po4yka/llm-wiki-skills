@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse official docs before recommending current install commands, provider behavior, licenses, API behavior or specific package versions.
 metadata:
   author: po4yka
-  version: "0.2.1"
+  version: "0.2.2"
   install_scope: self-contained
 ---
 
@@ -53,30 +53,34 @@ Do not add infrastructure until a real retrieval failure is identified.
 
 Use progressive retrieval:
 
-| Tier | Use when | Typical tools |
+| Tier | Use when | Capability shape |
 |---|---|---|
 | 0. Map + grep | Small/medium wiki with good names, indexes and wikilinks. | `index.md`, `log.md`, `rg`, `fd`, backlinks. |
-| 1. Local lexical index | Exact search must be faster, ranked or scoped. | SQLite FTS5, Tantivy, Pagefind for static exports, OpenSearch/Elasticsearch when hosted. |
-| 2. Hybrid semantic search | Conceptual search fails or users ask natural-language questions. | BM25/FTS + embeddings; LanceDB, Qdrant, Chroma, Weaviate, Milvus, pgvector. |
-| 3. Reranked retrieval | Top-k contains signal but order is poor. | Cross-encoders, Jina/Cohere rerankers, ColBERT/late-interaction rerankers. |
-| 4. Parent/context retrieval | Small chunks retrieve well but answer context is incomplete. | Parent-document retrieval, contextual retrieval, recursive retrieval. |
-| 5. Graph-aware retrieval | Multi-hop, relationship-heavy or corpus-level questions dominate. | Wikilink/entity graph, Microsoft GraphRAG, LightRAG, HippoRAG, RAPTOR, LlamaIndex property graph, Neo4j/Kuzu. |
-| 6. Product storage | Multi-user permissions, concurrency, tenancy or scale dominate. | Qdrant, Weaviate, Milvus, OpenSearch, Postgres + pgvector, object storage and queues. |
+| 1. Local lexical index | Exact search must be faster, ranked or scoped. | Embedded or hosted full-text engine with ranking and scoping. |
+| 2. Hybrid semantic search | Conceptual search fails or users ask natural-language questions. | Lexical lane plus embedding lane with score fusion. |
+| 3. Reranked retrieval | Top-k contains signal but order is poor. | Cross-encoder or late-interaction reranker over candidate sets. |
+| 4. Parent/context retrieval | Small chunks retrieve well but answer context is incomplete. | Parent-document, contextual or recursive retrieval. |
+| 5. Graph-aware retrieval | Multi-hop, relationship-heavy or corpus-level questions dominate. | Wikilink/entity graph traversal or a GraphRAG-family lane. |
+| 6. Product storage | Multi-user permissions, concurrency, tenancy or scale dominate. | Vector-native platform or SQL vector extension plus object storage and queues. |
 
 Default recommendation: **hybrid retrieval + metadata filters + reranker**. GraphRAG is a specialized lane for global/relationship-heavy questions, not the universal default.
 
+Pick concrete engines per tier from the comparison tables in `references/docs/16-retrieval-architecture.md`, then browse each candidate's docs to re-verify maintenance status, licensing and feature claims before recommending it.
+
 ### 3. Choose by deployment archetype
 
-| Situation | Default recommendation |
+| Situation | Default shape |
 |---|---|
-| Personal/local-first wiki | `rg` + SQLite FTS5 + local embeddings; upgrade to LanceDB or local pgvector if needed. |
-| Obsidian-style Markdown vault | Wikilinks/backlinks + FTS; add graph-native retrieval before vector DB if links are strong. |
-| Repo-docs CI | Git/module maps + static search/Pagefind + optional hybrid preview index. |
-| Hosted team wiki | Qdrant or Weaviate hybrid retrieval with payload/tenant filters and reranker. |
-| Existing enterprise search stack | OpenSearch hybrid if pure OSS matters; Elasticsearch only if licensing is already acceptable. |
-| App-data-heavy product | Postgres + pgvector when SQL joins, transactional metadata and app ACLs dominate. |
-| Very large vector collection | Milvus if the team owns the operational complexity. |
-| Corpus-level synthesis | Hybrid default plus graph/GraphRAG lane for selected query classes. |
+| Personal/local-first wiki | Grep plus an embedded lexical index and local embeddings; upgrade only on measured misses. |
+| Obsidian-style Markdown vault | Wikilinks/backlinks plus FTS; add graph-native retrieval before a vector DB if links are strong. |
+| Repo-docs CI | Git/module maps plus static search; optional hybrid preview index. |
+| Hosted team wiki | Vector-native hybrid engine with payload/tenant filters and a reranker. |
+| Existing enterprise search stack | Reuse the incumbent stack's hybrid capabilities; re-check current licensing terms before choosing between OSS and source-available engines. |
+| App-data-heavy product | The application database's vector extension when SQL joins, transactional metadata and app ACLs dominate. |
+| Very large vector collection | A scale-first vector platform only if the team owns the operational complexity. |
+| Corpus-level synthesis | Hybrid default plus a graph/GraphRAG lane for selected query classes. |
+
+Map each shape to named engines using `references/docs/16-retrieval-architecture.md` and cite current sources for any licensing or maturity claim.
 
 ### 4. Define index contracts
 
