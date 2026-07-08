@@ -25,7 +25,7 @@ Use `docs/13-ecosystem-matrix.md` for the compact registry and `docs/14-technolo
 The open-source LLM-Wiki ecosystem has split into several distinct product shapes:
 
 | Archetype | Representative projects | Core thesis |
-|---|---|---|
+| --- | --- | --- |
 | Repo-docs generator | `langchain-ai/openwiki`, `OpenBMB/RepoAgent` | Codebase documentation is the corpus; Git context and PR review are the maintenance loop. |
 | Full local-first desktop wiki | `nashsu/llm_wiki` | A personal knowledge app can own ingestion, graph, retrieval, review, API and MCP in one UI. |
 | Review-gated agent memory | `vouchdev/vouch` | Agents may propose durable knowledge, but humans approve it; every claim needs evidence. |
@@ -39,7 +39,7 @@ The main implementation lesson: **no single open-source project currently domina
 ## Comparative matrix
 
 | Project | License | Maturity signal | Primary use case | Storage | Retrieval | MCP/API | Review/provenance | Best idea to adopt |
-|---|---|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `langchain-ai/openwiki` | MIT | Active, early | Repo docs for coding agents | Markdown in `openwiki/`; update metadata in `openwiki/.last-update.json`; credentials under `~/.openwiki/`; DeepAgents SQLite checkpointer | Git status/log/diff and generated docs; no surfaced user-facing vector/graph system | No surfaced MCP server; integration via `AGENTS.md`/`CLAUDE.md` pointer edits | PR review through GitHub Action; no claim-level evidence gate | Pointer pattern: keep instruction files small and point agents to wiki docs. |
 | `nashsu/llm_wiki` | GPL-3.0 | Active desktop app | Personal/local-first wiki OS | `raw/`, `wiki/`, `.llm-wiki/`; optional LanceDB index | Tokenized lexical search, graph relevance, optional vector search, hybrid endpoint | Local HTTP API on `127.0.0.1`; token; local MCP server; read-only skill | Async review queue; page/source-level provenance | Full-stack local-first architecture with desktop UX, graph, hybrid search, MCP and review queue. |
 | `vouchdev/vouch` | MIT | Active | Review-gated agent memory/wiki | `.vouch/` plain files, YAML claims, Markdown pages, append-only audit log, rebuildable SQLite FTS5 | Approved claims/pages via FTS-backed `kb_*` tools | MCP over stdio, JSONL transport, local HTTP serve | Strongest gate: proposals, human approval, evidence-required claims, machine-verified citations | Durable write boundary: agents propose, humans approve, pending knowledge cannot influence retrieval. |
@@ -375,7 +375,7 @@ capture -> ingest -> compile -> query -> lint -> eval -> review -> export -> arc
 Do not start with GraphRAG. Use upgrade triggers:
 
 | Trigger | Upgrade |
-|---|---|
+| --- | --- |
 | good filenames and links are enough | `rg`, `index.md`, wikilinks |
 | exact search misses concepts | SQLite FTS/Tantivy + embeddings |
 | top-k has signal but poor ordering | reranking |
@@ -387,7 +387,7 @@ Do not start with GraphRAG. Use upgrade triggers:
 Adopt a layered MCP contract:
 
 | Tool class | Examples | Default |
-|---|---|---|
+| --- | --- | --- |
 | Read-only | `search_wiki`, `read_page`, `read_manifest`, `list_reviews` | enabled first |
 | Proposal write | `draft_page_patch`, `propose_new_page`, `propose_link_fix` | enabled after review model exists |
 | Admin | `rebuild_index`, `rescan_sources`, `export_subset` | disabled unless explicit |
@@ -454,7 +454,7 @@ A next-generation LLM-Wiki product should combine:
 ## Gaps and opportunities
 
 | Gap | Why it matters | Opportunity for `llm-wiki-skills` |
-|---|---|---|
+| --- | --- | --- |
 | No universal reference architecture | Projects optimize for different archetypes. | Provide archetype-specific decision skills and templates. |
 | Weak formal evaluation in most apps | Users cannot prove the wiki helps. | Add eval playbooks, promptfoo/Ragas templates and pilot metrics. |
 | Ingestion quality varies widely | Bad extraction creates bad wiki pages. | Add source-type bake-off procedures and manifest schemas. |
@@ -465,22 +465,22 @@ A next-generation LLM-Wiki product should combine:
 
 ## Source URLs to re-check
 
-- https://github.com/langchain-ai/openwiki
-- https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation
-- https://github.com/nashsu/llm_wiki
-- https://github.com/vouchdev/vouch
-- https://github.com/OpenBMB/RepoAgent
-- https://arxiv.org/html/2402.16667v1
-- https://github.com/atomicstrata/llm-wiki-compiler
-- https://github.com/swarmclawai/swarmvault
-- https://github.com/green-dalii/obsidian-llm-wiki
-- https://github.com/lucasastorian/llmwiki
-- https://github.com/Pratiyush/llm-wiki
-- https://github.com/ussumant/llm-wiki-compiler
-- https://modelcontextprotocol.io/specification/2025-11-25
-- https://qdrant.tech/documentation/search/filtering/
-- https://docs.lancedb.com/search/hybrid-search
-- https://docs.haystack.deepset.ai/docs/metadata-filtering
-- https://microsoft.github.io/graphrag/
-- https://docs.ragas.io/
-- https://www.promptfoo.dev/docs/intro/
+- <https://github.com/langchain-ai/openwiki>
+- <https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation>
+- <https://github.com/nashsu/llm_wiki>
+- <https://github.com/vouchdev/vouch>
+- <https://github.com/OpenBMB/RepoAgent>
+- <https://arxiv.org/html/2402.16667v1>
+- <https://github.com/atomicstrata/llm-wiki-compiler>
+- <https://github.com/swarmclawai/swarmvault>
+- <https://github.com/green-dalii/obsidian-llm-wiki>
+- <https://github.com/lucasastorian/llmwiki>
+- <https://github.com/Pratiyush/llm-wiki>
+- <https://github.com/ussumant/llm-wiki-compiler>
+- <https://modelcontextprotocol.io/specification/2025-11-25>
+- <https://qdrant.tech/documentation/search/filtering/>
+- <https://docs.lancedb.com/search/hybrid-search>
+- <https://docs.haystack.deepset.ai/docs/metadata-filtering>
+- <https://microsoft.github.io/graphrag/>
+- <https://docs.ragas.io/>
+- <https://www.promptfoo.dev/docs/intro/>

@@ -60,7 +60,7 @@ Indexes and exports are rebuildable artifacts. Markdown and raw sources remain t
 ## Retrieval decision tree
 
 | Symptom | Add | Example technologies | Notes |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | The corpus is small and filenames/page titles are strong. | No new infrastructure. | `rg`, `fd`, `find`, `index.md`, wikilinks. | Prefer this for the first 50-100 sources. |
 | Exact search must be ranked, scoped or faster. | Local lexical index. | SQLite FTS5, Tantivy, Pagefind for static exports, OpenSearch/Elasticsearch for hosted search. | Keep lexical search even after adding embeddings. |
 | Exact search misses obvious conceptual matches. | Hybrid lexical/semantic retrieval. | BM25/FTS + embeddings; LanceDB, Chroma, Qdrant, Weaviate, Milvus, pgvector. | Default serious retrieval tier for most LLM-Wiki systems. |
@@ -74,7 +74,7 @@ Indexes and exports are rebuildable artifacts. Markdown and raw sources remain t
 ## Ingestion decision tree
 
 | Source type / symptom | First choice | Upgrade when | Notes |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Native PDF, Office, HTML, EPUB | Docling | MarkItDown for lightweight Markdown; Unstructured/Tika when connector breadth dominates. | Prefer structure/layout/provenance over plain text. |
 | Simple local file conversion | MarkItDown | Docling when tables/layout/page anchors matter. | Good for fast Markdown-first local workflows. |
 | Complex PDFs, tables and page layout | Docling | PaddleOCR or Marker for scan/table/formula-heavy cases. | Sample fidelity before trusting outputs. |
@@ -89,7 +89,7 @@ Indexes and exports are rebuildable artifacts. Markdown and raw sources remain t
 Recommended ingestion artifacts:
 
 | Artifact | Purpose |
-|---|---|
+| --- | --- |
 | `raw/manifests/<source_id>.yaml` | Source identity, hash, sensitivity, parser version, extraction status and review state. |
 | `raw/extracted/<source_id>/` | Rebuildable parser outputs such as Markdown, JSON and chunks. |
 | `wiki/sources/<source_id>.md` | Human-readable source page with warnings, provenance and links to derived pages. |
@@ -114,7 +114,7 @@ Security defaults for ingestion:
 Expose stable wiki operations as a semantic API, not as raw filesystem access:
 
 | MCP/API surface | Examples | Default mode |
-|---|---|---|
+| --- | --- | --- |
 | Resources | `wiki://manifest`, `wiki://index`, `wiki://page/{space}/{slug}`, history/lint/graph resources | Read-only |
 | Read tools | `search_wiki`, `read_page`, `read_source_manifest`, `graph_neighborhood`, `run_lint`, `explain_retrieval` | Enabled first |
 | Proposal-write tools | `draft_page_patch`, `propose_new_page`, `propose_link_fix`, `create_pr_from_proposal` | Disabled until review model exists |
@@ -140,7 +140,7 @@ Security defaults:
 Evaluation is a layered system, not a single score:
 
 | Evaluation layer | Question | Metric/tooling |
-|---|---|---|
+| --- | --- | --- |
 | Ingestion fidelity | Did conversion preserve text, structure and anchors? | parser success, text coverage, heading/table preservation, timestamp coverage, thread integrity. |
 | Provenance completeness | Can every chunk trace back to source? | source hash coverage, manifest coverage, chunk anchor coverage, duplicate chunk rate. |
 | Retrieval | Did retrieval find the right pages/passages? | recall@k, MRR, nDCG, qrels, manual hit/miss labels, pytrec_eval, Ragas context precision/recall. |
@@ -156,7 +156,7 @@ Evaluation is a layered system, not a single score:
 Recommended eval artifacts:
 
 | Artifact | Purpose |
-|---|---|
+| --- | --- |
 | `evals/retrieval-eval-set.yaml` | Versioned questions, qrels, required pages/sources and risk tiers. |
 | `evals/ingestion/ingestion-fidelity-suite.yaml` | Versioned golden corpus for parser/conversion/provenance checks. |
 | `evals/promptfooconfig.yaml` | Prompt/RAG regression and rubric checks. |
@@ -167,7 +167,7 @@ Recommended eval artifacts:
 ## Security and data boundary stack
 
 | Risk | Tools/controls |
-|---|---|
+| --- | --- |
 | Secret leakage | GitHub secret scanning/push protection, gitleaks, detect-secrets, trufflehog, pre-commit hooks, CI gates. |
 | PII/private-data exposure | Microsoft Presidio, scrubadub, custom regex/classifiers, redaction manifests, retention policy. |
 | Dependency/supply-chain risk | OSV Scanner, Dependabot, GitHub dependency review, npm audit, pip-audit, lockfile review. |
@@ -183,7 +183,7 @@ Recommended eval artifacts:
 Recommended security artifacts:
 
 | Artifact | Purpose |
-|---|---|
+| --- | --- |
 | `docs/19-security-threat-model.md` | Canonical architecture threat model and control baseline. |
 | `templates/security-scorecard.yaml` | Review checklist and status report. |
 | `templates/mcp-security-profile.yaml` | MCP/API security contract for tool classes, auth, retrieval filters and audit. |
@@ -197,7 +197,7 @@ Recommended security artifacts:
 Publish through explicit export profiles rather than copying the whole wiki.
 
 | Target | Tools/formats | Controls |
-|---|---|---|
+| --- | --- | --- |
 | Human static site | MkDocs Material, Docusaurus, VitePress, Quartz, Astro/Starlight | Publish allowlist, redaction report, broken-link check, citation report. |
 | Agent-readable corpus | `llms.txt`, `llms-full.txt`, JSONL, per-page Markdown/TXT, Markdown bundle | Include provenance, status and refresh metadata; exclude private/raw restricted pages. |
 | Searchable site | Pagefind, FlexSearch, Lunr, Algolia DocSearch when appropriate | Build search after filtering/redaction; do not index private/raw restricted pages. |
@@ -208,7 +208,7 @@ Publish through explicit export profiles rather than copying the whole wiki.
 Recommended export artifacts:
 
 | Artifact | Purpose |
-|---|---|
+| --- | --- |
 | `docs/21-publishing-export.md` | Canonical publishing/export architecture and control baseline. |
 | `templates/export-profile.yaml` | Export profile for audience, include/exclude rules, outputs and gates. |
 | `templates/export-manifest.yaml` | Auditable export record with inputs, outputs, counts, reports, checksums and approvals. |
@@ -227,7 +227,7 @@ candidate pages -> export profile allowlist -> policy filters -> redaction scan 
 Add complexity only after a concrete trigger:
 
 | Trigger | Upgrade |
-|---|---|
+| --- | --- |
 | `rg` misses conceptual matches in real query tests. | Add local embeddings or hybrid search. |
 | Exact search needs ranking, scoping or speed. | Add SQLite FTS5/Tantivy/Pagefind/OpenSearch. |
 | Top-k contains relevant chunks but the order is poor. | Add reranker. |

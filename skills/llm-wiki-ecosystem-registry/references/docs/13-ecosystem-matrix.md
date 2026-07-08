@@ -25,7 +25,7 @@ For MCP/API-specific details, use [`docs/17-mcp-api-integration.md`](17-mcp-api-
 ## Implementation families
 
 | Family | Use when | Primary risks |
-|---|---|---|
+| --- | --- | --- |
 | Full LLM-Wiki application | The user wants a ready-made personal or research knowledge app. | Lock-in, sync semantics, hidden generated state, cloud parser/model exposure. |
 | Repo documentation agent | The corpus is a codebase and agents need architecture/module/change maps. | Docs drift, over-writing hand-written ADRs, stale code claims. |
 | Review-gated agent memory | Agents should propose knowledge updates but humans approve final writes. | Review backlog, friction, schema mismatch with existing notes. |
@@ -40,7 +40,7 @@ For MCP/API-specific details, use [`docs/17-mcp-api-integration.md`](17-mcp-api-
 ## Seed registry: LLM-Wiki and repo-wiki implementations
 
 | Project | Family | What to verify | Fit signal | Avoid when |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | `langchain-ai/openwiki` | Repo documentation agent | License, supported providers, generated output, PR/GitHub Action behavior, instruction-file edits. | The user wants `openwiki/` repo docs and `AGENTS.md`/`CLAUDE.md` pointers for coding agents. | Personal second-brain or non-code corpora are the primary target. |
 | `nashsu/llm_wiki` | Full desktop LLM-Wiki application | License, release activity, local/cloud model settings, API/MCP permissions, vector/search storage. | The user wants an app with desktop UI, graph, review, hybrid search, local API/MCP and Obsidian-compatible files. | The user requires a minimal CLI/git-only workflow or strict team PR review. |
 | `vouchdev/vouch` | Review-gated agent memory / knowledge base | Claim model, MCP/CLI surface, review workflow, storage layout, integration adapters. | Agents should capture/propose knowledge while humans approve durable writes. | The user wants fully automatic wiki generation without human review. |
@@ -61,7 +61,7 @@ For MCP/API-specific details, use [`docs/17-mcp-api-integration.md`](17-mcp-api-
 ## Adjacent framework registry
 
 | Layer | Projects/frameworks | Use in LLM-Wiki |
-|---|---|---|
+| --- | --- | --- |
 | Agent orchestration | LangGraph, LangChain agents, LlamaIndex Workflows/Agents, Haystack pipelines, AutoGen, CrewAI, Semantic Kernel | Coordinate ingest, query, review, lint, scheduled maintenance and human-in-the-loop workflows. |
 | MCP integration | MCP SDKs, FastMCP-style servers, local MCP servers, MCP Inspector, MCP registry/server-card metadata | Expose wiki resources and tools to Claude Code, ChatGPT, Cursor, Codex, VS Code, GitHub Copilot and other clients without bespoke glue. |
 | Retrieval | `rg`, SQLite FTS5, Tantivy, Elasticsearch/OpenSearch, Qdrant, LanceDB, Chroma, Weaviate, Milvus, pgvector | Search wiki pages and raw sources; add semantic/hybrid retrieval only when simple search fails. |
@@ -110,12 +110,12 @@ For MCP/API-specific details, use [`docs/17-mcp-api-integration.md`](17-mcp-api-
 When answering “which tool should I use?”, produce at least:
 
 | Option | Fit | Setup effort | Data ownership | Provenance/review | Retrieval maturity | Agent integration | Lock-in risk | Notes |
-|---|---:|---:|---:|---:|---:|---:|---:|---|
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 
 For implementation-level comparison, use this extended table:
 
 | Project | Archetype | License | Maturity | Storage | Retrieval | Ingestion | MCP/API | Review/provenance | Eval/security | Best idea to adopt | Risks |
-|---|---|---|---|---|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 Do not list every project equally. Recommend one primary path and one fallback.
 
@@ -132,31 +132,31 @@ Use these labels:
 
 Seed URLs:
 
-- https://github.com/langchain-ai/openwiki
-- https://github.com/nashsu/llm_wiki
-- https://github.com/vouchdev/vouch
-- https://github.com/OpenBMB/RepoAgent
-- https://github.com/atomicstrata/llm-wiki-compiler
-- https://github.com/microsoft/llmwiki
-- https://github.com/geronimo-iia/llm-wiki
-- https://github.com/flsteven87/llm-wiki-mcp
-- https://github.com/lelantvaris/llm-wiki-mcp
-- https://github.com/ProfessionalWiki/mediawiki-mcp-server
-- https://github.com/langchain-ai/mcpdoc
-- https://github.com/swarmclawai/swarmvault
-- https://github.com/green-dalii/obsidian-llm-wiki
-- https://github.com/lucasastorian/llmwiki
-- https://github.com/Pratiyush/llm-wiki
-- https://github.com/microsoft/graphrag
-- https://modelcontextprotocol.io/docs/getting-started/intro
-- https://modelcontextprotocol.io/specification/2025-11-25
-- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
-- https://docs.langchain.com/oss/python/langgraph/overview
-- https://haystack.deepset.ai/overview/intro
-- https://developers.llamaindex.ai/python/framework/
-- https://qdrant.tech/documentation/
-- https://github.com/microsoft/markitdown
-- https://github.com/docling-project/docling
-- https://github.com/Unstructured-IO/unstructured
-- https://docs.ragas.io/
-- https://www.promptfoo.dev/docs/intro/
+- <https://github.com/langchain-ai/openwiki>
+- <https://github.com/nashsu/llm_wiki>
+- <https://github.com/vouchdev/vouch>
+- <https://github.com/OpenBMB/RepoAgent>
+- <https://github.com/atomicstrata/llm-wiki-compiler>
+- <https://github.com/microsoft/llmwiki>
+- <https://github.com/geronimo-iia/llm-wiki>
+- <https://github.com/flsteven87/llm-wiki-mcp>
+- <https://github.com/lelantvaris/llm-wiki-mcp>
+- <https://github.com/ProfessionalWiki/mediawiki-mcp-server>
+- <https://github.com/langchain-ai/mcpdoc>
+- <https://github.com/swarmclawai/swarmvault>
+- <https://github.com/green-dalii/obsidian-llm-wiki>
+- <https://github.com/lucasastorian/llmwiki>
+- <https://github.com/Pratiyush/llm-wiki>
+- <https://github.com/microsoft/graphrag>
+- <https://modelcontextprotocol.io/docs/getting-started/intro>
+- <https://modelcontextprotocol.io/specification/2025-11-25>
+- <https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices>
+- <https://docs.langchain.com/oss/python/langgraph/overview>
+- <https://haystack.deepset.ai/overview/intro>
+- <https://developers.llamaindex.ai/python/framework/>
+- <https://qdrant.tech/documentation/>
+- <https://github.com/microsoft/markitdown>
+- <https://github.com/docling-project/docling>
+- <https://github.com/Unstructured-IO/unstructured>
+- <https://docs.ragas.io/>
+- <https://www.promptfoo.dev/docs/intro/>

@@ -5,7 +5,7 @@
 ## Claims inspected
 
 | Claim anchor | Page | Support | Source | Action |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 
 ## Unsupported claims
 

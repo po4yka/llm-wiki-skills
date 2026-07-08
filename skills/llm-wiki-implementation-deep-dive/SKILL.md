@@ -46,7 +46,7 @@ If you cannot verify a current fact, mark it `verify-before-use`.
 Use these archetypes:
 
 | Archetype | Examples | Primary fit |
-|---|---|---|
+| --- | --- | --- |
 | Repo-docs generator | `langchain-ai/openwiki`, `OpenBMB/RepoAgent` | Codebase documentation and coding-agent context. |
 | Full local-first desktop wiki | `nashsu/llm_wiki` | Personal/local knowledge operating system. |
 | Review-gated agent memory | `vouchdev/vouch` | Team or governed knowledge where agents propose and humans approve. |
@@ -88,7 +88,7 @@ Look for these patterns:
 Route by use case:
 
 | Use case | Default path |
-|---|---|
+| --- | --- |
 | Code repository docs | OpenWiki-style generated docs, pointer pattern, scheduled PRs; add RepoAgent-style AST analysis only if needed. |
 | Personal local-first wiki | Minimal Markdown/git/Obsidian first; full desktop app if UX matters; hybrid search only after measured misses. |
 | Governed team/company wiki | Vouch-style proposal/approval boundary plus compiler-first typed pages and metadata-filtered retrieval. |

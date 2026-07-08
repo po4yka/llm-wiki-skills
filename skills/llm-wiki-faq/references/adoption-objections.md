@@ -30,7 +30,7 @@ promotion to trusted knowledge may use review gates
 Use four write modes:
 
 | Mode | Use for |
-|---|---|
+| --- | --- |
 | Append-only inbox | Ordinary capture by anyone. |
 | Browser edit | Low-risk draft docs. |
 | Batch review | Agent-created weekly review reports or one PR. |
@@ -88,7 +88,7 @@ Suitable content:
 Data classes:
 
 | Class | Default handling |
-|---|---|
+| --- | --- |
 | Public | Cloud or local models allowed if policy permits. |
 | Internal | Private storage and model policy required. |
 | Confidential | Prefer local or approved private provider; redact before cloud. |

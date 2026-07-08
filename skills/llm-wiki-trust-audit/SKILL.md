@@ -88,7 +88,7 @@ Check whether agents can:
 Use this scorecard:
 
 | Area | Risk | Evidence | Fix |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Raw immutability | low/medium/high | | |
 | Provenance | low/medium/high | | |
 | Review gates | low/medium/high | | |

@@ -33,12 +33,12 @@ What measured failure or user need triggered this decision?
 ## Options considered
 
 | Option | Pros | Cons | Risks | Reversibility |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 
 ## Expected improvement
 
 | Metric | Baseline | Target | Measurement method |
-|---|---:|---:|---|
+| --- | ---: | ---: | --- |
 
 ## Data and security boundaries
 

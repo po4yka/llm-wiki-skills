@@ -37,7 +37,7 @@ vault/
 ## Ownership boundaries
 
 | Area | Agent rights | Human responsibility |
-|---|---|---|
+| --- | --- | --- |
 | `raw/` | Read only | Capture, retention, deletion decisions |
 | `inbox/` | Read and propose triage | Decide what is worth keeping |
 | `wiki/sources/` | Create/update summaries | Check important claims |
@@ -51,7 +51,7 @@ vault/
 Core `type` values are intentionally stable. Domain packs must not extend this enum directly; they specialize pages with `domain_type` and map each `domain_type` back to one core type.
 
 | Core type | Folder | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | `source` | `wiki/sources/` | Summary of one raw source with provenance. |
 | `entity` | `wiki/entities/` | Accumulated facts about a person, org, product or project. |
 | `concept` | `wiki/concepts/` | Reusable mechanism or idea. |
@@ -63,7 +63,7 @@ Core `type` values are intentionally stable. Domain packs must not extend this e
 Examples:
 
 | domain_type | Core type | Domain pack |
-|---|---|---|
+| --- | --- | --- |
 | `decision` | `synthesis` | `codebase-docs`, `team-onboarding` |
 | `module` | `entity` | `codebase-docs` |
 | `paper` | `source` | `research-papers` |
@@ -169,7 +169,7 @@ Each line should tell the agent why a page matters:
 ## Retrieval tiers
 
 | Scale | Default retrieval | Upgrade trigger |
-|---|---|---|
+| --- | --- | --- |
 | 0-100 sources | `index.md` + `rg` | Index no longer fits comfortably in context. |
 | 100-1000 sources | hybrid lexical + semantic search | Conceptual recall fails with exact search. |
 | 1000+ sources | graph-aware hybrid retrieval | Cross-domain linking and provenance audit matter. |

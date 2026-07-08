@@ -3,7 +3,7 @@
 Score each answer 0-2 per dimension.
 
 | Dimension | 0 | 1 | 2 |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Correctness | wrong or unsupported | partly correct | correct and well-supported |
 | Provenance | no source support | page-level support | claim/source-level support |
 | Completeness | misses core issue | partial | answers the actual question |
@@ -14,7 +14,7 @@ Score each answer 0-2 per dimension.
 ## Decision thresholds
 
 | Average score | Decision |
-|---:|---|
+| ---: | --- |
 | 0.0-0.9 | Pause or redesign. |
 | 1.0-1.4 | Continue only with targeted fixes. |
 | 1.5-1.7 | Continue pilot and improve provenance/retrieval. |

@@ -5,7 +5,7 @@
 ## Fast answers
 
 | User asks | Answer |
-|---|---|
+| --- | --- |
 | Where should I start? | Run a small reversible pilot: one domain, 20-50 sources, 10-20 real questions, weekly lint, 2-4 weeks. |
 | When should I not use it? | Avoid it when the corpus is tiny, nobody will review generated pages, or there is no output loop beyond collecting notes. |
 | Is this another KB that will decay? | It will decay unless capture, file-back, lint, review and refresh are assigned as a loop. |
@@ -30,7 +30,7 @@
 ## Ownership model
 
 | Area | Human owner |
-|---|---|
+| --- | --- |
 | Raw sources | Source/capture owner. |
 | Draft wiki pages | Curator plus agent. |
 | Reviewed/verified pages | Domain owner. |
@@ -53,7 +53,7 @@ measure time-to-answer, retrieval hit rate, answer reuse and output beyond the v
 ## Risk-based review gates
 
 | Change | Review |
-|---|---|
+| --- | --- |
 | Inbox triage | Batch review. |
 | Draft source summary | Spot-check. |
 | Entity/concept update | Review if low confidence or high impact. |
@@ -64,7 +64,7 @@ measure time-to-answer, retrieval hit rate, answer reuse and output beyond the v
 ## Layer boundaries
 
 | Layer | Put here |
-|---|---|
+| --- | --- |
 | `AGENTS.md` / `CLAUDE.md` | Small boot instructions, paths, safety rules, pointers. |
 | Skills | Procedures: ingest, query, lint, migrate, audit. |
 | Wiki pages | Domain knowledge, decisions, source summaries, concepts, entities. |

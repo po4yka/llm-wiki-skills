@@ -29,7 +29,7 @@ Make important wiki claims traceable to raw sources or clearly mark them as unsu
 Use the smallest useful level:
 
 | Level | Meaning |
-|---|---|
+| --- | --- |
 | source-level | Page links to the source page or raw source. |
 | claim-level | Individual claims link to supporting source sections or anchors. |
 | audit-ready | Claims include source path, hash, date, model, confidence and review state. |

@@ -32,7 +32,7 @@ Related skills and docs:
 A rigorous LLM-Wiki evaluation program should measure these layers separately:
 
 | Layer | Core question | Primary metrics |
-|---|---|---|
+| --- | --- | --- |
 | Retrieval | Did the system find the right pages/passages? | recall@k, MRR, nDCG@k, hit/miss labels, qrel coverage. |
 | Grounding | Are answer claims supported by retrieved evidence? | citation coverage, unsupported-claim rate, faithfulness, source-support labels. |
 | Answer quality | Does the answer solve the user's task? | human rubric score, pairwise preference, answer relevance, completeness, correctness. |
@@ -43,7 +43,7 @@ A rigorous LLM-Wiki evaluation program should measure these layers separately:
 The default tool stack:
 
 | Need | Default tool path |
-|---|---|
+| --- | --- |
 | Offline RAG metrics and synthetic testset generation | Ragas. |
 | CI prompt/RAG regression and red-team checks | promptfoo. |
 | Python unit-test style LLM evals | DeepEval. |
@@ -65,7 +65,7 @@ Add LangSmith, TruLens, DeepEval, Phoenix/Arize, OpenAI Evals/API Evals or other
 ### Retrieval metrics
 
 | Metric | Definition | Use when | Gate example |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Recall@k | Share of relevant pages/passages present in top-k. | You must ensure evidence is found. | Recall@10 >= 0.85 on core set; Recall@20 >= 0.95 for high-stakes pages. |
 | MRR | Mean reciprocal rank of first relevant result. | One correct page should be near the top. | MRR >= 0.70. |
 | nDCG@k | Rank-aware graded relevance metric. | Relevance has levels: exact span > same section > related page. | nDCG@10 >= 0.80, no critical slice below 0.72. |
@@ -89,7 +89,7 @@ risk_tier: low|medium|high|critical
 Use graded relevance when possible:
 
 | Grade | Meaning |
-|---|---|
+| --- | --- |
 | 3 | Exact supporting passage/span. |
 | 2 | Correct section/page but not exact span. |
 | 1 | Related but insufficient alone. |
@@ -98,7 +98,7 @@ Use graded relevance when possible:
 ### Grounding metrics
 
 | Metric | Definition | Measurement |
-|---|---|---|
+| --- | --- | --- |
 | Citation coverage | Share of answer sentences/atomic claims with valid citations. | Parse answer into sentences/claims and verify each cited source exists in retrieved context. |
 | Unsupported-claim rate | Unsupported atomic claims divided by all atomic claims. | FActScore-style decomposition plus evidence verification. |
 | Faithfulness | Whether answer is consistent with context. | Ragas/DeepEval/TruLens-like LLM judge with human calibration. |
@@ -108,7 +108,7 @@ Use graded relevance when possible:
 Recommended gates by risk:
 
 | Risk tier | Citation coverage | Unsupported claims | Human review |
-|---|---:|---:|---|
+| --- | ---: | ---: | --- |
 | Low | >= 0.80 | <= 0.10 | Sample only. |
 | Medium | >= 0.90 | <= 0.05 | Review failures. |
 | High | >= 0.95 | <= 0.02 | Review all failures and ambiguous cases. |
@@ -119,7 +119,7 @@ Claim-level evaluation matters because whole-answer scoring hides mixed outputs.
 ### Answer quality metrics
 
 | Metric | Use |
-|---|---|
+| --- | --- |
 | Task success | Did the answer let the user complete the task? |
 | Correctness | Is the answer factually correct relative to expected answer points? |
 | Completeness | Does it include required steps/constraints/exceptions? |
@@ -144,7 +144,7 @@ Use blind pairwise review for with-wiki vs without-wiki comparisons.
 ### Wiki usefulness metrics
 
 | Metric | Definition | Interpretation |
-|---|---|---|
+| --- | --- | --- |
 | Answer reuse rate | Share of answers materially assembled from reviewed wiki pages. | Should rise as the wiki matures. |
 | Retrieval hit rate | Share of real queries where relevant wiki pages were found. | Low value means capture/ingest/index is failing. |
 | Read/write ratio | Wiki reads divided by wiki writes. | A mature wiki should be read, not only generated. |
@@ -157,7 +157,7 @@ Do not optimize for note count, graph density or generated-page volume.
 ### Operational health metrics
 
 | Metric | Definition | Gate example |
-|---|---|---|
+| --- | --- | --- |
 | Stale-page rate | Share of pages beyond freshness SLA. | Tier-1 pages <= 5% stale; all pages <= 15% stale. |
 | Review backlog | Count/age of unreviewed changes. | Median age < 7 days; high-risk domains < 3 days. |
 | Provenance coverage | Important claims with source links/anchors. | >= 95% for high-risk pages. |
@@ -168,7 +168,7 @@ Do not optimize for note count, graph density or generated-page volume.
 ### Security metrics
 
 | Metric | Definition | Gate example |
-|---|---|---|
+| --- | --- | --- |
 | Prompt-injection success rate | Attacks that cause policy/tool/citation bypass. | <= 5% on non-critical suite; 0 critical exploits. |
 | PII/secret leakage | Responses exposing protected data or canary secrets. | 0 confirmed leaks. |
 | Cross-tenant leakage | Retrieval or answer includes unauthorized tenant content. | 0. |
@@ -267,7 +267,7 @@ Include canary secrets and synthetic PII in isolated fixtures.
 ### Recommended dataset sources
 
 | Source | Use |
-|---|---|
+| --- | --- |
 | Reviewed wiki pages | Core qrels and expected support spans. |
 | Query logs | Real questions and failure cases. |
 | Incident/runbook/policy pages | High-stakes slices. |
@@ -323,7 +323,7 @@ Track benchmark changes separately from system changes. Never compare two system
 ## Tool selection
 
 | Tool | Best fit | Use cautiously when |
-|---|---|---|
+| --- | --- | --- |
 | Ragas | Offline RAG metrics, context precision/recall, faithfulness, synthetic testset generation. | You need deterministic IR-only scoring or strict no-cloud judge policy. |
 | promptfoo | CI prompt/model/RAG regression, YAML tests, GitHub Actions, red-team/PII/prompt-injection checks. | You need complex trace dashboards or managed annotation queues. |
 | DeepEval | Python-native pytest-like evaluation, G-Eval rubrics, faithfulness/contextual metrics, synthetic goldens. | You need fully declarative YAML-only workflows. |
@@ -413,7 +413,7 @@ scorecard:
 ## Failure taxonomy
 
 | Failure | Likely fix |
-|---|---|
+| --- | --- |
 | Relevant page missing from top-k | Retrieval/index/chunking fix. |
 | Relevant page found but answer unsupported | Prompt/context-packing/grounding fix. |
 | Correct answer but no citations | Answer formatting/citation enforcement fix. |
@@ -428,7 +428,7 @@ scorecard:
 ## First 90 days roadmap
 
 | Period | Work |
-|---|---|
+| --- | --- |
 | Days 1-14 | Build a versioned core eval set from reviewed pages and real queries. Add page-level qrels. |
 | Days 15-30 | Add Recall@k/MRR/nDCG scoring and retrieval smoke gates. |
 | Days 31-45 | Add citation coverage and unsupported-claim checks. |
@@ -448,36 +448,36 @@ scorecard:
 
 ## Source URLs to re-check
 
-- https://arxiv.org/abs/2405.07437
-- https://arxiv.org/abs/2309.15217
-- https://arxiv.org/abs/2311.09476
-- https://arxiv.org/abs/2408.08067
-- https://arxiv.org/abs/2305.14251
-- https://arxiv.org/abs/2407.11005
-- https://github.com/zeroentropy-ai/legalbenchrag
-- https://arxiv.org/abs/2104.08663
-- https://arxiv.org/abs/2009.02252
-- https://arxiv.org/abs/2401.17043
-- https://arxiv.org/abs/2506.12071
-- https://docs.ragas.io/en/stable/
-- https://www.promptfoo.dev/docs/intro/
-- https://www.promptfoo.dev/docs/integrations/ci-cd/
-- https://www.promptfoo.dev/docs/red-team/plugins/indirect-prompt-injection/
-- https://www.promptfoo.dev/docs/red-team/plugins/pii/
-- https://deepeval.com/docs/getting-started
-- https://deepeval.com/docs/metrics-faithfulness
-- https://www.trulens.org/getting_started/core_concepts/rag_triad/
-- https://docs.langchain.com/langsmith/evaluation
-- https://docs.langchain.com/langsmith/manage-datasets
-- https://docs.langchain.com/langsmith/evaluation-concepts
-- https://github.com/cvangysel/pytrec_eval
-- https://github.com/stanford-futuredata/ARES
-- https://github.com/amazon-science/RAGChecker
-- https://github.com/felipemaiapolo/prompteval
-- https://github.com/EleutherAI/lm-evaluation-harness
-- https://github.com/openai/evals
-- https://developers.openai.com/api/docs/guides/evals
-- https://www.evidentlyai.com/ranking-metrics/precision-recall-at-k
-- https://www.evidentlyai.com/ranking-metrics/ndcg-metric
-- https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html
-- https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+- <https://arxiv.org/abs/2405.07437>
+- <https://arxiv.org/abs/2309.15217>
+- <https://arxiv.org/abs/2311.09476>
+- <https://arxiv.org/abs/2408.08067>
+- <https://arxiv.org/abs/2305.14251>
+- <https://arxiv.org/abs/2407.11005>
+- <https://github.com/zeroentropy-ai/legalbenchrag>
+- <https://arxiv.org/abs/2104.08663>
+- <https://arxiv.org/abs/2009.02252>
+- <https://arxiv.org/abs/2401.17043>
+- <https://arxiv.org/abs/2506.12071>
+- <https://docs.ragas.io/en/stable/>
+- <https://www.promptfoo.dev/docs/intro/>
+- <https://www.promptfoo.dev/docs/integrations/ci-cd/>
+- <https://www.promptfoo.dev/docs/red-team/plugins/indirect-prompt-injection/>
+- <https://www.promptfoo.dev/docs/red-team/plugins/pii/>
+- <https://deepeval.com/docs/getting-started>
+- <https://deepeval.com/docs/metrics-faithfulness>
+- <https://www.trulens.org/getting_started/core_concepts/rag_triad/>
+- <https://docs.langchain.com/langsmith/evaluation>
+- <https://docs.langchain.com/langsmith/manage-datasets>
+- <https://docs.langchain.com/langsmith/evaluation-concepts>
+- <https://github.com/cvangysel/pytrec_eval>
+- <https://github.com/stanford-futuredata/ARES>
+- <https://github.com/amazon-science/RAGChecker>
+- <https://github.com/felipemaiapolo/prompteval>
+- <https://github.com/EleutherAI/lm-evaluation-harness>
+- <https://github.com/openai/evals>
+- <https://developers.openai.com/api/docs/guides/evals>
+- <https://www.evidentlyai.com/ranking-metrics/precision-recall-at-k>
+- <https://www.evidentlyai.com/ranking-metrics/ndcg-metric>
+- <https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html>
+- <https://genai.owasp.org/llmrisk/llm01-prompt-injection/>

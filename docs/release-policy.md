@@ -20,7 +20,7 @@ Each skill has `metadata.version` in `SKILL.md`.
 Use:
 
 | Change | Bump |
-|---|---|
+| --- | --- |
 | typo, clarification, safer wording | patch |
 | new procedure step, output section or optional capability | minor |
 | changed trigger, changed write permissions, renamed skill, incompatible output contract | major |

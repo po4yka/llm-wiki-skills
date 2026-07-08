@@ -22,7 +22,7 @@ Domain packs must not extend the core `type` enum directly. Use `domain_type` fo
 Examples:
 
 | domain_type | core type |
-|---|---|
+| --- | --- |
 | `decision` | `synthesis` |
 | `module` | `entity` |
 | `paper` | `source` |

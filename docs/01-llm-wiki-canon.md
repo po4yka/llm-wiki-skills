@@ -18,7 +18,7 @@ schema/  AGENTS.md, CLAUDE.md, skills and schemas
 ```
 
 | Layer | Contents | Owner | Rule |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `raw/` | PDFs, clips, transcripts, datasets, screenshots, source exports | Human / capture tools | Append-only; agent may read but not rewrite. |
 | `wiki/` | Source pages, entity pages, concept pages, comparisons, syntheses, query results | Agent with human review | Agent may edit, but changes must be diffable. |
 | `schema` | Conventions, templates, allowed statuses, workflows, skills | Human + agent | Small enough to load; stable enough to trust. |

@@ -53,7 +53,7 @@ Separate:
 Create a matrix:
 
 | Data class | Task | Allowed model/provider | Local required | Notes |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 
 Use local-only defaults for sensitive or unknown material unless the user explicitly approves another policy.
 

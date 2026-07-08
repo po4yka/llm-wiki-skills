@@ -58,7 +58,7 @@ Group items by topic, source type, urgency, duplication, likely value, privacy/s
 Use these actions:
 
 | Action | Meaning |
-|---|---|
+| --- | --- |
 | `keep-ingest` | Worth full `wiki-ingest` pass. |
 | `keep-reference` | Preserve as raw source but no immediate wiki page. |
 | `merge-duplicate` | Likely duplicate of existing material. |

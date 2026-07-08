@@ -21,4 +21,4 @@
 ## Skill version changes
 
 | Skill | Previous | New | Notes |
-|---|---|---|---|
+| --- | --- | --- | --- |

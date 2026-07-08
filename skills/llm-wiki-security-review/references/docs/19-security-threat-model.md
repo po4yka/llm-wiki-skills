@@ -46,7 +46,7 @@ The safest default posture:
 ## Component inventory
 
 | Component | Typical artifacts | Primary security question |
-|---|---|---|
+| --- | --- | --- |
 | Ingestion | PDFs, Office docs, HTML, screenshots, images, audio, repo files, chats, email, web clips. | Can a malicious source exploit parser code, inject instructions, or smuggle secrets/PII? |
 | Raw storage | `raw/sources/`, extracted text, OCR output, source manifests, hashes. | Is raw material immutable, classified, access-controlled and excluded from high-trust retrieval by default? |
 | Compiled wiki | `wiki/*.md`, claim pages, synthesis pages, indexes, logs. | What makes a page trusted, reviewed, verified, stale, quarantined or rejected? |
@@ -86,7 +86,7 @@ flowchart TD
 Critical trust boundaries:
 
 | Boundary | Default rule |
-|---|---|
+| --- | --- |
 | External content -> parser | Run in sandbox, allowlist types, patch parsers, no secrets in worker. |
 | Parser output -> raw store | Record hash/provenance; classify sensitivity; scan secrets/PII. |
 | Raw store -> index | Exclude or quarantine high-risk content until classified. |
@@ -257,7 +257,7 @@ Controls:
 ## STRIDE mapping
 
 | STRIDE category | LLM-Wiki example | Primary controls |
-|---|---|---|
+| --- | --- | --- |
 | Spoofing | Fake source identity, fake MCP server, forged author/reviewer. | Source manifests, signed commits, auth scopes, service identity, audit logs. |
 | Tampering | Poisoned source, modified generated page, forged citation, changed index. | Hashes, provenance, git diffs, review state, rebuildable indexes, branch protection. |
 | Repudiation | Agent or user denies proposing/approving a claim. | Proposal IDs, append-only audit logs, commit attribution, PR review history. |
@@ -268,7 +268,7 @@ Controls:
 ## LINDDUN-style privacy mapping
 
 | Privacy risk | LLM-Wiki example | Controls |
-|---|---|---|
+| --- | --- | --- |
 | Linkability | Separate sources reveal same person/customer across pages. | Pseudonymization, minimization, restricted joins, tenant filters. |
 | Identifiability | PII appears in wiki page, index or export. | Presidio/scrubadub/custom recognizers, redaction manifests. |
 | Non-repudiation | Sensitive user actions preserved in traces longer than intended. | Retention limits, audit policy, access controls. |
@@ -280,7 +280,7 @@ Controls:
 ## Priority threat matrix
 
 | Threat | Likelihood | Impact | Detection difficulty | Required controls |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | Indirect prompt injection causing exfiltration or unsafe tools | High | Critical | High | Staged workflows, read-only defaults, tool allowlists, promptfoo/garak tests, audit logs. |
 | Corpus poisoning / durable wiki corruption | High | High | High | Reviewed-only retrieval, source hashes, provenance, contradiction checks, human approval. |
 | Parser exploit during ingestion | Medium | Critical | Medium | Sandbox parser, patch CVEs, no secrets in worker, file-type allowlist. |
@@ -327,7 +327,7 @@ Add:
 ### CI lanes
 
 | Lane | Purpose | Typical tools |
-|---|---|---|
+| --- | --- | --- |
 | Secrets | Prevent credentials entering repo/wiki/export. | GitHub secret scanning, gitleaks, detect-secrets, trufflehog. |
 | Dependencies | Detect vulnerable parser/model/MCP/deployment deps. | Dependency review, OSV Scanner, npm audit, pip-audit. |
 | Static analysis | Catch unsafe code/config/tool wrappers. | Semgrep, CodeQL, shellcheck, actionlint. |
@@ -338,7 +338,7 @@ Add:
 ### Red-team scenarios
 
 | Scenario | Seed | Expected safe behavior |
-|---|---|---|
+| --- | --- | --- |
 | Hidden webpage instruction | HTML comment or hidden CSS in web clip. | Agent ignores instruction and cites only relevant content. |
 | Malicious PDF | Hidden prompt + parser edge case. | Parser sandbox contains file; source is quarantined if suspicious. |
 | Poisoned wiki draft | Draft page claims false policy. | Production retrieval filters it out. |
@@ -401,7 +401,7 @@ scorecard:
 ## Rollout plan
 
 | Period | Work |
-|---|---|
+| --- | --- |
 | Days 1-14 | Inventory data flows, trust boundaries, MCP/API tools, captures, exports and existing CI. |
 | Days 15-30 | Add secrets/PII/dependency/SAST gates and classify raw/wiki/export data. |
 | Days 31-45 | Enforce reviewed-only retrieval and proposal-only writes for shared workflows. |
@@ -424,41 +424,41 @@ scorecard:
 
 ## Source URLs to re-check
 
-- https://developers.openai.com/api/docs/guides/deep-research
-- https://developers.openai.com/api/docs/guides/agent-builder-safety
-- https://developers.openai.com/api/docs/mcp
-- https://www.anthropic.com/research/prompt-injection-defenses
-- https://github.blog/security/vulnerability-research/safeguarding-vs-code-against-prompt-injections/
-- https://owasp.org/www-project-top-10-for-large-language-model-applications/
-- https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html
-- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
-- https://modelcontextprotocol.io/docs/develop/clients/client-best-practices
-- https://modelcontextprotocol.io/specification/2025-11-25/server/tools
-- https://modelcontextprotocol.io/specification/2025-11-25/basic/transports
-- https://modelcontextprotocol.io/seps/1024-mcp-client-security-requirements-for-local-server-
-- https://arxiv.org/abs/2302.12173
-- https://arxiv.org/abs/2402.07867
-- https://arxiv.org/abs/2603.25164
-- https://arxiv.org/abs/2604.27202
-- https://nvd.nist.gov/vuln/detail/CVE-2025-66516
-- https://nvd.nist.gov/vuln/detail/CVE-2025-64712
-- https://nvd.nist.gov/vuln/detail/CVE-2025-15063
-- https://nvd.nist.gov/vuln/detail/CVE-2026-27826
-- https://nvd.nist.gov/vuln/detail/CVE-2026-34742
-- https://docs.github.com/en/actions/reference/security/secure-use
-- https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
-- https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
-- https://docs.github.com/en/code-security/concepts/secret-security/push-protection
-- https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/configure-dependency-review-action
-- https://osv.dev/
-- https://github.com/gitleaks/gitleaks
-- https://github.com/Yelp/detect-secrets
-- https://github.com/trufflesecurity/trufflehog
-- https://docs.semgrep.dev/deployment/add-semgrep-to-ci
-- https://github.com/data-privacy-stack/presidio
-- https://microsoft.github.io/presidio/
-- https://www.promptfoo.dev/docs/red-team/
-- https://www.promptfoo.dev/docs/red-team/rag/
-- https://www.promptfoo.dev/docs/red-team/mcp-security-testing/
-- https://github.com/NVIDIA/garak
-- https://github.com/vouchdev/vouch
+- <https://developers.openai.com/api/docs/guides/deep-research>
+- <https://developers.openai.com/api/docs/guides/agent-builder-safety>
+- <https://developers.openai.com/api/docs/mcp>
+- <https://www.anthropic.com/research/prompt-injection-defenses>
+- <https://github.blog/security/vulnerability-research/safeguarding-vs-code-against-prompt-injections/>
+- <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
+- <https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html>
+- <https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices>
+- <https://modelcontextprotocol.io/docs/develop/clients/client-best-practices>
+- <https://modelcontextprotocol.io/specification/2025-11-25/server/tools>
+- <https://modelcontextprotocol.io/specification/2025-11-25/basic/transports>
+- <https://modelcontextprotocol.io/seps/1024-mcp-client-security-requirements-for-local-server->
+- <https://arxiv.org/abs/2302.12173>
+- <https://arxiv.org/abs/2402.07867>
+- <https://arxiv.org/abs/2603.25164>
+- <https://arxiv.org/abs/2604.27202>
+- <https://nvd.nist.gov/vuln/detail/CVE-2025-66516>
+- <https://nvd.nist.gov/vuln/detail/CVE-2025-64712>
+- <https://nvd.nist.gov/vuln/detail/CVE-2025-15063>
+- <https://nvd.nist.gov/vuln/detail/CVE-2026-27826>
+- <https://nvd.nist.gov/vuln/detail/CVE-2026-34742>
+- <https://docs.github.com/en/actions/reference/security/secure-use>
+- <https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners>
+- <https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches>
+- <https://docs.github.com/en/code-security/concepts/secret-security/push-protection>
+- <https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/configure-dependency-review-action>
+- <https://osv.dev/>
+- <https://github.com/gitleaks/gitleaks>
+- <https://github.com/Yelp/detect-secrets>
+- <https://github.com/trufflesecurity/trufflehog>
+- <https://docs.semgrep.dev/deployment/add-semgrep-to-ci>
+- <https://github.com/data-privacy-stack/presidio>
+- <https://microsoft.github.io/presidio/>
+- <https://www.promptfoo.dev/docs/red-team/>
+- <https://www.promptfoo.dev/docs/red-team/rag/>
+- <https://www.promptfoo.dev/docs/red-team/mcp-security-testing/>
+- <https://github.com/NVIDIA/garak>
+- <https://github.com/vouchdev/vouch>

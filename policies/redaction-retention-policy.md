@@ -10,7 +10,7 @@ This policy defines what may be captured, indexed, retrieved, traced, exported a
 ## Data classes
 
 | Class | Examples | Default handling |
-|---|---|---|
+| --- | --- | --- |
 | public | Published docs, public repo content, public web pages. | May be indexed and exported when provenance is preserved. |
 | internal | Team docs, internal project notes, non-public architecture. | May be indexed for authorized users; export requires internal profile. |
 | sensitive | Private operational data, customer-related material, confidential business context. | Requires classification, filters and redaction before external processing or export. |
@@ -67,7 +67,7 @@ redaction_report:
 ## Retention
 
 | Artifact | Default retention |
-|---|---|
+| --- | --- |
 | Raw public sources | Keep while useful and cited. |
 | Raw internal/sensitive sources | Review retention periodically; minimize where possible. |
 | Parser temp output | Delete after successful manifest/index/page creation. |

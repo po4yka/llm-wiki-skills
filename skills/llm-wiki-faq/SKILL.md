@@ -84,7 +84,7 @@ not solvable by tooling
 Map the question to one of:
 
 | User question | Core answer |
-|---|---|
+| --- | --- |
 | Why is this needed? | It reduces repeated context reconstruction and wiki bookkeeping cost. |
 | What benefits? | Faster recall, reusable research, decision memory, better agent context and auditable knowledge. |
 | Evidence? | Direct evidence is early; adjacent evidence strongly supports structured persistent memory and precomputed corpus structure. |
@@ -223,7 +223,7 @@ Do not treat generated text as official documentation until it is source-anchore
 Classify before ingesting:
 
 | Data class | Default stance |
-|---|---|
+| --- | --- |
 | Public | Normal wiki flow; cloud models allowed if policy permits. |
 | Internal | Private repo/storage and model policy. |
 | Confidential | Prefer local or approved private provider; redact before cloud. |

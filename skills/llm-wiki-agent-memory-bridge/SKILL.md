@@ -41,7 +41,7 @@ Find:
 Use this routing:
 
 | Content | Best home |
-|---|---|
+| --- | --- |
 | stable procedures | Agent Skill |
 | project conventions | `AGENTS.md` or `CLAUDE.md` pointer |
 | domain facts | LLM-Wiki page with provenance |

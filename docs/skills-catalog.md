@@ -9,7 +9,7 @@ Total skills: 51
 Explain the LLM-Wiki pattern, answer evidence-backed adoption questions, track current ecosystem changes, map PAF Nexus/Cortex adoption, keep the wiki human-first, and help users choose a ready-made or custom solution.
 
 | Skill | Description | Version | Install | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | [llm-wiki-orient](../skills/llm-wiki-orient/SKILL.md) | Explain the LLM-Wiki pattern, its raw/wiki/schema architecture, how it differs from RAG, GraphRAG and agent memory, and what ready-made solution families exist. Use when the user asks what LLM-Wiki is, whether it is worth adopting, what OpenWiki/wiki memory means, or how the ecosystem fits together. | 0.2.0 | self-contained | active |
 | [llm-wiki-faq](../skills/llm-wiki-faq/SKILL.md) | Explain LLM-Wiki adoption and answer stakeholder objections. Use when the user wants a concise FAQ response, evidence summary, ROI framing, migration answer, or plain-language rebuttal; route adversarial risk registers and bad-fit audits to llm-wiki-critique-audit. | 0.1.5 | self-contained | active |
 | [llm-wiki-human-first-design](../skills/llm-wiki-human-first-design/SKILL.md) | Design or audit an LLM-Wiki so it remains useful to humans without agents. Use when the user fears an agent-generated document dump or a new Confluence-like mess, or needs human-readable page contracts, navigation maps, and agent-free acceptance tests. | 0.1.1 | self-contained | active |
@@ -22,7 +22,7 @@ Explain the LLM-Wiki pattern, answer evidence-backed adoption questions, track c
 Map concrete implementations, implementation archetypes, retrieval stacks, ingestion tools, MCP/API integration, and evaluation/security tooling for LLM-Wiki systems.
 
 | Skill | Description | Version | Install | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | [llm-wiki-ecosystem-registry](../skills/llm-wiki-ecosystem-registry/SKILL.md) | Build or refresh a current registry of LLM-Wiki implementations and adjacent open-source frameworks. Use when the user asks what projects exist, which technologies are missing, how OpenWiki/nashsu/vouch/RepoAgent compare, or which ready-made implementation to evaluate. | 0.2.0 | self-contained | active |
 | [llm-wiki-implementation-deep-dive](../skills/llm-wiki-implementation-deep-dive/SKILL.md) | Compare concrete open-source LLM-Wiki implementations at architecture depth. Use when the user asks for implementation deep dives, production readiness, architecture patterns, or what to copy from OpenWiki, nashsu/llm_wiki, Vouch, RepoAgent, llm-wiki-compiler, SwarmVault, Obsidian plugins, or session-transcript wikis. | 0.1.0 | self-contained | active |
 | [llm-wiki-retrieval-architect](../skills/llm-wiki-retrieval-architect/SKILL.md) | Design the retrieval/indexing layer for an LLM-Wiki. Use for lexical/FTS search, BM25, hybrid retrieval, vector databases, rerankers, metadata filters, or GraphRAG, or when `rg`/index.md no longer retrieves enough context; route whole-stack local-first tooling choices to llm-wiki-local-first-stack. | 0.2.3 | self-contained | active |
@@ -35,7 +35,7 @@ Map concrete implementations, implementation archetypes, retrieval stacks, inges
 Inspect existing vaults, plan migrations, evaluate usefulness, audit criticism risk, benchmark pilots, and repair trust-critical gaps before large changes.
 
 | Skill | Description | Version | Install | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | [llm-wiki-doctor](../skills/llm-wiki-doctor/SKILL.md) | Diagnose an existing vault, docs folder, repository wiki, or Markdown knowledge base before changing files. Use when the user asks what is wrong with their current notes/docs, whether they are LLM-Wiki-ready, or what the safest next step is. | 0.1.1 | self-contained | active |
 | [llm-wiki-migration-planner](../skills/llm-wiki-migration-planner/SKILL.md) | Create a no-write migration plan for turning existing notes, docs, Obsidian vaults, Notion exports, research archives, or repository documentation into an LLM-Wiki. Use when the user wants a dry-run plan before moving or editing files; route applying the approved plan to llm-wiki-refactor. | 0.1.1 | self-contained | active |
 | [llm-wiki-eval](../skills/llm-wiki-eval/SKILL.md) | Define and execute LLM-Wiki measurement, including bounded pilot benchmarks. Use for usefulness, grounding, maintenance-health, and citation-coverage metrics, baseline vs with-wiki comparison, scoring, and decision gates; route framework/CI choices to llm-wiki-eval-tooling. | 0.3.1 | self-contained | active |
@@ -49,7 +49,7 @@ Inspect existing vaults, plan migrations, evaluate usefulness, audit criticism r
 Set up, customize, and migrate documents into local-first or team LLM-Wiki systems.
 
 | Skill | Description | Version | Install | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | [llm-wiki-zero-to-working-wiki](../skills/llm-wiki-zero-to-working-wiki/SKILL.md) | Create a first useful LLM-Wiki from zero. Use when the user wants a zero-to-working-wiki walkthrough, first vault, first source ingest, first reusable query, first lint report, or a visible demo loop before a larger rollout; route full workflow installs to llm-wiki-setup. | 0.2.0 | self-contained | active |
 | [llm-wiki-setup](../skills/llm-wiki-setup/SKILL.md) | Install, configure, and connect a chosen LLM-Wiki workflow. Use for setting up a raw/wiki/schema vault, Agent Skills, coding-agent integration, Obsidian/local-first workflows, hooks, templates, or git review; route a guided first-demo walkthrough to llm-wiki-zero-to-working-wiki. | 0.2.1 | self-contained | active |
 | [llm-wiki-design](../skills/llm-wiki-design/SKILL.md) | Design a custom LLM-Wiki implementation, CLI, Obsidian plugin, repo-docs agent, team workflow, or product architecture. Use when the user wants to build their own system and needs data model, retrieval tier, provenance, storage, sync, review, agent integration, or MVP planning. | 0.1.0 | self-contained | active |
@@ -64,7 +64,7 @@ Set up, customize, and migrate documents into local-first or team LLM-Wiki syste
 Map company information flows, build capture pipelines, interview users for tacit knowledge, maintain decision memory, and generate domain-specific wiki packs.
 
 | Skill | Description | Version | Install | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | [llm-wiki-company-flow-audit](../skills/llm-wiki-company-flow-audit/SKILL.md) | Map company/team information flows into an LLM-Wiki adoption plan. Use when the user asks where team knowledge lives, which streams can be automated, how Confluence/Jira/Slack/Drive changes stay synced, how fragile review is, how confidential data is handled, or whether maintenance cost is worth the benefit. | 0.1.1 | self-contained | active |
 | [llm-wiki-capture-pipeline](../skills/llm-wiki-capture-pipeline/SKILL.md) | Design cross-channel capture architecture and named connector runbooks for LLM-Wiki. Use when the user wants an inbox/raw topology, metadata contract, dedupe boundary, triage handoff, privacy defaults, capture-to-ingestion flow, or Telegram/email/Slack/PDF/GitHub/voice connector rules. | 0.1.0 | self-contained | active |
 | [llm-wiki-interview](../skills/llm-wiki-interview/SKILL.md) | Extract tacit knowledge into an LLM-Wiki through an agent-led interview. Use when the wiki has open questions, weak areas, onboarding gaps, undocumented decisions, or the user wants voice/text answers turned into draft pages without pretending they are sourced facts. | 0.1.0 | self-contained | active |
@@ -76,7 +76,7 @@ Map company information flows, build capture pipelines, interview users for taci
 Run triage, ingest, query, lint, trust-audit, source-refresh, privacy, threat-model, security, model-policy, archive, and publishing workflows.
 
 | Skill | Description | Version | Install | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | [wiki-triage](../skills/wiki-triage/SKILL.md) | Sort messy captured material before full LLM-Wiki ingestion. Use for inbox folders, web clips, chat exports, voice transcripts, forwarded notes, duplicate source candidates, sensitive material review, and keep/defer/drop triage reports. | 0.2.1 | self-contained | active |
 | [wiki-ingest](../skills/wiki-ingest/SKILL.md) | Convert trusted raw sources into reviewable LLM-Wiki pages. Use when adding PDFs, articles, transcripts, notes, repository docs, web captures, or other source material into a raw/wiki/schema vault while preserving provenance, ambiguity, links, index updates, and log entries. | 0.3.0 | self-contained | active |
 | [wiki-query](../skills/wiki-query/SKILL.md) | Answer questions from an existing LLM-Wiki vault and save reusable answers back into the wiki. Use when the user asks for research, synthesis, comparison, decision support, or recall from a raw/wiki/schema knowledge base. | 0.3.0 | self-contained | active |
@@ -95,7 +95,7 @@ Run triage, ingest, query, lint, trust-audit, source-refresh, privacy, threat-mo
 Review, compile, and govern Agent Skills, team operating models, self-hosted GitLab workflows, and decide what belongs in skills, agent memory, instruction files, or the wiki.
 
 | Skill | Description | Version | Install | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | [llm-wiki-skill-doctor](../skills/llm-wiki-skill-doctor/SKILL.md) | Audit Agent Skills in this repository or a user's project for quality, trigger clarity, overlap, unsafe permissions, stale facts, supply-chain risk, and skill smells. Use when authoring, reviewing, or preparing SKILL.md files for distribution. | 0.2.1 | self-contained | active |
 | [llm-wiki-skill-compiler](../skills/llm-wiki-skill-compiler/SKILL.md) | Compile procedural knowledge from an LLM-Wiki into installable Agent Skills. Use when wiki pages, runbooks, checklists, recurring workflows, troubleshooting notes, or query answers should become SKILL.md files with evidence links and validation. | 0.2.1 | self-contained | active |
 | [llm-wiki-agent-memory-bridge](../skills/llm-wiki-agent-memory-bridge/SKILL.md) | Decide what belongs in LLM-Wiki versus agent memory, AGENTS.md, CLAUDE.md, Auto Memory, Codex project memory, or other runtime memories. Use when instruction files are bloated, domain facts live in agent memory, or the user wants clean memory boundaries. | 0.1.0 | self-contained | active |
@@ -107,6 +107,6 @@ Review, compile, and govern Agent Skills, team operating models, self-hosted Git
 Installable aliases kept until the next major release. New routing should use the replacement skills listed in each SKILL.md.
 
 | Skill | Description | Version | Install | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | [llm-wiki-benchmark-suite](../skills/llm-wiki-benchmark-suite/SKILL.md) | Execute legacy bounded pilot benchmark requests by routing them to llm-wiki-eval. Use only for compatibility when the user or installed workflow explicitly names llm-wiki-benchmark-suite. | 0.1.1 | self-contained | deprecated; use llm-wiki-eval |
 | [llm-wiki-channel-capture](../skills/llm-wiki-channel-capture/SKILL.md) | Design legacy named channel capture requests by routing them to llm-wiki-capture-pipeline. Use only for compatibility when the user or installed workflow explicitly names llm-wiki-channel-capture. | 0.1.1 | self-contained | deprecated; use llm-wiki-capture-pipeline |

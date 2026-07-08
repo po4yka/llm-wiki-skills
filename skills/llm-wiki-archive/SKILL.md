@@ -29,7 +29,7 @@ Make an LLM-Wiki durable, portable and reconstructable over long time horizons.
 Classify artifacts:
 
 | Artifact | Archive role |
-|---|---|
+| --- | --- |
 | Markdown files | Primary human-readable source. |
 | raw sources/assets | Primary evidence. |
 | schemas/taxonomy | Rebuild instructions. |

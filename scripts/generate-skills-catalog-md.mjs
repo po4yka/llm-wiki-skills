@@ -17,7 +17,7 @@ export function buildSkillsCatalogMarkdown() {
   ];
 
   manifest.groupings.forEach((group, index) => {
-    lines.push(`## ${group.title}`, '', group.description, '', '| Skill | Description | Version | Install | Status |', '|---|---|---|---|---|');
+    lines.push(`## ${group.title}`, '', group.description, '', '| Skill | Description | Version | Install | Status |', '| --- | --- | --- | --- | --- |');
     for (const skillName of group.skills) {
       const skill = skillMap.get(skillName);
       const status = skill.deprecated ? `deprecated; use ${skill.replaced_by}` : 'active';
@@ -28,7 +28,7 @@ export function buildSkillsCatalogMarkdown() {
     }
   });
 
-  return `${lines.join('\n')}\n`;
+  return `${lines.join('\n').replace(/(?<=\|) {2,}(?=\|)/g, ' ')}\n`;
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {

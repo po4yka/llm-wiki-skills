@@ -66,7 +66,7 @@ Prefer primary sources for technical claims.
 Group updates by type:
 
 | Type | Examples |
-|---|---|
+| --- | --- |
 | `release` | CLI, library, plugin, agent feature, skill format update |
 | `paper` | benchmark, architecture, retrieval/memory algorithm |
 | `tool` | new repo or major implementation change |

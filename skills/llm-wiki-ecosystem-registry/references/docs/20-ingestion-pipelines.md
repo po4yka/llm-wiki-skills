@@ -42,7 +42,7 @@ The main failure mode is not bad embeddings. It is bad conversion:
 The default stack by source class:
 
 | Source class | Default path |
-|---|---|
+| --- | --- |
 | Native PDF/Office/HTML | Docling for structure/provenance; MarkItDown for lightweight Markdown conversion. |
 | Scanned PDFs/images | OCRmyPDF first; Docling/PaddleOCR/Marker for downstream structure. |
 | Web pages | Playwright render capture + Readability extraction; ArchiveBox/SingleFile for durable snapshots. |
@@ -54,7 +54,7 @@ The default stack by source class:
 ## Source taxonomy
 
 | Source type | Canonical capture unit | Primary risks | Best default representation |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | PDF / Office / HTML documents | file or URL | reading-order loss, table loss, layout flattening | structured JSON + Markdown + page anchors |
 | Scanned documents | scanned PDF or image | OCR errors, page skew, missing text layer | OCR'd PDF + structured JSON + confidence metadata |
 | Web pages | rendered page snapshot | JS-rendered content loss, link rot, boilerplate | archived HTML/PDF/PNG + extracted article text |
@@ -116,7 +116,7 @@ Rules:
 ## Tool selection matrix
 
 | Need | First choice | Upgrade / alternate | Main caution |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Broad high-fidelity docs | Docling | Unstructured, Apache Tika, Marker | Verify current supported formats and layout fidelity. |
 | Lightweight Markdown | MarkItDown | Pandoc | Not enough for high-fidelity tables/layout by itself. |
 | Scanned PDF OCR | OCRmyPDF | Tesseract, PaddleOCR | OCR quality must be sampled. |
@@ -339,7 +339,7 @@ acl_tags: []
 Evaluate conversion, provenance and retrieval separately.
 
 | Gate | Purpose | Example threshold |
-|---|---|---|
+| --- | --- | --- |
 | Parser success rate | Detect broken converters. | No parser crash on golden PR set. |
 | Text coverage | Detect empty or truncated extraction. | >= 0.98 for native text docs. |
 | Heading preservation | Detect structure loss. | >= 0.95 on golden docs. |
@@ -356,7 +356,7 @@ Evaluate conversion, provenance and retrieval separately.
 Keep two corpora:
 
 | Corpus | Size | Run when | Contents |
-|---|---:|---|---|
+| --- | ---: | --- | --- |
 | PR smoke corpus | 10-30 files | every PR | representative small docs, one scan, one web page, one chat/email fixture, one code sample. |
 | Nightly corpus | 100-500 files | scheduled | difficult PDFs, scans, tables, charts, web pages, media, multilingual examples, repo snapshots. |
 
@@ -428,7 +428,7 @@ Rules:
 ## Operational models
 
 | Mode | Use when | Requirements |
-|---|---|---|
+| --- | --- | --- |
 | Manual batch | First migration or sensitive corpus. | Report-only dry run, human review. |
 | Watched inbox | Personal capture. | Low-risk sources, clear review states. |
 | PR-based ingest | Team repo/wiki. | Branch, diff, CODEOWNERS, CI gates. |
@@ -454,7 +454,7 @@ Track:
 ## First 90 days rollout
 
 | Period | Work |
-|---|---|
+| --- | --- |
 | Days 1-14 | Inventory source types, data classes, owners and retention constraints. |
 | Days 15-30 | Add manifests, content hashing and raw/source/wiki layout. |
 | Days 31-45 | Build golden corpus and ingestion smoke tests. |
@@ -477,45 +477,45 @@ Track:
 
 ## Source URLs to re-check
 
-- https://docling-project.github.io/docling/
-- https://docling-project.github.io/docling/concepts/chunking/
-- https://github.com/microsoft/markitdown
-- https://docs.unstructured.io/open-source/introduction/overview
-- https://tika.apache.org/
-- https://ocrmypdf.readthedocs.io/
-- https://tesseract-ocr.github.io/tessdoc/Installation.html
-- https://paddlepaddle.github.io/PaddleOCR/main/en/index.html
-- https://github.com/datalab-to/marker
-- https://github.com/facebookresearch/nougat
-- https://playwright.dev/
-- https://github.com/mozilla/readability
-- https://archivebox.io/
-- https://github.com/gildas-lormeau/singlefile
-- https://github.com/openai/whisper
-- https://github.com/SYSTRAN/faster-whisper
-- https://github.com/yt-dlp/yt-dlp
-- https://github.com/tree-sitter/tree-sitter
-- https://ast-grep.github.io/
-- https://github.com/langchain-ai/openwiki
-- https://github.com/openbmb/repoagent
-- https://github.com/SpamScope/mail-parser
-- https://notmuchmail.org/getting-started/
-- https://slack.com/help/articles/201658943-Export-your-workspace-data
-- https://dlthub.com/docs/intro
-- https://docs.airbyte.com/
-- https://duckdb.org/
-- https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html
-- https://qdrant.tech/documentation/search/filtering/
-- https://qdrant.tech/documentation/manage-data/indexing/
-- https://docs.lancedb.com/quickstart
-- https://github.com/pgvector/pgvector
-- https://github.com/data-privacy-stack/presidio
-- https://github.com/gitleaks/gitleaks
-- https://github.com/Yelp/detect-secrets
-- https://docs.semgrep.dev/getting-started/quickstart-ce
-- https://docs.docker.com/engine/security/seccomp/
-- https://openpolicyagent.org/docs
-- https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_precision/
-- https://github.com/eXascaleInfolab/pytrec_eval
-- https://www.promptfoo.dev/docs/intro/
-- https://deepeval.com/docs/getting-started
+- <https://docling-project.github.io/docling/>
+- <https://docling-project.github.io/docling/concepts/chunking/>
+- <https://github.com/microsoft/markitdown>
+- <https://docs.unstructured.io/open-source/introduction/overview>
+- <https://tika.apache.org/>
+- <https://ocrmypdf.readthedocs.io/>
+- <https://tesseract-ocr.github.io/tessdoc/Installation.html>
+- <https://paddlepaddle.github.io/PaddleOCR/main/en/index.html>
+- <https://github.com/datalab-to/marker>
+- <https://github.com/facebookresearch/nougat>
+- <https://playwright.dev/>
+- <https://github.com/mozilla/readability>
+- <https://archivebox.io/>
+- <https://github.com/gildas-lormeau/singlefile>
+- <https://github.com/openai/whisper>
+- <https://github.com/SYSTRAN/faster-whisper>
+- <https://github.com/yt-dlp/yt-dlp>
+- <https://github.com/tree-sitter/tree-sitter>
+- <https://ast-grep.github.io/>
+- <https://github.com/langchain-ai/openwiki>
+- <https://github.com/openbmb/repoagent>
+- <https://github.com/SpamScope/mail-parser>
+- <https://notmuchmail.org/getting-started/>
+- <https://slack.com/help/articles/201658943-Export-your-workspace-data>
+- <https://dlthub.com/docs/intro>
+- <https://docs.airbyte.com/>
+- <https://duckdb.org/>
+- <https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html>
+- <https://qdrant.tech/documentation/search/filtering/>
+- <https://qdrant.tech/documentation/manage-data/indexing/>
+- <https://docs.lancedb.com/quickstart>
+- <https://github.com/pgvector/pgvector>
+- <https://github.com/data-privacy-stack/presidio>
+- <https://github.com/gitleaks/gitleaks>
+- <https://github.com/Yelp/detect-secrets>
+- <https://docs.semgrep.dev/getting-started/quickstart-ce>
+- <https://docs.docker.com/engine/security/seccomp/>
+- <https://openpolicyagent.org/docs>
+- <https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_precision/>
+- <https://github.com/eXascaleInfolab/pytrec_eval>
+- <https://www.promptfoo.dev/docs/intro/>
+- <https://deepeval.com/docs/getting-started>

@@ -13,8 +13,8 @@ source_paths: []
 
 This file intentionally uses synthetic sensitive-looking placeholders for redaction testing.
 
-- Contact: person@example.test
-- Internal dashboard: https://service.internal/dashboard
+- Contact: <person@example.test>
+- Internal dashboard: <https://service.internal/dashboard>
 - Phone: +1 555 010 2026
 
 No real credentials or private data are present.

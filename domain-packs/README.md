@@ -42,7 +42,7 @@ Profiles are not automatic migrations. They are reviewable instructions for `llm
 ## Packs
 
 | Pack | Use case | Overlay | Profile |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `personal-second-brain` | Personal research, notes and durable synthesis. | `personal-second-brain/schema.overlay.json` | `personal-second-brain/profile.json` |
 | `codebase-docs` | Agent-readable repository documentation. | `codebase-docs/schema.overlay.json` | `codebase-docs/profile.json` |
 | `research-papers` | Literature review and paper synthesis. | `research-papers/schema.overlay.json` | `research-papers/profile.json` |

@@ -54,14 +54,14 @@ Default recommendations:
 GitLab self-managed operations have two layers:
 
 | Layer | Meaning | Operating-model impact |
-|---|---|---|
+| --- | --- | --- |
 | Distribution layer | CE/EE terminology still appears in upgrade, restore and compatibility docs. | Backup/restore and upgrade compatibility must match GitLab version and type. |
 | Subscription layer | Features are practically gated as Free, Premium, Ultimate. | Operating controls such as required approvals, CODEOWNERS enforcement, group protected branches, deployment approvals, Geo and compliance capabilities influence tier choice. |
 
 Governance tier heuristic:
 
 | Need | Minimum posture |
-|---|---|
+| --- | --- |
 | Small internal pilot, low-risk docs, basic CI | Free may be sufficient. |
 | Multi-team LLM-Wiki with required MR approvals, CODEOWNERS, protected environment approvals, Geo or group-level branch policy | Premium should be treated as the default minimum. |
 | Centralized compliance frameworks, policy enforcement, broad audit-event streaming and compliance evidence workflows | Ultimate should be evaluated as the target. |
@@ -113,7 +113,7 @@ flowchart LR
 Recommended mappings:
 
 | LLM-Wiki concern | GitLab primitive | Recommended use |
-|---|---|---|
+| --- | --- | --- |
 | Work intake | Issues, labels, milestones, issue boards | One issue per significant ingestion, policy, export, eval or platform change. |
 | Review surface | Merge Requests | All shared durable changes go through MR review. |
 | Domain ownership | CODEOWNERS | Path-based review for wiki domains, policies, templates, skills, CI and export profiles. |
@@ -130,7 +130,7 @@ Recommended mappings:
 Recommended GitLab-specific role model:
 
 | Role | Owns | Should not own alone |
-|---|---|---|
+| --- | --- | --- |
 | Content/domain owners | Wiki domain paths, CODEOWNERS entries, factual approval, domain backlog. | GitLab instance administration, runner fleet, global policy. |
 | Platform engineers | GitLab administration, CI components, runners, registries, backup/restore, upgrades. | Domain truth, policy exceptions. |
 | Security | Protected-branch baseline, secrets policy, supply-chain controls, red-team, audit integration. | Every routine content approval. |
@@ -141,7 +141,7 @@ Recommended GitLab-specific role model:
 RACI baseline:
 
 | Activity | Content owners | Platform | Security | Compliance | SRE | Publishing |
-|---|---:|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Repository/subgroup placement | A/R | C | I | I | I | I |
 | Shared CI component design | C | A/R | C | I | C | I |
 | CODEOWNERS maintenance | A/R | C | C | I | I | C |
@@ -213,7 +213,7 @@ Example GitLab `CODEOWNERS`:
 Approval rules by risk:
 
 | Change type | Required approvals |
-|---|---|
+| --- | --- |
 | Low-risk content update | domain owner or knowledge engineer. |
 | Wiki page promotion to reviewed/verified | domain owner + knowledge engineer where provenance matters. |
 | Ingestion/chunking/retrieval/eval change | technical lead + retrieval/eval or knowledge owner. |
@@ -233,7 +233,7 @@ central CI components + group/project extension points + scoped runners + protec
 Runner policy:
 
 | Runner scope | Use | Caution |
-|---|---|---|
+| --- | --- | --- |
 | Instance runners | Low-risk shared jobs with strong isolation. | Broad blast radius; avoid for sensitive jobs unless segmented. |
 | Group runners | Default for enterprise LLM-Wiki groups. | Keep group boundaries meaningful. |
 | Project runners | Sensitive, high-privilege or special hardware/network jobs. | Higher operational overhead. |
@@ -256,7 +256,7 @@ stages:
 Required checks by path:
 
 | Path/change | Checks |
-|---|---|
+| --- | --- |
 | `wiki/**` | wiki lint, link/citation checks, review-state validation. |
 | `raw/manifests/**` | manifest schema, sensitivity classification, source hash. |
 | `evals/**` | eval dataset schema, smoke run, scorecard diff. |
@@ -328,7 +328,7 @@ protected_environments:
 Internal publication targets:
 
 | Target | GitLab-native path | Controls |
-|---|---|---|
+| --- | --- | --- |
 | Internal docs portal | GitLab Pages or internal static hosting | protected environment, redaction scan, search-index inspection. |
 | Agent bundle | package registry artifact or release asset | explicit export profile, checksums, security approval. |
 | MCP/API deployment | internal Kubernetes/service platform | protected environment, auth scopes, audit logs, network segmentation. |
@@ -338,7 +338,7 @@ Internal publication targets:
 GitLab Wiki vs repository docs:
 
 | Option | Use when | Avoid when |
-|---|---|---|
+| --- | --- | --- |
 | GitLab Wiki | Lightweight project/group notes, quick team pages, non-critical collaboration. | Need CI/eval/redaction, CODEOWNERS review, export profiles or reproducible release artifacts. |
 | Repository docs / LLM-Wiki | Production knowledge, agent-readable context, governed export, reviewed truth states. | Very small ad hoc notes where process overhead is unjustified. |
 
@@ -366,7 +366,7 @@ Recommended internal controls:
 Plan for these from the start when egress is restricted:
 
 | Need | Internal substitute |
-|---|---|
+| --- | --- |
 | Base runner images | internal container registry mirror. |
 | Language packages | internal package registry / proxy / curated artifact project. |
 | Security analyzers | mirrored scanner images and offline analyzer data. |
@@ -393,7 +393,7 @@ app/content repo -> CI build/test/package -> internal registry -> delivery repo 
 Recommended repository split:
 
 | Repository type | Owns |
-|---|---|
+| --- | --- |
 | application/content repo | LLM-Wiki source, skills, docs, tests, export configs. |
 | CI components repo | reusable pipeline components and security baselines. |
 | delivery repo | cluster/app desired state and promotion intent. |
@@ -463,7 +463,7 @@ detect -> freeze unsafe workflow -> preserve audit/events/artifacts -> revoke/ro
 ## Rollout plan
 
 | Window | Work | Exit criteria |
-|---|---|---|
+| --- | --- | --- |
 | Days 1-30 | GitLab admin ownership, SSO/LDAP/SAML, top-level group/subgroups, runner MVP, backup job, base CI components. | Pilot projects onboarded; access and backup baseline visible. |
 | Days 31-60 | Protected branches, MR approval rules, CODEOWNERS, issue boards, artifact/package conventions, audit collection. | MR-driven workflow active; production policy agreed. |
 | Days 61-90 | Protected environments, deployment approvals, release evidence, SIEM forwarding, restore rehearsal, dashboards, HA/Geo decision. | First restore drill and protected release completed; architecture decision ratified. |
@@ -484,46 +484,46 @@ detect -> freeze unsafe workflow -> preserve audit/events/artifacts -> revoke/ro
 
 ## Source URLs to re-check
 
-- https://docs.gitlab.com/user/group/
-- https://docs.gitlab.com/user/group/subgroups/
-- https://docs.gitlab.com/user/group/manage/
-- https://docs.gitlab.com/user/project/repository/branches/protected/
-- https://docs.gitlab.com/user/project/merge_requests/approvals/
-- https://docs.gitlab.com/user/project/codeowners/
-- https://docs.gitlab.com/user/project/issue_board/
-- https://docs.gitlab.com/ci/yaml/includes/
-- https://docs.gitlab.com/ci/components/
-- https://docs.gitlab.com/ci/runners/runners_scope/
-- https://docs.gitlab.com/ci/runners/configure_runners/
-- https://docs.gitlab.com/runner/fleet_scaling/
-- https://docs.gitlab.com/ci/environments/
-- https://docs.gitlab.com/ci/environments/protected_environments/
-- https://docs.gitlab.com/ci/environments/deployment_approvals/
-- https://docs.gitlab.com/user/project/releases/
-- https://docs.gitlab.com/api/releases/
-- https://docs.gitlab.com/user/packages/
-- https://docs.gitlab.com/user/packages/container_registry/
-- https://docs.gitlab.com/user/packages/generic_packages/
-- https://docs.gitlab.com/user/packages/workflows/project_registry/
-- https://docs.gitlab.com/administration/auth/ldap/
-- https://docs.gitlab.com/integration/saml/
-- https://docs.gitlab.com/user/group/saml_sso/group_sync/
-- https://docs.gitlab.com/administration/settings/scim_setup/
-- https://docs.gitlab.com/ci/secrets/
-- https://docs.gitlab.com/ci/pipeline_security/
-- https://docs.gitlab.com/administration/compliance/audit_event_streaming/
-- https://docs.gitlab.com/user/compliance/audit_event_types/
-- https://docs.gitlab.com/user/compliance/compliance_frameworks/
-- https://docs.gitlab.com/user/compliance/compliance_frameworks/centralized_compliance_frameworks/
-- https://docs.gitlab.com/administration/backup_restore/backup_gitlab/
-- https://docs.gitlab.com/administration/backup_restore/restore_gitlab/
-- https://docs.gitlab.com/administration/geo/
-- https://docs.gitlab.com/update/plan_your_upgrade/
-- https://docs.gitlab.com/policy/maintenance/
-- https://docs.gitlab.com/topics/offline/quick_start_guide/
-- https://docs.gitlab.com/user/clusters/agent/gitops/
-- https://docs.gitlab.com/user/clusters/agent/enterprise_considerations/
-- https://csrc.nist.gov/pubs/sp/800/207/final
-- https://www.cisa.gov/resources-tools/resources/layering-network-security-through-segmentation-infographic
-- https://www.cisa.gov/resources-tools/resources/microsegmentation-zero-trust-part-one-introduction-and-planning
-- https://slsa.dev/spec/v1.2/
+- <https://docs.gitlab.com/user/group/>
+- <https://docs.gitlab.com/user/group/subgroups/>
+- <https://docs.gitlab.com/user/group/manage/>
+- <https://docs.gitlab.com/user/project/repository/branches/protected/>
+- <https://docs.gitlab.com/user/project/merge_requests/approvals/>
+- <https://docs.gitlab.com/user/project/codeowners/>
+- <https://docs.gitlab.com/user/project/issue_board/>
+- <https://docs.gitlab.com/ci/yaml/includes/>
+- <https://docs.gitlab.com/ci/components/>
+- <https://docs.gitlab.com/ci/runners/runners_scope/>
+- <https://docs.gitlab.com/ci/runners/configure_runners/>
+- <https://docs.gitlab.com/runner/fleet_scaling/>
+- <https://docs.gitlab.com/ci/environments/>
+- <https://docs.gitlab.com/ci/environments/protected_environments/>
+- <https://docs.gitlab.com/ci/environments/deployment_approvals/>
+- <https://docs.gitlab.com/user/project/releases/>
+- <https://docs.gitlab.com/api/releases/>
+- <https://docs.gitlab.com/user/packages/>
+- <https://docs.gitlab.com/user/packages/container_registry/>
+- <https://docs.gitlab.com/user/packages/generic_packages/>
+- <https://docs.gitlab.com/user/packages/workflows/project_registry/>
+- <https://docs.gitlab.com/administration/auth/ldap/>
+- <https://docs.gitlab.com/integration/saml/>
+- <https://docs.gitlab.com/user/group/saml_sso/group_sync/>
+- <https://docs.gitlab.com/administration/settings/scim_setup/>
+- <https://docs.gitlab.com/ci/secrets/>
+- <https://docs.gitlab.com/ci/pipeline_security/>
+- <https://docs.gitlab.com/administration/compliance/audit_event_streaming/>
+- <https://docs.gitlab.com/user/compliance/audit_event_types/>
+- <https://docs.gitlab.com/user/compliance/compliance_frameworks/>
+- <https://docs.gitlab.com/user/compliance/compliance_frameworks/centralized_compliance_frameworks/>
+- <https://docs.gitlab.com/administration/backup_restore/backup_gitlab/>
+- <https://docs.gitlab.com/administration/backup_restore/restore_gitlab/>
+- <https://docs.gitlab.com/administration/geo/>
+- <https://docs.gitlab.com/update/plan_your_upgrade/>
+- <https://docs.gitlab.com/policy/maintenance/>
+- <https://docs.gitlab.com/topics/offline/quick_start_guide/>
+- <https://docs.gitlab.com/user/clusters/agent/gitops/>
+- <https://docs.gitlab.com/user/clusters/agent/enterprise_considerations/>
+- <https://csrc.nist.gov/pubs/sp/800/207/final>
+- <https://www.cisa.gov/resources-tools/resources/layering-network-security-through-segmentation-infographic>
+- <https://www.cisa.gov/resources-tools/resources/microsegmentation-zero-trust-part-one-introduction-and-planning>
+- <https://slsa.dev/spec/v1.2/>

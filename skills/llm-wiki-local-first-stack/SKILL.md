@@ -38,7 +38,7 @@ Do not add vector databases or graph stores unless symptoms justify them.
 ### 2. Choose retrieval tier
 
 | Tier | Use when |
-|---|---|
+| --- | --- |
 | `index.md` + `rg` | Early and medium vaults with good titles and wikilinks. |
 | hybrid local search | Exact search misses conceptual matches. |
 | graph-aware retrieval | Relationship and multi-hop questions dominate. |

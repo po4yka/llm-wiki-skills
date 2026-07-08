@@ -55,7 +55,7 @@ Define page types, lifecycle states, source hashes, claim types, review gates an
 Use the smallest sufficient tier:
 
 | Tier | Use when |
-|---|---|
+| --- | --- |
 | index + grep | first 50-100 sources or strong filenames/wikilinks |
 | hybrid lexical + semantic | conceptual recall fails or corpus grows |
 | graph-aware retrieval | relationships, provenance and multi-hop questions dominate |

@@ -72,7 +72,7 @@ Use these types consistently:
 ![Diagram of an agent auditing wiki content for evidence, confidence and review status.](assets/preview/trust-audit.webp)
 
 | Type | Meaning | Default action |
-|---|---|---|
+| --- | --- | --- |
 | `extracted` | Directly present in a source | Safe to summarize with citation. |
 | `inferred` | Reasoned from one or more sources | Mark as inference. |
 | `ambiguous` | Plausible but unresolved | Keep in review queue. |
@@ -88,7 +88,7 @@ Use these types consistently:
 ## Review gates
 
 | Trigger | Required gate |
-|---|---|
+| --- | --- |
 | New source summary | Source-level provenance. |
 | New synthesis page | Human review. |
 | Bulk frontmatter migration | Dry-run report first. |

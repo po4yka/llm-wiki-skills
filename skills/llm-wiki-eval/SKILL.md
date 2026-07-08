@@ -47,7 +47,7 @@ Choose one scope:
 Classify the evaluation as:
 
 | Evidence level | Meaning |
-|---|---|
+| --- | --- |
 | external direct | Published LLM-Wiki benchmark or implementation evidence. |
 | external adjacent | GraphRAG, memory, context-engineering or RAG benchmark evidence. |
 | local operational | This user's own metrics, query tests, traces and human review. |
@@ -59,7 +59,7 @@ Local operational evidence should decide whether the workflow is worth continuin
 Do not produce one opaque score. Score these layers separately:
 
 | Layer | Core question | Metrics |
-|---|---|---|
+| --- | --- | --- |
 | Retrieval | Did we find the right pages/passages? | recall@k, MRR, nDCG, hit/miss labels. |
 | Grounding | Are answer claims supported? | citation coverage, unsupported-claim rate, faithfulness, support labels. |
 | Answer quality | Does it solve the task? | human rubric, pairwise preference, correctness, completeness. |
@@ -72,7 +72,7 @@ Do not produce one opaque score. Score these layers separately:
 Collect:
 
 | Metric | Meaning |
-|---|---|
+| --- | --- |
 | retrieval hit rate | How often real answers used existing wiki pages. |
 | answer reuse rate | How often saved query pages are reused. |
 | read/write ratio | Whether the wiki is read, not only written. |
@@ -155,7 +155,7 @@ For answer samples:
 Recommended starting gates:
 
 | Risk tier | Citation coverage | Unsupported claims |
-|---|---:|---:|
+| --- | ---: | ---: |
 | Low | >= 0.80 | <= 0.10 |
 | Medium | >= 0.90 | <= 0.05 |
 | High | >= 0.95 | <= 0.02 |
@@ -187,7 +187,7 @@ A wiki that only captures and never files back/lints/evaluates is likely becomin
 ### 9. Classify failure modes
 
 | Failure | Likely fix |
-|---|---|
+| --- | --- |
 | Relevant page missing from top-k | Retrieval/index/chunking fix. |
 | Relevant page found but answer unsupported | Prompt/context-packing/grounding fix. |
 | Correct answer but no citations | Answer formatting/citation enforcement fix. |
@@ -218,7 +218,7 @@ Prioritize fixes:
 Use:
 
 | Decision | Use when |
-|---|---|
+| --- | --- |
 | continue | Retrieval and grounding are improving; no critical safety failures. |
 | continue with gates | Utility is visible but eval/security debt remains. |
 | pause | Data is insufficient or review/security debt blocks trust. |

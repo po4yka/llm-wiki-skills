@@ -22,51 +22,51 @@ Use carefully:
 - It supports wiki-structured retrieval for multi-hop and structured queries.
 - It does not prove that any personal Obsidian vault will outperform every RAG system.
 
-Source: https://arxiv.org/abs/2605.25480
+Source: <https://arxiv.org/abs/2605.25480>
 
 ### 2. Wiki memory ecosystem evidence
 
 LangChain describes wiki memory as an emerging pattern where an agent turns raw source data into a compact, persistent, agent-readable knowledge layer. It explicitly distinguishes this from basic RAG: RAG usually retrieves raw chunks at query time, while a wiki precomputes and maintains higher-level synthesis.
 
-Source: https://www.langchain.com/blog/wiki-memory
+Source: <https://www.langchain.com/blog/wiki-memory>
 
 OpenWiki applies the pattern to codebases. Its argument: coding agents write better code when they understand where key logic lives, how files connect and which patterns the repo expects; docs are hard to keep current, so OpenWiki creates and updates a repo wiki and connects it via instruction-file pointers.
 
-Source: https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation
+Source: <https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation>
 
 ### 3. GraphRAG and global-RAG evidence
 
 GraphRAG shows that naive RAG struggles with global questions over a corpus, such as identifying themes across a dataset. It reports substantial improvements over naive RAG in comprehensiveness and diversity for global sensemaking questions over roughly million-token datasets.
 
-Source: https://arxiv.org/abs/2404.16130
+Source: <https://arxiv.org/abs/2404.16130>
 
 GlobalQA / GlobalRAG shows that many RAG methods perform poorly on corpus-level tasks such as counting, sorting, extrema and top-k extraction, while a global-retrieval strategy improves corpus-level question answering.
 
-Source: https://arxiv.org/abs/2510.26205
+Source: <https://arxiv.org/abs/2510.26205>
 
 ### 4. Long-term memory evidence
 
 Mem0 reports persistent memory improvements over multiple baseline categories, including RAG variants and full-context processing, with better judge-rated quality and lower latency/cost than full-context processing.
 
-Source: https://arxiv.org/abs/2504.19413
+Source: <https://arxiv.org/abs/2504.19413>
 
 MemMachine argues for preserving ground-truth episodes and reducing lossy extraction. It reports strong accuracy-efficiency tradeoffs on LoCoMo, LongMemEvalS and noisy multi-hop retrieval.
 
-Source: https://arxiv.org/abs/2604.04853
+Source: <https://arxiv.org/abs/2604.04853>
 
 Infini Memory treats memory as topic-structured documents and reports 64.7% overall score on MemoryAgentBench. This is adjacent evidence for topic documents as a maintainable memory substrate.
 
-Source: https://arxiv.org/abs/2606.10677
+Source: <https://arxiv.org/abs/2606.10677>
 
 ### 5. Context engineering evidence
 
 Lost in the Middle shows that long-context models do not reliably use information equally across long inputs; performance often degrades when relevant information is in the middle of the context.
 
-Source: https://arxiv.org/abs/2307.03172
+Source: <https://arxiv.org/abs/2307.03172>
 
 Anthropic's context-engineering guidance says context is finite and should be curated. It describes just-in-time context where agents maintain lightweight identifiers such as file paths, stored queries and web links, then load data at runtime through tools. Claude Code is described as using `CLAUDE.md` up front plus glob/grep-style navigation.
 
-Source: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+Source: <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
 
 ## Standard answers
 
@@ -100,7 +100,7 @@ Answer with nuance:
 Not universally. Use this comparison:
 
 | Need | Better default |
-|---|---|
+| --- | --- |
 | one-shot factual lookup | RAG/search |
 | durable synthesis and reuse | LLM-Wiki |
 | global/corpus-level questions | wiki/GraphRAG/global-RAG style structure |
@@ -180,7 +180,7 @@ Controls:
 Almost any knowledge-bearing material can be captured, but it must be classified first.
 
 | Data class | Default handling |
-|---|---|
+| --- | --- |
 | Public | Normal wiki flow; cloud or local models if policy permits. |
 | Internal | Private storage and model policy required. |
 | Confidential | Prefer local or approved private provider; redact before cloud. |

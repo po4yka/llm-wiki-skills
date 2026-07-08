@@ -23,7 +23,7 @@
 ## Metrics
 
 | Metric | Count |
-|---|---:|
+| --- | ---: |
 | Total pages | 0 |
 | Draft pages | 0 |
 | Reviewed pages | 0 |

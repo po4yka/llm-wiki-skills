@@ -32,7 +32,7 @@ Use `references/docs/17-mcp-api-integration.md` as the reference playbook for th
 ### 1. Choose exposure mode
 
 | Mode | Use when | Default permissions |
-|---|---|---|
+| --- | --- | --- |
 | local stdio MCP | Personal local-first wiki or editor integration. | Search/read/list only. |
 | local HTTP MCP/API | Desktop app or local daemon. | Bind to `127.0.0.1`, token for sensitive operations. |
 | local reviewed-write MCP | User wants agents to propose link/page fixes. | Draft patches only. |
@@ -173,7 +173,7 @@ status: draft|opened-pr|approved|rejected|merged
 Choose auth by deployment:
 
 | Deployment | Auth pattern |
-|---|---|
+| --- | --- |
 | personal local stdio | local user boundary plus sandboxed startup command. |
 | local HTTP | localhost bind + token for sensitive operations. |
 | internal remote | API key or OAuth 2.1, gateway rate limits, audit logs. |
@@ -183,7 +183,7 @@ Choose auth by deployment:
 Define scopes:
 
 | Scope | Allows |
-|---|---|
+| --- | --- |
 | `wiki:read` | Search/read allowed pages. |
 | `wiki:lint` | Run/read lint reports. |
 | `wiki:propose` | Create patch/page proposals only. |
@@ -214,7 +214,7 @@ Require:
 Use a REST facade for CI and non-MCP clients:
 
 | Endpoint | MCP mapping |
-|---|---|
+| --- | --- |
 | `GET /manifest` | `wiki://manifest` |
 | `GET /search?q=` | `search_wiki` |
 | `GET /pages/{space}/{slug}` | `wiki://page/{space}/{slug}` |
@@ -231,7 +231,7 @@ Use standard HTTP errors: `400`, `401`, `403`, `404`, `409`, `422`, `429`, `500`
 ### 7. Review client compatibility
 
 | Client/host | Recommended contract |
-|---|---|
+| --- | --- |
 | Claude Code | Local stdio/local HTTP MCP; read/proposal tools for developer workflows. |
 | Claude Messages API connector | Remote MCP with explicit allow/deny tool policy. |
 | Codex CLI/IDE | stdio or Streamable HTTP; use tool approval modes and read/propose split. |

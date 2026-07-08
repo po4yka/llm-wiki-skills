@@ -32,7 +32,7 @@ State that this skill produces a plan only. Do not move, rename, delete, normali
 Classify the source:
 
 | Profile | Notes |
-|---|---|
+| --- | --- |
 | Obsidian vault | Preserve wikilinks, aliases and attachments. |
 | Repository docs | Preserve README/ADR/docs generator conventions. |
 | Notion export | Normalize nested pages and attachment paths. |

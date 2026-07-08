@@ -32,7 +32,7 @@ reviewed wiki -> export profiles -> redaction/validation -> human site + agent b
 Do not publish by copying the whole `wiki/` directory. Publish through explicit export profiles:
 
 | Profile | Audience | Typical output | Default policy |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `private-review` | maintainers and reviewers | review bundle, diff report, broken links, unsupported claims | includes draft/review material, never public |
 | `internal-site` | team/company | static site, internal search, Markdown bundle | reviewed/approved internal pages only |
 | `public-site` | public users | curated static docs, sitemap, Pagefind index | explicit allowlist, redaction required |
@@ -112,7 +112,7 @@ Rules:
 ### Human-readable sites
 
 | Target | Best fit | Notes |
-|---|---|---|
+| --- | --- | --- |
 | MkDocs Material | Documentation sites, handbooks, policy/runbook portals. | Strong Markdown docs workflow, built-in search, privacy/self-hosted asset controls. |
 | Docusaurus | Product docs needing React/MDX components and versioned docs. | More frontend/tooling surface; good for interactive docs. |
 | VitePress | Lightweight Vue/Vite docs with local search. | Good for lean docs with simple structure. |
@@ -123,7 +123,7 @@ Rules:
 ### Agent-readable exports
 
 | Target | Purpose | Required controls |
-|---|---|---|
+| --- | --- | --- |
 | `llms.txt` | Short root-level map of high-value pages for LLMs. | Include only approved public/internal pages for chosen profile. |
 | `llms-full.txt` | De facto full-context bundle for tools that want one file. | High leakage risk; generate only from explicit profile. |
 | Per-page `.md` / `.txt` | Direct page context for agents. | Stable URLs, title, status, citations, updated date. |
@@ -137,7 +137,7 @@ Rules:
 ### Graph and semantic exports
 
 | Format | Use |
-|---|---|
+| --- | --- |
 | JSON-LD | Linked-data-friendly graph and page metadata. |
 | GraphML | Import into graph tools. |
 | RDF/Turtle | Semantic web workflows. |
@@ -151,7 +151,7 @@ Graph exports must carry edge provenance, confidence and sensitivity. Generated 
 ### Archive exports
 
 | Artifact | Purpose |
-|---|---|
+| --- | --- |
 | tar/zip bundle | Portable release artifact. |
 | `checksums.sha256` | Integrity verification. |
 | git tag/release | Versioned repository state. |
@@ -407,7 +407,7 @@ Release gates:
 ## Rollout plan
 
 | Period | Work |
-|---|---|
+| --- | --- |
 | Days 1-14 | Define export profiles and publication states. |
 | Days 15-30 | Build internal Markdown/static-site export and manifest. |
 | Days 31-45 | Add redaction, broken-link and citation gates. |
@@ -429,37 +429,37 @@ Release gates:
 
 ## Source URLs to re-check
 
-- https://llmstxt.org/
-- https://www.mintlify.com/docs/ai/llmstxt
-- https://squidfunk.github.io/mkdocs-material/
-- https://squidfunk.github.io/mkdocs-material/plugins/search/
-- https://squidfunk.github.io/mkdocs-material/plugins/privacy/
-- https://docusaurus.io/
-- https://vitepress.dev/reference/default-theme-search
-- https://quartz.jzhao.xyz/
-- https://starlight.astro.build/
-- https://pagefind.app/
-- https://pagefind.app/docs/indexing/
-- https://json-ld.org/
-- https://schema.org/
-- https://graphviz.org/
-- https://mermaid.js.org/
-- https://js.cytoscape.org/
-- https://graphml.graphdrawing.org/
-- https://www.openapis.org/
-- https://spec.openapis.org/oas/v3.1.0.html
-- https://modelcontextprotocol.io/specification/2025-11-25
-- https://www.w3.org/TR/activitystreams-core/
-- https://iipc.github.io/warc-specifications/
-- https://github.com/webrecorder/warcio
-- https://github.com/internetarchive/warcprox
-- https://www.gnu.org/software/tar/manual/html_node/Standard.html
-- https://docs.github.com/en/actions
-- https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases
-- https://docs.github.com/en/pages
-- https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning
-- https://github.com/data-privacy-stack/presidio
-- https://github.com/gitleaks/gitleaks
-- https://github.com/Pratiyush/llm-wiki
-- https://github.com/atomicstrata/llm-wiki-compiler
-- https://github.com/swarmclawai/swarmvault
+- <https://llmstxt.org/>
+- <https://www.mintlify.com/docs/ai/llmstxt>
+- <https://squidfunk.github.io/mkdocs-material/>
+- <https://squidfunk.github.io/mkdocs-material/plugins/search/>
+- <https://squidfunk.github.io/mkdocs-material/plugins/privacy/>
+- <https://docusaurus.io/>
+- <https://vitepress.dev/reference/default-theme-search>
+- <https://quartz.jzhao.xyz/>
+- <https://starlight.astro.build/>
+- <https://pagefind.app/>
+- <https://pagefind.app/docs/indexing/>
+- <https://json-ld.org/>
+- <https://schema.org/>
+- <https://graphviz.org/>
+- <https://mermaid.js.org/>
+- <https://js.cytoscape.org/>
+- <https://graphml.graphdrawing.org/>
+- <https://www.openapis.org/>
+- <https://spec.openapis.org/oas/v3.1.0.html>
+- <https://modelcontextprotocol.io/specification/2025-11-25>
+- <https://www.w3.org/TR/activitystreams-core/>
+- <https://iipc.github.io/warc-specifications/>
+- <https://github.com/webrecorder/warcio>
+- <https://github.com/internetarchive/warcprox>
+- <https://www.gnu.org/software/tar/manual/html_node/Standard.html>
+- <https://docs.github.com/en/actions>
+- <https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases>
+- <https://docs.github.com/en/pages>
+- <https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning>
+- <https://github.com/data-privacy-stack/presidio>
+- <https://github.com/gitleaks/gitleaks>
+- <https://github.com/Pratiyush/llm-wiki>
+- <https://github.com/atomicstrata/llm-wiki-compiler>
+- <https://github.com/swarmclawai/swarmvault>

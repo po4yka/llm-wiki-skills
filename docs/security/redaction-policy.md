@@ -12,7 +12,7 @@ Preview redactions first. Patch only an export copy unless the user explicitly a
 ## Sensitive patterns
 
 | Category | Examples | Placeholder |
-|---|---|---|
+| --- | --- | --- |
 | Email | personal or company emails | `[REDACTED_EMAIL]` |
 | Phone | phone-like strings | `[REDACTED_PHONE]` |
 | Internal URL | private domains, localhost dashboards, intranet links | `[REDACTED_INTERNAL_URL]` |

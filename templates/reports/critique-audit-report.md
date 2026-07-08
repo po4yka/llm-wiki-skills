@@ -13,7 +13,7 @@ adopt | pilot | redesign | avoid | split
 ## Domain fit screen
 
 | Question | Answer | Notes |
-|---|---|---|
+| --- | --- | --- |
 | Does the wiki compress facts from many sources? | yes/no/unknown | |
 | Is the goal retrieval rather than internalization? | yes/no/unknown | |
 | Is there an anti-smoothing schema? | yes/no/unknown | |
@@ -28,7 +28,7 @@ adopt | pilot | redesign | avoid | split
 ## 17-risk scorecard
 
 | # | Risk | Severity | Mitigation status | Residual risk | Evidence |
-|---:|---|---|---|---|---|
+| ---: | --- | --- | --- | --- | --- |
 | 1 | Consensus smoothing | | | | |
 | 2 | Context poisoning | | | | |
 | 3 | Iterative summary degradation | | | | |

@@ -21,7 +21,7 @@ Agent Skills are operational instructions. A malicious or sloppy `SKILL.md` can 
 ## Dangerous patterns
 
 | Pattern | Risk |
-|---|---|
+| --- | --- |
 | direct writes without dry-run | silent knowledge corruption |
 | automatic merging | bypassed human review |
 | broad external model use | data leakage |
@@ -32,7 +32,7 @@ Agent Skills are operational instructions. A malicious or sloppy `SKILL.md` can 
 ## Recommended install modes
 
 | Mode | Use when |
-|---|---|
+| --- | --- |
 | one-off `skills use` | testing a skill without installing it. |
 | project install | skills should be reviewed and committed with the repo. |
 | global install | stable personal workflows from trusted sources only. |

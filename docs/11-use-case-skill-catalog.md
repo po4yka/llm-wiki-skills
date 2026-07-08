@@ -17,7 +17,7 @@ diagnose -> plan -> migrate -> operate -> prove trust -> publish/archive -> evol
 ## The original 20 advanced skills
 
 | # | Skill | Primary use-case |
-|---:|---|---|
+| ---: | --- | --- |
 | 1 | [`llm-wiki-doctor`](../skills/llm-wiki-doctor/SKILL.md) | Read-only diagnosis of an existing vault, docs folder or repo wiki. |
 | 2 | [`llm-wiki-migration-planner`](../skills/llm-wiki-migration-planner/SKILL.md) | Dry-run migration plan before moving or editing files. |
 | 3 | [`llm-wiki-provenance`](../skills/llm-wiki-provenance/SKILL.md) | Source-level and claim-level provenance repair. |
@@ -42,7 +42,7 @@ diagnose -> plan -> migrate -> operate -> prove trust -> publish/archive -> evol
 ## Product-hardening skills added after review
 
 | Skill | Primary use-case |
-|---|---|
+| --- | --- |
 | [`llm-wiki-benchmark-suite`](../skills/llm-wiki-benchmark-suite/SKILL.md) | Run practical local pilot benchmarks. |
 | [`llm-wiki-claim-anchors`](../skills/llm-wiki-claim-anchors/SKILL.md) | Add deterministic claim-level provenance anchors. |
 | [`llm-wiki-source-refresh`](../skills/llm-wiki-source-refresh/SKILL.md) | Refresh stale source-backed claims. |

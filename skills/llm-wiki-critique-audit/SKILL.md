@@ -47,7 +47,7 @@ Read these when available:
 Classify the audit target:
 
 | Target | Examples |
-|---|---|
+| --- | --- |
 | domain | research papers, market research, repo docs, trading, personal notes |
 | existing vault | Obsidian vault, docs folder, repo wiki |
 | proposed rollout | team/company adoption, Confluence replacement, PR workflow |
@@ -76,7 +76,7 @@ If 3 or more answers are negative/unknown, recommend a reversible pilot rather t
 Use:
 
 | Risk | Severity | Mitigation status | Residual risk | Evidence |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 
 Assess:
 
@@ -120,7 +120,7 @@ Examples:
 Map the audit to concrete controls:
 
 | Risk | Control |
-|---|---|
+| --- | --- |
 | smoothing | extraction/antagonist/friction/linking rules |
 | poisoning | raw immutability, claim anchors, source refresh |
 | cognitive debt | protected `## My synthesis`, manual promotion |
@@ -136,7 +136,7 @@ Map the audit to concrete controls:
 Use one of:
 
 | Decision | Meaning |
-|---|---|
+| --- | --- |
 | adopt | Risks are controlled and domain has clear compression/output value. |
 | pilot | Risk/value is uncertain; run bounded pilot. |
 | redesign | Core controls are missing but domain may be valuable. |

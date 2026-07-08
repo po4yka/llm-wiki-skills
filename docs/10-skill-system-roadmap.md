@@ -139,7 +139,7 @@ The repository now includes the implementation-hardening items that turn the ski
 Potential next additions:
 
 | Item | Purpose |
-|---|---|
+| --- | --- |
 | `llm-wiki-claim-diff` | Track how claim support changes across source refreshes. |
 | `llm-wiki-taxonomy-migrator` | Safely migrate tags and page types across domain packs. |
 | `llm-wiki-benchmark-reporter` | Turn pilot benchmark runs into charts and release-quality reports. |

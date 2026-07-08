@@ -23,7 +23,7 @@ Use stable `type` values from `templates/schemas/page.schema.json`:
 Use `domain_type` for specialization. The source of truth is `schema.overlay.json`.
 
 | domain_type | core `type` | Use when |
-|---|---|---|
+| --- | --- | --- |
 | `decision` | `synthesis` | Team rationale or ADR-like history must be preserved. |
 | `onboarding` | `synthesis` | A curated learning path or onboarding map is needed. |
 | `runbook` | `synthesis` | A repeated operational workflow should be reusable. |

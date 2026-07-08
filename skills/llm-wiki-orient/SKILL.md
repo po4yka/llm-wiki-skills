@@ -65,7 +65,7 @@ Emphasize:
 Explain briefly:
 
 | Pattern | Difference |
-|---|---|
+| --- | --- |
 | RAG | Retrieves chunks at query time. LLM-Wiki pre-compiles durable pages and still may use search. |
 | GraphRAG | Builds graph-aware retrieval structures. LLM-Wiki makes human-readable Markdown the primary artifact. |
 | Agent memory | Often black-box or agent-owned. LLM-Wiki is inspectable, git-versioned and user-owned. |

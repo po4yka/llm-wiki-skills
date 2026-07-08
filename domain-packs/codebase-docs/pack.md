@@ -23,7 +23,7 @@ Use stable `type` values from `templates/schemas/page.schema.json`:
 Use `domain_type` for specialization. The source of truth is `schema.overlay.json`.
 
 | domain_type | core `type` | Use when |
-|---|---|---|
+| --- | --- | --- |
 | `decision` | `synthesis` | An ADR-like page captures architecture/product rationale. |
 | `module` | `entity` | A package, service, subsystem or module needs a stable page. |
 | `how-to` | `synthesis` | A procedural repo workflow should be reusable by agents. |

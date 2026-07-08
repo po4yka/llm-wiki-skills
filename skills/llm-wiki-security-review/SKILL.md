@@ -165,7 +165,7 @@ Check:
 Use current docs before giving install commands. Candidate tools:
 
 | Risk | Candidate controls |
-|---|---|
+| --- | --- |
 | Secrets in raw/wiki/config/export | GitHub secret scanning/push protection, gitleaks, detect-secrets, trufflehog, pre-commit and CI gates. |
 | PII in captures/exports/traces | Microsoft Presidio, scrubadub, custom regex/classifiers, redaction manifests. |
 | Dependency/supply-chain risk | Dependabot, dependency review, OSV Scanner, npm audit, pip-audit, lockfile review. |
@@ -180,7 +180,7 @@ Use current docs before giving install commands. Candidate tools:
 Use severity:
 
 | Severity | Meaning |
-|---|---|
+| --- | --- |
 | Critical | Secrets/regulated data likely exposed, direct unsafe writes, cross-tenant leak, parser RCE path, or remote unauthenticated access. |
 | High | Sensitive data can reach cloud models/indexes/traces or agents can bypass review. |
 | Medium | Missing audit trails, weak filters, stale dependencies, broad permissions. |

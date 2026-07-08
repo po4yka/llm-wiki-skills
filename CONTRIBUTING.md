@@ -20,7 +20,7 @@ It checks skill metadata, manifest/README consistency, local Markdown links, age
 ## Repository layout
 
 | Path | Purpose |
-|---|---|
+| --- | --- |
 | `skills/` | Installable Agent Skills. |
 | `skills.sh.json` | Skills grouping metadata for discovery. |
 | `skill-router.json` | Machine-readable skill routing metadata. |

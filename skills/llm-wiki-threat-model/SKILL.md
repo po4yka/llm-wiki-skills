@@ -68,7 +68,7 @@ At minimum mark:
 Use STRIDE for system threats:
 
 | Category | LLM-Wiki focus |
-|---|---|
+| --- | --- |
 | Spoofing | fake source identity, fake MCP server, forged reviewer. |
 | Tampering | poisoned source, forged citation, modified index/wiki page. |
 | Repudiation | missing audit trail for generated proposal or approval. |
@@ -90,7 +90,7 @@ Use LINDDUN-style checks for privacy:
 Always assess:
 
 | Threat | Default severity |
-|---|---|
+| --- | --- |
 | Indirect prompt injection causing data exfiltration or unsafe tool use | Critical |
 | Corpus poisoning or durable wiki corruption | High |
 | Parser exploitation during ingestion | Critical when untrusted files are parsed |

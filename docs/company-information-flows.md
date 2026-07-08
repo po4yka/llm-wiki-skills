@@ -19,7 +19,7 @@ The goal is not to capture everything. The goal is to capture the flows that inf
 Use this as a discovery checklist.
 
 | Flow | Examples | Capture default | Why it matters |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Documents | Confluence, Notion, Google Docs, SharePoint, Drive, PDFs, internal specs | API export, webhook/delta, scheduled diff | Often holds official but stale context. |
 | Work tracking | Jira, Linear, GitHub Issues, YouTrack, Asana | Webhooks + changelog API + periodic reconciliation | Contains decision residue, status, ownership and scope changes. |
 | Code collaboration | GitHub/GitLab PRs, reviews, commits, releases, ADRs | Webhooks + repo crawler | Explains what changed and why. |
@@ -50,7 +50,7 @@ Do not start with every workspace, every chat and every meeting.
 Safe to automate by default:
 
 | Automation | Why safe | Output |
-|---|---|---|
+| --- | --- | --- |
 | Source discovery | Reads metadata and links, does not interpret truth. | Source registry entries. |
 | Event ingestion | Append-only record of updates/deletes/comments. | Raw event log. |
 | Version/hash tracking | Detects change without judging meaning. | `source_hash`, `version`, `last_seen_at`. |
@@ -66,7 +66,7 @@ Safe to automate by default:
 Do not fully automate these without a review gate:
 
 | Operation | Why not fully automatic | Safe default |
-|---|---|---|
+| --- | --- | --- |
 | Promoting claims to verified | Requires domain judgment. | Agent drafts; human promotes. |
 | Resolving contradictions | Multiple true contexts may exist. | Conflict report with sources. |
 | Deleting/merging pages | Lossy and socially risky. | Dry-run merge/delete proposal. |
@@ -152,7 +152,7 @@ This system is useful but fragile. Treat fragility as an operating cost, not a s
 ### Fragility map
 
 | Failure mode | Symptom | Repair cost | Repair pattern |
-|---|---|---:|---|
+| --- | --- | ---: | --- |
 | Orphan pages | Pages with no inbound links. | Low | Link, merge, archive or mark intentional. |
 | Broken links | Renames or moved pages. | Low | Deterministic link repair. |
 | Schema drift | Frontmatter variants multiply. | Low/medium | Validator + migration dry-run. |
@@ -169,7 +169,7 @@ This system is useful but fragile. Treat fragility as an operating cost, not a s
 Do not promise exact maintenance time without a pilot. Use these planning ranges:
 
 | Scale | Suggested maintenance budget |
-|---|---|
+| --- | --- |
 | Personal / tiny pilot | 30-60 minutes weekly for triage, lint and review. |
 | One team / one domain | 1-2 hours weekly plus owner review for high-impact claims. |
 | Cross-functional pilot | Curator rotation or Product Ops owner; weekly review meeting. |
@@ -180,7 +180,7 @@ The expensive work is rarely fixing links. It is resolving contradictions, decid
 ### UI options today
 
 | UI | Good for | Weakness |
-|---|---|---|
+| --- | --- | --- |
 | Markdown reports | Portable, reviewable, git-friendly. | Not interactive. |
 | GitHub/GitLab PR UI | Diffs, comments, CODEOWNERS. | Too technical for casual contributors. |
 | Obsidian graph/backlinks/Dataview/Bases | Human exploration and orphan/link review. | Not a full team governance UI. |
@@ -208,7 +208,7 @@ Rules:
 Recommended data classes:
 
 | Class | Handling |
-|---|---|
+| --- | --- |
 | Public | Normal flow; cloud or local models if policy allows. |
 | Internal | Private storage, private index, approved model policy. |
 | Confidential | Local/private model preferred; owner review required. |

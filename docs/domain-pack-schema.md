@@ -32,7 +32,7 @@ source, entity, concept, comparison, synthesis, query, report
 These values describe agent behavior and storage expectations.
 
 | Core type | Generic meaning |
-|---|---|
+| --- | --- |
 | `source` | A page grounded in one or more raw sources. |
 | `entity` | A person, org, product, project, dataset or module-like thing. |
 | `concept` | A reusable idea, method, mechanism or abstraction. |

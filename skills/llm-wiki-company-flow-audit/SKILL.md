@@ -54,7 +54,7 @@ Use this answer:
 Map sources into:
 
 | Flow | Examples |
-|---|---|
+| --- | --- |
 | Docs | Confluence, Notion, Google Docs, SharePoint, PDFs. |
 | Work tracking | Jira, Linear, GitHub Issues, YouTrack. |
 | Code collaboration | PRs, reviews, commits, releases, ADRs. |
@@ -71,7 +71,7 @@ Recommend starting with 3-5 flows that affect real decisions, not every system.
 Use three levels:
 
 | Level | Meaning | Examples |
-|---|---|---|
+| --- | --- | --- |
 | Automatic capture | Safe append-only or metadata sync. | Webhooks, event logs, source hashes, stale flags. |
 | Assisted transformation | Agent drafts structure but review is needed. | Summaries, entity pages, decision pages, dedup candidates. |
 | Human-gated truth | Human owner must approve. | Verified claims, contradictions, sensitive summaries, official docs. |
@@ -116,7 +116,7 @@ Be honest:
 Use planning ranges, not guarantees:
 
 | Scale | Maintenance planning range |
-|---|---|
+| --- | --- |
 | Personal/tiny pilot | 30-60 minutes weekly. |
 | One team/domain | 1-2 hours weekly plus domain-owner review. |
 | Cross-functional pilot | Product Ops/curator rotation and weekly review meeting. |

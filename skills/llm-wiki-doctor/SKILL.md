@@ -49,7 +49,7 @@ Collect counts and examples for:
 Score 0-5:
 
 | Area | What to check |
-|---|---|
+| --- | --- |
 | Structure | raw/wiki/schema separation, predictable folders, index/log. |
 | Provenance | source links, source hashes, claim support. |
 | Retrievability | index, titles, links, tags, searchability. |

@@ -56,7 +56,7 @@ For most teams:
 ## Operating principles
 
 | Principle | Meaning |
-|---|---|
+| --- | --- |
 | Product, not folder | The wiki has users, interfaces, releases, incidents, and quality gates. |
 | Agents propose, owners approve | Automation maintains bookkeeping and drafts; humans own truth promotion. |
 | Reviewed knowledge is a separate state | Draft, rejected, stale and quarantined pages do not equal production knowledge. |
@@ -100,7 +100,7 @@ flowchart TD
 Recommended roles:
 
 | Role | Mission | Primary artifacts |
-|---|---|---|
+| --- | --- | --- |
 | Product Owner | Own scope, value, priority, stakeholder alignment and acceptance thresholds. | roadmap, rollout plan, KPI targets, decision records. |
 | Technical Lead / Architect | Own system architecture and technical coherence across ingest, retrieval, eval, MCP/API and export. | architecture docs, schemas, API/MCP contracts, ADRs. |
 | Knowledge Engineer | Own source normalization, taxonomy, provenance, page conventions and content QA. | manifests, wiki structure, page templates, review queues. |
@@ -113,7 +113,7 @@ Recommended roles:
 ## RACI model
 
 | Workflow | PO | TL | KE | RE | PE | SEC | SME | PUB |
-|---|---|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Source intake/classification | A | C | R | I | I | C | C | I |
 | Ingestion parser/profile change | I | A | R | C | C | C | C | I |
 | Schema/chunking/metadata change | I | A | R | C | C | C | C | I |
@@ -152,7 +152,7 @@ decision:
 ## Governance layers
 
 | Layer | Mechanism | Default rule |
-|---|---|---|
+| --- | --- | --- |
 | Domain ownership | path ownership, domain SMEs, wiki spaces | each high-value domain has a named owner. |
 | Technical ownership | architecture lead, ADRs, schema owners | architecture/schema/API/MCP changes require technical review. |
 | Change control | PRs, CODEOWNERS, branch protection, required checks | team/shared knowledge uses PR/proposal writes. |
@@ -172,7 +172,7 @@ agent proposal -> branch/patch -> lint/eval/security checks -> CODEOWNERS/domain
 Review states:
 
 | State | Meaning | Production retrieval default |
-|---|---|---|
+| --- | --- | --- |
 | `draft` | generated or unreviewed content | excluded |
 | `reviewed` | human checked for domain fitness | included for internal retrieval |
 | `verified` | high-confidence source-backed material | included |
@@ -184,7 +184,7 @@ Review states:
 Risk-tiered approval:
 
 | Change type | Approval |
-|---|---|
+| --- | --- |
 | Low-risk page edits | normal PR review by domain owner or knowledge engineer. |
 | Ingestion profile/parser change | technical + knowledge review. |
 | Retrieval/index/eval threshold change | technical + retrieval/eval review. |
@@ -265,7 +265,7 @@ Default response:
 Layered scorecard:
 
 | Layer | Metrics |
-|---|---|
+| --- | --- |
 | Delivery | deployment frequency, lead time, change failure rate, MTTR. |
 | Reliability | SLO attainment, latency, traffic, errors, saturation, index freshness lag. |
 | Retrieval | recall@k, MRR, nDCG, query success rate, retrieval hit rate. |
@@ -305,7 +305,7 @@ Error-budget policy:
 ## Rituals and cadences
 
 | Cadence | Ritual | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | Daily async | ingest/retrieval/security triage | classify new sources, broken queries, failed checks, urgent reviews. |
 | Weekly | retrieval/eval review | inspect regressions, promote new test cases, approve threshold changes. |
 | Weekly | review queue grooming | unblock high-risk pages and stale claims. |
@@ -321,7 +321,7 @@ Error-budget policy:
 These ranges are planning heuristics, not mandates.
 
 | Stage | What is true | Suggested staffing |
-|---|---|---|
+| --- | --- | --- |
 | Pilot | one domain, limited users, manual review acceptable, no external publishing. | 3-4 core FTE + part-time security/SME. |
 | Early production | recurring ingest, CI evals, protected releases, growing stakeholders. | 5-8 FTE. |
 | Business-critical | multi-domain, API/MCP surface, formal incident discipline, regular publishing/export. | 8-12 FTE. |
@@ -341,7 +341,7 @@ Hiring order:
 Ramp plan:
 
 | Window | Focus | Exit criteria |
-|---|---|---|
+| --- | --- | --- |
 | First 2 weeks | system map, policies, access, read core docs, observe ingest/eval/release. | can explain boundaries, owners, escalation and review states. |
 | First month | perform one low-risk source ingest, one eval run, one page review under supervision. | can complete routine tasks with review. |
 | Second month | own one recurring workflow or queue; improve one runbook. | can run a lane independently and escalate. |
@@ -364,7 +364,7 @@ Minimum onboarding checklist:
 Recommended repository rules:
 
 | Path | Owners / controls |
-|---|---|
+| --- | --- |
 | `wiki/policies/**` | domain owner + security. |
 | `wiki/architecture/**` | technical lead + domain owner. |
 | `raw/manifests/**` | knowledge engineer + domain owner. |
@@ -378,7 +378,7 @@ Recommended repository rules:
 Required checks by PR type:
 
 | PR type | Checks |
-|---|---|
+| --- | --- |
 | content/source page | lint, link/citation checks, review-state validation. |
 | ingestion | manifest validation, parser smoke, private-data scan. |
 | retrieval/eval | retrieval smoke, grounding gates, scorecard diff. |
@@ -429,7 +429,7 @@ dashboards:
 ## First 90 days rollout
 
 | Period | Work |
-|---|---|
+| --- | --- |
 | Days 1-14 | Charter, team poster, working agreements, owners, domains, initial RACI. |
 | Days 15-30 | PR-based write model, CODEOWNERS draft, review states, review queues. |
 | Days 31-45 | Eval scorecard, ingestion/retrieval/publishing/security handoff maps. |
@@ -452,39 +452,39 @@ dashboards:
 
 ## Source URLs to re-check
 
-- https://sre.google/sre-book/introduction/
-- https://sre.google/workbook/engagement-model/
-- https://sre.google/workbook/eliminating-toil/
-- https://sre.google/sre-book/being-on-call/
-- https://sre.google/sre-book/monitoring-distributed-systems/
-- https://sre.google/workbook/implementing-slos/
-- https://sre.google/workbook/error-budget-policy/
-- https://sre.google/workbook/incident-response/
-- https://sre.google/workbook/postmortem-culture/
-- https://sre.google/workbook/canarying-releases/
-- https://sre.google/workbook/overload/
-- https://www.atlassian.com/team-playbook/plays/daci
-- https://www.atlassian.com/team-playbook/plays/roles-and-responsibilities
-- https://www.atlassian.com/team-playbook/plays/working-agreements
-- https://www.atlassian.com/team-playbook/plays/team-poster
-- https://www.atlassian.com/team-playbook/health-monitor
-- https://rework.withgoogle.com/intl/en/guides/a-data-driven-approach-to-optimizing-employee-onboarding
-- https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance
-- https://opentelemetry.io/docs/
-- https://prometheus.io/docs/alerting/latest/overview/
-- https://prometheus.io/docs/operating/security/
-- https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-61r3.pdf
-- https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-218.pdf
-- https://slsa.dev/spec/v1.2/
-- https://slsa.dev/provenance/v1
-- https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
-- https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule
-- https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment
-- https://docs.github.com/en/actions/concepts/security/openid-connect
-- https://modelcontextprotocol.io/specification/2025-11-25
-- https://spec.openapis.org/oas/v3.1.0.html
-- https://developers.openai.com/api/docs/guides/evaluation-best-practices
-- https://developers.openai.com/api/docs/guides/evals
-- https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
-- https://github.com/nashsu/llm_wiki
-- https://github.com/nvk/llm-wiki
+- <https://sre.google/sre-book/introduction/>
+- <https://sre.google/workbook/engagement-model/>
+- <https://sre.google/workbook/eliminating-toil/>
+- <https://sre.google/sre-book/being-on-call/>
+- <https://sre.google/sre-book/monitoring-distributed-systems/>
+- <https://sre.google/workbook/implementing-slos/>
+- <https://sre.google/workbook/error-budget-policy/>
+- <https://sre.google/workbook/incident-response/>
+- <https://sre.google/workbook/postmortem-culture/>
+- <https://sre.google/workbook/canarying-releases/>
+- <https://sre.google/workbook/overload/>
+- <https://www.atlassian.com/team-playbook/plays/daci>
+- <https://www.atlassian.com/team-playbook/plays/roles-and-responsibilities>
+- <https://www.atlassian.com/team-playbook/plays/working-agreements>
+- <https://www.atlassian.com/team-playbook/plays/team-poster>
+- <https://www.atlassian.com/team-playbook/health-monitor>
+- <https://rework.withgoogle.com/intl/en/guides/a-data-driven-approach-to-optimizing-employee-onboarding>
+- <https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance>
+- <https://opentelemetry.io/docs/>
+- <https://prometheus.io/docs/alerting/latest/overview/>
+- <https://prometheus.io/docs/operating/security/>
+- <https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-61r3.pdf>
+- <https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-218.pdf>
+- <https://slsa.dev/spec/v1.2/>
+- <https://slsa.dev/provenance/v1>
+- <https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners>
+- <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule>
+- <https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment>
+- <https://docs.github.com/en/actions/concepts/security/openid-connect>
+- <https://modelcontextprotocol.io/specification/2025-11-25>
+- <https://spec.openapis.org/oas/v3.1.0.html>
+- <https://developers.openai.com/api/docs/guides/evaluation-best-practices>
+- <https://developers.openai.com/api/docs/guides/evals>
+- <https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f>
+- <https://github.com/nashsu/llm_wiki>
+- <https://github.com/nvk/llm-wiki>

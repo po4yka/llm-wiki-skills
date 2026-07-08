@@ -36,7 +36,7 @@ capture in the easiest UI -> agent triage -> review queue -> human-friendly wiki
 ### Practical modes
 
 | Mode | User experience | Good for | Trade-off |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Browser-first capture | Add a note/source through a form, issue template, GitHub web editor, CMS, or Confluence-style page. | Non-developers and teams. | Needs an agent/maintainer loop behind it. |
 | Obsidian / Markdown app | Edit/read Markdown locally with backlinks and search. | Personal second brain, research. | Another app to learn. |
 | Managed docs-as-code | User writes in a simple UI; agent opens review PRs. | Teams that need audit/history. | PR/MR must be hidden from casual contributors. |
@@ -67,7 +67,7 @@ promotion to trusted knowledge may use review gates
 ### Four write modes
 
 | Write mode | Who uses it | What happens | When to use |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Append-only inbox | Everyone | Raw notes/sources go to `inbox/` or `raw/` immediately. | Default for capture. |
 | Browser edit | Contributors | Edit a draft page through GitHub web UI, CMS, Obsidian Sync, or docs portal. | Low-risk docs. |
 | Batch review | Curator + agent | Agent groups changes into weekly review reports or one PR. | Knowledge maintenance. |
@@ -118,7 +118,7 @@ small map first -> search relevant pages -> open only needed pages -> cite raw s
 ### Token budget principle
 
 | Layer | Should it fit in prompt? | Purpose |
-|---|---:|---|
+| --- | ---: | --- |
 | `AGENTS.md` / `CLAUDE.md` pointer | Yes, tiny | Tell agent where the wiki is and how to use it. |
 | `wiki/index.md` | Usually yes | Map of pages/categories; keep concise. |
 | Candidate pages | Only selected pages | Actual context for the current question. |
@@ -151,7 +151,7 @@ The target artifact should be useful to **both humans and agents**. If humans ca
 ### Two audiences, one artifact
 
 | Audience | Needs |
-|---|---|
+| --- | --- |
 | Humans | Clear prose, source links, status fields, decision context, readable navigation, visible uncertainty. |
 | Agents | Stable file paths, frontmatter, page types, indexes, backlinks, schemas and retrieval hints. |
 
@@ -206,7 +206,7 @@ Almost any knowledge-bearing material can be captured, but not all material shou
 ### Suitable content types
 
 | Content | Common handling |
-|---|---|
+| --- | --- |
 | Articles, bookmarks, public web pages | Save raw capture, summarize into source/concept pages. |
 | PDFs, papers, Office docs | Extract text, preserve original, cite page/section anchors when possible. |
 | Meeting notes and transcripts | Store as raw; create decisions, action context and summaries. |
@@ -218,7 +218,7 @@ Almost any knowledge-bearing material can be captured, but not all material shou
 ### Data classes and routing
 
 | Class | Examples | Default handling |
-|---|---|---|
+| --- | --- | --- |
 | Public | Public articles, public docs, open-source repos. | Cloud or local models are acceptable if policy allows. |
 | Internal | Team docs, non-public project notes. | Private repo/storage; model policy required. |
 | Confidential | Customer data, strategy, finances, private correspondence. | Prefer local models or approved private provider; redact before cloud. |
@@ -250,7 +250,7 @@ source_contains_pii: true|false
 ## 6. Fast routing for agents
 
 | User asks | First skill | Then route to |
-|---|---|---|
+| --- | --- | --- |
 | "I am not a developer" | `llm-wiki-faq` | `llm-wiki-choose`, `llm-wiki-setup` |
 | "Confluence is easier" | `llm-wiki-faq` | `llm-wiki-team-rollout`, `llm-wiki-github-action` |
 | "Will tokens be enough?" | `llm-wiki-faq` | `llm-wiki-retrieval-architect`, `llm-wiki-eval` |

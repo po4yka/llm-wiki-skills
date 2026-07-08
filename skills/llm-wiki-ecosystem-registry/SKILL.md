@@ -44,7 +44,7 @@ Mark any unverified item as `verify-before-use`.
 Use these families:
 
 | Family | Examples | Use when |
-|---|---|---|
+| --- | --- | --- |
 | Full LLM-Wiki application | `nashsu/llm_wiki`, desktop/vault apps | The user wants ready-made personal/research wiki UX. |
 | Repo documentation agent | `langchain-ai/openwiki`, `OpenBMB/RepoAgent` | The corpus is a codebase and coding agents need architecture/module maps. |
 | Review-gated agent memory | `vouchdev/vouch` | Agents should propose knowledge updates and humans approve durable writes. |
@@ -89,7 +89,7 @@ Do not present every tool as equivalent.
 Use this routing:
 
 | Situation | Primary recommendation |
-|---|---|
+| --- | --- |
 | Code repository docs for agents | OpenWiki-style repo docs or RepoAgent-style code documentation. |
 | Personal local-first wiki | Minimal Markdown/git/Obsidian stack first; consider full desktop LLM-Wiki app if the user wants UI. |
 | Team knowledge with trust requirements | Git/PR workflow or Vouch-style review-gated memory. |

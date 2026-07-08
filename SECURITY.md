@@ -7,7 +7,7 @@ This repository distributes Agent Skills: natural-language procedures that codin
 Security fixes are made against `main` and the latest published release tag when a release exists.
 
 | Version | Supported |
-|---|---|
+| --- | --- |
 | `main` | Yes |
 | latest `v*` release | Yes |
 | older releases | Best effort |

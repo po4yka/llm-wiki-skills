@@ -62,7 +62,7 @@ Classify the primary use case:
 ### 2. Choose maturity stage
 
 | Stage | What is true | Suggested posture |
-|---|---|---|
+| --- | --- | --- |
 | pilot | one domain, limited users, manual review acceptable. | one accountable pod, report-first metrics. |
 | early production | recurring ingest, CI evals, protected releases. | PR-based writes, named owners, weekly reviews. |
 | business-critical | multi-domain, API/MCP surface, publishing/export. | SLOs, incident playbooks, dedicated platform/security input. |
@@ -80,7 +80,7 @@ Product Owner + Technical Lead + Knowledge Engineer + Retrieval/Eval Engineer
 Use roles:
 
 | Role | Owns |
-|---|---|
+| --- | --- |
 | Product Owner | scope, value, priority, KPI targets, rollout. |
 | Technical Lead | architecture, schema, API/MCP, technical decisions. |
 | Knowledge Engineer | source model, wiki structure, taxonomy, provenance, page QA. |
@@ -93,7 +93,7 @@ Use roles:
 ### 4. Choose write model
 
 | Model | Use when | Risk |
-|---|---|---|
+| --- | --- | --- |
 | read-only reports | early pilot or low trust | knowledge does not compound. |
 | PR-based writes | most teams | review queue required. |
 | separate draft wiki | high automation or sensitive domains | promotion workflow needed. |
@@ -138,7 +138,7 @@ escalation: ""
 Ensure the rollout covers:
 
 | Layer | Mechanism |
-|---|---|
+| --- | --- |
 | domain ownership | path owners, CODEOWNERS, SMEs. |
 | technical ownership | architect, ADRs, schemas, MCP/OpenAPI contracts. |
 | quality governance | evals, scorecards, lint, review backlog. |
@@ -202,7 +202,7 @@ operations:
 Recommended cadence:
 
 | Cadence | Ritual |
-|---|---|
+| --- | --- |
 | daily async | ingest/retrieval/security triage. |
 | weekly | retrieval/eval review. |
 | weekly | review queue grooming. |

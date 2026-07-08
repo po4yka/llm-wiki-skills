@@ -21,7 +21,7 @@ Only add vector search, graph stores or sidecars when a specific bottleneck appe
 ## LLM-Wiki vs RAG
 
 | Question | RAG | LLM-Wiki |
-|---|---|---|
+| --- | --- | --- |
 | Primary artifact | Index over chunks | Human-readable Markdown wiki |
 | When synthesis happens | At query time | During ingest and maintenance |
 | What compounds | Embeddings and retrieval config | Pages, links, summaries, comparisons, answers |

@@ -38,7 +38,7 @@ The starter workflow schedules are commented out by default. Enable cron only af
 ### 1. Choose automation mode
 
 | Mode | Use when |
-|---|---|
+| --- | --- |
 | report-only | Early adoption or sensitive repos. |
 | artifact report | Reports should not change the repo. |
 | PR-based update | Generated output needs human review. |
@@ -87,7 +87,7 @@ For PR-based updates:
 When the user asks for ready-made workflow files, copy only the relevant starters:
 
 | Need | Starter |
-|---|---|
+| --- | --- |
 | evals and red-team | `llm-wiki-evals.github-actions.yml` |
 | ingestion pipeline checks | `llm-wiki-ingestion.github-actions.yml` |
 | publish/export pipeline | `llm-wiki-publish.github-actions.yml` |

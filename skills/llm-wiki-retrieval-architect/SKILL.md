@@ -35,7 +35,7 @@ Use `references/docs/16-retrieval-architecture.md` as the reference playbook for
 Classify the failure:
 
 | Failure | Meaning | Typical fix |
-|---|---|---|
+| --- | --- | --- |
 | lexical miss | Keywords differ but concept is the same. | Add dense retrieval or query expansion. |
 | exact-token miss | IDs, filenames, names or code symbols are missed. | Improve lexical/FTS lane; do not rely on dense-only search. |
 | stale index | Search misses newly added or changed pages. | Fix rebuild/watch/CI triggers. |
@@ -54,7 +54,7 @@ Do not add infrastructure until a real retrieval failure is identified.
 Use progressive retrieval:
 
 | Tier | Use when | Capability shape |
-|---|---|---|
+| --- | --- | --- |
 | 0. Map + grep | Small/medium wiki with good names, indexes and wikilinks. | `index.md`, `log.md`, `rg`, `fd`, backlinks. |
 | 1. Local lexical index | Exact search must be faster, ranked or scoped. | Embedded or hosted full-text engine with ranking and scoping. |
 | 2. Hybrid semantic search | Conceptual search fails or users ask natural-language questions. | Lexical lane plus embedding lane with score fusion. |
@@ -70,7 +70,7 @@ Pick concrete engines per tier from the comparison tables in `references/docs/16
 ### 3. Choose by deployment archetype
 
 | Situation | Default shape |
-|---|---|
+| --- | --- |
 | Personal/local-first wiki | Grep plus an embedded lexical index and local embeddings; upgrade only on measured misses. |
 | Obsidian-style Markdown vault | Wikilinks/backlinks plus FTS; add graph-native retrieval before a vector DB if links are strong. |
 | Repo-docs CI | Git/module maps plus static search; optional hybrid preview index. |
@@ -149,7 +149,7 @@ AND source_domain IN allowed_source_domains
 Prefer native structure over arbitrary windows:
 
 | Corpus | Chunking rule |
-|---|---|
+| --- | --- |
 | Markdown/wiki | heading/subheading chunks with parent page references. |
 | Long pages | 300-600 token chunks with 10-20% overlap, plus parent expansion. |
 | Code/API docs | file + symbol + docstring or endpoint/class/function units. |

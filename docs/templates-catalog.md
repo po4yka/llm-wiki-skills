@@ -8,7 +8,7 @@ Use this catalog to choose starter files before copying them into a downstream L
 ## Vault starters
 
 | Template | Primary skill | Use |
-|---|---|---|
+| --- | --- | --- |
 | `templates/vault/AGENTS.md` | `llm-wiki-setup` | Agent rules for a downstream vault. |
 | `templates/vault/CLAUDE.md` | `llm-wiki-setup` | Claude Code entry instructions for a downstream vault. |
 | `templates/wiki/index.md` | `llm-wiki-setup` | Initial semantic wiki map. |
@@ -25,7 +25,7 @@ Use this catalog to choose starter files before copying them into a downstream L
 ## Ingestion and retrieval
 
 | Template | Primary skill | Use |
-|---|---|---|
+| --- | --- | --- |
 | `templates/source-manifest.yaml` | `llm-wiki-ingestion-stack` | Source identity, hash and extraction metadata. |
 | `templates/ingestion-pipeline-profile.yaml` | `llm-wiki-ingestion-stack` | Parser routing and ingestion controls. |
 | `templates/ingestion-fidelity-suite.yaml` | `llm-wiki-ingestion-stack` | Golden corpus/fidelity smoke suite. |
@@ -36,7 +36,7 @@ Use this catalog to choose starter files before copying them into a downstream L
 ## MCP, API and security
 
 | Template | Primary skill | Use |
-|---|---|---|
+| --- | --- | --- |
 | `templates/mcp-wiki-profile.yaml` | `llm-wiki-mcp-integration` | MCP read/propose/admin surface profile. |
 | `templates/mcp-security-profile.yaml` | `llm-wiki-threat-model` | MCP/API security controls. |
 | `templates/openapi-wiki-core.yaml` | `llm-wiki-mcp-integration` | REST/OpenAPI facade starter. |
@@ -48,7 +48,7 @@ Use this catalog to choose starter files before copying them into a downstream L
 ## Publishing and export
 
 | Template | Primary skill | Use |
-|---|---|---|
+| --- | --- | --- |
 | `templates/export-profile.yaml` | `llm-wiki-export-publish` | Audience and scope profile. |
 | `templates/export-manifest.yaml` | `llm-wiki-export-publish` | Auditable export record. |
 | `templates/agent-export-bundle.yaml` | `llm-wiki-export-publish` | `llms.txt` and agent bundle profile. |
@@ -59,7 +59,7 @@ Use this catalog to choose starter files before copying them into a downstream L
 ## Team and GitLab operating model
 
 | Template | Primary skill | Use |
-|---|---|---|
+| --- | --- | --- |
 | `templates/CODEOWNERS.llm-wiki` | `llm-wiki-team-rollout` | GitHub-style CODEOWNERS starter. |
 | `templates/team-operating-model.yaml` | `llm-wiki-team-rollout` | Team operating model profile. |
 | `templates/team-raci-daci.yaml` | `llm-wiki-team-rollout` | RACI/DACI workflow ownership. |
@@ -77,7 +77,7 @@ Use this catalog to choose starter files before copying them into a downstream L
 ## GitHub workflow starters
 
 | Template | Primary skill | Use |
-|---|---|---|
+| --- | --- | --- |
 | `templates/llm-wiki-evals.github-actions.yml` | `llm-wiki-github-action` | Evaluation workflow starter. |
 | `templates/llm-wiki-ingestion.github-actions.yml` | `llm-wiki-github-action` | Ingestion workflow starter. |
 | `templates/llm-wiki-publish.github-actions.yml` | `llm-wiki-github-action` | Publish workflow starter. |
@@ -88,7 +88,7 @@ Starter workflow schedules are commented out by default. Enable cron only after 
 ## Report starters
 
 | Template | Primary skill | Use |
-|---|---|---|
+| --- | --- | --- |
 | `templates/reports/critique-audit-report.md` | `llm-wiki-critique-audit` | Critique audit report. |
 | `templates/reports/ecosystem-refresh.md` | `llm-wiki-ecosystem-registry` | Ecosystem refresh report. |
 | `templates/reports/monthly-eval.md` | `llm-wiki-eval` | Monthly evaluation report. |
@@ -98,7 +98,7 @@ Starter workflow schedules are commented out by default. Enable cron only after 
 ## Schemas
 
 | Template | Primary skill | Use |
-|---|---|---|
+| --- | --- | --- |
 | `templates/schemas/canonical-vocabularies.json` | `llm-wiki-domain-pack` | Canonical shared enums and workflow ownership. |
 | `templates/schemas/page.schema.json` | `wiki-lint` | Core page schema. |
 | `templates/schemas/domain-pack.schema.json` | `llm-wiki-domain-pack` | Domain pack overlay schema. |

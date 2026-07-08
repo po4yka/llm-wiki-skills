@@ -5,12 +5,12 @@
 ## Implementation verification queue
 
 | Project | Family | What to verify |
-|---|---|---|
+| --- | --- | --- |
 
 ## Seed URLs
 
 | URL | Type | Recommended check |
-|---|---|---|
+| --- | --- | --- |
 
 ## Refresh checklist
 

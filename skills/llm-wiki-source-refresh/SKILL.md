@@ -41,7 +41,7 @@ For current external claims, browse and cite fresh primary sources. For local so
 Use:
 
 | Status | Meaning |
-|---|---|
+| --- | --- |
 | unchanged | Existing claim still appears supported. |
 | updated | Source changed but conclusion remains close. |
 | contradicted | Fresh source conflicts with wiki claim. |

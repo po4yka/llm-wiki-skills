@@ -54,7 +54,7 @@ Do **not** add domain-specific values such as `paper`, `decision`, `competitor` 
 Add domain-specific types only when necessary and map each one to a stable core type:
 
 | domain_type | core `type` | Example use |
-|---|---|---|
+| --- | --- | --- |
 | `paper` | `source` | A paper or preprint preserved as a source page. |
 | `experiment` | `synthesis` | A reviewed experiment note or result summary. |
 | `strategy` | `synthesis` | A strategy memo or durable conclusion. |

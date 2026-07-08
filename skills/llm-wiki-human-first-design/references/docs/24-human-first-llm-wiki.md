@@ -158,7 +158,7 @@ This prevents generated synthesis from pretending to be raw evidence.
 Every useful wiki needs visible maps:
 
 | Entry point | Purpose |
-|---|---|
+| --- | --- |
 | `index.md` | Whole-wiki map, short enough to read. |
 | `log.md` | Recent activity and change history. |
 | Domain MOC | Human map for a market/product/problem area. |
@@ -365,7 +365,7 @@ Do not optimize for page count.
 Use:
 
 | Metric | Meaning |
-|---|---|
+| --- | --- |
 | Human findability | Can a human find a recurring answer in 1-2 minutes? |
 | Navigation coverage | Are important pages reachable from maps/indexes? |
 | Source clarity | Can a reader see why a claim is believed? |

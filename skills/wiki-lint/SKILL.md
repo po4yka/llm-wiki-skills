@@ -119,7 +119,7 @@ Append to `wiki/log.md` if the report is saved.
 ## Severity levels
 
 | Severity | Meaning | Action |
-|---|---|---|
+| --- | --- | --- |
 | critical | could corrupt trust or delete human work | stop and review |
 | high | important provenance or contradiction issue | review soon |
 | medium | structural decay | schedule cleanup |

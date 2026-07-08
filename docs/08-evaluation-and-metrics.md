@@ -25,7 +25,7 @@ These can grow while the knowledge base becomes less useful.
 ## Practical success metrics
 
 | Metric | Meaning | Healthy signal |
-|---|---|---|
+| --- | --- | --- |
 | Retrieval hit rate | How often answers use existing wiki pages | Rising over time |
 | Read/write ratio | Whether the wiki is read, not only written | Reads are not near zero |
 | Reuse rate | Saved answers reused later | Repeated questions get faster |
@@ -69,7 +69,7 @@ A growing draft pile is not automatically bad. It is bad when important draft pa
 A weekly lint report should include:
 
 | Check | Count | Severity | Action |
-|---|---:|---|---|
+| --- | ---: | --- | --- |
 | Broken links | 0 | high | fix |
 | Orphan pages | 12 | medium | review |
 | Missing provenance | 8 | high | add sources or demote |
@@ -83,7 +83,7 @@ A weekly lint report should include:
 Score important pages on a 0-2 scale:
 
 | Dimension | 0 | 1 | 2 |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Purpose | unclear | understandable | immediately clear |
 | Provenance | none | source-level | claim-level for key claims |
 | Links | isolated | some links | useful in/out links |

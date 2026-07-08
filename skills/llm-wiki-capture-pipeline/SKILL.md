@@ -45,7 +45,7 @@ Use classes here, not connector runbooks:
 Use one of:
 
 | Boundary | Use when |
-|---|---|
+| --- | --- |
 | `inbox/` | Material is messy, low-confidence or not yet worth ingestion. |
 | `raw/sources/` | Source is trusted and should be preserved. |
 | `raw/assets/` | Images, audio, screenshots, diagrams, media. |

@@ -47,7 +47,7 @@ Use this answer:
 ## Mapping
 
 | PAF concept | LLM-Wiki mapping | Caveat |
-|---|---|---|
+| --- | --- | --- |
 | Nexus | Shared `raw/` + `wiki/` + index/log + source-backed pages | Needs product/market/growth node schema. |
 | Nexus Node | Typed wiki page | Needs PAF node types such as segment, competitor, feature, lever, risk, assumption, opportunity, decision. |
 | Context Ripeness | Completeness + freshness + review/provenance coverage | Needs explicit ripeness formula. |
@@ -109,7 +109,7 @@ A company Nexus must have:
 The minimum Cortex is a repeatable set of agent workflows:
 
 | Workflow | Skill fit |
-|---|---|
+| --- | --- |
 | Capture triage | `wiki-triage`, `llm-wiki-capture-pipeline` |
 | Source ingest | `wiki-ingest` |
 | Decision query | `wiki-query` |

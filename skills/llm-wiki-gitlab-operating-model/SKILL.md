@@ -72,7 +72,7 @@ central GitLab platform hub + federated domain/content pods + security/complianc
 Use:
 
 | Model | Use when |
-|---|---|
+| --- | --- |
 | centralized platform | early maturity, heavy compliance, few product teams. |
 | federated teams | mature engineering org, strong local ownership. |
 | hub-and-pod | most self-hosted GitLab enterprises. |
@@ -110,7 +110,7 @@ Issue -> feature branch -> Merge Request -> CI gates -> CODEOWNERS/approval rule
 Map concerns:
 
 | Concern | GitLab primitive |
-|---|---|
+| --- | --- |
 | work intake | Issues, labels, milestones, issue boards. |
 | review | Merge Requests and reviewer states. |
 | ownership | CODEOWNERS. |
@@ -141,7 +141,7 @@ Protect:
 Risk-tier approvals:
 
 | Change type | Approvals |
-|---|---|
+| --- | --- |
 | low-risk content update | domain owner or knowledge engineer. |
 | page promotion | domain owner plus knowledge engineer when provenance matters. |
 | ingestion/retrieval/eval change | technical lead plus workflow owner. |
@@ -161,7 +161,7 @@ central CI components + group/project extension points + scoped runners + protec
 Runner defaults:
 
 | Runner scope | Recommendation |
-|---|---|
+| --- | --- |
 | group runners | default enterprise runner scope. |
 | project runners | sensitive/high-privilege/special-case jobs. |
 | instance runners | low-risk shared jobs only with segmentation and trust assumptions. |
@@ -222,7 +222,7 @@ Internal network is not a sufficient security boundary.
 If egress is restricted, design internal substitutes:
 
 | Need | Internal substitute |
-|---|---|
+| --- | --- |
 | runner images | internal container registry mirror. |
 | package dependencies | internal package registry/proxy. |
 | security analyzers | mirrored analyzer images and offline data. |

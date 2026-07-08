@@ -32,7 +32,7 @@ Use `references/docs/18-evaluation-methodology.md` as the reference methodology 
 ### 1. Pick evaluation layer
 
 | Layer | Question | Tools/metrics |
-|---|---|---|
+| --- | --- | --- |
 | Retrieval | Did we find the right wiki/source pages? | recall@k, MRR, nDCG, qrels, hit/miss labels, pytrec_eval, Ragas context precision/recall. |
 | Grounding | Is the answer supported by sources? | citation coverage, unsupported-claim rate, claim audit, Ragas/DeepEval faithfulness, TruLens groundedness. |
 | Answer quality | Does the answer solve the task? | human rubric, pairwise preference, model-graded rubric, correctness/completeness/actionability. |
@@ -44,7 +44,7 @@ Use `references/docs/18-evaluation-methodology.md` as the reference methodology 
 ### 2. Choose the tool stack
 
 | Need | Default recommendation |
-|---|---|
+| --- | --- |
 | Fully open-source lean baseline | `pytrec_eval` + Ragas + promptfoo + custom wiki-lint/claim-audit scripts. |
 | Python unit-test ergonomics | DeepEval plus custom tests. |
 | Trace-level RAG introspection | TruLens. |
@@ -104,7 +104,7 @@ support_level: extracted|inferred|ambiguous|synthesis|unsupported|conflicting
 Use at least two modes when possible:
 
 | Mode | Purpose |
-|---|---|
+| --- | --- |
 | no-wiki | Baseline answer using only general model/context. |
 | raw-RAG/search only | Measures whether precompiled wiki pages add value. |
 | wiki-grep | Minimal LLM-Wiki baseline. |

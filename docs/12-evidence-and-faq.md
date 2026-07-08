@@ -23,7 +23,7 @@ LLM-Wiki is useful when the user repeatedly loses context across research, codeb
 ## The honest evidence hierarchy
 
 | Evidence level | What it supports | Strength | Caveat |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Direct LLM-Wiki benchmark | Wiki-structured retrieval can outperform strong RAG/GraphRAG baselines on multi-hop and structured queries. | Promising | Early research; not proof for every personal second-brain workflow. |
 | GraphRAG / global RAG research | Precomputed structure helps with corpus-level/global questions where naive chunk retrieval struggles. | Strong adjacent evidence | GraphRAG is not the same as human-readable Markdown LLM-Wiki. |
 | Long-term memory research | Persistent structured memory beats full-context or naive RAG in long multi-session settings. | Strong adjacent evidence | Often conversational memory, not domain wiki. |
@@ -66,7 +66,7 @@ Use this answer when the user asks what benefits they should expect.
 ### Personal workflow benefits
 
 | Benefit | What changes | How to measure |
-|---|---|---|
+| --- | --- | --- |
 | Faster context recovery | The user can restart a topic from `wiki/index.md`, query pages and decision logs. | Time to answer «where did I stop?» |
 | Better reuse of research | Good answers are saved into `wiki/queries/` or `wiki/synthesis/`. | Answer reuse rate. |
 | Cross-domain links | Agent lint can find old related pages the user forgot. | Surprise rate in random-page review. |
@@ -76,7 +76,7 @@ Use this answer when the user asks what benefits they should expect.
 ### Team benefits
 
 | Benefit | What changes | How to measure |
-|---|---|---|
+| --- | --- | --- |
 | Onboarding | New people and agents start from maintained maps rather than folklore. | Onboarding questions answered from wiki. |
 | Bus factor reduction | Decisions and tacit knowledge survive people leaving. | Decision pages with evidence. |
 | Better coding agents | Agents find architecture, module maps and conventions without bloating `AGENTS.md`. | Fewer context-related coding mistakes. |
@@ -102,17 +102,17 @@ How to use this claim:
 - Good: “There is early benchmark evidence that wiki-structured retrieval can beat strong graph/RAG baselines on multi-hop and structured queries.”
 - Bad: “This proves my personal Obsidian LLM-Wiki will beat every RAG system.”
 
-Source: https://arxiv.org/abs/2605.25480
+Source: <https://arxiv.org/abs/2605.25480>
 
 ### GraphRAG and global-RAG evidence
 
 GraphRAG research supports the core idea that precomputing structure helps with questions over an entire corpus. The Microsoft GraphRAG paper states that naive RAG struggles with global questions such as “What are the main themes in the dataset?” and reports substantial improvements in comprehensiveness and diversity over a naive RAG baseline on global sensemaking questions over roughly million-token datasets.
 
-Source: https://arxiv.org/abs/2404.16130
+Source: <https://arxiv.org/abs/2404.16130>
 
 GlobalQA / GlobalRAG is another adjacent signal. The paper reports that existing RAG methods perform poorly on corpus-level tasks such as counting, sorting, extrema and top-k extraction, while a global-retrieval strategy improves corpus-level question answering.
 
-Source: https://arxiv.org/abs/2510.26205
+Source: <https://arxiv.org/abs/2510.26205>
 
 How to use these claims:
 
@@ -123,21 +123,21 @@ How to use these claims:
 
 Mem0 reports that persistent memory outperforms multiple baseline categories on LOCOMO, including RAG variants and full-context approaches, with better judge-rated quality and lower latency/cost than full-context processing.
 
-Source: https://arxiv.org/abs/2504.19413
+Source: <https://arxiv.org/abs/2504.19413>
 
 MemMachine is a 2026 memory system that argues for preserving ground-truth episodes and reducing lossy extraction; it reports strong results on LoCoMo, LongMemEvalS and multi-hop retrieval tasks. This supports an important LLM-Wiki safety idea: keep raw sources/episodes and build structured views on top, rather than trusting summaries alone.
 
-Source: https://arxiv.org/abs/2604.04853
+Source: <https://arxiv.org/abs/2604.04853>
 
 ### Context-engineering evidence
 
 Long context is not a free replacement for a wiki. “Lost in the Middle” shows that model performance can degrade when relevant information is placed in the middle of long contexts, even for explicitly long-context models.
 
-Source: https://arxiv.org/abs/2307.03172
+Source: <https://arxiv.org/abs/2307.03172>
 
 Anthropic's context-engineering guidance argues that context is finite and should be treated as a scarce resource; it describes just-in-time context patterns where agents keep lightweight identifiers such as file paths, stored queries and web links, then load data through tools when needed. It also says Claude Code uses `CLAUDE.md` up front plus glob/grep-style navigation at runtime.
 
-Source: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+Source: <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
 
 LLM-Wiki fits this mechanism: it gives the agent a small map (`index.md`) and a file-based knowledge layer to explore on demand.
 
@@ -145,11 +145,11 @@ LLM-Wiki fits this mechanism: it gives the agent a small map (`index.md`) and a 
 
 LangChain's “Wiki Memory” article describes an emerging pattern: agents turn raw source data into a compact, persistent, agent-readable knowledge layer. It distinguishes this from basic RAG because RAG usually retrieves raw chunks at query time, while a wiki precomputes and maintains higher-level synthesis.
 
-Source: https://www.langchain.com/blog/wiki-memory
+Source: <https://www.langchain.com/blog/wiki-memory>
 
 OpenWiki applies this to codebases: it generates repo documentation, connects it through instruction-file pointers, and can update via GitHub Action from git diffs. This is practical evidence that the pattern is being productized for coding agents.
 
-Source: https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation
+Source: <https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation>
 
 ## Is LLM-Wiki better than RAG?
 
@@ -158,7 +158,7 @@ Use this answer when the user asks whether this is better than RAG.
 Not always. A better framing:
 
 | Case | Prefer |
-|---|---|
+| --- | --- |
 | User asks precise factual questions over many raw documents | RAG or hybrid search may be enough. |
 | User asks recurring questions where answers should improve over time | LLM-Wiki adds compounding value. |
 | User asks global/cross-document questions | Wiki/GraphRAG/global-RAG style structure is often better than naive chunk retrieval. |
@@ -199,7 +199,7 @@ capture -> triage -> ingest -> query -> file back -> lint -> review -> refresh
 ### Suggested cadence
 
 | Cadence | Work |
-|---|---|
+| --- | --- |
 | Daily | Capture and quick triage. |
 | Weekly | Ingest important sources, run `wiki-lint`, review high-priority issues. |
 | Monthly | Run `llm-wiki-eval`, refresh stale pages, prune or merge low-value pages. |
@@ -284,17 +284,17 @@ Do not recommend LLM-Wiki when:
 
 Primary and adjacent sources to re-check before making strong claims:
 
-- Karpathy LLM-Wiki idea: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
-- LangChain Wiki Memory: https://www.langchain.com/blog/wiki-memory
-- LangChain OpenWiki: https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation
-- OpenWiki repository: https://github.com/langchain-ai/openwiki
-- Anthropic context engineering: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
-- Lost in the Middle: https://arxiv.org/abs/2307.03172
-- GraphRAG: https://arxiv.org/abs/2404.16130
-- GlobalQA / GlobalRAG: https://arxiv.org/abs/2510.26205
-- Mem0: https://arxiv.org/abs/2504.19413
-- MemMachine: https://arxiv.org/abs/2604.04853
-- Retrieval as Reasoning via LLM-Wiki: https://arxiv.org/abs/2605.25480
+- Karpathy LLM-Wiki idea: <https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f>
+- LangChain Wiki Memory: <https://www.langchain.com/blog/wiki-memory>
+- LangChain OpenWiki: <https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation>
+- OpenWiki repository: <https://github.com/langchain-ai/openwiki>
+- Anthropic context engineering: <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
+- Lost in the Middle: <https://arxiv.org/abs/2307.03172>
+- GraphRAG: <https://arxiv.org/abs/2404.16130>
+- GlobalQA / GlobalRAG: <https://arxiv.org/abs/2510.26205>
+- Mem0: <https://arxiv.org/abs/2504.19413>
+- MemMachine: <https://arxiv.org/abs/2604.04853>
+- Retrieval as Reasoning via LLM-Wiki: <https://arxiv.org/abs/2605.25480>
 
 ## Re-verification rules
 

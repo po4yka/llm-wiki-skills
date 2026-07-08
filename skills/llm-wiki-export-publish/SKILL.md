@@ -34,7 +34,7 @@ Use `references/docs/21-publishing-export.md` as the reference architecture for 
 Choose one or more profiles:
 
 | Profile | Audience | Typical output | Default policy |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `private-review` | maintainers/reviewers | review bundle, diff report, unresolved claims | may include drafts, never public |
 | `internal-site` | team/company | static site, internal search, Markdown bundle | reviewed/approved internal pages only |
 | `public-site` | public users | curated static docs, sitemap, Pagefind/search index | explicit allowlist and redaction required |

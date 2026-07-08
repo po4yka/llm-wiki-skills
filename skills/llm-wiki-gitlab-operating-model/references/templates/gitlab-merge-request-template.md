@@ -20,11 +20,11 @@ Describe the change and the user/team problem it solves.
 
 Affected paths:
 
-- 
+-
 
 Affected domains/tenants:
 
-- 
+-
 
 ## Review state
 
@@ -65,4 +65,4 @@ Describe how to revert or quarantine the change.
 
 Open issues or follow-up tasks:
 
-- 
+-

@@ -24,7 +24,7 @@ The strongest criticisms are not objections to Markdown or agents in general. Th
 ## Risk map
 
 | # | Class | Problem | Solo severity | Team severity | Solvability |
-|---:|---|---|---|---|---|
+| ---: | --- | --- | --- | --- | --- |
 | 1 | Epistemic | Consensus smoothing / docile compiler | high | high | solvable with schema and adversarial rules |
 | 2 | Epistemic | Context poisoning / organized misinformation | high | critical | partial |
 | 3 | Epistemic | Iterative summary degradation misnamed as model collapse | medium | medium | mostly solvable |
@@ -381,7 +381,7 @@ Before adopting LLM-Wiki for a domain, answer:
 Use this when auditing a domain:
 
 | Area | Low risk | High risk |
-|---|---|---|
+| --- | --- | --- |
 | Compression | Page summarizes many sources | Page mirrors one greppable file |
 | Human synthesis | Protected and active | Agent writes final interpretation |
 | Provenance | Claim/source anchors | Wiki pages cite wiki pages |

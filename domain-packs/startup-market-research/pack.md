@@ -23,7 +23,7 @@ Use stable `type` values from `templates/schemas/page.schema.json`:
 Use `domain_type` for specialization. The source of truth is `schema.overlay.json`.
 
 | domain_type | core `type` | Use when |
-|---|---|---|
+| --- | --- | --- |
 | `competitor` | `entity` | A company, product or project needs accumulated source-backed facts. |
 | `market-map` | `comparison` | A landscape, segment or positioning map compares multiple entities. |
 | `customer-question` | `query` | A repeated customer/problem question should be preserved and reused. |

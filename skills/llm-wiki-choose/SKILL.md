@@ -39,7 +39,7 @@ If the user already provided these facts, do not ask again.
 Use this routing:
 
 | Case | Default recommendation |
-|---|---|
+| --- | --- |
 | Small personal vault, local-first | Markdown + git + agent skills + `rg`; add qmd later. |
 | Code repository docs | OpenWiki-style repo wiki or custom docs-as-code workflow. |
 | Existing Obsidian vault | Refactor in place with protected human sections and lint gates. |

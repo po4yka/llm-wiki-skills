@@ -1,7 +1,7 @@
 # PAF Nexus/Cortex mapping for LLM-Wiki adoption
 
 > Scope: answer whether LLM-Wiki mechanics map to Product Architecture Framework (PAF) concepts of Nexus and Cortex, how far that analogy goes, and what first company-level step is practical.
-> Source to re-check for current PAF wording: https://productframework.ru/ops/main
+> Source to re-check for current PAF wording: <https://productframework.ru/ops/main>
 
 ## Short answer
 
@@ -25,7 +25,7 @@ PAF defines Cortex as the AI-based operating system for working with Nexus conte
 ## Mapping table
 
 | PAF concept | LLM-Wiki equivalent | Match strength | Missing piece |
-|---|---|---:|---|
+| --- | --- | ---: | --- |
 | Nexus as shared context model | `raw/` + `wiki/` + index/log + source-backed pages | Strong | Needs PAF-specific node schema and business/product object boundaries. |
 | Nexus nodes | Entity/concept/source/decision/market/product pages | Medium | Need typed nodes: segment, competitor, feature, lever, risk, assumption, metric. |
 | Context ripeness | provenance coverage, freshness, completeness, review status | Medium | Need explicit ripeness formula per Nexus type. |
@@ -163,7 +163,7 @@ The first Cortex is not a big platform. It is a set of repeatable agent workflow
 Minimum Cortex workflows:
 
 | Workflow | What it does | Skill fit |
-|---|---|---|
+| --- | --- | --- |
 | Capture triage | Sort new sources into Nexus nodes. | `wiki-triage`, `llm-wiki-channel-capture` |
 | Source ingest | Turn evidence into source-backed nodes. | `wiki-ingest` |
 | Decision query | Answer decision questions with source links. | `wiki-query` |
@@ -185,7 +185,7 @@ Do not measure page count. Measure decision influence.
 ### Decision-influence metrics
 
 | Metric | Good sign | Bad sign |
-|---|---|---|
+| --- | --- | --- |
 | Decision citation rate | Decisions cite Nexus pages and sources. | Decisions ignore the Nexus. |
 | Confidence movement | New evidence changes confidence up/down. | Confidence never changes. |
 | Gap closure rate | Open questions become answered or killed. | Gaps accumulate silently. |

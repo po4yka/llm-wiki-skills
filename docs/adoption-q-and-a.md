@@ -19,7 +19,7 @@ Answer style:
 ## Quick routing table
 
 | User asks | First answer | Then route to |
-|---|---|---|
+| --- | --- | --- |
 | Where should I start? | Start with a reversible pilot, not a full migration. | `llm-wiki-setup`, `llm-wiki-benchmark-suite` |
 | When should I not use it? | Do not use it when the corpus is tiny, unreviewed or has no output loop. | `llm-wiki-eval` |
 | Who owns the wiki? | Assign explicit owners for raw, wiki, schema, security and review. | `llm-wiki-team-rollout` |
@@ -114,7 +114,7 @@ Ownership must be explicit. Otherwise the wiki becomes nobody's responsibility.
 Suggested ownership model:
 
 | Area | Owner | Responsibility |
-|---|---|---|
+| --- | --- | --- |
 | `raw/` | Source owner / capture owner | Decide what can be captured and retained. |
 | `wiki/` drafts | Agent + curator | Generate and organize draft pages. |
 | Reviewed/verified pages | Domain owner | Promote, reject or correct claims. |
@@ -133,7 +133,7 @@ Suggested ownership model:
 Not every generated change needs the same review. Use risk-based gates.
 
 | Change type | Review default |
-|---|---|
+| --- | --- |
 | Inbox triage | Low-risk; batch review. |
 | Draft source summary | Spot-check or domain-owner review. |
 | Entity/concept page update | Review if confidence is low or claims are important. |
@@ -154,7 +154,7 @@ The practical target is a small recurring routine, not daily manual wiki gardeni
 Suggested cadence:
 
 | Cadence | Work |
-|---|---|
+| --- | --- |
 | Daily or ad hoc | Capture quickly; no filing decisions. |
 | Weekly | Triage inbox, ingest high-value sources, run lint, review top issues. |
 | Monthly | Evaluate usefulness, refresh stale pages, merge duplicates. |
@@ -171,7 +171,7 @@ The cheapest version is files and search. Cost grows with ingestion volume, clou
 Cost tiers:
 
 | Tier | Stack | Cost shape |
-|---|---|---|
+| --- | --- | --- |
 | Minimal | Markdown + git + ripgrep + skills | Mostly time cost. |
 | Local-first | Local embeddings/search/local models | Hardware/setup cost; lower data-exposure risk. |
 | Cloud-assisted | Cloud LLMs for ingest/query/lint | Usage cost; needs data policy. |
@@ -209,7 +209,7 @@ Measure:
 Usually no. LLM-Wiki can complement existing tools.
 
 | Existing tool | Possible role |
-|---|---|
+| --- | --- |
 | Confluence / Notion | Capture or human authoring surface. |
 | Google Docs / Office | Raw source documents. |
 | SharePoint / Drive | Storage/source repository with access controls. |
@@ -277,7 +277,7 @@ Controls:
 Do not hide them. Use lint reports and conflict resolution.
 
 | Issue | Default handling |
-|---|---|
+| --- | --- |
 | Duplicate pages | Propose merge candidates; do not auto-delete. |
 | Contradictory claims | Create conflict report with source links. |
 | Outdated pages | Mark `stale`; refresh source-backed claims. |
@@ -311,7 +311,7 @@ If permissions cannot be modeled safely, do not centralize the corpus yet.
 Choose per data class and task. Local-first is a strong default for sensitive data, but public material can often use cloud models if policy allows.
 
 | Situation | Default |
-|---|---|
+| --- | --- |
 | Public sources | Cloud or local. |
 | Internal docs | Approved provider or local. |
 | Confidential/customer data | Prefer local or approved private deployment. |
@@ -344,7 +344,7 @@ Without these boundaries, multi-agent editing can create conflicting conventions
 Use this split:
 
 | Layer | Put here | Do not put here |
-|---|---|---|
+| --- | --- | --- |
 | `AGENTS.md` / `CLAUDE.md` | Short boot instructions, paths, safety rules, pointers. | Long domain knowledge or large workflows. |
 | Skills | Procedures: how to ingest, query, lint, migrate, audit. | Source-backed domain facts. |
 | Wiki pages | Domain knowledge, source summaries, entities, concepts, decisions. | Tool-specific operational secrets. |

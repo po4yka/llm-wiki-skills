@@ -124,7 +124,7 @@ Exit criteria:
 Upgrade retrieval only after specific symptoms appear.
 
 | Symptom | Upgrade |
-|---|---|
+| --- | --- |
 | `index.md` is too large to load | split index by domain and add local search. |
 | Exact search misses concepts | add embeddings or qmd-style hybrid search. |
 | Relationship questions dominate | derive graph edges from wikilinks and frontmatter. |

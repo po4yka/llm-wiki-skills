@@ -39,7 +39,7 @@ GraphRAG should usually be a **specialized retrieval lane**, not the default for
 ## Retrieval layers
 
 | Layer | Job | Good default | Add when |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Navigation | Give agents a map. | `index.md`, MOCs, backlinks, page titles. | Always. |
 | Lexical retrieval | Exact recall. | `rg` first; SQLite FTS5/Tantivy/Pagefind/OpenSearch later. | Exact search is too slow, too broad or needs scopes. |
 | Dense retrieval | Semantic recall. | Local embeddings or Qdrant/LanceDB/Chroma/Weaviate/pgvector. | Conceptual queries miss relevant pages. |
@@ -93,7 +93,7 @@ flowchart TD
 ## Technology comparison
 
 | Technology | Role | Best fit | Avoid when | Notes |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | `rg` / grep | Zero-infra lexical search | First 50-100 sources, strong filenames, local workflows. | The agent needs metadata filters, ranking or semantic recall. | Keep as a fallback even after adding indexes. |
 | SQLite FTS5 | Embedded lexical index | Local-first desktop/wiki, small-team private vaults. | Large multi-user hosted retrieval is required. | Excellent for offline search and provenance joins. |
 | Tantivy | Rust embedded full-text engine | Rust/Tauri desktop apps, high-performance local FTS. | The team wants SQL simplicity. | Useful when you want Lucene-like search without a server. |
@@ -272,7 +272,7 @@ index_revision: ""
 Chunk by native structure first:
 
 | Corpus | Chunking rule |
-|---|---|
+| --- | --- |
 | Markdown/wiki pages | heading/subheading chunks with `heading_path`. |
 | Long pages | 300-600 token chunks with 10-20% overlap, plus parent page/section pointer. |
 | Code docs | file + symbol + docstring + nearby comments, not arbitrary windows. |
@@ -325,7 +325,7 @@ Critical rule: `tenant_id`, `acl_tags`, `sensitivity`, `review_state` and `publi
 A practical query planner should classify the query before retrieval:
 
 | Query type | Retrieval lanes |
-|---|---|
+| --- | --- |
 | Exact lookup | lexical first, then dense fallback. |
 | Conceptual question | hybrid lexical+dense. |
 | “Why/compare/synthesize” | hybrid + parent/section expansion. |
@@ -405,7 +405,7 @@ Use no reranker only when offline/latency constraints are strict or the corpus i
 Split evaluation into retrieval, answer grounding, operations and security.
 
 | Dimension | Metrics |
-|---|---|
+| --- | --- |
 | Retrieval | recall@k, MRR, nDCG@k, hit/miss labels, query success rate. |
 | Grounding | citation coverage, unsupported-claim count, source-support labels, faithfulness/context precision. |
 | Operations | p50/p95 retrieval latency, indexing throughput, freshness lag, rebuild time, cost per query. |
@@ -446,7 +446,7 @@ p95_retrieval_latency_regression_max_pct: 25
 Retrieval security is mostly about **what enters the index** and **what is allowed to leave it**.
 
 | Risk | Control |
-|---|---|
+| --- | --- |
 | PII in indexed text | Run Presidio/scrubadub/custom detectors before indexing or export. |
 | Secrets in docs/repos/chats | Run gitleaks/trufflehog/detect-secrets before persistence and CI. |
 | Cross-tenant leakage | Enforce tenant/ACL filters inside retrieval, not after generation. |
@@ -516,7 +516,7 @@ support_level: extracted|inferred|ambiguous|synthesis|unsupported|conflicting
 ## Upgrade triggers
 
 | Current tier | Trigger | Upgrade |
-|---|---|---|
+| --- | --- | --- |
 | `rg` + index | Exact search too noisy/slow. | SQLite FTS5/Tantivy/Pagefind depending on local/static app. |
 | Lexical | Conceptual matches are missed. | Add dense embeddings and hybrid fusion. |
 | Hybrid | Right chunks appear but ranking is poor. | Add reranker. |
@@ -528,7 +528,7 @@ support_level: extracted|inferred|ambiguous|synthesis|unsupported|conflicting
 ## Recommended defaults
 
 | Scenario | Default retrieval architecture |
-|---|---|
+| --- | --- |
 | Personal/local-first vault | `rg` + SQLite FTS5 + local embeddings + optional reranker. |
 | Obsidian-style Markdown vault | Wikilinks/backlinks + FTS + optional graph-native retrieval before vector DB. |
 | Repo-docs | Git/module maps + lexical/static search + optional hybrid preview index. |
@@ -540,38 +540,38 @@ support_level: extracted|inferred|ambiguous|synthesis|unsupported|conflicting
 
 ## Source URLs to re-check
 
-- https://www.sqlite.org/fts5.html
-- https://pagefind.app/
-- https://github.com/quickwit-oss/tantivy
-- https://docs.lancedb.com/search/hybrid-search
-- https://docs.trychroma.com/cloud/search-api/hybrid-search
-- https://qdrant.tech/documentation/search/hybrid-queries/
-- https://qdrant.tech/documentation/search/filtering/
-- https://qdrant.tech/documentation/manage-data/multitenancy/
-- https://docs.weaviate.io/weaviate/concepts/search/hybrid-search
-- https://docs.weaviate.io/weaviate/concepts/filtering
-- https://docs.weaviate.io/weaviate/manage-collections/multi-tenancy
-- https://milvus.io/docs/filtered-search.md
-- https://milvus.io/docs/multi_tenancy.md
-- https://github.com/pgvector/pgvector
-- https://docs.opensearch.org/latest/vector-search/ai-search/hybrid-search/index/
-- https://docs.opensearch.org/latest/api-reference/search-apis/rank-eval/
-- https://www.elastic.co/docs/solutions/search/hybrid-search
-- https://haystack.deepset.ai/tutorials/33_hybrid_retrieval
-- https://docs.haystack.deepset.ai/docs/metadata-filtering
-- https://developers.llamaindex.ai/python/framework/optimizing/basic_strategies/basic_strategies/
-- https://developers.llamaindex.ai/python/framework-api-reference/retrievers/recursive/
-- https://docs.langchain.com/oss/python/langchain/retrieval
-- https://github.com/microsoft/graphrag
-- https://arxiv.org/abs/2404.16130
-- https://github.com/parthsarthi03/raptor
-- https://github.com/osu-nlp-group/hipporag
-- https://www.anthropic.com/engineering/contextual-retrieval
-- https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/
-- https://deepeval.com/docs/metrics-contextual-relevancy
-- https://www.trulens.org/getting_started/core_concepts/rag_triad/
-- https://www.promptfoo.dev/docs/intro/
-- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
-- https://github.com/data-privacy-stack/presidio
-- https://github.com/gitleaks/gitleaks
-- https://github.com/trufflesecurity/trufflehog
+- <https://www.sqlite.org/fts5.html>
+- <https://pagefind.app/>
+- <https://github.com/quickwit-oss/tantivy>
+- <https://docs.lancedb.com/search/hybrid-search>
+- <https://docs.trychroma.com/cloud/search-api/hybrid-search>
+- <https://qdrant.tech/documentation/search/hybrid-queries/>
+- <https://qdrant.tech/documentation/search/filtering/>
+- <https://qdrant.tech/documentation/manage-data/multitenancy/>
+- <https://docs.weaviate.io/weaviate/concepts/search/hybrid-search>
+- <https://docs.weaviate.io/weaviate/concepts/filtering>
+- <https://docs.weaviate.io/weaviate/manage-collections/multi-tenancy>
+- <https://milvus.io/docs/filtered-search.md>
+- <https://milvus.io/docs/multi_tenancy.md>
+- <https://github.com/pgvector/pgvector>
+- <https://docs.opensearch.org/latest/vector-search/ai-search/hybrid-search/index/>
+- <https://docs.opensearch.org/latest/api-reference/search-apis/rank-eval/>
+- <https://www.elastic.co/docs/solutions/search/hybrid-search>
+- <https://haystack.deepset.ai/tutorials/33_hybrid_retrieval>
+- <https://docs.haystack.deepset.ai/docs/metadata-filtering>
+- <https://developers.llamaindex.ai/python/framework/optimizing/basic_strategies/basic_strategies/>
+- <https://developers.llamaindex.ai/python/framework-api-reference/retrievers/recursive/>
+- <https://docs.langchain.com/oss/python/langchain/retrieval>
+- <https://github.com/microsoft/graphrag>
+- <https://arxiv.org/abs/2404.16130>
+- <https://github.com/parthsarthi03/raptor>
+- <https://github.com/osu-nlp-group/hipporag>
+- <https://www.anthropic.com/engineering/contextual-retrieval>
+- <https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/>
+- <https://deepeval.com/docs/metrics-contextual-relevancy>
+- <https://www.trulens.org/getting_started/core_concepts/rag_triad/>
+- <https://www.promptfoo.dev/docs/intro/>
+- <https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices>
+- <https://github.com/data-privacy-stack/presidio>
+- <https://github.com/gitleaks/gitleaks>
+- <https://github.com/trufflesecurity/trufflehog>

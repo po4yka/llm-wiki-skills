@@ -9,7 +9,7 @@ Design connector-level capture rules while preserving the inbox-first LLM-Wiki m
 ## Channel classes
 
 | Channel type | Examples | Default destination |
-|---|---|---|
+| --- | --- | --- |
 | Manual quick capture | text snippets, mobile share | `inbox/` |
 | Durable source | PDFs, articles, papers | `raw/sources/` |
 | Media asset | audio, screenshots, diagrams | `raw/assets/` |

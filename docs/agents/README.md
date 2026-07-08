@@ -3,7 +3,7 @@
 These docs describe how to use the LLM-Wiki Skills pack with different coding agents.
 
 | Agent | Doc |
-|---|---|
+| --- | --- |
 | Claude Code | `claude-code.md` |
 | Codex | `codex.md` |
 | Cursor | `cursor.md` |

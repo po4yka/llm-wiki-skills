@@ -10,7 +10,7 @@ This repository contains operational instructions for agents. CI should fail on 
 ## Current policy
 
 | Check | Command / workflow | PR severity | Release severity | Rationale |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | Skill metadata and frontmatter | `npm run validate:skills` | fail | fail | Broken skills cannot be discovered or installed safely. |
 | Single-skill install contract | `npm run validate:skill-self-containment` | fail | fail | A skill installed by itself must include the local references and helper scripts it tells an agent to use, unless it is explicitly marked `pack-install-only`. |
 | Manifest and README catalog consistency | `npm run validate:manifest` | fail | fail | Distribution metadata must match available skills. |

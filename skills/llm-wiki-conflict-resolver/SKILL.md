@@ -40,7 +40,7 @@ Group conflicting claims by topic. For each claim, record:
 Use:
 
 | Type | Meaning |
-|---|---|
+| --- | --- |
 | stale | One claim was true but is now outdated. |
 | scope mismatch | Claims are true under different conditions. |
 | source disagreement | Sources genuinely disagree. |

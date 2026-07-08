@@ -23,7 +23,7 @@ Use stable `type` values from `templates/schemas/page.schema.json`:
 Use `domain_type` for specialization. The source of truth is `schema.overlay.json`.
 
 | domain_type | core `type` | Use when |
-|---|---|---|
+| --- | --- | --- |
 | `paper` | `source` | One paper or preprint is preserved and summarized. |
 | `method` | `concept` | A reusable method, architecture or algorithm recurs across papers. |
 | `dataset` | `entity` | A dataset, benchmark or corpus needs accumulated facts. |

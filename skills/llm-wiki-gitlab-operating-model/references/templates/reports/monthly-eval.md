@@ -5,12 +5,12 @@
 ## Metrics
 
 | Metric | Value | Notes |
-|---|---:|---|
-| Retrieval hit rate |  |  |
-| Answer reuse rate |  |  |
-| Review backlog |  |  |
-| Stale verified pages |  |  |
-| Unsupported high-impact claims |  |  |
+| --- | ---: | --- |
+| Retrieval hit rate | | |
+| Answer reuse rate | | |
+| Review backlog | | |
+| Stale verified pages | | |
+| Unsupported high-impact claims | | |
 
 ## Query tests
 

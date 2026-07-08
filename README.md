@@ -107,7 +107,7 @@ It includes skills for:
 ### Learn and choose
 
 | Skill | Use when |
-|---|---|
+| --- | --- |
 | [`llm-wiki-orient`](skills/llm-wiki-orient/SKILL.md) | The user is new to LLM-Wiki and wants the pattern, trade-offs and solution landscape explained. |
 | [`llm-wiki-faq`](skills/llm-wiki-faq/SKILL.md) | The user needs an adoption explanation, evidence summary, ROI framing, migration answer, stakeholder FAQ or concise objection response. |
 | [`llm-wiki-human-first-design`](skills/llm-wiki-human-first-design/SKILL.md) | The user asks how to avoid an agent-generated document dump, make the wiki human-readable, pass an agent-disappears test, or design page contracts and navigation maps. |
@@ -118,7 +118,7 @@ It includes skills for:
 ### Technology landscape
 
 | Skill | Use when |
-|---|---|
+| --- | --- |
 | [`llm-wiki-ecosystem-registry`](skills/llm-wiki-ecosystem-registry/SKILL.md) | The user asks what LLM-Wiki implementations or adjacent open-source projects exist, or how OpenWiki, nashsu/llm_wiki, Vouch, RepoAgent and smaller projects compare. |
 | [`llm-wiki-implementation-deep-dive`](skills/llm-wiki-implementation-deep-dive/SKILL.md) | The user wants implementation-level comparison, architecture patterns, production-readiness analysis, or what to copy from concrete LLM-Wiki projects. |
 | [`llm-wiki-retrieval-architect`](skills/llm-wiki-retrieval-architect/SKILL.md) | The user needs to choose between lexical search, SQLite FTS, hybrid retrieval, vector DBs, rerankers, GraphRAG, metadata filters, MCP retrieval or custom indexes. |
@@ -129,7 +129,7 @@ It includes skills for:
 ### Diagnose, plan and evaluate
 
 | Skill | Use when |
-|---|---|
+| --- | --- |
 | [`llm-wiki-doctor`](skills/llm-wiki-doctor/SKILL.md) | An existing vault/docs folder needs read-only diagnosis before changes. |
 | [`llm-wiki-migration-planner`](skills/llm-wiki-migration-planner/SKILL.md) | The user wants a dry-run migration plan before moving files. |
 | [`llm-wiki-eval`](skills/llm-wiki-eval/SKILL.md) | The user wants to define or interpret usefulness, grounding, maintenance, review-backlog or decision-gate metrics, or run a bounded pilot with baseline and with-wiki passes. |
@@ -141,7 +141,7 @@ It includes skills for:
 ### Implement and migrate
 
 | Skill | Use when |
-|---|---|
+| --- | --- |
 | [`llm-wiki-zero-to-working-wiki`](skills/llm-wiki-zero-to-working-wiki/SKILL.md) | The user wants to bootstrap a first useful LLM-Wiki from zero: one vault, one source, one saved answer and one lint report. |
 | [`llm-wiki-setup`](skills/llm-wiki-setup/SKILL.md) | The user chose a target setup and wants installation, config, hooks, templates or git workflow help. |
 | [`llm-wiki-design`](skills/llm-wiki-design/SKILL.md) | The user wants to design or build a custom LLM-Wiki product, plugin, CLI or agent workflow. |
@@ -154,7 +154,7 @@ It includes skills for:
 ### Capture and domain workflows
 
 | Skill | Use when |
-|---|---|
+| --- | --- |
 | [`llm-wiki-company-flow-audit`](skills/llm-wiki-company-flow-audit/SKILL.md) | The user wants to map company knowledge flows, automation boundaries, sync points, permissions, review UI needs or maintenance trade-offs into an adoption plan. |
 | [`llm-wiki-capture-pipeline`](skills/llm-wiki-capture-pipeline/SKILL.md) | The user wants cross-channel capture architecture, inbox/raw topology, metadata contracts, dedupe boundaries, triage handoff, or named connector/channel capture rules. |
 | [`llm-wiki-interview`](skills/llm-wiki-interview/SKILL.md) | Tacit knowledge should be extracted through an agent-led interview. |
@@ -164,14 +164,14 @@ It includes skills for:
 ### Deprecated compatibility aliases
 
 | Skill | Use instead |
-|---|---|
+| --- | --- |
 | [`llm-wiki-benchmark-suite`](skills/llm-wiki-benchmark-suite/SKILL.md) | `llm-wiki-eval` pilot benchmark mode. |
 | [`llm-wiki-channel-capture`](skills/llm-wiki-channel-capture/SKILL.md) | `llm-wiki-capture-pipeline` named-channel mode. |
 
 ### Operate and trust
 
 | Skill | Use when |
-|---|---|
+| --- | --- |
 | [`wiki-triage`](skills/wiki-triage/SKILL.md) | Inbox material needs sorting before full ingest. |
 | [`wiki-ingest`](skills/wiki-ingest/SKILL.md) | Trusted raw sources should become source/entity/concept/synthesis pages. |
 | [`wiki-query`](skills/wiki-query/SKILL.md) | A question should be answered from the compiled wiki and useful answers saved back. |
@@ -188,7 +188,7 @@ It includes skills for:
 ### Skill and memory governance
 
 | Skill | Use when |
-|---|---|
+| --- | --- |
 | [`llm-wiki-skill-doctor`](skills/llm-wiki-skill-doctor/SKILL.md) | Agent Skills need quality, trigger, overlap or safety review. |
 | [`llm-wiki-skill-compiler`](skills/llm-wiki-skill-compiler/SKILL.md) | Procedural wiki knowledge should become installable Agent Skills. |
 | [`llm-wiki-agent-memory-bridge`](skills/llm-wiki-agent-memory-bridge/SKILL.md) | The user needs boundaries between wiki, skills, instruction files and agent memory. |
@@ -198,7 +198,7 @@ It includes skills for:
 ## Repository contents
 
 | Path | Purpose |
-|---|---|
+| --- | --- |
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
 | [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md), [`docs/20-ingestion-pipelines.md`](docs/20-ingestion-pipelines.md), [`docs/21-publishing-export.md`](docs/21-publishing-export.md), [`docs/22-team-operating-model.md`](docs/22-team-operating-model.md), [`docs/criticism-and-mitigations.md`](docs/criticism-and-mitigations.md), and [`docs/24-human-first-llm-wiki.md`](docs/24-human-first-llm-wiki.md). |

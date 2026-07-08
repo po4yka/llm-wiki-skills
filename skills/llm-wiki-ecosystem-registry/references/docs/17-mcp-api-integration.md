@@ -79,7 +79,7 @@ flowchart LR
 The safest production baseline is dual-surface:
 
 | Surface | Purpose | Default policy |
-|---|---|---|
+| --- | --- | --- |
 | Read-only MCP | Cross-client search/read/list/lint | Safe default for cloud and autonomous clients. |
 | REST/OpenAPI facade | CI, tests, non-MCP developers, governance services | Mirrors MCP domain model. |
 | Privileged local MCP | Personal authoring and proposal generation | Local-only, explicit approval. |
@@ -88,7 +88,7 @@ The safest production baseline is dual-surface:
 ## MCP primitives mapped to LLM-Wiki
 
 | MCP primitive | Use in LLM-Wiki | Design rule |
-|---|---|---|
+| --- | --- | --- |
 | Resources | Canonical read surfaces: pages, manifests, index, lint, graph views, history. | Stable `wiki://` URIs, read-only, cacheable, subscribable where supported. |
 | Resource templates | Parameterized page/history/lint/graph URIs. | Use URI templates instead of ad hoc path strings. |
 | Tools | Search, lint, propose patches, approve proposals, export, reindex. | Separate read-only, proposal-write and admin tools. |
@@ -102,7 +102,7 @@ The safest production baseline is dual-surface:
 ## Recommended resource surface
 
 | Resource URI | Semantics | Backing store |
-|---|---|---|
+| --- | --- | --- |
 | `wiki://manifest` | Server metadata, schema version, spaces, auth mode, capabilities. | Generated JSON manifest. |
 | `wiki://index` | Top-level page catalog, spaces, tags, recent changes, hot pages. | Materialized index view. |
 | `wiki://page/{space}/{slug}` | Canonical page object. | Markdown + frontmatter + compiled metadata. |
@@ -118,7 +118,7 @@ The safest production baseline is dual-surface:
 ### Read-only tools
 
 | Tool | Purpose | Default |
-|---|---|---|
+| --- | --- | --- |
 | `search_wiki(query, filters, top_k, cursor)` | Lexical/hybrid/semantic search with access filters. | Enabled. |
 | `read_page(space, slug)` | Tool alias for clients that do not use resources well. | Enabled. |
 | `read_source_manifest(source_id)` | Read source metadata without dumping raw content by default. | Enabled. |
@@ -130,7 +130,7 @@ The safest production baseline is dual-surface:
 ### Proposal-write tools
 
 | Tool | Purpose | Default |
-|---|---|---|
+| --- | --- | --- |
 | `draft_page_patch(path, patch, reason, sources)` | Create a patch proposal. | Disabled until review model exists. |
 | `propose_new_page(page_type, title, sources)` | Draft a new wiki page. | Disabled until review model exists. |
 | `propose_link_fix(path, links)` | Draft link/frontmatter fixes. | Disabled until review model exists. |
@@ -140,7 +140,7 @@ The safest production baseline is dual-surface:
 ### Admin tools
 
 | Tool | Purpose | Default |
-|---|---|---|
+| --- | --- | --- |
 | `rebuild_index(index_name)` | Rebuild FTS/vector/graph index. | Disabled. |
 | `rescan_sources(scope)` | Re-run source scans. | Disabled. |
 | `export_subset(profile)` | Build public/internal export. | Disabled or async. |
@@ -154,7 +154,7 @@ Rule: a cloud/autonomous client should usually receive only read-only tools. Pro
 Prompts should be workflow shortcuts, not hidden policy overrides.
 
 | Prompt | Purpose |
-|---|---|
+| --- | --- |
 | `answer_from_wiki` | Answer with citations and support labels. |
 | `ingest_source` | Turn a manifest/source into draft wiki pages. |
 | `triage_inbox` | Classify raw/captured material. |
@@ -235,7 +235,7 @@ status: draft|opened-pr|approved|rejected|merged
 Use a REST facade when CI, tests or non-MCP consumers need predictable HTTP endpoints.
 
 | Endpoint | Purpose | MCP mapping |
-|---|---|---|
+| --- | --- | --- |
 | `GET /manifest` | Wiki/server capability manifest. | `wiki://manifest`. |
 | `GET /search?q=` | Search wiki content. | `search_wiki`. |
 | `GET /pages/{space}/{slug}` | Read page. | `wiki://page/{space}/{slug}`. |
@@ -250,7 +250,7 @@ Use a REST facade when CI, tests or non-MCP consumers need predictable HTTP endp
 Error handling:
 
 | Code | Meaning |
-|---|---|
+| --- | --- |
 | `400` | Invalid input. |
 | `401` | Authentication required. |
 | `403` | Forbidden / insufficient scope / approval required. |
@@ -264,7 +264,7 @@ Error handling:
 ## Authentication and authorization
 
 | Pattern | Fit | Notes |
-|---|---|---|
+| --- | --- | --- |
 | Local stdio | Personal local-first authoring. | Simple, but sandbox and command display still matter. |
 | Local HTTP on `127.0.0.1` | Desktop app, local API, local agents. | Bind to localhost, validate origin, require token for sensitive operations. |
 | API key header | Internal service or early team deployment. | Easy, but rotate/scope carefully. |
@@ -275,7 +275,7 @@ Error handling:
 Minimum scopes:
 
 | Scope | Allows |
-|---|---|
+| --- | --- |
 | `wiki:read` | Search/read non-sensitive allowed pages. |
 | `wiki:lint` | Run/read lint reports. |
 | `wiki:propose` | Create proposals/patches, not merge. |
@@ -337,7 +337,7 @@ Avoid relying on protocol logging as the only durable audit strategy; record app
 ## Security controls
 
 | Risk | Required control |
-|---|---|
+| --- | --- |
 | DNS rebinding / local HTTP abuse | Bind to `127.0.0.1`, validate `Origin`, use host allowlists. |
 | Malicious local server startup | Show exact command, sandbox stdio process, minimize filesystem/network privileges. |
 | Prompt injection from wiki/raw content | Treat all page/source text as data; tool descriptions and prompts must not delegate policy to content. |
@@ -353,7 +353,7 @@ Avoid relying on protocol logging as the only durable audit strategy; record app
 ## Client compatibility guidance
 
 | Client/host | Recommended contract |
-|---|---|
+| --- | --- |
 | Claude Code | Local stdio or local HTTP MCP; read/proposal tools for developer workflow. |
 | Claude Messages API connector | Remote MCP with explicit allow/deny tool policy; read-only unless governance exists. |
 | Codex CLI/IDE | stdio or Streamable HTTP; use tool approval modes and read/propose split. |
@@ -366,7 +366,7 @@ Avoid relying on protocol logging as the only durable audit strategy; record app
 ## Deployment patterns
 
 | Pattern | Use when | Notes |
-|---|---|---|
+| --- | --- | --- |
 | Local stdio launcher | Personal wiki/editor integration. | Good first implementation; sandbox strongly. |
 | Local HTTP daemon | Desktop app + local agents. | Bind to localhost; token required for sensitive data. |
 | Containerized HTTP service | Team/shared wiki. | Add auth gateway, health checks, rate limits and OTel. |
@@ -398,7 +398,7 @@ Run these before enabling users:
 ## Reference implementation roadmap
 
 | Priority | Task |
-|---|---|
+| --- | --- |
 | Highest | Define canonical `wiki://` resource URIs and page/search/proposal schemas. |
 | Highest | Ship read-only `search_wiki`, `read_page`, `wiki://page`, `wiki://index`, `wiki://manifest`. |
 | Highest | Make search/fetch outputs citation- and URL-friendly. |
@@ -414,36 +414,36 @@ Run these before enabling users:
 
 ## Source URLs to re-check
 
-- https://modelcontextprotocol.io/specification/2025-11-25
-- https://modelcontextprotocol.io/specification/2025-11-25/server/tools
-- https://modelcontextprotocol.io/specification/2025-11-25/server/resources
-- https://modelcontextprotocol.io/docs/sdk
-- https://modelcontextprotocol.io/community/sdk-tiers
-- https://modelcontextprotocol.io/docs/tutorials/security/authorization
-- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
-- https://modelcontextprotocol.io/extensions/client-matrix
-- https://modelcontextprotocol.io/extensions/apps/overview
-- https://modelcontextprotocol.io/extensions/tasks/overview
-- https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization
-- https://github.com/modelcontextprotocol/registry
-- https://github.com/modelcontextprotocol/experimental-ext-server-card
-- https://github.com/modelcontextprotocol/typescript-sdk
-- https://github.com/modelcontextprotocol/python-sdk
-- https://github.com/modelcontextprotocol/go-sdk
-- https://github.com/jlowin/fastmcp
-- https://developers.openai.com/api/docs/mcp
-- https://developers.openai.com/codex/mcp
-- https://developers.openai.com/codex/config-reference
-- https://docs.anthropic.com/en/docs/claude-code/mcp
-- https://docs.anthropic.com/en/docs/agents-and-tools/mcp-connector
-- https://code.visualstudio.com/api/extension-guides/ai/mcp
-- https://docs.github.com/copilot/how-tos/copilot-on-github/customize-copilot/configure-mcp-servers
-- https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
-- https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
-- https://github.com/microsoft/llmwiki
-- https://github.com/nashsu/llm_wiki
-- https://github.com/geronimo-iia/llm-wiki
-- https://github.com/flsteven87/llm-wiki-mcp
-- https://github.com/lelantvaris/llm-wiki-mcp
-- https://github.com/ProfessionalWiki/mediawiki-mcp-server
-- https://github.com/langchain-ai/mcpdoc
+- <https://modelcontextprotocol.io/specification/2025-11-25>
+- <https://modelcontextprotocol.io/specification/2025-11-25/server/tools>
+- <https://modelcontextprotocol.io/specification/2025-11-25/server/resources>
+- <https://modelcontextprotocol.io/docs/sdk>
+- <https://modelcontextprotocol.io/community/sdk-tiers>
+- <https://modelcontextprotocol.io/docs/tutorials/security/authorization>
+- <https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices>
+- <https://modelcontextprotocol.io/extensions/client-matrix>
+- <https://modelcontextprotocol.io/extensions/apps/overview>
+- <https://modelcontextprotocol.io/extensions/tasks/overview>
+- <https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization>
+- <https://github.com/modelcontextprotocol/registry>
+- <https://github.com/modelcontextprotocol/experimental-ext-server-card>
+- <https://github.com/modelcontextprotocol/typescript-sdk>
+- <https://github.com/modelcontextprotocol/python-sdk>
+- <https://github.com/modelcontextprotocol/go-sdk>
+- <https://github.com/jlowin/fastmcp>
+- <https://developers.openai.com/api/docs/mcp>
+- <https://developers.openai.com/codex/mcp>
+- <https://developers.openai.com/codex/config-reference>
+- <https://docs.anthropic.com/en/docs/claude-code/mcp>
+- <https://docs.anthropic.com/en/docs/agents-and-tools/mcp-connector>
+- <https://code.visualstudio.com/api/extension-guides/ai/mcp>
+- <https://docs.github.com/copilot/how-tos/copilot-on-github/customize-copilot/configure-mcp-servers>
+- <https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners>
+- <https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches>
+- <https://github.com/microsoft/llmwiki>
+- <https://github.com/nashsu/llm_wiki>
+- <https://github.com/geronimo-iia/llm-wiki>
+- <https://github.com/flsteven87/llm-wiki-mcp>
+- <https://github.com/lelantvaris/llm-wiki-mcp>
+- <https://github.com/ProfessionalWiki/mediawiki-mcp-server>
+- <https://github.com/langchain-ai/mcpdoc>

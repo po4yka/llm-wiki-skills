@@ -35,7 +35,7 @@ Use `references/docs/20-ingestion-pipelines.md` as the reference architecture fo
 Use this taxonomy:
 
 | Source type | Canonical capture unit | Main risk |
-|---|---|---|
+| --- | --- | --- |
 | PDF / Office / HTML documents | file or URL | reading-order, table and layout loss. |
 | Scanned documents | scanned PDF or image | OCR errors and missing text layer. |
 | Web pages | rendered page snapshot | JS-rendered content loss and link rot. |
@@ -48,7 +48,7 @@ Use this taxonomy:
 ### 2. Choose pipeline archetype
 
 | Archetype | Use when | Default shape |
-|---|---|---|
+| --- | --- | --- |
 | local-first office/PDF | Private documents, reports, slide decks. | Local layout-aware converter, optional OCR pass, embedded local index. |
 | scanned archive | Image-only PDFs, paper archives. | OCR-first pipeline with page/region QA. |
 | web capture | Product docs, help centers, research pages. | Scripted browser capture, archived snapshots, readability extraction, archive-backed citations. |
@@ -107,7 +107,7 @@ Source pages should include:
 Prefer native structure:
 
 | Corpus | Chunking rule |
-|---|---|
+| --- | --- |
 | Markdown/docs | heading/subheading chunks with page anchors. |
 | Long documents | page-aware 300-700 token chunks with section paths. |
 | Scans | page/region chunks with OCR confidence flags. |
@@ -157,7 +157,7 @@ Check:
 Use two levels:
 
 | Corpus | Run when | Size |
-|---|---|---|
+| --- | --- | --- |
 | PR smoke corpus | every PR | 10-30 files. |
 | Nightly corpus | scheduled | 100-500 files. |
 
@@ -201,7 +201,7 @@ Rules:
 ### 10. Decide automation level
 
 | Mode | Use when |
-|---|---|
+| --- | --- |
 | manual batch | First migration or sensitive corpus. |
 | watched inbox | Personal capture with low risk and clear review states. |
 | PR-based ingest | Team repositories or shared knowledge. |
