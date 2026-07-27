@@ -3,9 +3,11 @@ import path from 'node:path';
 import { failFactory, listSkillNames, repoRoot, readText } from './lib/repo.mjs';
 import { chooseSkill, normalizeIntent } from './lib/skill-router-eval.mjs';
 import { readCatalogModel } from './lib/skill-catalog.mjs';
+import { validateTopLevelSchemaContract } from './lib/schema-contract.mjs';
 
 const { fail, finish } = failFactory();
 const routerPath = path.join(repoRoot, 'skill-router.json');
+const routerSchemaPath = path.join(repoRoot, 'templates', 'schemas', 'skill-router.schema.json');
 const routerEvalPath = path.join(repoRoot, 'benchmarks', 'router-eval.json');
 const allowedRisk = new Set(['none', 'low', 'medium', 'high']);
 const skillNames = new Set(listSkillNames());
@@ -19,11 +21,17 @@ if (!fs.existsSync(routerPath)) {
 }
 
 let router;
+let routerSchema;
 try {
   router = JSON.parse(readText(routerPath));
+  routerSchema = JSON.parse(readText(routerSchemaPath));
 } catch (error) {
-  fail(`skill-router.json is not valid JSON: ${error.message}`);
+  fail(`skill router or schema is not valid JSON: ${error.message}`);
   finish('validated skill router');
+}
+
+for (const error of validateTopLevelSchemaContract(router, routerSchema, 'skill-router.json')) {
+  fail(error);
 }
 
 if (router.$schema !== './templates/schemas/skill-router.schema.json') {

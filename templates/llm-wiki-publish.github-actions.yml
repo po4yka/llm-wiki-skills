@@ -25,9 +25,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-  security-events: write
 
 jobs:
   validate-export-profile:
@@ -97,17 +94,27 @@ jobs:
   security-and-redaction:
     runs-on: ubuntu-latest
     needs: build-export
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: Download export artifact for security checks
+        uses: actions/download-artifact@v4
+        with:
+          name: llm-wiki-export
+          path: export-artifact
+
       - name: Secret scan
         uses: gitleaks/gitleaks-action@v2
 
-      - name: Redaction/export policy placeholder
+      - name: Redaction/export policy gate
         run: |
-          echo "Replace with Presidio/scrubadub/custom redaction checks over staged export outputs."
+          echo "::error::Replace this fail-closed placeholder with redaction checks over export-artifact."
+          exit 1
 
   publish-pages:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.publish == 'true'
@@ -115,6 +122,9 @@ jobs:
     needs:
       - build-export
       - security-and-redaction
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
     steps:

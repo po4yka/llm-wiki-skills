@@ -5,11 +5,13 @@
 
 ## Package releases
 
-Package releases use git tags:
+New package releases use canonical git tags:
 
 ```text
 vMAJOR.MINOR.PATCH
 ```
+
+The release workflow also accepts the legacy `MAJOR.MINOR.PATCH` form used by the existing `1.0.0` release. Do not rewrite published tags only to add the prefix.
 
 The release workflow validates the pack, smoke-tests the package with the upstream `skills` CLI, generates catalogs and builds an archive.
 
@@ -43,6 +45,8 @@ npm run check:skill-versions -- --strict
 
 The check compares the PR branch against the base branch and only applies to changed `SKILL.md` files.
 
+On release tags, the workflow compares skill versions with the previous reachable semantic-version release tag instead of `main`.
+
 ## Breaking changes
 
 Breaking changes include:
@@ -67,7 +71,10 @@ It verifies:
 
 1. `npx skills add <repo> --list` can discover representative skills.
 2. `npx skills use <repo> --skill llm-wiki-faq` can render a prompt without launching an agent.
-3. `npx skills add <repo> --skill llm-wiki-faq -a claude-code --copy -y` installs a real `SKILL.md` into a temporary project.
+3. Every shipped skill can be installed with `npx skills add <repo> --skill <name> -a claude-code --copy -y`.
+4. Every installed skill preserves its declared standalone-install contract.
+
+During a release, validation and the distribution smoke test run against the extracted archive rather than only the source checkout.
 
 Set `SKILLS_CLI_PACKAGE` to pin a different CLI version during debugging:
 
@@ -84,7 +91,8 @@ SKILLS_CLI_PACKAGE=skills@1.2.3 npm run smoke:skills
 5. Run `npm run release:notes -- vX.Y.Z`.
 6. Update `CHANGELOG.md`.
 7. Create tag `vX.Y.Z`.
-8. Confirm release archive includes `skills/`, `docs/`, `templates/`, `domain-packs/`, `benchmarks/`, `scripts/`, `skills.sh.json`, `README.md` and `LICENSE`.
+8. Confirm the extracted release archive passes `npm run validate` and `npm run smoke:skills`.
+9. Confirm the release archive includes the pack roots, machine-readable router and quality baseline, policies, package metadata, root guidance and validation workflows.
 
 ## Deprecation policy
 

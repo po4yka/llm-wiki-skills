@@ -2,11 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { failFactory, listSkillNames, repoRoot, readText } from './lib/repo.mjs';
 import { canonicalList } from './lib/canonical-vocabularies.mjs';
+import { validateTopLevelSchemaContract } from './lib/schema-contract.mjs';
 
 const { fail, finish } = failFactory();
 const namePattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const domainPacksDir = path.join(repoRoot, 'domain-packs');
 const coreSchemaPath = path.join(repoRoot, 'templates', 'schemas', 'page.schema.json');
+const overlaySchemaPath = path.join(repoRoot, 'templates', 'schemas', 'domain-pack.schema.json');
 const profileSchemaPath = path.join(repoRoot, 'templates', 'schemas', 'domain-pack-profile.schema.json');
 const requiredHeadings = ['## Core page types', '## Domain types'];
 
@@ -20,6 +22,7 @@ function readJson(filePath) {
 }
 
 const coreSchema = readJson(coreSchemaPath);
+const overlaySchema = readJson(overlaySchemaPath);
 const profileSchema = readJson(profileSchemaPath);
 const coreTypes = new Set(coreSchema?.properties?.type?.enum ?? []);
 const canonicalCoreTypes = canonicalList('core_page_types');
@@ -73,6 +76,11 @@ for (const packName of packDirs) {
 
   const overlay = readJson(overlayPath);
   if (!overlay) continue;
+  const overlayRelPath = path.relative(repoRoot, overlayPath);
+
+  for (const error of validateTopLevelSchemaContract(overlay, overlaySchema, overlayRelPath)) {
+    fail(error);
+  }
 
   if (overlay.name !== packName) {
     fail(`${path.relative(repoRoot, overlayPath)}: name must match directory '${packName}'`);

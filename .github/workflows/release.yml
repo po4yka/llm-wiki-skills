@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*'
+      - '*.*.*'
   workflow_dispatch:
 
 permissions:
@@ -22,6 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
+          fetch-depth: 0
           persist-credentials: false
 
       - name: Set up Node.js
@@ -33,16 +35,51 @@ jobs:
       - name: Validate skills pack
         run: npm run validate
 
+      - name: Validate release tag
+        if: github.ref_type == 'tag'
+        run: |
+          if [[ ! "${GITHUB_REF_NAME}" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Release tag must use vMAJOR.MINOR.PATCH or MAJOR.MINOR.PATCH."
+            exit 1
+          fi
+
+      - name: Find previous release tag
+        id: previous-release
+        run: |
+          current_tag=""
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            current_tag="${GITHUB_REF_NAME}"
+          fi
+
+          previous_tag=""
+          while IFS= read -r candidate; do
+            if [[ ! "${candidate}" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+              continue
+            fi
+            if [[ "${candidate}" == "${current_tag}" ]]; then
+              continue
+            fi
+            previous_tag="${candidate}"
+            break
+          done < <(git tag --merged HEAD --sort=-version:refname)
+
+          echo "ref=${previous_tag}" >> "${GITHUB_OUTPUT}"
+          if [[ -n "${previous_tag}" ]]; then
+            echo "Comparing skill versions against ${previous_tag}."
+          else
+            echo "No previous release tag found; treating this as the first release."
+          fi
+
       - name: Check skill version bumps
+        if: steps.previous-release.outputs.ref != ''
         env:
           SKILL_VERSION_STRICT: '1'
-          SKILL_VERSION_BASE_REF: main
-        run: |
-          git fetch origin main:main || true
-          npm run check:skill-versions -- --strict
+          SKILL_VERSION_BASE_REF: ${{ steps.previous-release.outputs.ref }}
+        run: npm run check:skill-versions -- --strict
 
-      - name: Run distribution smoke test
-        run: npm run smoke:skills
+      - name: Record first-release version check
+        if: steps.previous-release.outputs.ref == ''
+        run: echo "Skipping version comparison because no previous release tag exists."
 
       - name: Set up Go
         uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
@@ -70,10 +107,20 @@ jobs:
           mkdir -p dist
           zip -r "dist/llm-wiki-skills-${GITHUB_REF_NAME}.zip" \
             README.md \
+            AGENTS.md \
+            CLAUDE.md \
+            CONTRIBUTING.md \
+            SECURITY.md \
             LICENSE \
             CHANGELOG.md \
             skills.sh.json \
+            skill-router.json \
+            quality-baseline.json \
             package.json \
+            package-lock.json \
+            .markdownlint-cli2.jsonc \
+            .github \
+            policies \
             scripts \
             skills \
             docs \
@@ -82,6 +129,19 @@ jobs:
             benchmarks \
             examples \
             -x 'docs/assets/originals/*'
+
+      - name: Extract release archive
+        run: |
+          mkdir -p "${RUNNER_TEMP}/release-archive"
+          unzip -q "dist/llm-wiki-skills-${GITHUB_REF_NAME}.zip" -d "${RUNNER_TEMP}/release-archive"
+
+      - name: Validate packaged archive
+        working-directory: ${{ runner.temp }}/release-archive
+        run: npm run validate
+
+      - name: Smoke-test packaged archive
+        working-directory: ${{ runner.temp }}/release-archive
+        run: npm run smoke:skills
 
       - name: Upload release artifacts
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7

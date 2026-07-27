@@ -3,8 +3,12 @@
   "$id": "https://example.com/llm-wiki/domain-pack.schema.json",
   "title": "LLM-Wiki domain pack overlay",
   "type": "object",
-  "required": ["name", "version", "core_types", "domain_type_mappings", "recommended_tags"],
+  "required": ["$schema", "name", "version", "core_types", "domain_type_mappings", "recommended_tags"],
   "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "../../templates/schemas/domain-pack.schema.json"
+    },
     "name": {
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"

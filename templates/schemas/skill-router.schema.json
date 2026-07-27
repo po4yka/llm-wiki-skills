@@ -3,8 +3,12 @@
   "$id": "https://example.com/llm-wiki/skill-router.schema.json",
   "title": "LLM-Wiki skill router",
   "type": "object",
-  "required": ["version", "default_entrypoints", "routes"],
+  "required": ["$schema", "version", "default_entrypoints", "routes"],
   "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "./templates/schemas/skill-router.schema.json"
+    },
     "version": { "type": "string" },
     "default_entrypoints": {
       "type": "array",

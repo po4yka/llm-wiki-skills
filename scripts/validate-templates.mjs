@@ -49,6 +49,26 @@ for (const copiedPath of copiedTemplates) {
 
 assertIncludes('templates/llm-wiki-publish.github-actions.yml', 'path: export-artifact/builds/public-site/latest/site', 'templates/llm-wiki-publish.github-actions.yml: Pages publish path must match upload-artifact v4 prefix stripping');
 assertNotMatch('templates/llm-wiki-publish.github-actions.yml', /path: export-artifact\/exports\/builds\/public-site\/latest\/site/, 'templates/llm-wiki-publish.github-actions.yml: Pages publish path must not assume exports/ prefix survives artifact download');
+assertIncludes(
+  'templates/llm-wiki-publish.github-actions.yml',
+  'permissions:\n  contents: read\n\njobs:',
+  'templates/llm-wiki-publish.github-actions.yml: elevated permissions must not be granted workflow-wide',
+);
+assertIncludes(
+  'templates/llm-wiki-publish.github-actions.yml',
+  'name: Download export artifact for security checks',
+  'templates/llm-wiki-publish.github-actions.yml: security job must download the artifact it gates',
+);
+assertIncludes(
+  'templates/llm-wiki-publish.github-actions.yml',
+  'echo "::error::Replace this fail-closed placeholder with redaction checks over export-artifact."\n          exit 1',
+  'templates/llm-wiki-publish.github-actions.yml: placeholder redaction gate must fail closed',
+);
+assertIncludes(
+  'templates/llm-wiki-publish.github-actions.yml',
+  'permissions:\n      pages: write\n      id-token: write\n    environment:',
+  'templates/llm-wiki-publish.github-actions.yml: Pages and OIDC permissions must be limited to the publish job',
+);
 
 for (const workflow of [
   'templates/llm-wiki-evals.github-actions.yml',
