@@ -32,7 +32,7 @@
     "release:notes": "node scripts/generate-release-notes.mjs"
   },
   "devDependencies": {
-    "markdownlint-cli2": "0.23.0",
-    "skills": "1.5.15"
+    "markdownlint-cli2": "0.23.1",
+    "skills": "1.5.19"
   }
 }
