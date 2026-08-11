@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents with repository write access. Requires GitHub Actions support in the repository.
 metadata:
   author: po4yka
-  version: "1.0.1"
+  version: "1.0.2"
   install_scope: self-contained
 ---
 

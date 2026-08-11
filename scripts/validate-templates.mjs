@@ -88,6 +88,10 @@ for (const workflow of [
   assertNotMatch(workflow, /^  schedule:/m, `${workflow}: starter schedules must be commented until the first manual run succeeds`);
 }
 
+assertIncludes('templates/llm-wiki-evals.github-actions.yml', 'retrieval-and-grounding:\n    if: github.event_name != \'pull_request\'', 'templates/llm-wiki-evals.github-actions.yml: model-backed retrieval job must not run on pull requests');
+assertIncludes('templates/llm-wiki-evals.github-actions.yml', 'promptfoo-quality-and-security:\n    if: github.event_name != \'pull_request\'', 'templates/llm-wiki-evals.github-actions.yml: model-backed promptfoo job must not run on pull requests');
+assertIncludes('templates/llm-wiki-security.github-actions.yml', 'llm-redteam:\n    if: github.event_name != \'pull_request\'', 'templates/llm-wiki-security.github-actions.yml: model-backed red-team job must not run on pull requests');
+
 assertIncludes('templates/vault/AGENTS.md', '_meta/   schemas, taxonomy, policies and pack metadata');
 assertIncludes('templates/vault/AGENTS.md', '_agent/  reports, drafts and agent-generated working files');
 assertNotMatch('templates/vault/AGENTS.md', /^schema\/\s+this file/m, 'templates/vault/AGENTS.md: must not advertise obsolete schema/ layout');

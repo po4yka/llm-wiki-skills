@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Browse current vendor, MCP, OWASP, CVE and tooling docs before making current security claims or version-specific recommendations.
 metadata:
   author: po4yka
-  version: "1.0.0"
+  version: "1.0.1"
   install_scope: self-contained
 ---
 

@@ -15,6 +15,7 @@ on:
 
 jobs:
   retrieval-and-grounding:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -52,6 +53,7 @@ jobs:
           path: eval-results/
 
   promptfoo-quality-and-security:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
