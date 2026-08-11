@@ -24,11 +24,11 @@ try {
   assert.match(readFileSync(path.join(target, 'README.md'), 'utf8'), /already configured/);
   assert.match(readFileSync(path.join(target, 'raw/sources/example-source.md'), 'utf8'), /LLM-Wiki/);
   assert.match(readFileSync(path.join(target, '_meta/redaction-policy.yml'), 'utf8'), /documents_may_leave_machine: false/);
-  assert.match(readFileSync(path.join(target, 'exports/profiles/public.yml'), 'utf8'), /enabled: true[\s\S]*raw\/\*\*[\s\S]*fail_on_findings: true/);
+  assert.match(readFileSync(path.join(target, 'exports/profiles/public.yml'), 'utf8'), /enabled: true[\s\S]*wiki\/public\/\*\*[\s\S]*fail_on_findings: true/);
   assert.match(readFileSync(path.join(target, 'package.json'), 'utf8'), /external:build/);
 
   const publicPage = path.join(target, 'wiki/public/example.md');
-  writeFileSync(publicPage, '---\ntitle: Public example\nstatus: reviewed\ncreated: 2026-08-11\nupdated: 2026-08-11\nreview_required: false\n---\n\n# Public example\n');
+  writeFileSync(publicPage, '---\ntitle: Public example\nstatus: reviewed\ncreated: 2026-08-11\nupdated: 2026-08-11\nreview_required: false\npublication_state: public\nsensitivity: public\nsource_paths: [raw/sources/example-source.md]\ntags: []\n---\n\n# Public example\n');
   const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
   const passedBuild = spawnSync(npm, ['run', 'external:build'], { cwd: target, encoding: 'utf8' });
   assert.equal(passedBuild.status, 0, passedBuild.stderr);
@@ -54,11 +54,28 @@ try {
   assert.equal(readFileSync(path.join(externalDist, 'wiki/sentinel.txt'), 'utf8'), 'keep\n');
   rmSync(path.join(target, 'dist'));
 
-  writeFileSync(publicPage, readFileSync(publicPage, 'utf8').replace('review_required: false', 'review_required: false\nsensitivity: sensitive'));
+  writeFileSync(path.join(target, 'wiki/public/private.json'), '{"classification":"private"}\n');
+  const unsupportedBuild = spawnSync(npm, ['run', 'external:build'], { cwd: target, encoding: 'utf8' });
+  assert.equal(unsupportedBuild.status, 1);
+  assert.equal(JSON.parse(readFileSync(path.join(target, 'dist/redaction-report.json'), 'utf8')).findings[0].kind, 'unsupported_file');
+  rmSync(path.join(target, 'wiki/public/private.json'));
+
+  const profilePath = path.join(target, 'exports/profiles/public.yml');
+  const originalProfile = readFileSync(profilePath, 'utf8');
+  writeFileSync(profilePath, originalProfile.replace('    - reviewed\n', ''));
+  const changedProfileBuild = spawnSync(npm, ['run', 'external:build'], { cwd: target, encoding: 'utf8' });
+  assert.equal(changedProfileBuild.status, 1);
+  assert.equal(JSON.parse(readFileSync(path.join(target, 'dist/redaction-report.json'), 'utf8')).findings[0].kind, 'unapproved_page');
+  writeFileSync(profilePath, originalProfile);
+
+  writeFileSync(publicPage, readFileSync(publicPage, 'utf8').replace('sensitivity: public', 'sensitivity: sensitive'));
   const blockedBuild = spawnSync(npm, ['run', 'external:build'], { cwd: target, encoding: 'utf8' });
   assert.equal(blockedBuild.status, 1);
   assert.equal(existsSync(path.join(target, 'dist/manifest.json')), false);
-  assert.equal(JSON.parse(readFileSync(path.join(target, 'dist/redaction-report.json'), 'utf8')).finding_count, 1);
+  assert.deepEqual(
+    JSON.parse(readFileSync(path.join(target, 'dist/redaction-report.json'), 'utf8')).findings.map((finding) => finding.kind).sort(),
+    ['blocked_sensitivity', 'sensitive_metadata'],
+  );
 
   mkdirSync(path.join(temporaryRoot, 'documents'));
   writeFileSync(path.join(temporaryRoot, 'documents/notes.md'), '# Notes\n');

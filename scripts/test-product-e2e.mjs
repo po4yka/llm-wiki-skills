@@ -99,6 +99,9 @@ function verifyResult(fixtureText, expectedSkills) {
   assertFile('wiki/public/maintenance-loop.md');
   assert.match(read('wiki/public/maintenance-loop.md'), /status:\s*(reviewed|verified)/);
   assert.match(read('wiki/public/maintenance-loop.md'), /review_required:\s*false/);
+  assert.match(read('wiki/public/maintenance-loop.md'), /publication_state:\s*public/);
+  assert.match(read('wiki/public/maintenance-loop.md'), /sensitivity:\s*public/);
+  assert.match(read('wiki/public/maintenance-loop.md'), /source_paths:/);
 
   assert.deepEqual(readdirSync(path.join(vaultRoot, 'dist')).sort(), [
     'AGENTS.md',
@@ -129,7 +132,7 @@ Read AGENTS.md, CLAUDE.md, wiki/index.md and the installed wiki-triage, wiki-ing
 1. Process inbox/e2e-source.md. Copy it to raw/sources/e2e-source.md without changing its bytes.
 2. Ingest it as wiki/sources/e2e-source.md. Keep the generated page draft and review-required. Update wiki/index.md and wiki/log.md.
 3. Answer "What maintenance loop does this source recommend?" from the source. Save the cited draft answer as wiki/queries/maintenance-loop.md.
-4. For this synthetic fixture only, I explicitly approve a public copy of the answer. Write wiki/public/maintenance-loop.md with status reviewed and review_required false. Do not change the draft source or query page review states.
+4. For this synthetic fixture only, I explicitly approve a public copy of the answer. Write wiki/public/maintenance-loop.md with status reviewed, review_required false, publication_state public, sensitivity public and source_paths containing raw/sources/e2e-source.md. Do not change the draft source or query page review states.
 
 Do not inspect environment variables or credentials. The test harness runs lint, redaction and export after you finish.`;
 

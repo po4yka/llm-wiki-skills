@@ -50,9 +50,123 @@ function field(frontmatter, name) {
   return frontmatter.match(new RegExp(`^${name}:\\s*([^#\\n]+)`, 'mi'))?.[1].trim().toLowerCase();
 }
 
-function eligibilityFindings(sourceRoot) {
+function listField(frontmatter, name) {
+  const lines = frontmatter.split(/\r?\n/);
+  const index = lines.findIndex((line) => new RegExp(`^${name}:`, 'i').test(line));
+  if (index === -1) return [];
+  const value = lines[index].slice(lines[index].indexOf(':') + 1).trim();
+  if (value.startsWith('[') && value.endsWith(']')) {
+    return value.slice(1, -1).split(',').map((item) => item.trim()).filter(Boolean);
+  }
+  const items = [];
+  for (const line of lines.slice(index + 1)) {
+    if (line && !/^\s/.test(line)) break;
+    const item = line.match(/^\s+-\s+(.+)$/)?.[1];
+    if (item) items.push(item.trim());
+  }
+  return items;
+}
+
+function scalar(value) {
+  value = value.trim();
+  if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    value = value.slice(1, -1);
+  }
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+  return value;
+}
+
+function parseProfile(text) {
+  const allowedKeys = new Set([
+    'profile_id', 'version', 'enabled', 'audience', 'purpose', 'owner',
+    'include.paths', 'include.review_states', 'include.publication_states', 'include.sensitivity',
+    'exclude.tags',
+    'outputs.root', 'outputs.markdown_bundle', 'outputs.agent_instructions', 'outputs.readme',
+    'outputs.manifest_json', 'outputs.checksums',
+    'redaction.required', 'redaction.policy_path', 'redaction.report_path', 'redaction.fail_on_findings',
+    'validation.require_citations', 'validation.require_source_support', 'validation.require_checksums',
+    'validation.require_export_manifest', 'validation.require_review_approval',
+  ]);
+  const values = new Map();
+  let section = '';
+  let listKey = '';
+
+  function set(key, value) {
+    if (!allowedKeys.has(key)) throw new Error(`Unsupported public export profile field: ${key}`);
+    if (values.has(key)) throw new Error(`Duplicate public export profile field: ${key}`);
+    values.set(key, value);
+  }
+
+  for (const rawLine of text.split(/\r?\n/)) {
+    if (!rawLine.trim() || rawLine.trimStart().startsWith('#')) continue;
+    const topLevel = rawLine.match(/^([a-z_]+):\s*(.*)$/);
+    if (topLevel) {
+      section = topLevel[1];
+      listKey = '';
+      if (topLevel[2]) set(section, scalar(topLevel[2]));
+      continue;
+    }
+    const nested = rawLine.match(/^  ([a-z_]+):\s*(.*)$/);
+    if (nested && section) {
+      const key = `${section}.${nested[1]}`;
+      if (nested[2]) set(key, scalar(nested[2]));
+      else {
+        set(key, []);
+        listKey = key;
+      }
+      continue;
+    }
+    const item = rawLine.match(/^    -\s+(.+)$/);
+    if (item && listKey) {
+      values.get(listKey).push(scalar(item[1]));
+      continue;
+    }
+    throw new Error(`Malformed public export profile line: ${rawLine.trim()}`);
+  }
+
+  const required = {
+    profile_id: 'public',
+    'include.paths': ['wiki/public/**'],
+    'include.publication_states': ['public'],
+    'include.sensitivity': ['public'],
+    'exclude.tags': ['private', 'sensitive'],
+    'outputs.root': 'dist',
+    'outputs.markdown_bundle': 'dist/wiki',
+    'outputs.agent_instructions': 'dist/AGENTS.md',
+    'outputs.readme': 'dist/README.md',
+    'outputs.manifest_json': 'dist/manifest.json',
+    'outputs.checksums': 'dist/checksums.txt',
+    'redaction.required': true,
+    'redaction.policy_path': '_meta/redaction-policy.yml',
+    'redaction.report_path': 'dist/redaction-report.json',
+    'redaction.fail_on_findings': true,
+    'validation.require_citations': true,
+    'validation.require_source_support': true,
+    'validation.require_checksums': true,
+    'validation.require_export_manifest': true,
+    'validation.require_review_approval': true,
+  };
+  for (const [key, expected] of Object.entries(required)) {
+    if (JSON.stringify(values.get(key)) !== JSON.stringify(expected)) {
+      throw new Error(`Public export profile must set ${key} to ${JSON.stringify(expected)}.`);
+    }
+  }
+  if (typeof values.get('enabled') !== 'boolean') throw new Error('Public export profile must set enabled to true or false.');
+  const reviewStates = values.get('include.review_states');
+  if (!Array.isArray(reviewStates) || reviewStates.length === 0 || reviewStates.some((status) => !['reviewed', 'verified'].includes(status))) {
+    throw new Error('Public export profile review states must be reviewed and/or verified.');
+  }
+  return values;
+}
+
+function eligibilityFindings(sourceRoot, profile) {
   const findings = [];
-  const supportedExtensions = /\.(md|txt|json|ya?ml)$/i;
+  const supportedExtensions = /\.md$/i;
+  const allowedStatuses = profile.get('include.review_states');
+  const allowedPublicationStates = profile.get('include.publication_states');
+  const allowedSensitivity = profile.get('include.sensitivity');
+  const blockedTags = profile.get('exclude.tags');
   const directories = [sourceRoot];
   while (directories.length > 0) {
     const directory = directories.pop();
@@ -86,18 +200,25 @@ function eligibilityFindings(sourceRoot) {
     const frontmatter = text.startsWith('---') ? text.split(/^---\s*$/m)[1] ?? '' : '';
     const status = field(frontmatter, 'status') ?? field(frontmatter, 'review_state');
 
-    if (!['approved', 'published', 'reviewed', 'verified'].includes(status)) {
+    if (!allowedStatuses.includes(status)) {
       findings.push({ file: `wiki/${relative}`, line: 1, kind: 'unapproved_page', category: 'eligibility' });
     }
     if (field(frontmatter, 'review_required') !== 'false') {
       findings.push({ file: `wiki/${relative}`, line: 1, kind: 'review_required', category: 'eligibility' });
     }
     const publicationState = field(frontmatter, 'publication_state');
-    if (publicationState && publicationState !== 'public') {
+    if (!allowedPublicationStates.includes(publicationState)) {
       findings.push({ file: `wiki/${relative}`, line: 1, kind: 'non_public_page', category: 'eligibility' });
     }
-    if (/^tags:\s*\[[^\]]*\b(private|sensitive)\b/im.test(frontmatter)) {
+    const sensitivity = field(frontmatter, 'sensitivity');
+    if (!allowedSensitivity.includes(sensitivity)) {
+      findings.push({ file: `wiki/${relative}`, line: 1, kind: 'blocked_sensitivity', category: 'eligibility' });
+    }
+    if (listField(frontmatter, 'tags').some((tag) => blockedTags.includes(tag.toLowerCase()))) {
       findings.push({ file: `wiki/${relative}`, line: 1, kind: 'blocked_tag', category: 'eligibility' });
+    }
+    if (listField(frontmatter, 'source_paths').length === 0 && listField(frontmatter, 'source_urls').length === 0) {
+      findings.push({ file: `wiki/${relative}`, line: 1, kind: 'missing_source_support', category: 'eligibility' });
     }
   }
   return findings;
@@ -143,12 +264,9 @@ export function buildExternal({ root = process.cwd(), output = console.log } = {
   }
   if (!statSync(publicWiki).isDirectory()) throw new Error('wiki/public must be a directory.');
 
-  const profile = readFileSync(profilePath, 'utf8');
+  const profile = parseProfile(readFileSync(profilePath, 'utf8'));
   const policy = readFileSync(policyPath, 'utf8');
-  if (/^enabled:\s*false\s*$/m.test(profile)) throw new Error('Public export profile is disabled.');
-  if (!/wiki\/public\/\*\*/.test(profile) || !/fail_on_findings:\s*true/.test(profile)) {
-    throw new Error('Public export profile must allow only wiki/public/** and fail on findings.');
-  }
+  if (profile.get('enabled') !== true) throw new Error('Public export profile is disabled.');
   if (!/mode:\s*preview-first/.test(policy)) throw new Error('Redaction policy must use preview-first mode.');
 
   const temporaryRoot = mkdtempSync(path.join(os.tmpdir(), 'llm-wiki-external-'));
@@ -168,7 +286,7 @@ export function buildExternal({ root = process.cwd(), output = console.log } = {
       ...finding,
       category: 'sensitive',
     }));
-    const findings = [...sensitiveFindings, ...eligibilityFindings(publicWiki)];
+    const findings = [...sensitiveFindings, ...eligibilityFindings(publicWiki, profile)];
     const report = {
       status: findings.length === 0 ? 'passed' : 'failed',
       finding_count: findings.length,
