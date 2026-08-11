@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Ready external agent preset with instructions, sample source, redaction policy and public export profile.
 - Fail-closed `external:build` command for public Markdown bundles, manifests, redaction reports and checksums.
 - Credentialed product E2E matrix for Linux/macOS and Claude Code/Codex, using the packaged external starter and bundled starter skills.
+- Interactive starter setup for agent selection, document import, model-boundary privacy and public-export settings.
 
 ## 1.0.0 - 2026-07-08
 

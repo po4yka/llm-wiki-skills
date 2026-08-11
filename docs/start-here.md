@@ -7,14 +7,14 @@ You do not need to configure skills, folders, or Git. The starter does this for 
 Open a terminal and run:
 
 ```bash
-npx llm-wiki-starter init my-wiki
+npx llm-wiki-starter
 ```
 
-Then open the new `my-wiki` folder in your coding agent.
+Answer four questions about your agent, document folder, privacy boundary and public export. The starter creates `my-llm-wiki` and configures it from your answers.
 
 ## 2. Add your documents
 
-Put the documents that you want to use in `inbox/`. Do not add passwords, private keys, or other secrets.
+If you selected a document folder during setup, the starter copied its files to `inbox/`. Otherwise, put the documents that you want to use there. Do not add passwords, private keys, or other secrets.
 
 ## 3. Ask the agent
 

@@ -1,5 +1,7 @@
 version: 1
 mode: preview-first
+model_boundary:
+  documents_may_leave_machine: false
 exclude_by_default:
   statuses:
     - draft

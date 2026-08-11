@@ -30,10 +30,12 @@ Start with the lane that matches how you will use the wiki:
 Create a ready local vault with the supported [`external-starter` profile](profiles/external-starter/profile.json):
 
 ```bash
-npx llm-wiki-starter init my-llm-wiki
+npx llm-wiki-starter
 ```
 
-This creates the vault, initializes git, applies the ready [`templates/external-starter/`](templates/external-starter/) agent preset, installs the nine starter skills and runs preflight without replacing existing files. If `package.json` exists, the starter adds the missing `external:build` script and refuses to overwrite a conflicting script. The preset includes agent instructions, a sample source, preview-first redaction and a fail-closed public export profile. Agent detection is automatic; use `--agent codex` or another supported ID only when needed. To delegate setup, paste [`profiles/external-starter/prompt.md`](profiles/external-starter/prompt.md) into the agent.
+The guided setup asks which agent you use, where your documents are, whether they can leave the machine and whether to enable public export. It creates `my-llm-wiki`, copies selected documents to `inbox/`, installs the nine starter skills and runs preflight.
+
+For scripts or a custom destination, use `npx llm-wiki-starter init my-llm-wiki --agent codex`. Existing files are not replaced; a conflicting `external:build` package script stops setup. To delegate setup, paste [`profiles/external-starter/prompt.md`](profiles/external-starter/prompt.md) into the agent.
 
 New to CLI tools and Git? Follow [LLM-Wiki Agent — start here](docs/start-here.md).
 

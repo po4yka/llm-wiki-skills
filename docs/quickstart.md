@@ -14,6 +14,8 @@ The steps below implement the solo local wiki lane. For a no-install preview, re
 
 ## 1. Create the starter vault
 
+For guided setup, run `npx llm-wiki-starter` and answer the four questions. For a scripted setup, run:
+
 ```bash
 npx llm-wiki-starter init my-llm-wiki
 ```

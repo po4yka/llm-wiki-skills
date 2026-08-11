@@ -8,6 +8,7 @@ import {
   existsSync,
   mkdirSync,
   readFileSync,
+  readdirSync,
   realpathSync,
   statSync,
   writeFileSync,
@@ -15,6 +16,7 @@ import {
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createInterface } from 'node:readline';
 import { parseArgs } from 'node:util';
 
 const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -74,10 +76,61 @@ function preflight(target) {
 function writeIfMissing(source, target, changes) {
   if (existsSync(target)) {
     changes.skipped += 1;
-    return;
+    return false;
   }
   copyFileSync(source, target, constants.COPYFILE_EXCL);
   changes.created += 1;
+  return true;
+}
+
+function setCreatedBoolean(target, key, value) {
+  const text = readFileSync(target, 'utf8');
+  const pattern = new RegExp(`(^\\s*${key}:\\s*)(true|false)`, 'm');
+  if (!pattern.test(text)) throw new Error(`Starter policy is missing ${key}.`);
+  writeFileSync(target, text.replace(pattern, `$1${value}`));
+}
+
+function planDocuments(source, target) {
+  if (!source) return [];
+  source = path.resolve(source);
+  if (!existsSync(source)) throw new Error(`Documents path does not exist: ${source}`);
+  if (statSync(source).isDirectory() && (target === source || target.startsWith(`${source}${path.sep}`))) {
+    throw new Error('The wiki directory must be outside the documents directory.');
+  }
+
+  const plan = [];
+  const visit = (current, relative) => {
+    const stats = statSync(current);
+    if (stats.isFile()) {
+      plan.push([current, relative]);
+      return;
+    }
+    if (!stats.isDirectory()) throw new Error(`Unsupported document entry: ${current}`);
+    for (const entry of readdirSync(current, { withFileTypes: true })) {
+      if (entry.isSymbolicLink()) throw new Error(`Document symlinks are not supported: ${path.join(current, entry.name)}`);
+      visit(path.join(current, entry.name), path.join(relative, entry.name));
+    }
+  };
+
+  const stats = statSync(source);
+  visit(source, stats.isFile() ? path.basename(source) : '');
+  return plan;
+}
+
+function copyDocuments(plan, target) {
+  const inbox = path.join(target, 'inbox');
+  for (const [source, relative] of plan) {
+    const destination = path.join(inbox, relative);
+    mkdirSync(path.dirname(destination), { recursive: true });
+    copyFileSync(source, destination, constants.COPYFILE_EXCL);
+  }
+}
+
+function validateDocumentTargets(plan, target) {
+  const inbox = path.join(target, 'inbox');
+  for (const [, relative] of plan) {
+    if (existsSync(path.join(inbox, relative))) throw new Error(`Inbox file already exists: ${relative}`);
+  }
 }
 
 function ensureStarterPackage(target, changes) {
@@ -101,10 +154,19 @@ function ensureStarterPackage(target, changes) {
   changes.updated += 1;
 }
 
-export function initVault({ target = process.cwd(), agent, installSkills = true, output = console.log } = {}) {
+export function initVault({
+  target = process.cwd(),
+  agent,
+  installSkills = true,
+  documents = [],
+  documentsMayLeaveMachine = false,
+  publicExportEnabled = true,
+  output = console.log,
+} = {}) {
   target = path.resolve(target);
   if (target === path.parse(target).root || target === os.homedir()) throw new Error(`Refusing to initialize broad directory: ${target}`);
   if (existsSync(target) && !statSync(target).isDirectory()) throw new Error(`Target is not a directory: ${target}`);
+  validateDocumentTargets(documents, target);
   mkdirSync(target, { recursive: true });
   preflight(target);
 
@@ -112,9 +174,16 @@ export function initVault({ target = process.cwd(), agent, installSkills = true,
 
   const changes = { created: 0, updated: 0, skipped: 0 };
   for (const [source, destination] of files) {
-    writeIfMissing(path.join(packageRoot, source), path.join(target, destination), changes);
+    const created = writeIfMissing(path.join(packageRoot, source), path.join(target, destination), changes);
+    if (created && destination === '_meta/redaction-policy.yml') {
+      setCreatedBoolean(path.join(target, destination), 'documents_may_leave_machine', documentsMayLeaveMachine);
+    }
+    if (created && destination === 'exports/profiles/public.yml') {
+      setCreatedBoolean(path.join(target, destination), 'enabled', publicExportEnabled);
+    }
   }
   ensureStarterPackage(target, changes);
+  copyDocuments(documents, target);
 
   const insideGit = spawnSync('git', ['rev-parse', '--show-toplevel'], { cwd: target, stdio: 'ignore' }).status === 0;
   if (!insideGit) run('git', ['init', '-q'], target);
@@ -131,20 +200,93 @@ export function initVault({ target = process.cwd(), agent, installSkills = true,
 
   output(`LLM-Wiki starter ready in ${target}`);
   output(`Created ${changes.created} files; updated ${changes.updated}; preserved ${changes.skipped} existing files; installed ${installSkills ? profile.skills.length : 0} skills.`);
+  if (documents.length > 0) output(`Copied ${documents.length} document(s) to inbox/.`);
   output('Preflight passed. Next: ask your agent to use llm-wiki-zero-to-working-wiki.');
 }
 
-function main() {
+function createPrompter(input, output) {
+  const lines = createInterface({ input, crlfDelay: Infinity });
+  const answers = lines[Symbol.asyncIterator]();
+  return {
+    async ask(prompt) {
+      output.write(prompt);
+      const answer = await answers.next();
+      if (answer.done) throw new Error('Interactive input ended before setup was complete.');
+      return answer.value.trim();
+    },
+    close: () => lines.close(),
+  };
+}
+
+async function askChoice(prompter, question, options, defaultIndex = 0) {
+  while (true) {
+    const choices = options.map((option, index) => `  ${index + 1}) ${option.label}`).join('\n');
+    const answer = await prompter.ask(`? ${question}\n${choices}\n> `);
+    if (!answer) return options[defaultIndex].value;
+    const selected = options[Number(answer) - 1] ?? options.find((option) => option.label.toLowerCase() === answer.toLowerCase());
+    if (selected) return selected.value;
+  }
+}
+
+export async function interactiveInit({
+  target = path.resolve(process.cwd(), 'my-llm-wiki'),
+  cwd = process.cwd(),
+  input = process.stdin,
+  output = process.stdout,
+  installSkills = true,
+} = {}) {
+  const prompter = createPrompter(input, output);
+  try {
+    const agent = await askChoice(prompter, 'Which agent do you use?', [
+      { label: 'Claude Code', value: 'claude-code' },
+      { label: 'Codex', value: 'codex' },
+    ]);
+    const documentsAnswer = await prompter.ask('? Where are your documents? (leave blank to skip)\n> ');
+    const documentsMayLeaveMachine = await askChoice(prompter, 'Can documents leave this machine?', [
+      { label: 'No', value: false },
+      { label: 'Yes', value: true },
+    ]);
+    const publicExportEnabled = await askChoice(prompter, 'Enable the public-export profile?', [
+      { label: 'Yes', value: true },
+      { label: 'No', value: false },
+    ]);
+    const resolvedTarget = path.resolve(cwd, target);
+    const documents = planDocuments(documentsAnswer ? path.resolve(cwd, documentsAnswer) : '', resolvedTarget);
+    initVault({
+      target: resolvedTarget,
+      agent,
+      installSkills,
+      documents,
+      documentsMayLeaveMachine,
+      publicExportEnabled,
+      output: (message) => output.write(`${message}\n`),
+    });
+    output.write(`\nReady. Open ${resolvedTarget} in ${agent === 'claude-code' ? 'Claude Code' : 'Codex'} and say: "Process my inbox".\n`);
+    return { target: resolvedTarget, agent, documentsMayLeaveMachine, publicExportEnabled };
+  } finally {
+    prompter.close();
+  }
+}
+
+async function main() {
   const { values, positionals } = parseArgs({
     options: {
       agent: { type: 'string', short: 'a' },
+      interactive: { type: 'boolean', short: 'i' },
       help: { type: 'boolean', short: 'h' },
     },
     allowPositionals: true,
   });
 
   if (values.help) {
-    console.log('Usage: llm-wiki-starter init [directory] [--agent <agent-id>]');
+    console.log('Usage: llm-wiki-starter [init [directory] [--agent <agent-id>]] [--interactive]');
+    return;
+  }
+
+  if (values.interactive || (positionals.length === 0 && process.stdin.isTTY && process.stdout.isTTY)) {
+    const directory = positionals[1] ?? 'my-llm-wiki';
+    if (positionals.length > 0 && positionals[0] !== 'init') throw new Error('Interactive setup accepts only the init command.');
+    await interactiveInit({ target: directory });
     return;
   }
 
@@ -155,7 +297,7 @@ function main() {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
   try {
-    main();
+    await main();
   } catch (error) {
     console.error(`llm-wiki-starter: ${error.message}`);
     process.exitCode = 1;

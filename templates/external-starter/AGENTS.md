@@ -26,6 +26,7 @@ exports/   generated export copies and reports
 ## External use and export
 
 - Keep private content local. Do not send it to an external model or service without explicit approval.
+- Read `_meta/redaction-policy.yml` before processing documents. If `documents_may_leave_machine` is `false` or missing, do not send document content to external services.
 - Before any export, read `_meta/redaction-policy.yml` and `exports/profiles/public.yml`.
 - Build public exports only from the profile allowlist. Never include `raw/`, drafts, private pages, or agent working files.
 - Preview redaction findings first. Do not change source files. Apply approved redactions only to an export copy.

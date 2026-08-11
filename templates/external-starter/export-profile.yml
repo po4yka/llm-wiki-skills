@@ -1,5 +1,6 @@
 profile_id: public
 version: "1.0.0"
+enabled: true
 audience: public
 purpose: Export an approved public subset of the vault.
 owner: vault-owner

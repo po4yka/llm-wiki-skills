@@ -12,7 +12,8 @@ Ask the agent to ingest `raw/sources/example-source.md`. The agent must preserve
 - Generated content is draft and requires human review.
 - `## My synthesis` is human-owned.
 - `_meta/redaction-policy.yml` requires a redaction preview.
-- `exports/profiles/public.yml` allows only approved public pages under `wiki/public/`.
+- `_meta/redaction-policy.yml` records whether documents may leave this machine.
+- When enabled, `exports/profiles/public.yml` allows only approved public pages under `wiki/public/`.
 - Publication and external uploads require explicit human approval.
 
 Add your own files under `raw/sources/` when you are ready. Do not put secrets in the vault.
@@ -25,4 +26,4 @@ Move only reviewed public pages to `wiki/public/`, then run:
 npm run external:build
 ```
 
-The command writes the public bundle to `dist/`. If it finds sensitive content or an unapproved page, it fails and writes details to `dist/redaction-report.json`.
+The command writes the public bundle to `dist/`. If the profile is disabled, or if the command finds sensitive content or an unapproved page, it fails without creating a publishable bundle.

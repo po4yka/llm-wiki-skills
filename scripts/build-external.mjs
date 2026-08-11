@@ -124,6 +124,7 @@ export function buildExternal({ root = process.cwd(), output = console.log } = {
 
   const profile = readFileSync(profilePath, 'utf8');
   const policy = readFileSync(policyPath, 'utf8');
+  if (/^enabled:\s*false\s*$/m.test(profile)) throw new Error('Public export profile is disabled.');
   if (!/wiki\/public\/\*\*/.test(profile) || !/fail_on_findings:\s*true/.test(profile)) {
     throw new Error('Public export profile must allow only wiki/public/** and fail on findings.');
   }

@@ -3,11 +3,13 @@ import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { initVault } from '../bin/llm-wiki-starter.mjs';
+import { Readable, Writable } from 'node:stream';
+import { initVault, interactiveInit } from '../bin/llm-wiki-starter.mjs';
 
 const temporaryRoot = mkdtempSync(path.join(os.tmpdir(), 'llm-wiki-starter-'));
 const target = path.join(temporaryRoot, 'vault');
 const existingTarget = path.join(temporaryRoot, 'existing-vault');
+const interactiveTarget = path.join(temporaryRoot, 'interactive-vault');
 
 try {
   assert.throws(() => initVault({ target: os.homedir(), installSkills: false }), /Refusing to initialize broad directory/);
@@ -15,8 +17,8 @@ try {
   assert.match(readFileSync(path.join(target, 'AGENTS.md'), 'utf8'), /Never edit files under `raw\/`/);
   assert.match(readFileSync(path.join(target, 'README.md'), 'utf8'), /already configured/);
   assert.match(readFileSync(path.join(target, 'raw/sources/example-source.md'), 'utf8'), /LLM-Wiki/);
-  assert.match(readFileSync(path.join(target, '_meta/redaction-policy.yml'), 'utf8'), /mode: preview-first/);
-  assert.match(readFileSync(path.join(target, 'exports/profiles/public.yml'), 'utf8'), /raw\/\*\*[\s\S]*fail_on_findings: true/);
+  assert.match(readFileSync(path.join(target, '_meta/redaction-policy.yml'), 'utf8'), /documents_may_leave_machine: false/);
+  assert.match(readFileSync(path.join(target, 'exports/profiles/public.yml'), 'utf8'), /enabled: true[\s\S]*raw\/\*\*[\s\S]*fail_on_findings: true/);
   assert.match(readFileSync(path.join(target, 'package.json'), 'utf8'), /external:build/);
 
   const publicPage = path.join(target, 'wiki/public/example.md');
@@ -40,6 +42,32 @@ try {
   assert.equal(blockedBuild.status, 1);
   assert.equal(existsSync(path.join(target, 'dist/manifest.json')), false);
   assert.equal(JSON.parse(readFileSync(path.join(target, 'dist/redaction-report.json'), 'utf8')).finding_count, 1);
+
+  mkdirSync(path.join(temporaryRoot, 'documents'));
+  writeFileSync(path.join(temporaryRoot, 'documents/notes.md'), '# Notes\n');
+  let transcript = '';
+  const interactiveResult = await interactiveInit({
+    target: 'interactive-vault',
+    cwd: temporaryRoot,
+    input: Readable.from(['2\n', 'documents\n', '1\n', '2\n']),
+    output: new Writable({
+      write(chunk, _encoding, callback) {
+        transcript += chunk;
+        callback();
+      },
+    }),
+    installSkills: false,
+  });
+  assert.equal(interactiveResult.agent, 'codex');
+  assert.equal(interactiveResult.documentsMayLeaveMachine, false);
+  assert.equal(interactiveResult.publicExportEnabled, false);
+  assert.equal(readFileSync(path.join(interactiveTarget, 'inbox/notes.md'), 'utf8'), '# Notes\n');
+  assert.match(readFileSync(path.join(interactiveTarget, '_meta/redaction-policy.yml'), 'utf8'), /documents_may_leave_machine: false/);
+  assert.match(readFileSync(path.join(interactiveTarget, 'exports/profiles/public.yml'), 'utf8'), /enabled: false/);
+  assert.match(transcript, /Which agent do you use\?[\s\S]*Where are your documents\?[\s\S]*Process my inbox/);
+  const disabledBuild = spawnSync(npm, ['run', 'external:build'], { cwd: interactiveTarget, encoding: 'utf8' });
+  assert.equal(disabledBuild.status, 1);
+  assert.match(disabledBuild.stderr, /Public export profile is disabled/);
 
   mkdirSync(existingTarget);
   writeFileSync(path.join(existingTarget, 'package.json'), '{"private":true,"description":"keep me"}\n');
