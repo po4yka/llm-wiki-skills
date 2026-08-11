@@ -43,6 +43,16 @@ try {
   assert.equal(existsSync(path.join(target, 'dist/wiki/example.md')), true);
   assert.equal(JSON.parse(readFileSync(path.join(target, 'dist/manifest.json'), 'utf8')).status, 'passed');
 
+  const policyPath = path.join(target, '_meta/redaction-policy.yml');
+  const originalPolicy = readFileSync(policyPath, 'utf8');
+  writeFileSync(policyPath, originalPolicy.replace('patterns:\n', 'patterns:\n  custom_id: "CUSTOM-[0-9]{4}"\n'));
+  writeFileSync(publicPage, `${readFileSync(publicPage, 'utf8')}\nCUSTOM-4821\n`);
+  const configuredPolicyBuild = spawnSync(npm, ['run', 'external:build'], { cwd: target, encoding: 'utf8' });
+  assert.equal(configuredPolicyBuild.status, 1);
+  assert.equal(JSON.parse(readFileSync(path.join(target, 'dist/redaction-report.json'), 'utf8')).findings[0].kind, 'custom_id');
+  writeFileSync(policyPath, originalPolicy);
+  writeFileSync(publicPage, readFileSync(publicPage, 'utf8').replace('\nCUSTOM-4821\n', ''));
+
   const externalDist = path.join(temporaryRoot, 'external-dist');
   mkdirSync(path.join(externalDist, 'wiki'), { recursive: true });
   writeFileSync(path.join(externalDist, 'wiki/sentinel.txt'), 'keep\n');

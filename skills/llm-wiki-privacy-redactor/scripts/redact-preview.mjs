@@ -4,18 +4,16 @@ import path from 'node:path';
 const args = process.argv.slice(2);
 const jsonMode = args.includes('--json');
 const failOnFindings = args.includes('--fail-on-findings');
-const targetArg = args.find((arg) => !arg.startsWith('--')) ?? '.';
 const cwd = process.cwd();
-const target = path.resolve(targetArg);
-const patterns = {
+const defaultPatterns = {
   email: /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g,
-  phone: /\+?[0-9][0-9 .()\-]{7,}[0-9]/g,
-  secret_like: /\b(api[_-]?key|token|secret|password|bearer)[:=][^\s)]+/gi,
+  phone: /(?<![0-9])(?!(?:19|20)[0-9]{2}-[0-9]{2}-[0-9]{2}\b)\+?[0-9][0-9 .()\-]{7,}[0-9]/g,
+  secret_like: /(?:\b(?:(?:api[_-]?key|token|secret|password)\s*[:=]\s*[^\s)]+|authorization\s*:\s*(?:bearer\s+)?[^\s)]+|bearer\s+[^\s)]+)|-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----)/gi,
   internal_url: /https?:\/\/(localhost|127\.0\.0\.1|[^/\s)]+\.internal)(\/[^\s)]*)?/gi,
 };
 
 if (args.includes('--help') || args.includes('-h')) {
-  console.log(`Usage: node scripts/redact-preview.mjs [--json] [--fail-on-findings] [path]
+  console.log(`Usage: node scripts/redact-preview.mjs [--json] [--fail-on-findings] [--policy path] [path]
 
 Preview potential sensitive content without changing files.
 
@@ -23,6 +21,16 @@ Findings include categories and line numbers only; matched values are not printe
 `);
   process.exit(0);
 }
+
+const policyIndexes = args.flatMap((arg, index) => arg === '--policy' ? [index] : []);
+if (policyIndexes.length > 1 || (policyIndexes.length === 1 && (!args[policyIndexes[0] + 1] || args[policyIndexes[0] + 1].startsWith('--')))) {
+  console.error('Invalid --policy option: expected one file path');
+  process.exit(2);
+}
+const policyValueIndex = policyIndexes.length === 1 ? policyIndexes[0] + 1 : -1;
+const policyArg = policyValueIndex >= 0 ? args[policyValueIndex] : '_meta/redaction-policy.yml';
+const targetArg = args.find((arg, index) => !arg.startsWith('--') && index !== policyValueIndex) ?? '.';
+const target = path.resolve(targetArg);
 
 function toPosix(filePath) {
   return filePath.split(path.sep).join('/');
@@ -34,6 +42,49 @@ function displayPath(absPath) {
 
 function readText(absPath) {
   return fs.readFileSync(absPath, 'utf8');
+}
+
+function parsePatterns(policyText) {
+  const lines = policyText.split(/\r?\n/);
+  const start = lines.findIndex((line) => /^patterns:\s*(?:#.*)?$/.test(line));
+  if (start < 0) throw new Error('missing patterns');
+
+  const parsed = {};
+  for (const line of lines.slice(start + 1)) {
+    if (/^\s*(?:#.*)?$/.test(line)) continue;
+    if (!/^ /.test(line)) break;
+
+    const entry = line.match(/^ +([A-Za-z0-9_-]+):\s*("(?:[^"\\]|\\.)*")\s*(?:#.*)?$/);
+    if (!entry || Object.hasOwn(parsed, entry[1])) throw new Error('invalid pattern');
+
+    let source = JSON.parse(entry[2]);
+    let flags = 'g';
+    if (source.startsWith('(?i)')) {
+      source = source.slice(4);
+      flags += 'i';
+    }
+    if (!source) throw new Error('empty pattern');
+    parsed[entry[1]] = new RegExp(source, flags);
+  }
+
+  if (Object.keys(parsed).length === 0) throw new Error('missing patterns');
+  return parsed;
+}
+
+function loadPatterns() {
+  const policyPath = path.resolve(policyArg);
+  if (!fs.existsSync(policyPath)) {
+    if (policyValueIndex < 0) return defaultPatterns;
+    console.error(`Invalid redaction policy: ${policyArg}`);
+    process.exit(2);
+  }
+
+  try {
+    return parsePatterns(readText(policyPath));
+  } catch {
+    console.error(`Invalid redaction policy: ${policyArg}`);
+    process.exit(2);
+  }
 }
 
 function listFiles(startDir, predicate = () => true) {
@@ -70,6 +121,8 @@ if (!fs.existsSync(target)) {
   process.exit(2);
 }
 
+const patterns = loadPatterns();
+
 const files = fs.statSync(target).isDirectory()
   ? listFiles(target, (_abs, rel) => /\.(md|txt|json|ya?ml)$/i.test(rel))
   : [target];
@@ -93,7 +146,7 @@ for (const file of files) {
     }
 
     if (inFrontmatter) {
-      const sensitiveMeta = line.match(/^(privacy|classification):\s*(sensitive|regulated|confidential|private)\b/i);
+      const sensitiveMeta = line.match(/^(privacy|classification|sensitivity):\s*(internal|sensitive|regulated|unknown|confidential|private)\b/i);
       if (sensitiveMeta) {
         findings.push({ file: displayPath(file), line: index + 1, kind: 'sensitive_metadata' });
       }

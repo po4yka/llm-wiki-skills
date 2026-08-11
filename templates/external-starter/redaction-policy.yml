@@ -11,8 +11,8 @@ exclude_by_default:
     - regulated
 patterns:
   email: "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-  phone: "(?!(?:19|20)[0-9]{2}-[0-9]{2}-[0-9]{2}\\b)\\+?[0-9][0-9 .()\\-]{7,}[0-9]"
-  secret_like: "(?i)(api[_-]?key|token|secret|password|bearer)[:=][^\\s]+"
+  phone: "(?<![0-9])(?!(?:19|20)[0-9]{2}-[0-9]{2}-[0-9]{2}\\b)\\+?[0-9][0-9 .()\\-]{7,}[0-9]"
+  secret_like: "(?i)(?:\\b(?:(?:api[_-]?key|token|secret|password)\\s*[:=]\\s*[^\\s)]+|authorization\\s*:\\s*(?:bearer\\s+)?[^\\s)]+|bearer\\s+[^\\s)]+)|-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----)"
   internal_url: "https?://(localhost|127\\.0\\.0\\.1|[^/]*\\.internal)(/[^\\s)]*)?"
 placeholders:
   email: "[REDACTED_EMAIL]"

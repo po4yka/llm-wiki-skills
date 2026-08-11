@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Agent Skills-compatible coding agents. Requires read access to target files; write access is optional and should use preview-first mode.
 metadata:
   author: po4yka
-  version: "1.0.0"
+  version: "1.0.1"
   install_scope: self-contained
 ---
 

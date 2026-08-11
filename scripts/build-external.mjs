@@ -279,7 +279,7 @@ export function buildExternal({ root = process.cwd(), output = console.log } = {
     copyFileSync(path.join(root, 'README.md'), path.join(stage, 'README.md'));
 
     const scanner = path.join(path.dirname(fileURLToPath(import.meta.url)), 'redact-preview.mjs');
-    const scan = spawnSync(process.execPath, [scanner, '--json', '.'], { cwd: stage, encoding: 'utf8' });
+    const scan = spawnSync(process.execPath, [scanner, '--json', '--policy', policyPath, '.'], { cwd: stage, encoding: 'utf8' });
     if (scan.status !== 0) throw new Error(scan.stderr.trim() || 'Redaction scan failed.');
 
     const sensitiveFindings = JSON.parse(scan.stdout).findings.map((finding) => ({
