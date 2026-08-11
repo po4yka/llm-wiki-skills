@@ -104,7 +104,7 @@ function checkWorkflowPolicy() {
     ['npm run smoke:skills', /run: npm run smoke:skills\b/],
     ['npm run check:skill-versions -- --strict', /npm run check:skill-versions -- --strict/],
     ['actionlint', /go install github\.com\/rhysd\/actionlint\/cmd\/actionlint@v1\.7\.12/],
-    ['gitleaks', /go install github\.com\/gitleaks\/gitleaks\/v8\/cmd\/gitleaks@v8\.30\.1/],
+    ['gitleaks', /go install github\.com\/zricethezav\/gitleaks\/v8@v8\.30\.1/],
   ];
 
   for (const [label, pattern] of releaseRequired) {
