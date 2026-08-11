@@ -4,14 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 1.1.0 - 2026-08-11
+
 ### Added
 
 - Supported `external-starter` profile with nine core skills and a copy-paste agent bootstrap prompt.
 - Publishable `llm-wiki-starter` CLI for one-command vault creation, skill installation and preflight.
 - Ready external agent preset with instructions, sample source, redaction policy and public export profile.
 - Fail-closed `external:build` command for public Markdown bundles, manifests, redaction reports and checksums.
-- Credentialed product E2E matrix for Linux/macOS and Claude Code/Codex, using the packaged external starter and bundled starter skills.
+- Credential-free product E2E matrix for Linux/macOS and Claude Code/Codex layouts, using the packaged external starter and bundled starter skills.
 - Interactive starter setup for agent selection, document import, model-boundary privacy and public-export settings.
+- Versioned release ZIP, SHA-256, release manifest, changelog and SPDX dependency manifest.
+
+### Security
+
+- Rejected symbolic links in mutable starter and export paths.
+- Enforced public export eligibility and configured redaction policies.
+- Prevented workflow dispatch shell injection and isolated model secrets from pull-request jobs.
 
 ## 1.0.0 - 2026-07-08
 

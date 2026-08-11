@@ -1,6 +1,6 @@
 {
   "name": "llm-wiki-starter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "One-command bootstrap for a local-first LLM-Wiki vault.",
   "license": "MIT",
   "repository": {
@@ -61,6 +61,7 @@
     "redact:preview": "node scripts/redact-preview.mjs",
     "external:build": "node scripts/build-external.mjs",
     "release:notes": "node scripts/generate-release-notes.mjs",
+    "release:artifacts": "node scripts/generate-release-artifacts.mjs",
     "test:starter": "node scripts/test-starter-cli.mjs",
     "test:redaction": "node scripts/test-redact-preview.mjs",
     "test:product-e2e": "node scripts/test-product-e2e.mjs"

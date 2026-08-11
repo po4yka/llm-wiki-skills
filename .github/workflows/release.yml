@@ -38,13 +38,19 @@ jobs:
       - name: Validate npm starter package
         run: npm pack --dry-run
 
-      - name: Validate release tag
-        if: github.ref_type == 'tag'
+      - name: Resolve release identity
+        id: release
         run: |
-          if [[ ! "${GITHUB_REF_NAME}" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
-            echo "Release tag must use vMAJOR.MINOR.PATCH or MAJOR.MINOR.PATCH."
+          package_version="$(node -p "require('./package.json').version")"
+          release_tag="${GITHUB_REF_NAME}"
+          if [[ "${GITHUB_REF_TYPE}" != "tag" ]]; then
+            release_tag="v${package_version}"
+          fi
+          if [[ ! "${release_tag}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || [[ "${release_tag#v}" != "${package_version}" ]]; then
+            echo "Release tag must be v${package_version}."
             exit 1
           fi
+          echo "tag=${release_tag}" >> "${GITHUB_OUTPUT}"
 
       - name: Find previous release tag
         id: previous-release
@@ -88,6 +94,7 @@ jobs:
         uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version: stable
+          cache: false
 
       - name: Run actionlint
         run: |
@@ -103,12 +110,16 @@ jobs:
         run: npm run catalog:generate
 
       - name: Generate release notes
-        run: npm run release:notes -- "${GITHUB_REF_NAME}"
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: npm run release:notes -- "${RELEASE_TAG}"
 
       - name: Build release archive
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
         run: |
           mkdir -p dist
-          zip -r "dist/llm-wiki-skills-${GITHUB_REF_NAME}.zip" \
+          git archive --format=zip --output="dist/llm-wiki-external-starter-${RELEASE_TAG}.zip" HEAD \
             README.md \
             AGENTS.md \
             CLAUDE.md \
@@ -132,13 +143,33 @@ jobs:
             templates \
             domain-packs \
             benchmarks \
-            examples \
-            -x 'docs/assets/originals/*'
+            examples
+
+      - name: Generate dependency manifest
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: npm sbom --package-lock-only --omit=dev --sbom-format=spdx > "dist/llm-wiki-external-starter-${RELEASE_TAG}.spdx.json"
+
+      - name: Generate release manifest and checksum
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: npm run release:artifacts -- "${RELEASE_TAG}"
+
+      - name: Verify release metadata
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        working-directory: dist
+        run: |
+          sha256sum --check "llm-wiki-external-starter-${RELEASE_TAG}.zip.sha256"
+          node -e 'JSON.parse(require("fs").readFileSync(process.argv[1]))' "release-manifest-${RELEASE_TAG}.json"
+          node -e 'JSON.parse(require("fs").readFileSync(process.argv[1]))' "llm-wiki-external-starter-${RELEASE_TAG}.spdx.json"
 
       - name: Extract release archive
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
         run: |
           mkdir -p "${RUNNER_TEMP}/release-archive"
-          unzip -q "dist/llm-wiki-skills-${GITHUB_REF_NAME}.zip" -d "${RUNNER_TEMP}/release-archive"
+          unzip -q "dist/llm-wiki-external-starter-${RELEASE_TAG}.zip" -d "${RUNNER_TEMP}/release-archive"
 
       - name: Validate packaged archive
         working-directory: ${{ runner.temp }}/release-archive
@@ -153,19 +184,28 @@ jobs:
         with:
           name: release-artifacts
           path: |
-            dist/llm-wiki-skills-${{ github.ref_name }}.zip
+            dist/llm-wiki-external-starter-${{ steps.release.outputs.tag }}.zip
+            dist/llm-wiki-external-starter-${{ steps.release.outputs.tag }}.zip.sha256
+            dist/llm-wiki-external-starter-${{ steps.release.outputs.tag }}.spdx.json
+            dist/release-manifest-${{ steps.release.outputs.tag }}.json
+            dist/CHANGELOG-${{ steps.release.outputs.tag }}.md
             dist/skills-catalog.json
-            dist/release-notes-${{ github.ref_name }}.md
+            dist/release-notes-${{ steps.release.outputs.tag }}.md
           if-no-files-found: error
 
       - name: Create GitHub release
         if: startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" \
-            "dist/llm-wiki-skills-${GITHUB_REF_NAME}.zip" \
+          gh release create "${RELEASE_TAG}" \
+            "dist/llm-wiki-external-starter-${RELEASE_TAG}.zip" \
+            "dist/llm-wiki-external-starter-${RELEASE_TAG}.zip.sha256" \
+            "dist/llm-wiki-external-starter-${RELEASE_TAG}.spdx.json" \
+            "dist/release-manifest-${RELEASE_TAG}.json" \
+            "dist/CHANGELOG-${RELEASE_TAG}.md" \
             dist/skills-catalog.json \
-            "dist/release-notes-${GITHUB_REF_NAME}.md" \
-            --title "${GITHUB_REF_NAME}" \
-            --notes-file "dist/release-notes-${GITHUB_REF_NAME}.md"
+            "dist/release-notes-${RELEASE_TAG}.md" \
+            --title "LLM-Wiki External Starter ${RELEASE_TAG}" \
+            --notes-file "dist/release-notes-${RELEASE_TAG}.md"
