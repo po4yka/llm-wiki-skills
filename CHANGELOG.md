@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Fixed
+
+- Corrected the pinned Gitleaks module path used by CI and release jobs.
+
 ## 1.1.0 - 2026-08-11
 
 ### Added

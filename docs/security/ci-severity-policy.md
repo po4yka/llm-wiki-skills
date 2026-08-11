@@ -36,7 +36,7 @@ Pinned tool versions:
 
 - `skills@1.5.15`
 - `markdownlint-cli2@0.23.0`
-- `github.com/gitleaks/gitleaks/v8/cmd/gitleaks@v8.30.1`
+- `github.com/zricethezav/gitleaks/v8@v8.30.1`
 - `github.com/rhysd/actionlint/cmd/actionlint@v1.7.12`
 - `zizmor==1.26.1`
 - `promptfoo@0.121.17` in reusable workflow templates.
