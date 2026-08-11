@@ -64,8 +64,14 @@ jobs:
           npm install -g pagefind
 
       - name: Build LLM-Wiki export
+        env:
+          EXPORT_PROFILE: ${{ github.event.inputs.profile || 'public-site' }}
         run: |
-          echo "Replace with scripts/build_export.py --profile ${{ github.event.inputs.profile || 'public-site' }}."
+          case "$EXPORT_PROFILE" in
+            public-site) ;;
+            *) echo "::error::Unsupported export profile: $EXPORT_PROFILE"; exit 1 ;;
+          esac
+          echo "Replace with scripts/build_export.py --profile \"$EXPORT_PROFILE\"."
           mkdir -p exports/builds/public-site/latest/site exports/reports/public-site/latest
           echo "# LLM-Wiki Export" > exports/builds/public-site/latest/site/index.md
           echo "placeholder" > exports/builds/public-site/latest/llms.txt

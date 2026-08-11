@@ -69,6 +69,16 @@ assertIncludes(
   'permissions:\n      pages: write\n      id-token: write\n    environment:',
   'templates/llm-wiki-publish.github-actions.yml: Pages and OIDC permissions must be limited to the publish job',
 );
+assertNotMatch(
+  'templates/llm-wiki-publish.github-actions.yml',
+  /^\s*(?:echo|printf|bash|sh|eval).*\$\{\{\s*github\.event\.inputs\./m,
+  'templates/llm-wiki-publish.github-actions.yml: dispatch input must not be interpolated into shell source',
+);
+assertIncludes(
+  'templates/llm-wiki-publish.github-actions.yml',
+  'case "$EXPORT_PROFILE" in\n            public-site) ;;',
+  'templates/llm-wiki-publish.github-actions.yml: dispatch profile must use the supported-profile allowlist',
+);
 
 for (const workflow of [
   'templates/llm-wiki-evals.github-actions.yml',
