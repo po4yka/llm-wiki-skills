@@ -6,6 +6,7 @@ import {
   constants,
   copyFileSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   readFileSync,
   readdirSync,
@@ -81,6 +82,21 @@ function writeIfMissing(source, target, changes) {
   copyFileSync(source, target, constants.COPYFILE_EXCL);
   changes.created += 1;
   return true;
+}
+
+function assertSafePath(root, target) {
+  const relative = path.relative(root, target);
+  if (relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+    throw new Error(`Path escapes the wiki directory: ${target}`);
+  }
+
+  let current = root;
+  for (const part of relative.split(path.sep).filter(Boolean)) {
+    current = path.join(current, part);
+    if (existsSync(current) && lstatSync(current).isSymbolicLink()) {
+      throw new Error(`Symbolic links are not supported in starter paths: ${current}`);
+    }
+  }
 }
 
 function setCreatedBoolean(target, key, value) {
@@ -165,9 +181,17 @@ export function initVault({
 } = {}) {
   target = path.resolve(target);
   if (target === path.parse(target).root || target === os.homedir()) throw new Error(`Refusing to initialize broad directory: ${target}`);
+  if (existsSync(target) && lstatSync(target).isSymbolicLink()) throw new Error(`Target must not be a symbolic link: ${target}`);
   if (existsSync(target) && !statSync(target).isDirectory()) throw new Error(`Target is not a directory: ${target}`);
-  validateDocumentTargets(documents, target);
   mkdirSync(target, { recursive: true });
+  const targetPaths = [
+    ...directories.map((directory) => path.join(target, directory)),
+    ...files.map(([, destination]) => path.join(target, destination)),
+    path.join(target, 'package.json'),
+    ...documents.map(([, relative]) => path.join(target, 'inbox', relative)),
+  ];
+  for (const targetPath of targetPaths) assertSafePath(target, targetPath);
+  validateDocumentTargets(documents, target);
   preflight(target);
 
   for (const directory of directories) mkdirSync(path.join(target, directory), { recursive: true });

@@ -6,6 +6,7 @@ import {
   copyFileSync,
   cpSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -106,16 +107,36 @@ function clearOwnedOutputs(distRoot) {
   for (const output of ownedOutputs) rmSync(path.join(distRoot, output), { recursive: true, force: true });
 }
 
+function assertSafePath(root, target) {
+  const relative = path.relative(root, target);
+  if (relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+    throw new Error(`Path escapes the vault: ${target}`);
+  }
+
+  let current = root;
+  for (const part of relative.split(path.sep).filter(Boolean)) {
+    current = path.join(current, part);
+    if (existsSync(current) && lstatSync(current).isSymbolicLink()) {
+      throw new Error(`Symbolic links are not supported in export paths: ${toPosix(path.relative(root, current))}`);
+    }
+  }
+}
+
 function writeJson(filePath, value) {
   writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
 export function buildExternal({ root = process.cwd(), output = console.log } = {}) {
   root = path.resolve(root);
+  if (existsSync(root) && lstatSync(root).isSymbolicLink()) throw new Error(`Vault root must not be a symbolic link: ${root}`);
   const publicWiki = path.join(root, 'wiki/public');
   const profilePath = path.join(root, 'exports/profiles/public.yml');
   const policyPath = path.join(root, '_meta/redaction-policy.yml');
   const distRoot = path.join(root, 'dist');
+
+  for (const target of [publicWiki, profilePath, policyPath, path.join(root, 'AGENTS.md'), path.join(root, 'README.md'), distRoot]) {
+    assertSafePath(root, target);
+  }
 
   for (const required of [publicWiki, profilePath, policyPath, path.join(root, 'AGENTS.md'), path.join(root, 'README.md')]) {
     if (!existsSync(required)) throw new Error(`Missing required path: ${toPosix(path.relative(root, required))}`);

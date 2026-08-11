@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { Readable, Writable } from 'node:stream';
@@ -13,6 +13,12 @@ const interactiveTarget = path.join(temporaryRoot, 'interactive-vault');
 
 try {
   assert.throws(() => initVault({ target: os.homedir(), installSkills: false }), /Refusing to initialize broad directory/);
+  const outsideTarget = path.join(temporaryRoot, 'outside-target');
+  const linkedTarget = path.join(temporaryRoot, 'linked-target');
+  mkdirSync(outsideTarget);
+  symlinkSync(outsideTarget, linkedTarget, 'dir');
+  assert.throws(() => initVault({ target: linkedTarget, installSkills: false }), /must not be a symbolic link/);
+  assert.equal(existsSync(path.join(outsideTarget, 'AGENTS.md')), false);
   initVault({ target, installSkills: false, output: () => {} });
   assert.match(readFileSync(path.join(target, 'AGENTS.md'), 'utf8'), /Never edit files under `raw\/`/);
   assert.match(readFileSync(path.join(target, 'README.md'), 'utf8'), /already configured/);
@@ -36,6 +42,17 @@ try {
   ]);
   assert.equal(existsSync(path.join(target, 'dist/wiki/example.md')), true);
   assert.equal(JSON.parse(readFileSync(path.join(target, 'dist/manifest.json'), 'utf8')).status, 'passed');
+
+  const externalDist = path.join(temporaryRoot, 'external-dist');
+  mkdirSync(path.join(externalDist, 'wiki'), { recursive: true });
+  writeFileSync(path.join(externalDist, 'wiki/sentinel.txt'), 'keep\n');
+  rmSync(path.join(target, 'dist'), { recursive: true });
+  symlinkSync(externalDist, path.join(target, 'dist'), 'dir');
+  const symlinkedBuild = spawnSync(npm, ['run', 'external:build'], { cwd: target, encoding: 'utf8' });
+  assert.equal(symlinkedBuild.status, 1);
+  assert.match(symlinkedBuild.stderr, /Symbolic links are not supported in export paths/);
+  assert.equal(readFileSync(path.join(externalDist, 'wiki/sentinel.txt'), 'utf8'), 'keep\n');
+  rmSync(path.join(target, 'dist'));
 
   writeFileSync(publicPage, readFileSync(publicPage, 'utf8').replace('review_required: false', 'review_required: false\nsensitivity: sensitive'));
   const blockedBuild = spawnSync(npm, ['run', 'external:build'], { cwd: target, encoding: 'utf8' });
