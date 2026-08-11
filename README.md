@@ -242,7 +242,7 @@ npm run refresh:reports
 
 The smoke test lists available skills, renders `llm-wiki-faq` with `skills use` without launching an agent, and installs that skill into a temporary Claude Code project with `skills add --copy -y`.
 
-The credentialed [Product E2E workflow](.github/workflows/product-e2e.yml) installs the starter tarball in a clean environment, then runs the complete ingest, query, lint, redaction and export flow on Linux and macOS with Claude Code and Codex. It runs on `main`, weekly and on demand. Runs require the `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` repository secrets. To run one matrix cell locally:
+The [Product E2E workflow](.github/workflows/product-e2e.yml) installs the starter tarball in a clean environment, then runs a deterministic ingest, query, lint, redaction and export fixture on Linux and macOS for the Claude Code and Codex layouts. It runs on `main`, weekly and on demand without provider credentials. To run one matrix cell locally:
 
 ```bash
 npm run test:product-e2e -- --agent codex

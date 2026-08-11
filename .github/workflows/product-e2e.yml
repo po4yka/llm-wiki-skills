@@ -37,25 +37,10 @@ jobs:
           node-version: 22
           package-manager-cache: false
 
-      - name: Install Claude Code
-        if: matrix.agent == 'claude-code'
-        run: npm install --global @anthropic-ai/claude-code@2.1.227
-
-      - name: Install Codex
-        if: matrix.agent == 'codex'
-        run: npm install --global @openai/codex@0.147.0
-
-      - name: Run Claude Code product E2E
-        if: matrix.agent == 'claude-code'
+      - name: Run product E2E
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: npm run test:product-e2e -- --agent claude-code
-
-      - name: Run Codex product E2E
-        if: matrix.agent == 'codex'
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: npm run test:product-e2e -- --agent codex
+          E2E_AGENT: ${{ matrix.agent }}
+        run: npm run test:product-e2e -- --agent "$E2E_AGENT"
 
       - name: Upload failed E2E workspace
         if: failure()

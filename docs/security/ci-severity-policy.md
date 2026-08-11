@@ -40,7 +40,6 @@ Pinned tool versions:
 - `github.com/rhysd/actionlint/cmd/actionlint@v1.7.12`
 - `zizmor==1.26.1`
 - `promptfoo@0.121.17` in reusable workflow templates.
-- `@anthropic-ai/claude-code@2.1.227` and `@openai/codex@0.147.0` in the credentialed product E2E workflow.
 
 ## Promotion path
 
