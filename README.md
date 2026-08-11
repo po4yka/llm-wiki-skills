@@ -31,6 +31,26 @@ List available skills:
 npx skills add po4yka/llm-wiki-skills --list
 ```
 
+### External starter (recommended)
+
+External users should start with the supported [`external-starter` profile](profiles/external-starter/profile.json). It installs nine skills for setup, the core operating loop, privacy, security review and controlled export without the full lifecycle pack.
+
+```bash
+npx skills add po4yka/llm-wiki-skills \
+  --skill llm-wiki-zero-to-working-wiki \
+  --skill llm-wiki-setup \
+  --skill wiki-triage \
+  --skill wiki-ingest \
+  --skill wiki-query \
+  --skill wiki-lint \
+  --skill llm-wiki-privacy-redactor \
+  --skill llm-wiki-export-publish \
+  --skill llm-wiki-security-review \
+  --copy -y -a codex
+```
+
+Replace `codex` with the target agent ID. To let the agent install and configure the profile, paste [`profiles/external-starter/prompt.md`](profiles/external-starter/prompt.md) into it.
+
 Install the full pack for Claude Code:
 
 ```bash
@@ -199,6 +219,7 @@ It includes skills for:
 | [`policies/`](policies/) | Policy templates for redaction, retention, review and incident response. |
 | [`examples/`](examples/) | Small fixtures for first-run and validation scenarios. |
 | [`domain-packs/`](domain-packs/) | Domain-specific starter taxonomies and workflows. |
+| [`profiles/`](profiles/) | Supported skill subsets and copy-paste bootstrap prompts. |
 | [`benchmarks/`](benchmarks/) | Pilot questions and scoring rubric for local evaluation. |
 
 ## Validation, distribution, and operational reports

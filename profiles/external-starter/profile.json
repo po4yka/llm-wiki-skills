@@ -1,0 +1,19 @@
+{
+  "name": "external-starter",
+  "version": "1.0.0",
+  "description": "Supported minimal LLM-Wiki profile for external users.",
+  "repository": "po4yka/llm-wiki-skills",
+  "install_scope": "project",
+  "skills": [
+    "llm-wiki-zero-to-working-wiki",
+    "llm-wiki-setup",
+    "wiki-triage",
+    "wiki-ingest",
+    "wiki-query",
+    "wiki-lint",
+    "llm-wiki-privacy-redactor",
+    "llm-wiki-export-publish",
+    "llm-wiki-security-review"
+  ],
+  "bootstrap_prompt": "prompt.md"
+}

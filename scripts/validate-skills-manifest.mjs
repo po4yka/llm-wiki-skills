@@ -8,6 +8,8 @@ const skills = listSkillNames();
 const skillSet = new Set(skills);
 const manifestPath = path.join(repoRoot, 'skills.sh.json');
 const readmePath = path.join(repoRoot, 'README.md');
+const externalStarterPath = path.join(repoRoot, 'profiles', 'external-starter', 'profile.json');
+const externalStarterPromptPath = path.join(repoRoot, 'profiles', 'external-starter', 'prompt.md');
 
 function sorted(values) {
   return [...values].sort((a, b) => a.localeCompare(b));
@@ -111,6 +113,35 @@ for (const skillName of sorted(readmeSkillSet)) {
   const count = readmeSkillLinks.filter((entry) => entry === skillName).length;
   if (count > 1) {
     fail(`README.md references '${skillName}' ${count} times`);
+  }
+}
+
+let externalStarter;
+try {
+  externalStarter = JSON.parse(readText(externalStarterPath));
+} catch (error) {
+  fail(`profiles/external-starter/profile.json is missing or invalid: ${error.message}`);
+}
+
+if (externalStarter) {
+  if (externalStarter.name !== 'external-starter') {
+    fail("profiles/external-starter/profile.json: name must be 'external-starter'");
+  }
+
+  if (!Array.isArray(externalStarter.skills) || externalStarter.skills.length === 0) {
+    fail('profiles/external-starter/profile.json: skills must be a non-empty array');
+  } else {
+    const prompt = fs.existsSync(externalStarterPromptPath) ? readText(externalStarterPromptPath) : '';
+    const seen = new Set();
+
+    if (!prompt) fail('profiles/external-starter/prompt.md is missing');
+
+    for (const skillName of externalStarter.skills) {
+      if (!skillSet.has(skillName)) fail(`external-starter: references missing skill '${skillName}'`);
+      if (seen.has(skillName)) fail(`external-starter: duplicate skill '${skillName}'`);
+      if (!prompt.includes(`--skill ${skillName}`)) fail(`external-starter prompt: missing install flag for '${skillName}'`);
+      seen.add(skillName);
+    }
   }
 }
 

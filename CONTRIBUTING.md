@@ -27,6 +27,7 @@ It checks skill metadata, manifest/README consistency, local Markdown links, age
 | `docs/` | Conceptual and operational documentation. |
 | `templates/` | Starter vault files, schemas and report/page templates. |
 | `domain-packs/` | Domain-specific pack descriptions, overlays and optional apply profiles. |
+| `profiles/` | Supported install profiles for selected skill subsets. |
 | `examples/` | Small fixtures for validation and onboarding. |
 | `benchmarks/` | Pilot benchmark questions and scoring rubric. |
 | `scripts/` | Deterministic validation and generation helpers. |

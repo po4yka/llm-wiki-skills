@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+### Added
+
+- Supported `external-starter` profile with nine core skills and a copy-paste agent bootstrap prompt.
+
 ## 1.0.0 - 2026-07-08
 
 First stable release. Every skill's `metadata.version` resets to `1.0.0`; prior `0.x` version history for individual skills is superseded by this baseline.
