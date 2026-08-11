@@ -13,7 +13,7 @@ vMAJOR.MINOR.PATCH
 
 The release workflow also accepts the legacy `MAJOR.MINOR.PATCH` form used by the existing `1.0.0` release. Do not rewrite published tags only to add the prefix.
 
-The release workflow validates the pack, smoke-tests the package with the upstream `skills` CLI, generates catalogs and builds an archive.
+The release workflow validates the pack, smoke-tests the package with the upstream `skills` CLI, tests the starter CLI, generates catalogs and builds an archive.
 
 ## Skill versions
 
@@ -85,7 +85,7 @@ SKILLS_CLI_PACKAGE=skills@1.2.3 npm run smoke:skills
 ## Release checklist
 
 1. Run `npm run validate`.
-2. Run `npm run smoke:skills`.
+2. Run `npm run smoke:skills` and `npm pack --dry-run`.
 3. Run `npm run check:skill-versions` if any skills changed.
 4. Run `npm run catalog:generate`.
 5. Run `npm run release:notes -- vX.Y.Z`.
@@ -93,6 +93,7 @@ SKILLS_CLI_PACKAGE=skills@1.2.3 npm run smoke:skills
 7. Create tag `vX.Y.Z`.
 8. Confirm the extracted release archive passes `npm run validate` and `npm run smoke:skills`.
 9. Confirm the release archive includes the pack roots, machine-readable router and quality baseline, policies, package metadata, root guidance and validation workflows.
+10. Publish `llm-wiki-starter` to npm with maintainer credentials after the matching tag passes.
 
 ## Deprecation policy
 

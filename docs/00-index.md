@@ -11,9 +11,10 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 
 ### Fast path: first run
 
-1. [`quickstart.md`](quickstart.md)
-2. [`skill-router.md`](skill-router.md)
-3. [`07-skills-overview.md`](07-skills-overview.md)
+1. [`start-here.md`](start-here.md)
+2. [`quickstart.md`](quickstart.md)
+3. [`skill-router.md`](skill-router.md)
+4. [`07-skills-overview.md`](07-skills-overview.md)
 
 ### Fast path: personal workflow
 
@@ -191,6 +192,7 @@ LLM-Wiki is best understood as a **compiled knowledge layer** between immutable 
 | [`security/skill-supply-chain.md`](security/skill-supply-chain.md) | Agent Skills supply-chain security | how to review third-party Agent Skills before installation or distribution. | |
 | [`skill-router.md`](skill-router.md) | Skill router | Skill router | |
 | [`skills-catalog.md`](skills-catalog.md) | Skills catalog | Skills catalog | |
+| [`start-here.md`](start-here.md) | LLM-Wiki Agent — start here | LLM-Wiki Agent — start here | |
 | [`technology-decision-record-template.md`](technology-decision-record-template.md) | Technology decision record template | review-gated decision record for adding retrieval, ingestion, MCP/API, evaluation, security or publishing infrastructure to an LLM-Wiki. | |
 | [`templates-catalog.md`](templates-catalog.md) | Templates catalog | discoverability map for starter files in `templates/`. | |
 

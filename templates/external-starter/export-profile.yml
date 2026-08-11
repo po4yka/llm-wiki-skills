@@ -1,0 +1,71 @@
+profile_id: public
+version: "1.0.0"
+audience: public
+purpose: Export an approved public subset of the vault.
+owner: vault-owner
+reviewers:
+  - vault-owner
+
+include:
+  paths:
+    - wiki/public/**
+  review_states:
+    - approved
+    - published
+    - verified
+  publication_states:
+    - public
+
+exclude:
+  paths:
+    - raw/**
+    - inbox/**
+    - _agent/**
+    - _meta/**
+    - wiki/drafts/**
+    - wiki/private/**
+    - wiki/reviews/**
+  tags:
+    - private
+    - sensitive
+  review_states:
+    - draft
+    - rejected
+    - stale
+    - quarantined
+  sensitivity:
+    - internal
+    - sensitive
+    - regulated
+    - unknown
+  publication_states:
+    - private
+    - internal
+    - archived
+
+outputs:
+  root: dist
+  markdown_bundle: dist/wiki
+  agent_instructions: dist/AGENTS.md
+  readme: dist/README.md
+  manifest_json: dist/manifest.json
+  checksums: dist/checksums.txt
+
+redaction:
+  required: true
+  policy_path: _meta/redaction-policy.yml
+  report_path: dist/redaction-report.json
+  fail_on_findings: true
+
+validation:
+  require_citations: true
+  require_source_support: true
+  require_no_broken_links: true
+  require_checksums: true
+  require_export_manifest: true
+  require_search_index_allowlist: true
+  require_owner_approval: true
+
+release:
+  create_git_tag: false
+  create_github_release: false

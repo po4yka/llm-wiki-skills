@@ -12,70 +12,32 @@
 
 The steps below implement the solo local wiki lane. For a no-install preview, read `examples/demo-vault/README.md`.
 
-## 1. Install skills
+## 1. Create the starter vault
 
 ```bash
-npx skills add po4yka/llm-wiki-skills \
-  --skill llm-wiki-orient \
-  --skill llm-wiki-faq \
-  --skill llm-wiki-setup \
-  --skill wiki-triage \
-  --skill wiki-ingest \
-  --skill wiki-query \
-  --skill wiki-lint \
-  -a claude-code
+npx llm-wiki-starter init my-llm-wiki
 ```
 
-## 2. Create a vault
+The command:
 
-```bash
-mkdir my-llm-wiki
-cd my-llm-wiki
-mkdir -p raw/sources raw/assets inbox wiki/sources wiki/entities wiki/concepts wiki/queries wiki/synthesis _agent/reports _meta/schemas
-printf '# Wiki index\n\n## Sources\n\n## Concepts\n' > wiki/index.md
-printf '# Wiki log\n' > wiki/log.md
-git init
-```
+- creates the raw/wiki vault structure;
+- initializes git when the directory is not already in a repository;
+- applies the ready external agent preset with instructions and a safe sample source;
+- adds preview-first redaction and a fail-closed public export profile;
+- installs the nine `external-starter` skills;
+- checks the resulting structure.
 
-Copy starter files from this repository when available:
+Existing files are preserved. If `package.json` exists, the starter adds the missing `external:build` script and stops instead of replacing a conflicting script. If agent detection is wrong, add `--agent codex`, `--agent claude-code`, `--agent cursor` or `--agent opencode`.
 
-```bash
-cp templates/vault/AGENTS.md ./AGENTS.md
-cp templates/vault/CLAUDE.md ./CLAUDE.md
-cp templates/schemas/page.schema.json ./_meta/schemas/page.schema.json
-```
+## 2. Run the first agent loop
 
-## 3. Add one raw source
-
-```bash
-cat > raw/sources/example-source.md <<'EOF'
-# Example source
-
-A living wiki should preserve raw sources, create reviewable summaries and save useful answers back into durable pages.
-EOF
-```
-
-## 4. Run the first agent loop
-
-Ask the agent:
+Open `my-llm-wiki` in the agent and use one prompt:
 
 ```text
-Use wiki-ingest on raw/sources/example-source.md. Create a draft source page, update wiki/index.md and append wiki/log.md.
+Use llm-wiki-zero-to-working-wiki with the existing raw/sources/example-source.md. Complete the first ingest, save one reusable query answer, run wiki-lint and show me the git diff and review-required items.
 ```
 
-Then ask:
-
-```text
-Use wiki-query to answer: "What does this source imply for maintaining an LLM-Wiki?" Save the answer if it is reusable.
-```
-
-Then ask:
-
-```text
-Use wiki-lint and create a report in _agent/reports/.
-```
-
-## 5. Review the result
+## 3. Review the result
 
 Check:
 
@@ -91,7 +53,7 @@ A successful first run should produce:
 - a saved query page or an explicit reason not to save;
 - a lint report with clear review items.
 
-## 6. Next steps
+## 4. Next steps
 
 - Existing docs: run `llm-wiki-doctor` then `llm-wiki-migration-planner`.
 - Obsidian vault: run `llm-wiki-obsidian-hardening` before bulk edits.

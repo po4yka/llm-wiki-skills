@@ -7,6 +7,17 @@ Use this catalog to choose starter files before copying them into a downstream L
 
 ## Vault starters
 
+The ready external preset is copied as one unit by `llm-wiki-starter`:
+
+| Template | Destination | Use |
+| --- | --- | --- |
+| `templates/external-starter/AGENTS.md` | `AGENTS.md` | Vendor-neutral agent safety and workflow rules. |
+| `templates/external-starter/CLAUDE.md` | `CLAUDE.md` | Claude Code entry instructions. |
+| `templates/external-starter/README.md` | `README.md` | Human onboarding and first run. |
+| `templates/external-starter/example-source.md` | `raw/sources/example-source.md` | Safe first ingest source. |
+| `templates/external-starter/redaction-policy.yml` | `_meta/redaction-policy.yml` | Preview-first privacy policy. |
+| `templates/external-starter/export-profile.yml` | `exports/profiles/public.yml` | Fail-closed public export policy. |
+
 | Template | Primary skill | Use |
 | --- | --- | --- |
 | `templates/vault/AGENTS.md` | `llm-wiki-setup` | Agent rules for a downstream vault. |

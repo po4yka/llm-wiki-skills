@@ -25,31 +25,25 @@ Start with the lane that matches how you will use the wiki:
 | Repository docs / coding agents | `llm-wiki-repo-docs`, `llm-wiki-setup`, `wiki-query`, `wiki-lint`, `llm-wiki-github-action` | "Build an OpenWiki-style repo docs map for this codebase and propose the first pages." |
 | Team knowledge system | `llm-wiki-team-rollout`, `llm-wiki-capture-pipeline`, `llm-wiki-eval`, `llm-wiki-security-review`, `llm-wiki-export-publish` | "Design a PR-based team LLM-Wiki operating loop with owners, review queues and eval gates." |
 
-List available skills:
+### External starter (recommended)
+
+Create a ready local vault with the supported [`external-starter` profile](profiles/external-starter/profile.json):
+
+```bash
+npx llm-wiki-starter init my-llm-wiki
+```
+
+This creates the vault, initializes git, applies the ready [`templates/external-starter/`](templates/external-starter/) agent preset, installs the nine starter skills and runs preflight without replacing existing files. If `package.json` exists, the starter adds the missing `external:build` script and refuses to overwrite a conflicting script. The preset includes agent instructions, a sample source, preview-first redaction and a fail-closed public export profile. Agent detection is automatic; use `--agent codex` or another supported ID only when needed. To delegate setup, paste [`profiles/external-starter/prompt.md`](profiles/external-starter/prompt.md) into the agent.
+
+New to CLI tools and Git? Follow [LLM-Wiki Agent — start here](docs/start-here.md).
+
+After you approve pages under `wiki/public/`, run `npm run external:build` in the vault to create a checked public bundle under `dist/`.
+
+List all available skills:
 
 ```bash
 npx skills add po4yka/llm-wiki-skills --list
 ```
-
-### External starter (recommended)
-
-External users should start with the supported [`external-starter` profile](profiles/external-starter/profile.json). It installs nine skills for setup, the core operating loop, privacy, security review and controlled export without the full lifecycle pack.
-
-```bash
-npx skills add po4yka/llm-wiki-skills \
-  --skill llm-wiki-zero-to-working-wiki \
-  --skill llm-wiki-setup \
-  --skill wiki-triage \
-  --skill wiki-ingest \
-  --skill wiki-query \
-  --skill wiki-lint \
-  --skill llm-wiki-privacy-redactor \
-  --skill llm-wiki-export-publish \
-  --skill llm-wiki-security-review \
-  --copy -y -a codex
-```
-
-Replace `codex` with the target agent ID. To let the agent install and configure the profile, paste [`profiles/external-starter/prompt.md`](profiles/external-starter/prompt.md) into it.
 
 Install the full pack for Claude Code:
 
@@ -213,9 +207,11 @@ It includes skills for:
 | Path | Purpose |
 | --- | --- |
 | [`skills/`](skills/) | Installable Agent Skills. Each folder has a `SKILL.md` with valid Agent Skills frontmatter. |
+| [`bin/llm-wiki-starter.mjs`](bin/llm-wiki-starter.mjs) | One-command vault bootstrap CLI. |
 | [`skills.sh.json`](skills.sh.json) | Directory grouping metadata for skills.sh-style discovery. |
 | [`docs/`](docs/) | Conceptual reference docs behind the skills, including [`docs/12-evidence-and-faq.md`](docs/12-evidence-and-faq.md), [`docs/13-ecosystem-matrix.md`](docs/13-ecosystem-matrix.md), [`docs/14-technology-stack.md`](docs/14-technology-stack.md), [`docs/15-implementation-deep-dive.md`](docs/15-implementation-deep-dive.md), [`docs/16-retrieval-architecture.md`](docs/16-retrieval-architecture.md), [`docs/17-mcp-api-integration.md`](docs/17-mcp-api-integration.md), [`docs/18-evaluation-methodology.md`](docs/18-evaluation-methodology.md), [`docs/19-security-threat-model.md`](docs/19-security-threat-model.md), [`docs/20-ingestion-pipelines.md`](docs/20-ingestion-pipelines.md), [`docs/21-publishing-export.md`](docs/21-publishing-export.md), [`docs/22-team-operating-model.md`](docs/22-team-operating-model.md), [`docs/criticism-and-mitigations.md`](docs/criticism-and-mitigations.md), and [`docs/24-human-first-llm-wiki.md`](docs/24-human-first-llm-wiki.md). |
 | [`templates/`](templates/) | Starter vault files, source manifests, ingestion profiles, export profiles, team operating-model files, schemas and page/report/evaluation/API/security/publishing templates. See [`docs/templates-catalog.md`](docs/templates-catalog.md). |
+| [`templates/external-starter/`](templates/external-starter/) | Ready external agent preset used by the starter CLI. |
 | [`policies/`](policies/) | Policy templates for redaction, retention, review and incident response. |
 | [`examples/`](examples/) | Small fixtures for first-run and validation scenarios. |
 | [`domain-packs/`](domain-packs/) | Domain-specific starter taxonomies and workflows. |
@@ -243,6 +239,12 @@ npm run refresh:reports
 ```
 
 The smoke test lists available skills, renders `llm-wiki-faq` with `skills use` without launching an agent, and installs that skill into a temporary Claude Code project with `skills add --copy -y`.
+
+The credentialed [Product E2E workflow](.github/workflows/product-e2e.yml) installs the starter tarball in a clean environment, then runs the complete ingest, query, lint, redaction and export flow on Linux and macOS with Claude Code and Codex. It runs on `main`, weekly and on demand. Runs require the `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` repository secrets. To run one matrix cell locally:
+
+```bash
+npm run test:product-e2e -- --agent codex
+```
 
 The refresh reports write `dist/source-refresh-report.md` and `dist/ecosystem-refresh-report.md`. They create review queues for stale source-backed claims and ecosystem registry verification; they do not browse the web and do not update truth claims.
 

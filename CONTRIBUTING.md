@@ -21,6 +21,7 @@ It checks skill metadata, manifest/README consistency, local Markdown links, age
 
 | Path | Purpose |
 | --- | --- |
+| `bin/` | One-command starter CLI. |
 | `skills/` | Installable Agent Skills. |
 | `skills.sh.json` | Skills grouping metadata for discovery. |
 | `skill-router.json` | Machine-readable skill routing metadata. |
@@ -100,6 +101,8 @@ Run:
 ```bash
 npm run check:examples
 ```
+
+The credentialed product E2E runs on `main`, weekly and on demand through `.github/workflows/product-e2e.yml`. It requires repository secrets for Claude Code and Codex; do not replace it with copied expected outputs.
 
 ## Documentation changes
 

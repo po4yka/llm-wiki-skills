@@ -1,10 +1,40 @@
 {
-  "name": "llm-wiki-skills",
+  "name": "llm-wiki-starter",
   "version": "1.0.0",
-  "private": true,
+  "description": "One-command bootstrap for a local-first LLM-Wiki vault.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/po4yka/llm-wiki-skills.git"
+  },
   "type": "module",
+  "bin": {
+    "llm-wiki-starter": "bin/llm-wiki-starter.mjs"
+  },
+  "files": [
+    "bin/",
+    "profiles/external-starter/",
+    "scripts/build-external.mjs",
+    "scripts/redact-preview.mjs",
+    "skills/llm-wiki-zero-to-working-wiki/",
+    "skills/llm-wiki-setup/",
+    "skills/wiki-triage/",
+    "skills/wiki-ingest/",
+    "skills/wiki-query/",
+    "skills/wiki-lint/",
+    "skills/llm-wiki-privacy-redactor/",
+    "skills/llm-wiki-export-publish/",
+    "skills/llm-wiki-security-review/",
+    "templates/external-starter/",
+    "templates/schemas/page.schema.json",
+    "templates/wiki/index.md",
+    "templates/wiki/log.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "validate": "npm run validate:skills && npm run validate:skill-self-containment && npm run validate:manifest && npm run validate:links && npm run validate:agent-safety && npm run validate:skill-smells && npm run validate:claim-anchors && npm run validate:schema-drift && npm run validate:quality-policy && npm run validate:quality-ratchet && npm run validate:docs-metadata && npm run validate:templates && npm run validate:domain-packs && npm run validate:router && npm run validate:coverage && npm run check:examples",
+    "validate": "npm run validate:skills && npm run validate:skill-self-containment && npm run validate:manifest && npm run validate:links && npm run validate:agent-safety && npm run validate:skill-smells && npm run validate:claim-anchors && npm run validate:schema-drift && npm run validate:quality-policy && npm run validate:quality-ratchet && npm run validate:docs-metadata && npm run validate:templates && npm run validate:domain-packs && npm run validate:router && npm run validate:coverage && npm run check:examples && npm run test:starter",
     "validate:skills": "node scripts/validate-skills.mjs",
     "validate:skill-self-containment": "node scripts/validate-skill-self-containment.mjs",
     "validate:manifest": "node scripts/validate-skills-manifest.mjs",
@@ -29,10 +59,15 @@
     "refresh:ecosystem-report": "node scripts/ecosystem-refresh-scaffold.mjs",
     "refresh:reports": "npm run refresh:source-report && npm run refresh:ecosystem-report",
     "redact:preview": "node scripts/redact-preview.mjs",
-    "release:notes": "node scripts/generate-release-notes.mjs"
+    "external:build": "node scripts/build-external.mjs",
+    "release:notes": "node scripts/generate-release-notes.mjs",
+    "test:starter": "node scripts/test-starter-cli.mjs",
+    "test:product-e2e": "node scripts/test-product-e2e.mjs"
+  },
+  "dependencies": {
+    "skills": "1.5.20"
   },
   "devDependencies": {
-    "markdownlint-cli2": "0.23.2",
-    "skills": "1.5.20"
+    "markdownlint-cli2": "0.23.2"
   }
 }

@@ -1,0 +1,67 @@
+name: Product E2E
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: product-e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  external-starter:
+    name: ${{ matrix.os }} / ${{ matrix.agent }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        agent: [claude-code, codex]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v6
+        with:
+          node-version: 22
+          package-manager-cache: false
+
+      - name: Install Claude Code
+        if: matrix.agent == 'claude-code'
+        run: npm install --global @anthropic-ai/claude-code@2.1.227
+
+      - name: Install Codex
+        if: matrix.agent == 'codex'
+        run: npm install --global @openai/codex@0.147.0
+
+      - name: Run Claude Code product E2E
+        if: matrix.agent == 'claude-code'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npm run test:product-e2e -- --agent claude-code
+
+      - name: Run Codex product E2E
+        if: matrix.agent == 'codex'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npm run test:product-e2e -- --agent codex
+
+      - name: Upload failed E2E workspace
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: product-e2e-${{ matrix.os }}-${{ matrix.agent }}
+          path: ${{ runner.temp }}/llm-wiki-product-e2e-*/runner/vault
+          if-no-files-found: ignore
+          retention-days: 7

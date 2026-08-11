@@ -93,7 +93,7 @@ for (const file of files) {
     }
 
     if (inFrontmatter) {
-      const sensitiveMeta = line.match(/^(privacy|classification):\s*(sensitive|regulated|confidential|private)\b/i);
+      const sensitiveMeta = line.match(/^(privacy|classification|sensitivity):\s*(internal|sensitive|regulated|unknown|confidential|private)\b/i);
       if (sensitiveMeta) {
         findings.push({ file: displayPath(file), line: index + 1, kind: 'sensitive_metadata' });
       }
@@ -101,7 +101,8 @@ for (const file of files) {
 
     for (const [kind, pattern] of Object.entries(patterns)) {
       pattern.lastIndex = 0;
-      if (pattern.test(line)) {
+      const matches = [...line.matchAll(pattern)];
+      if (matches.some((match) => kind !== 'phone' || !/^\d{4}-\d{2}-\d{2}$/.test(match[0]))) {
         findings.push({ file: displayPath(file), line: index + 1, kind });
       }
     }

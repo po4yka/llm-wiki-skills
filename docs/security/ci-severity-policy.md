@@ -23,6 +23,7 @@ This repository contains operational instructions for agents. CI should fail on 
 | Advisory quality ratchet | `npm run validate:quality-ratchet` | fail on regressions | fail on regressions | Advisory checks may remain noisy, but the total finding count must not get worse than `quality-baseline.json`. |
 | Examples / semantic fixtures | `npm run check:examples` | fail | fail | Examples are the executable user contract. |
 | Distribution smoke test | `npm run smoke:skills` | fail | fail | The pack must work with the upstream `skills` CLI. |
+| Credentialed product E2E | `.github/workflows/product-e2e.yml` | post-merge, scheduled and manual | fail when run | Real Claude Code and Codex sessions must complete install, ingest, query, lint, redaction and export on Linux and macOS. It does not run on pull requests because fork jobs cannot access model credentials. |
 | Skill version bump | `npm run check:skill-versions -- --strict` | fail on PRs that change skills | fail | Installed behavior changes must be versioned. In strict mode, missing base refs are failures, not skips. |
 | actionlint | workflow job | fail | fail | Broken workflows should not merge. |
 | gitleaks | workflow job | advisory until baseline is clean | fail | Prevents secret leakage while allowing existing synthetic fixtures to be reviewed before release. |
@@ -39,6 +40,7 @@ Pinned tool versions:
 - `github.com/rhysd/actionlint/cmd/actionlint@v1.7.12`
 - `zizmor==1.26.1`
 - `promptfoo@0.121.17` in reusable workflow templates.
+- `@anthropic-ai/claude-code@2.1.227` and `@openai/codex@0.147.0` in the credentialed product E2E workflow.
 
 ## Promotion path
 

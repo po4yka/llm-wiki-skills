@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Supported `external-starter` profile with nine core skills and a copy-paste agent bootstrap prompt.
+- Publishable `llm-wiki-starter` CLI for one-command vault creation, skill installation and preflight.
+- Ready external agent preset with instructions, sample source, redaction policy and public export profile.
+- Fail-closed `external:build` command for public Markdown bundles, manifests, redaction reports and checksums.
+- Credentialed product E2E matrix for Linux/macOS and Claude Code/Codex, using the packaged external starter and bundled starter skills.
 
 ## 1.0.0 - 2026-07-08
 

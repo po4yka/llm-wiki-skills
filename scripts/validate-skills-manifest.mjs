@@ -135,11 +135,11 @@ if (externalStarter) {
     const seen = new Set();
 
     if (!prompt) fail('profiles/external-starter/prompt.md is missing');
+    else if (!prompt.includes('npx llm-wiki-starter init')) fail('external-starter prompt: missing one-command bootstrap');
 
     for (const skillName of externalStarter.skills) {
       if (!skillSet.has(skillName)) fail(`external-starter: references missing skill '${skillName}'`);
       if (seen.has(skillName)) fail(`external-starter: duplicate skill '${skillName}'`);
-      if (!prompt.includes(`--skill ${skillName}`)) fail(`external-starter prompt: missing install flag for '${skillName}'`);
       seen.add(skillName);
     }
   }

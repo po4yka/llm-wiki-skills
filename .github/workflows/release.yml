@@ -35,6 +35,9 @@ jobs:
       - name: Validate skills pack
         run: npm run validate
 
+      - name: Validate npm starter package
+        run: npm pack --dry-run
+
       - name: Validate release tag
         if: github.ref_type == 'tag'
         run: |
@@ -118,6 +121,8 @@ jobs:
             quality-baseline.json \
             package.json \
             package-lock.json \
+            bin \
+            profiles \
             .markdownlint-cli2.jsonc \
             .github \
             policies \
