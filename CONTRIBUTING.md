@@ -4,7 +4,10 @@ Thanks for improving `llm-wiki-skills`. This repository is an Agent Skills distr
 
 ## Quick start
 
+Use Node.js 22.20.0 or newer, matching the installed `skills` CLI.
+
 ```bash
+npm ci --ignore-scripts
 npm run validate
 npm run catalog:generate
 ```

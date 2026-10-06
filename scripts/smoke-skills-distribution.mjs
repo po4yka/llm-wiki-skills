@@ -4,7 +4,8 @@ import { spawnSync } from 'node:child_process';
 import { repoRoot, readText } from './lib/repo.mjs';
 import { validateSkillSelfContainment } from './lib/skill-self-containment.mjs';
 
-const cliPackage = process.env.SKILLS_CLI_PACKAGE ?? 'skills@1.5.15';
+const cliPackage = process.env.SKILLS_CLI_PACKAGE;
+const lockedCli = path.join(repoRoot, 'node_modules', 'skills', 'bin', 'cli.mjs');
 const smokeRoot = path.join(repoRoot, '.tmp', 'skills-distribution-smoke');
 const projectRoot = path.join(smokeRoot, 'project');
 const promptOutPath = path.join(smokeRoot, 'llm-wiki-faq.prompt.md');
@@ -18,7 +19,12 @@ const allSkillNames = fs
   .sort();
 
 function run(args, options = {}) {
-  const command = ['npx', '--yes', cliPackage, ...args];
+  if (!cliPackage && !fs.existsSync(lockedCli)) {
+    throw new Error('Locked skills CLI is missing. Run npm ci before the distribution smoke test.');
+  }
+  const command = cliPackage
+    ? ['npx', '--yes', cliPackage, ...args]
+    : [process.execPath, lockedCli, ...args];
   console.log(`$ ${command.join(' ')}`);
 
   const result = spawnSync(command[0], command.slice(1), {

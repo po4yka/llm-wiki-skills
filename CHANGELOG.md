@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- Run CI, nightly and release dependency checks against installed lockfile versions, and align the starter Node.js requirement with the `skills` CLI minimum of 22.20.0.
 - Corrected the pinned Gitleaks module path used by CI and release jobs.
 
 ## 1.1.0 - 2026-08-11

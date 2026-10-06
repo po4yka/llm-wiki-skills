@@ -4,7 +4,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, 
 import os from 'node:os';
 import path from 'node:path';
 import { Readable, Writable } from 'node:stream';
-import { initVault, interactiveInit } from '../bin/llm-wiki-starter.mjs';
+import { assertSupportedNodeVersion, initVault, interactiveInit } from '../bin/llm-wiki-starter.mjs';
 
 const temporaryRoot = mkdtempSync(path.join(os.tmpdir(), 'llm-wiki-starter-'));
 const target = path.join(temporaryRoot, 'vault');
@@ -12,6 +12,12 @@ const existingTarget = path.join(temporaryRoot, 'existing-vault');
 const interactiveTarget = path.join(temporaryRoot, 'interactive-vault');
 
 try {
+  for (const version of ['18.20.8', '20.19.0', '22.0.0', '22.19.9']) {
+    assert.throws(() => assertSupportedNodeVersion(version), /Node.js 22\.20\.0 or newer is required/);
+  }
+  for (const version of ['22.20.0', '22.21.0', '23.0.0', '24.0.0']) {
+    assert.doesNotThrow(() => assertSupportedNodeVersion(version));
+  }
   assert.throws(() => initVault({ target: os.homedir(), installSkills: false }), /Refusing to initialize broad directory/);
   const outsideTarget = path.join(temporaryRoot, 'outside-target');
   const linkedTarget = path.join(temporaryRoot, 'linked-target');
