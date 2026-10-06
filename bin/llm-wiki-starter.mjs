@@ -66,8 +66,15 @@ function run(command, args, cwd, stdio = 'inherit') {
   if (result.status !== 0) throw new Error(`${command} exited with status ${result.status}`);
 }
 
+export function assertSupportedNodeVersion(version = process.versions.node) {
+  const [major, minor] = version.split('.').map(Number);
+  if (major < 22 || (major === 22 && minor < 20)) {
+    throw new Error('Node.js 22.20.0 or newer is required.');
+  }
+}
+
 function preflight(target) {
-  if (Number(process.versions.node.split('.')[0]) < 18) throw new Error('Node.js 18 or newer is required.');
+  assertSupportedNodeVersion();
   run('git', ['--version'], target, 'ignore');
   for (const [source] of files) accessSync(path.join(packageRoot, source), constants.R_OK);
   for (const skill of profile.skills) accessSync(path.join(packageRoot, 'skills', skill, 'SKILL.md'), constants.R_OK);

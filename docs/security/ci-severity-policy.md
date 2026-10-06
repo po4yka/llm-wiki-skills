@@ -34,8 +34,8 @@ This repository contains operational instructions for agents. CI should fail on 
 
 Pinned tool versions:
 
-- `skills@1.5.15`
-- `markdownlint-cli2@0.23.0`
+- `skills` and `markdownlint-cli2` use the exact versions and integrity hashes in `package-lock.json`; CI installs them with `npm ci --ignore-scripts` before invoking their local binaries. `SKILLS_CLI_PACKAGE` is an explicit local compatibility-test override, not used by CI.
+- Node.js must be at least 22.20.0, matching the `skills` runtime requirement.
 - `github.com/zricethezav/gitleaks/v8@v8.30.1`
 - `github.com/rhysd/actionlint/cmd/actionlint@v1.7.12`
 - `zizmor==1.26.1`

@@ -31,6 +31,9 @@ jobs:
           node-version: 22
           package-manager-cache: false
 
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --fund=false
+
       - name: Run full validation suite
         run: npm run validate
 
@@ -66,6 +69,9 @@ jobs:
           node-version: 22
           package-manager-cache: false
 
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --fund=false
+
       - name: Verify local source works with skills CLI
         run: npm run smoke:skills
 
@@ -84,6 +90,9 @@ jobs:
         with:
           node-version: 22
           package-manager-cache: false
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --fund=false
 
       - name: Run markdownlint
         continue-on-error: true

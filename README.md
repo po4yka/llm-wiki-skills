@@ -225,6 +225,8 @@ It includes skills for:
 Run deterministic repository checks:
 
 ```bash
+# Requires Node.js 22.20.0 or newer
+npm ci --ignore-scripts
 npm run validate
 ```
 
@@ -240,7 +242,7 @@ Generate offline refresh reports:
 npm run refresh:reports
 ```
 
-The smoke test lists available skills, renders `llm-wiki-faq` with `skills use` without launching an agent, and installs that skill into a temporary Claude Code project with `skills add --copy -y`.
+The smoke test uses the installed, lockfile-pinned `skills` CLI, lists available skills, renders `llm-wiki-faq` with `skills use` without launching an agent, and installs that skill into a temporary Claude Code project with `skills add --copy -y`.
 
 The [Product E2E workflow](.github/workflows/product-e2e.yml) installs the starter tarball in a clean environment, then runs a deterministic ingest, query, lint, redaction and export fixture on Linux and macOS for the Claude Code and Codex layouts. It runs on `main`, weekly and on demand without provider credentials. To run one matrix cell locally:
 

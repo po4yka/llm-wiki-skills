@@ -59,19 +59,20 @@ Breaking changes include:
 
 ## Distribution smoke test
 
-The distribution smoke test checks that this repository works as a local source for the `skills` CLI.
+The distribution smoke test checks that this repository works as a local source for the `skills` CLI installed from `package-lock.json` (Node.js 22.20.0 or newer).
 
 Run locally:
 
 ```bash
+npm ci --ignore-scripts
 npm run smoke:skills
 ```
 
 It verifies:
 
-1. `npx skills add <repo> --list` can discover representative skills.
-2. `npx skills use <repo> --skill llm-wiki-faq` can render a prompt without launching an agent.
-3. Every shipped skill can be installed with `npx skills add <repo> --skill <name> -a claude-code --copy -y`.
+1. `skills add <repo> --list` can discover representative skills.
+2. `skills use <repo> --skill llm-wiki-faq` can render a prompt without launching an agent.
+3. Every shipped skill can be installed with `skills add <repo> --skill <name> -a claude-code --copy -y`.
 4. Every installed skill preserves its declared standalone-install contract.
 
 During a release, validation and the distribution smoke test run against the extracted archive rather than only the source checkout.
