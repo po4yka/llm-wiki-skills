@@ -67,7 +67,7 @@
     "test:product-e2e": "node scripts/test-product-e2e.mjs"
   },
   "dependencies": {
-    "skills": "1.7.0"
+    "skills": "1.7.2"
   },
   "devDependencies": {
     "markdownlint-cli2": "0.23.3"
