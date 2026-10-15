@@ -31,7 +31,7 @@ function checkNoUnpinnedTooling() {
   const bannedPatterns = [
     /npx\s+--yes\s+(?!skills@1\.5\.15\b|markdownlint-cli2@0\.23\.0\b|promptfoo@0\.121\.17\b)[^\s"'`]+/g,
     /go install [^\s]+@latest/g,
-    /pip install(?: --upgrade)? zizmor(?!==1\.26\.1\b)/g,
+    /pip install(?: --upgrade)? zizmor(?!==1\.31\.0\b)/g,
     /\b[\w@./-]+@latest\b/g,
     /skills@latest/g,
   ];
