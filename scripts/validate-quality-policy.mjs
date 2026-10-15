@@ -99,6 +99,7 @@ function checkWorkflowPolicy() {
   const release = readText(path.join(repoRoot, '.github', 'workflows', 'release.yml'));
   const nightly = readText(path.join(repoRoot, '.github', 'workflows', 'nightly.yml'));
   const policy = readText(path.join(repoRoot, 'docs', 'security', 'ci-severity-policy.md'));
+  assertIncludes('docs/security/ci-severity-policy.md', 'zizmor==1.31.0', 'docs/security/ci-severity-policy.md: documented zizmor version must match the CI pin');
   const releaseRequired = [
     ['npm run validate', /run: npm run validate\b/],
     ['npm run smoke:skills', /run: npm run smoke:skills\b/],
