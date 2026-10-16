@@ -31,7 +31,7 @@ function checkNoUnpinnedTooling() {
   const bannedPatterns = [
     /npx\s+--yes\s+(?!skills@1\.5\.15\b|markdownlint-cli2@0\.23\.0\b|promptfoo@0\.121\.17\b)[^\s"'`]+/g,
     /go install [^\s]+@latest/g,
-    /pip install(?: --upgrade)? zizmor(?!==1\.31\.0\b)/g,
+    /pip install(?: --upgrade)? zizmor(?!==1\.31\.1\b)/g,
     /\b[\w@./-]+@latest\b/g,
     /skills@latest/g,
   ];
@@ -99,7 +99,7 @@ function checkWorkflowPolicy() {
   const release = readText(path.join(repoRoot, '.github', 'workflows', 'release.yml'));
   const nightly = readText(path.join(repoRoot, '.github', 'workflows', 'nightly.yml'));
   const policy = readText(path.join(repoRoot, 'docs', 'security', 'ci-severity-policy.md'));
-  assertIncludes('docs/security/ci-severity-policy.md', 'zizmor==1.31.0', 'docs/security/ci-severity-policy.md: documented zizmor version must match the CI pin');
+  assertIncludes('docs/security/ci-severity-policy.md', 'zizmor==1.31.1', 'docs/security/ci-severity-policy.md: documented zizmor version must match the CI pin');
   const releaseRequired = [
     ['npm run validate', /run: npm run validate\b/],
     ['npm run smoke:skills', /run: npm run smoke:skills\b/],
