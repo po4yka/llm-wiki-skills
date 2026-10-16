@@ -38,7 +38,7 @@ Pinned tool versions:
 - Node.js must be at least 22.20.0, matching the `skills` runtime requirement.
 - `github.com/zricethezav/gitleaks/v8@v8.30.1`
 - `github.com/rhysd/actionlint/cmd/actionlint@v1.7.12`
-- `zizmor==1.31.0`
+- `zizmor==1.31.1`
 - `promptfoo@0.121.17` in reusable workflow templates.
 
 ## Promotion path
